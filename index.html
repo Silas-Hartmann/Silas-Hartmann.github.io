@@ -1,38 +1,318 @@
 <!DOCTYPE html>
-<html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unterrichtsmaterialien</title>
+    <title>Unterrichtsmaterialien für Schüler</title>
     <style>
+        :root {
+            --primary-color: #3a7bd5;
+            --secondary-color: #00d2ff;
+            --accent-color: #f8f9fa;
+            --text-color: #333;
+            --light-gray: #f0f2f5;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-        .button {
-            display: inline-block;
-            background-color: #4CAF50;
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 15px 25px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-            margin: 20px 0;
-            border-radius: 8px;
-            transition: background-color 0.3s;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
         }
-        .button:hover {
-            background-color: #45a049;
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .materials-section {
+            padding: 2rem 0;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .material-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 160px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+        
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .card-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Anpassungen */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-image {
+                margin: 1.5rem 0;
+            }
+            
+            .materials-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation für neue Inhalte */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff3860;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Willkommen zu meinen Unterrichtsmaterialien</h1>
-    <p>Hier finden Sie das aktuelle Arbeitsblatt für unseren Unterricht.</p>
-    
-    <a href="Dreieckshandel.html" class="button">Zum Arbeitsblatt Dreieckshandel</a>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Unterrichtsmaterialien</h1>
+                <p class="tagline">Digitale Lernmaterialien für einen modernen und interaktiven Unterricht</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1374&auto=format&fit=crop" alt="Lernumgebung mit Laptop" class="hero-image">
+        
+        <section class="materials-section fade-in">
+            <h2>Verfügbare Arbeitsblätter</h2>
+            
+            <div class="materials-grid" id="materials-container">
+                <!-- Arbeitsblätter werden hier durch JavaScript eingefügt -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Unterrichtsmaterialien. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Aktuelles Jahr für Footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Arbeitsblätter-Daten
+        const materials = [
+            {
+                id: 1,
+                title: "Dreieckshandel",
+                description: "Arbeitsblatt zum historischen Dreieckshandel zwischen Europa, Afrika und Amerika.",
+                icon: "📜",
+                link: "Dreieckshandel.html",
+                isNew: true
+            },
+            // Hier können Sie einfach weitere Arbeitsblätter hinzufügen, indem Sie dieses Muster kopieren
+            // {
+            //     id: 2,
+            //     title: "Neues Arbeitsblatt",
+            //     description: "Beschreibung des neuen Arbeitsblatts",
+            //     icon: "📝",
+            //     link: "neues_arbeitsblatt.html",
+            //     isNew: false
+            // },
+        ];
+        
+        // Arbeitsblätter in DOM rendern
+        function renderMaterials() {
+            const container = document.getElementById('materials-container');
+            
+            materials.forEach(material => {
+                const card = document.createElement('div');
+                card.className = 'material-card';
+                
+                const cardHTML = `
+                    <div class="card-img">${material.icon}</div>
+                    <div class="card-content">
+                        <h3 class="card-title">${material.title}</h3>
+                        <p class="card-description">${material.description}</p>
+                        <a href="${material.link}" class="btn">Zum Arbeitsblatt</a>
+                        ${material.isNew ? '<span class="new-badge">Neu</span>' : ''}
+                    </div>
+                `;
+                
+                card.innerHTML = cardHTML;
+                container.appendChild(card);
+            });
+        }
+        
+        // Seite initialisieren
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMaterials();
+        });
+    </script>
 </body>
 </html>
