@@ -55,19 +55,12 @@
             font-weight: 600;
         }
         
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            max-width: 600px;
-            opacity: 0.9;
-        }
-        
         .hero-image {
             width: 100%;
-            max-width: 800px;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
-            margin: 2rem 0;
+            margin: 1rem 0;
             box-shadow: var(--box-shadow);
         }
         
@@ -238,7 +231,6 @@
         <div class="container">
             <div class="header-content">
                 <h1>Unterrichtsmaterialien</h1>
-                <p class="tagline">Digitale Lernmaterialien für einen modernen und interaktiven Unterricht</p>
             </div>
         </div>
     </header>
@@ -257,21 +249,18 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="current-year"></span> Unterrichtsmaterialien. Alle Rechte vorbehalten.</p>
+            <p></p>
         </div>
     </footer>
 
     <script>
-        // Aktuelles Jahr für Footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        
         // Arbeitsblätter-Daten
         const materials = [
             {
                 id: 1,
                 title: "Dreieckshandel",
                 description: "Arbeitsblatt zum historischen Dreieckshandel zwischen Europa, Afrika und Amerika.",
-                icon: "📜",
+                image: "https://images.unsplash.com/photo-1578125046069-9fe0c359650b?q=80&w=1470&auto=format&fit=crop",
                 link: "Dreieckshandel.html",
                 isNew: true
             },
@@ -280,7 +269,8 @@
             //     id: 2,
             //     title: "Neues Arbeitsblatt",
             //     description: "Beschreibung des neuen Arbeitsblatts",
-            //     icon: "📝",
+            //     icon: "📝", // Wird verwendet, wenn kein Bild vorhanden ist
+            //     image: "URL_zum_Bild", // Optional: URL zu einem Bild
             //     link: "neues_arbeitsblatt.html",
             //     isNew: false
             // },
@@ -295,7 +285,7 @@
                 card.className = 'material-card';
                 
                 const cardHTML = `
-                    <div class="card-img">${material.icon}</div>
+                    <div class="card-img" style="${material.image ? `background-image: url('${material.image}'); background-size: cover; background-position: center;` : ''}">${!material.image ? material.icon || '📄' : ''}</div>
                     <div class="card-content">
                         <h3 class="card-title">${material.title}</h3>
                         <p class="card-description">${material.description}</p>
