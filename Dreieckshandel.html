@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Der Dreieckshandel - Präsentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: white;
+        }
+        
+        .navbar {
+            background-color: #1f2937;
+            color: white;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .slide-counter {
+            margin-right: 0.75rem;
+        }
+        
+        .btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .slide-container {
+            flex-grow: 1;
+            padding: 2rem;
+            overflow: auto;
+        }
+        
+        .slide {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        .footer {
+            background-color: #e5e7eb;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+        
+        /* Utility Classes */
+        .flex {
+            display: flex;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .flex-row {
+            flex-direction: row;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .justify-around {
+            justify-content: space-around;
+        }
+        
+        .h-full {
+            height: 100%;
+        }
+        
+        .w-full {
+            width: 100%;
+        }
+        
+        .w-1\/2 {
+            width: 50%;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+        
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+        
+        .text-xl {
+            font-size: 1.25rem;
+        }
+        
+        .text-lg {
+            font-size: 1.125rem;
+        }
+        
+        .text-sm {
+            font-size: 0.875rem;
+        }
+        
+        .text-xs {
+            font-size: 0.75rem;
+        }
+        
+        .font-bold {
+            font-weight: bold;
+        }
+        
+        .font-semibold {
+            font-weight: 600;
+        }
+        
+        .italic {
+            font-style: italic;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+        
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mt-8 {
+            margin-top: 2rem;
+        }
+        
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+        
+        .mt-4 {
+            margin-top: 1rem;
+        }
+        
+        .mt-3 {
+            margin-top: 0.75rem;
+        }
+        
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+        
+        .mr-3 {
+            margin-right: 0.75rem;
+        }
+        
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+        
+        .ml-6 {
+            margin-left: 1.5rem;
+        }
+        
+        .mx-2 {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .p-8 {
+            padding: 2rem;
+        }
+        
+        .p-6 {
+            padding: 1.5rem;
+        }
+        
+        .p-4 {
+            padding: 1rem;
+        }
+        
+        .p-3 {
+            padding: 0.75rem;
+        }
+        
+        .p-2 {
+            padding: 0.5rem;
+        }
+        
+        .pl-4 {
+            padding-left: 1rem;
+        }
+        
+        .pr-4 {
+            padding-right: 1rem;
+        }
+        
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+        
+        .rounded {
+            border-radius: 0.25rem;
+        }
+        
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .shadow {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .bg-white {
+            background-color: white;
+        }
+        
+        .bg-gray-800 {
+            background-color: #1f2937;
+        }
+        
+        .bg-gray-200 {
+            background-color: #e5e7eb;
+        }
+        
+        .bg-gray-100 {
+            background-color: #f3f4f6;
+        }
+        
+        .bg-gray-50 {
+            background-color: #f9fafb;
+        }
+        
+        .bg-red-50 {
+            background-color: #fef2f2;
+        }
+        
+        .bg-green-50 {
+            background-color: #f0fdf4;
+        }
+        
+        .bg-blue-50 {
+            background-color: #eff6ff;
+        }
+        
+        .bg-amber-50 {
+            background-color: #fffbeb;
+        }
+        
+        .bg-blue-600 {
+            background-color: #2563eb;
+        }
+        
+        .text-white {
+            color: white;
+        }
+        
+        .text-red-800 {
+            color: #991b1b;
+        }
+        
+        .text-red-700 {
+            color: #b91c1c;
+        }
+        
+        .text-green-800 {
+            color: #166534;
+        }
+        
+        .text-blue-800 {
+            color: #1e40af;
+        }
+        
+        .text-amber-800 {
+            color: #92400e;
+        }
+        
+        .list-disc {
+            list-style-type: disc;
+            padding-left: 1rem;
+        }
+        
+        .list-decimal {
+            list-style-type: decimal;
+            padding-left: 1rem;
+        }
+        
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+        
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+        
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+        
+        .space-y-2 > * + * {
+            margin-top: 0.5rem;
+        }
+        
+        .space-y-1 > * + * {
+            margin-top: 0.25rem;
+        }
+        
+        .gap-8 {
+            gap: 2rem;
+        }
+        
+        .gap-6 {
+            gap: 1.5rem;
+        }
+        
+        .gap-3 {
+            gap: 0.75rem;
+        }
+        
+        .flex-grow {
+            flex-grow: 1;
+        }
+        
+        .grid {
+            display: grid;
+        }
+        
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        
+        .object-cover {
+            object-fit: cover;
+        }
+        
+        .object-contain {
+            object-fit: contain;
+        }
+        
+        .relative {
+            position: relative;
+        }
+        
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+        
+        .w-16 {
+            width: 4rem;
+        }
+        
+        .w-12 {
+            width: 3rem;
+        }
+        
+        .h-16 {
+            height: 4rem;
+        }
+        
+        .h-12 {
+            height: 3rem;
+        }
+        
+        .w-32 {
+            width: 8rem;
+        }
+        
+        .h-32 {
+            height: 8rem;
+        }
+        
+        .max-w-md {
+            max-width: 28rem;
+        }
+        
+        .max-w-lg {
+            max-width: 32rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .md\:flex-row {
+                flex-direction: row;
+            }
+            
+            .md\:w-1\/2 {
+                width: 50%;
+            }
+            
+            .flex-col {
+                flex-direction: column;
+            }
+            
+            .w-full {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1 class="title">Der Dreieckshandel (6. Klasse)</h1>
+        <div class="controls">
+            <span class="slide-counter">Folie <span id="current-slide">1</span>/<span id="total-slides">9</span></span>
+            <button class="btn prev-btn">←</button>
+            <button class="btn next-btn">→</button>
+        </div>
+    </div>
+    
+    <div class="slide-container">
+        <!-- Slide 1: Titelfolie -->
+        <div class="slide active" data-title="Woher bekamen die Europäer die Arbeiter für ihre Plantagen in Amerika?">
+            <div class="flex flex-col items-center justify-center h-full">
+                <h1 class="text-3xl font-bold mb-8 text-center">Woher bekamen die Europäer die Arbeiter für ihre Plantagen in Amerika?</h1>
+                <div class="w-full flex justify-center">
+                    <img src="https://ph-bsa.ch/wp-content/uploads/2020/01/dreieckshandel.png" alt="Dreieckshandel Überblick" class="max-w-md rounded-lg shadow-lg">
+                </div>
+                <p class="mt-8 text-lg italic">Der Dreieckshandel - Eine Unterrichtseinheit für die 6. Klasse</p>
+            </div>
+        </div>
+        
+        <!-- Slide 2: Direkter Handel -->
+        <div class="slide" data-title="Der direkte Handel zwischen Europa und Amerika">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Der direkte Handel zwischen Europa und Amerika</h2>
+                <div class="flex flex-row justify-around items-center flex-grow">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl mb-2">Von Europa nach Amerika:</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Trade_musket_made_in_Birmingham_England.jpg" alt="Waffen" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Waffen</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Tissu_africain02.jpg" alt="Stoffe" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Stoffe</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Aggry_beads.jpg" alt="Glasperlen" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Glasperlen</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Amboss%2C_Hammer%2C_Zange.JPG/640px-Amboss%2C_Hammer%2C_Zange.JPG" alt="Werkzeuge" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Werkzeuge</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Arrow_east.svg/640px-Arrow_east.svg.png" alt="Pfeil nach rechts" class="w-16 rotate-90 mx-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Arrow_west.svg/640px-Arrow_west.svg.png" alt="Pfeil nach links" class="w-16 rotate-90 mx-2">
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl mb-2">Von Amerika nach Europa:</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Cocoa_Pods.JPG" alt="Kakao" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Kakao</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Coffee_beans_-_ziarna_kawy.jpg" alt="Kaffee" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Kaffee</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Canne_a_sucre.jpg" alt="Zucker(rohr)" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Zucker(rohr)</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Cotton_fields_in_India.jpg" alt="Baumwolle" class="w-32 h-32 object-cover rounded-lg shadow-md mb-2">
+                                <p class="text-sm">Baumwolle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Das Problem -->
+        <div class="slide" data-title="Das Problem: Wer soll auf den Plantagen arbeiten?">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Das Problem: Wer soll auf den Plantagen arbeiten?</h2>
+                <div class="flex flex-row justify-between items-center mt-4 mb-8">
+                    <div class="w-1/2 pr-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Slaves_cutting_the_sugar_cane%2C_Antigua%2C_1823_%28ILN%29.jpg" alt="Plantage in Amerika" class="w-full rounded-lg shadow-lg">
+                    </div>
+                    <div class="w-1/2 pl-4 flex flex-col space-y-6">
+                        <div class="bg-red-50 p-4 rounded-lg shadow">
+                            <h3 class="text-xl font-bold text-red-800 mb-2">Das Problem:</h3>
+                            <p>Die Europäer brauchten viele Arbeiter für ihre großen Plantagen in Amerika.</p>
+                        </div>
+                        
+                        <div class="bg-amber-50 p-4 rounded-lg shadow">
+                            <h3 class="text-xl font-bold text-amber-800 mb-2">Was passierte mit den Einheimischen?</h3>
+                            <ul class="list-disc ml-6 space-y-2">
+                                <li>Viele einheimische Menschen starben durch Krankheiten aus Europa (z.B. Pocken, Masern)</li>
+                                <li>Harte Arbeit in Minen und auf Feldern</li>
+                                <li>Kriege und Konflikte</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg shadow">
+                            <h3 class="text-xl font-bold text-blue-800 mb-2">Die Frage:</h3>
+                            <p class="text-lg italic">Woher bekamen die Europäer die Arbeiter für ihre Plantagen in Amerika?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Die Lösung: Der Dreieckshandel -->
+        <div class="slide" data-title="Die Lösung: Der Dreieckshandel">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Die Lösung der Europäer: Der Dreieckshandel</h2>
+                <div class="relative w-full flex-grow">
+                    <img src="https://www.bpb.de/cache/images/6/242226_original.jpg?289B5" alt="Dreieckshandel Karte" class="w-full h-full object-contain">
+                </div>
+                <div class="mt-4 bg-gray-50 p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">Die drei Stationen des Dreieckshandels:</h3>
+                    <ol class="list-decimal ml-6 space-y-1">
+                        <li><strong>Von Europa nach Afrika:</strong> Werkzeuge, Waffen, Stoffe, Glasperlen</li>
+                        <li><strong>Von Afrika nach Amerika:</strong> Versklavte Menschen</li>
+                        <li><strong>Von Amerika nach Europa:</strong> Zucker, Kaffee, Kakao, Baumwolle</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Detailansicht: Von Europa nach Afrika -->
+        <div class="slide" data-title="Von Europa nach Afrika">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Von Europa nach Afrika: Waren für den Tauschhandel</h2>
+                <div class="flex flex-col md:flex-row justify-between items-center h-full">
+                    <div class="w-full md:w-1/2 p-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Slave_trade.jpg/640px-Slave_trade.jpg" alt="Sklavenhandel in Afrika" class="w-full rounded-lg shadow-lg">
+                        <p class="text-xs italic mt-2">Historische Darstellung des Sklavenhandels</p>
+                    </div>
+                    <div class="w-full md:w-1/2 p-4">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold mb-4">Die Europäer brachten nach Afrika:</h3>
+                            <ul class="list-disc ml-6 space-y-3">
+                                <li class="flex items-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Trade_musket_made_in_Birmingham_England.jpg" alt="Waffen" class="w-12 h-12 object-cover rounded mr-3">
+                                    <span>Waffen (z.B. Gewehre)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Tissu_africain02.jpg" alt="Stoffe" class="w-12 h-12 object-cover rounded mr-3">
+                                    <span>Bunte Stoffe</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Aggry_beads.jpg" alt="Glasperlen" class="w-12 h-12 object-cover rounded mr-3">
+                                    <span>Glasperlen und Schmuck</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Amboss%2C_Hammer%2C_Zange.JPG/640px-Amboss%2C_Hammer%2C_Zange.JPG" alt="Werkzeuge" class="w-12 h-12 object-cover rounded mr-3">
+                                    <span>Werkzeuge aus Metall</span>
+                                </li>
+                            </ul>
+                            <div class="mt-6 bg-red-50 p-3 rounded">
+                                <p>Mit diesen Waren bezahlten sie für Menschen, die als Sklaven verkauft wurden.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Detailansicht: Von Afrika nach Amerika -->
+        <div class="slide" data-title="Von Afrika nach Amerika">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Von Afrika nach Amerika: Der Sklaventransport</h2>
+                <div class="flex flex-col md:flex-row justify-between items-center h-full">
+                    <div class="w-full md:w-1/2 p-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Slave_ship_diagram.png/640px-Slave_ship_diagram.png" alt="Sklavenschiff Diagramm" class="w-full rounded-lg shadow-lg mb-4">
+                        <p class="text-xs italic mb-4">Diagramm eines Sklavenschiffs - die Menschen wurden auf engstem Raum transportiert</p>
+                        
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Slaveshipposter.jpg/640px-Slaveshipposter.jpg" alt="Sklavenschiff Poster" class="w-full rounded-lg shadow-lg">
+                        <p class="text-xs italic mt-2">Historisches Poster mit einer Darstellung eines Sklavenschiffs</p>
+                    </div>
+                    <div class="w-full md:w-1/2 p-4">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold mb-4">Der Transport über den Atlantik:</h3>
+                            <ul class="list-disc ml-6 space-y-4">
+                                <li>Die Menschen wurden in Afrika gefangen genommen oder von afrikanischen Händlern an Europäer verkauft</li>
+                                <li>Sie wurden auf Schiffen zusammengepfercht und über den Atlantischen Ozean transportiert</li>
+                                <li>Die Fahrt dauerte mehrere Wochen bis Monate</li>
+                                <li>Die Bedingungen auf den Schiffen waren unmenschlich:</li>
+                                <ul class="list-disc ml-6 mt-2 space-y-2">
+                                    <li>Enge, kaum Platz zum Bewegen</li>
+                                    <li>Schlechte Luft und Hygiene</li>
+                                    <li>Mangelnde Versorgung mit Nahrung und Wasser</li>
+                                </ul>
+                                <li class="text-red-700 font-semibold">Viele Menschen starben bereits während der Überfahrt</li>
+                                <li>Die Überlebenden wurden in Amerika als Sklaven verkauft</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Detailansicht: Von Amerika nach Europa -->
+        <div class="slide" data-title="Von Amerika nach Europa">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Von Amerika nach Europa: Kolonialwaren</h2>
+                <div class="flex flex-col md:flex-row justify-between items-center h-full">
+                    <div class="w-full md:w-1/2 p-4">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="text-xl font-bold mb-4">Die Sklaven arbeiteten auf Plantagen:</h3>
+                            <ul class="list-disc ml-6 space-y-3">
+                                <li class="flex items-start">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Canne_a_sucre.jpg" alt="Zuckerrohr" class="w-16 h-16 object-cover rounded mr-3">
+                                    <div>
+                                        <span class="font-bold">Zuckerrohr:</span>
+                                        <p class="text-sm">Wurde zu Zucker verarbeitet, der in Europa sehr teuer und beliebt war</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start mt-3">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Coffee_beans_-_ziarna_kawy.jpg" alt="Kaffee" class="w-16 h-16 object-cover rounded mr-3">
+                                    <div>
+                                        <span class="font-bold">Kaffee:</span>
+                                        <p class="text-sm">Ein beliebtes Luxusgetränk in Europa</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start mt-3">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Cocoa_Pods.JPG" alt="Kakao" class="w-16 h-16 object-cover rounded mr-3">
+                                    <div>
+                                        <span class="font-bold">Kakao:</span>
+                                        <p class="text-sm">Wurde zu Schokolade verarbeitet</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start mt-3">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Cotton_fields_in_India.jpg" alt="Baumwolle" class="w-16 h-16 object-cover rounded mr-3">
+                                    <div>
+                                        <span class="font-bold">Baumwolle:</span>
+                                        <p class="text-sm">Wurde zu Stoffen weiterverarbeitet</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 p-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Slaves_cutting_the_sugar_cane%2C_Antigua%2C_1823_%28ILN%29.jpg" alt="Sklaven bei der Ernte von Zuckerrohr" class="w-full rounded-lg shadow-lg mb-6">
+                        <p class="text-xs italic mb-6">Sklaven bei der Ernte von Zuckerrohr, 1823</p>
+                        
+                        <div class="bg-amber-50 p-4 rounded-lg shadow">
+                            <h3 class="text-lg font-bold text-amber-800 mb-2">Der Gewinn für Europa:</h3>
+                            <ul class="list-disc ml-6">
+                                <li>Die Schiffe kehrten mit wertvollen Waren zurück nach Europa</li>
+                                <li>Dort wurden diese Waren für viel Geld verkauft</li>
+                                <li>Diese "Kolonialwaren" waren sehr beliebt und teuer</li>
+                                <li>Der Dreieckshandel brachte großen Reichtum für europäische Händler und Länder</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Zusammenfassung Dreieckshandel -->
+        <div class="slide" data-title="Zusammenfassung: Der Dreieckshandel">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Zusammenfassung: Der Dreieckshandel</h2>
+                <div class="w-full flex justify-center mb-8">
+                    <img src="https://ph-bsa.ch/wp-content/uploads/2020/01/dreieckshandel.png" alt="Dreieckshandel Überblick" class="max-w-lg rounded-lg shadow-lg">
+                </div>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-blue-50 p-4 rounded-lg shadow">
+                        <h3 class="text-lg font-bold text-blue-800 mb-2">Europa → Afrika</h3>
+                        <ul class="list-disc ml-6">
+                            <li>Waffen</li>
+                            <li>Werkzeuge</li>
+                            <li>Stoffe</li>
+                            <li>Glasperlen</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg shadow">
+                        <h3 class="text-lg font-bold text-red-800 mb-2">Afrika → Amerika</h3>
+                        <ul class="list-disc ml-6">
+                            <li>Versklavte Menschen</li>
+                            <li>Als Arbeitskräfte auf Plantagen</li>
+                            <li>Oft unmenschliche Bedingungen</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg shadow">
+                        <h3 class="text-lg font-bold text-green-800 mb-2">Amerika → Europa</h3>
+                        <ul class="list-disc ml-6">
+                            <li>Zucker</li>
+                            <li>Kaffee</li>
+                            <li>Kakao</li>
+                            <li>Baumwolle</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 bg-gray-100 p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">Merksatz:</h3>
+                    <p class="italic">Die Europäer holten Menschen aus Afrika, die sie als Sklaven auf den Plantagen in Amerika arbeiten ließen. So entstand der Dreieckshandel zwischen Europa, Afrika und Amerika.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Reflexion -->
+        <div class="slide" data-title="Reflexion: Wer profitierte, wer litt?">
+            <div class="flex flex-col h-full">
+                <h2 class="text-2xl font-bold mb-6">Reflexion: Wer profitierte, wer litt?</h2>
+                <div class="grid grid-cols-2 gap-8 mb-6">
+                    <div class="bg-green-50 p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">Wer profitierte?</h3>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Europäische Händler und Kaufleute</li>
+                            <li>Europäische Länder und ihre Wirtschaft</li>
+                            <li>Plantagenbesitzer in Amerika</li>
+                            <li>Einige afrikanische Händler und Herrscher</li>
+                        </ul>
+                        <div class="mt-4">
+                            <p>Die Europäer bekamen:</p>
+                            <ul class="list-disc ml-6">
+                                <li>Billige Arbeitskräfte für ihre Plantagen</li>
+                                <li>Wertvolle Kolonialwaren</li>
+                                <li>Große Gewinne aus dem Handel</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-bold text-red-800 mb-4">Wer litt?</h3>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Millionen versklavte Menschen aus Afrika</li>
+                            <li>Familien in Afrika, die auseinandergerissen wurden</li>
+                            <li>Einheimische Völker in Amerika</li>
+                        </ul>
+                        <div class="mt-4">
+                            <p>Die Menschen aus Afrika:</p>
+                            <ul class="list-disc ml-6">
+                                <li>Verloren ihre Freiheit und Heimat</li>
+                                <li>Wurden unter schrecklichen Bedingungen transportiert</li>
+                                <li>Mussten hart auf den Plantagen arbeiten</li>
+                                <li>Wurden oft unmenschlich behandelt</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow">
+                    <h3 class="text-lg font-bold mb-2">Aufgabe zur Reflexion:</h3>
+                    <p>Was denkst du über den Dreieckshandel? War es gut oder schlecht, dass die Europäer Menschen aus Afrika nach Amerika brachten?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span id="slide-title">Woher bekamen die Europäer die Arbeiter für ihre Plantagen in Amerika?</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const currentSlideEl = document.getElementById('current-slide');
+            const totalSlidesEl = document.getElementById('total-slides');
+            const slideTitleEl = document.getElementById('slide-title');
+            
+            let currentSlideIndex = 0;
+            const totalSlides = slides.length;
+            
+            // Initialize the slide count
+            totalSlidesEl.textContent = totalSlides;
+            
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Show the selected slide
+                slides[index].classList.add('active');
+                
+                // Update slide counter
+                currentSlideIndex = index;
+                currentSlideEl.textContent = index + 1;
+                
+                // Update slide title in footer
+                slideTitleEl.textContent = slides[index].getAttribute('data-title');
+            }
+            
+            // Event listeners for navigation buttons
+            prevBtn.addEventListener('click', function() {
+                let newIndex = currentSlideIndex - 1;
+                if (newIndex < 0) {
+                    newIndex = totalSlides - 1;
+                }
+                showSlide(newIndex);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                let newIndex = currentSlideIndex + 1;
+                if (newIndex >= totalSlides) {
+                    newIndex = 0;
+                }
+                showSlide(newIndex);
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (event.key === 'ArrowRight') {
+                    nextBtn.click();
+                }
+            });
+            
+            // Initialize the first slide
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
