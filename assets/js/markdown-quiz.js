@@ -100,10 +100,34 @@ function processQuestion(h3, elements, container, questionNumber) {
   let options = [];
   let correctIndex = -1;
   let description = '';
+  let gapAnswers = [];
+  let gapText = '';
   
   // Nach einer <ul> (ungeordnete Liste) für Multiple-Choice oder nach einem <p> mit "Antwort:" für Textantworten suchen
   elements.forEach(element => {
-    if (element.tagName === 'UL') {
+    // Prüfen auf Lückentext - Paragraphen mit "Lücken:" 
+    if (element.tagName === 'P' && element.textContent.includes('Lücken:')) {
+      questionType = 'gap-text';
+      
+      // Suche nach dem Lückentext in den vorherigen Elementen
+      const prevElements = Array.from(elements).slice(0, Array.from(elements).indexOf(element));
+      
+      for (const prevEl of prevElements) {
+        if (prevEl.tagName === 'P' && prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
+          gapText = prevEl.innerHTML;
+          break;
+        }
+      }
+      
+      // Extrahiere die Lückentext-Antworten
+      const match = /Lücken:\s*(.+)/.exec(element.textContent);
+      if (match) {
+        const answersText = match[1].trim();
+        // Trenne Antworten durch Komma, und jede Antwort kann Alternativen mit | haben
+        gapAnswers = answersText.split(',').map(ans => ans.trim());
+      }
+    }
+    else if (element.tagName === 'UL') {
       questionType = 'multiple-choice';
       const listItems = element.querySelectorAll('li');
       
@@ -132,8 +156,10 @@ function processQuestion(h3, elements, container, questionNumber) {
           correctAnswer = match[1].trim();
         }
       }
-      else {
-        // Sonstige erklärende Texte
+      // Beschreibung nur hinzufügen, wenn es kein Lückentext ist und kein "Lücken:" enthält
+      else if (!element.textContent.includes('Lücken:') && 
+              !(element.textContent.includes('[') && element.textContent.includes(']') && 
+                questionType === 'gap-text')) {
         if (element.textContent.trim()) {
           description += element.outerHTML;
         }
@@ -150,7 +176,19 @@ function processQuestion(h3, elements, container, questionNumber) {
           if (match) {
             correctAnswer = match[1].trim();
           }
-        } else {
+        } 
+        // Prüfen, ob es ein Lückentext-Element ist
+        else if (element.textContent.includes('Lücken:')) {
+          questionType = 'gap-text';
+          
+          const match = /Lücken:\s*(.+)/.exec(element.textContent);
+          if (match) {
+            const answersText = match[1].trim();
+            gapAnswers = answersText.split(',').map(ans => ans.trim());
+          }
+        } 
+        else {
+          // Kein Lückentext und keine Antwort
           description += element.outerHTML;
         }
       }
@@ -203,6 +241,24 @@ function processQuestion(h3, elements, container, questionNumber) {
     inputContainer.appendChild(textarea);
     
     formattedQuestion.appendChild(inputContainer);
+  }
+  else if (questionType === 'gap-text' && gapText && gapAnswers.length > 0) {
+    formattedQuestion.setAttribute('data-type', 'gap-text');
+    formattedQuestion.setAttribute('data-correct', JSON.stringify(gapAnswers));
+    
+    const gapContainer = document.createElement('div');
+    gapContainer.className = 'gap-text-container';
+    
+    // Extrahiere Lücken aus dem Text und ersetze sie durch Eingabefelder
+    let gapIndex = 0;
+    const gapTextWithInputs = gapText.replace(/\[([^\]]*)\]/g, (match, placeholder) => {
+      const input = `<input type="text" class="gap-input" data-gap-index="${gapIndex}" placeholder="${placeholder || 'Lücke ausfüllen...'}">`;
+      gapIndex++;
+      return input;
+    });
+    
+    gapContainer.innerHTML = gapTextWithInputs;
+    formattedQuestion.appendChild(gapContainer);
   } else {
     // Fallback für unerkannte Fragetypen - setze trotzdem ein Textfeld
     console.warn(`Fragetyp für Frage ${questionNumber} nicht erkannt, setze Standardtextfeld`);
@@ -305,6 +361,65 @@ function checkAllAnswers() {
         correctCount++;
       } else {
         feedbackDiv.textContent = 'Falsche oder unvollständige Antwort.';
+        feedbackDiv.className = 'feedback incorrect';
+      }
+    } else if (type === 'gap-text') {
+      // Überprüfung für Lückentext
+      const gapInputs = question.querySelectorAll('.gap-input');
+      let allCorrect = true;
+      let totalGaps = gapInputs.length;
+      let correctGaps = 0;
+      
+      if (gapInputs.length === 0) {
+        console.error('Keine Lückentext-Eingabefelder gefunden');
+        return;
+      }
+      
+      const correctAnswers = JSON.parse(correctAnswer);
+      
+      // Prüfe jede Lücke
+      gapInputs.forEach((input, index) => {
+        const userAnswer = input.value.trim();
+        
+        if (!userAnswer) {
+          allCorrect = false;
+          input.classList.add('gap-empty');
+          return;
+        }
+        
+        input.classList.remove('gap-empty');
+        
+        // Hole die korrekten Antworten für diese Lücke
+        const correctOptions = correctAnswers[index] ? correctAnswers[index].split('|').map(a => a.trim()) : [];
+        const userAnswerLower = userAnswer.toLowerCase();
+        
+        // Überprüfe, ob die Antwort korrekt ist
+        const isCorrect = correctOptions.some(option => {
+          const optionLower = option.toLowerCase();
+          return userAnswerLower === optionLower || userAnswerLower.includes(optionLower);
+        });
+        
+        if (isCorrect) {
+          input.classList.add('gap-correct');
+          input.classList.remove('gap-incorrect');
+          correctGaps++;
+        } else {
+          input.classList.add('gap-incorrect');
+          input.classList.remove('gap-correct');
+          allCorrect = false;
+        }
+      });
+      
+      // Zeige das Ergebnis an
+      if (gapInputs.length === 0) {
+        feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung.';
+        feedbackDiv.className = 'feedback no-answer';
+      } else if (gapInputs.length > 0 && totalGaps === correctGaps) {
+        feedbackDiv.textContent = 'Alle Lücken richtig ausgefüllt!';
+        feedbackDiv.className = 'feedback correct';
+        correctCount++;
+      } else {
+        feedbackDiv.textContent = `${correctGaps} von ${totalGaps} Lücken richtig ausgefüllt.`;
         feedbackDiv.className = 'feedback incorrect';
       }
     }
