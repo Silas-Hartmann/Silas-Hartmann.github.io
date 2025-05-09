@@ -101,6 +101,12 @@ function processQuestion(h3, elements, container, questionNumber) {
   let correctIndex = -1;
   let description = '';
   
+  // Debug: Liste alle Elemente, die zur Frage gehören
+  console.log(`Elemente für Frage "${questionText}":`);
+  elements.forEach((el, idx) => {
+    console.log(`Element ${idx}: ${el.tagName} - ${el.outerHTML.substring(0, 100)}...`);
+  });
+  
   // Nach einer <ul> (ungeordnete Liste) für Multiple-Choice oder nach einem <p> mit "Antwort:" für Textantworten suchen
   elements.forEach(element => {
     if (element.tagName === 'UL') {
@@ -121,20 +127,56 @@ function processQuestion(h3, elements, container, questionNumber) {
         }
       });
     } 
-    else if (element.tagName === 'P' && element.textContent.includes('Antwort:')) {
-      questionType = 'text';
-      const match = /Antwort:\s*(.+)/.exec(element.textContent);
-      if (match) {
-        correctAnswer = match[1].trim();
+    else if (element.tagName === 'P') {
+      // Debug: Textinhalt überprüfen
+      console.log(`Prüfe Textinhalt eines Paragraphen: "${element.textContent}"`);
+      
+      // Erweiterte Erkennung für Textantworten - sowohl direkt im Inhalt als auch in Unterknoten
+      if (element.textContent.includes('Antwort:')) {
+        questionType = 'text';
+        console.log('Textantwort-Frage erkannt');
+        
+        // Versuche, die Antwort zu extrahieren
+        const match = /Antwort:\s*(.+)/.exec(element.textContent);
+        if (match) {
+          correctAnswer = match[1].trim();
+          console.log(`Korrekte Antwort(en): ${correctAnswer}`);
+        } else {
+          console.warn('Antwort: gefunden, aber konnte kein Muster extrahieren');
+        }
+      }
+      else {
+        // Sonstige erklärende Texte
+        if (element.textContent.trim()) {
+          description += element.outerHTML;
+        }
       }
     }
     else {
-      // Sonstige erklärende Texte
-      if (element.textContent.trim() && !element.textContent.includes('Antwort:')) {
-        description += element.outerHTML;
+      // Andere Elemente als beschreibenden Text behandeln
+      if (element.textContent.trim()) {
+        // Prüfen, ob irgendwo im Element "Antwort:" vorkommt
+        if (element.textContent.includes('Antwort:')) {
+          questionType = 'text';
+          console.log(`Textantwort in anderem Element (${element.tagName}) gefunden`);
+          
+          const match = /Antwort:\s*(.+)/.exec(element.textContent);
+          if (match) {
+            correctAnswer = match[1].trim();
+            console.log(`Korrekte Antwort(en): ${correctAnswer}`);
+          }
+        } else {
+          description += element.outerHTML;
+        }
       }
     }
   });
+  
+  // Debugausgabe für das Ergebnis
+  console.log(`Frage ${questionNumber} wurde als ${questionType} erkannt`);
+  if (questionType === 'text') {
+    console.log(`Korrekte Antwort(en): ${correctAnswer}`);
+  }
   
   // Beschreibung hinzufügen, falls vorhanden
   if (description) {
@@ -175,12 +217,45 @@ function processQuestion(h3, elements, container, questionNumber) {
     const inputContainer = document.createElement('div');
     inputContainer.className = 'text-input-container';
     
+    // Erstelle ein Textarea für die Antwort
     const textarea = document.createElement('textarea');
     textarea.className = 'text-answer';
     textarea.placeholder = 'Deine Antwort hier eingeben...';
     inputContainer.appendChild(textarea);
     
+    // Als Teil des Debugging: Zeige die erwartete Antwort an
+    const debugInfo = document.createElement('div');
+    debugInfo.className = 'debug-info';
+    debugInfo.textContent = `DEBUG: Erwartete Antwort(en): ${correctAnswer.split('|').join(' oder ')}`;
+    debugInfo.style.fontSize = '0.8em';
+    debugInfo.style.color = '#666';
+    debugInfo.style.marginTop = '5px';
+    debugInfo.style.fontStyle = 'italic';
+    inputContainer.appendChild(debugInfo);
+    
     formattedQuestion.appendChild(inputContainer);
+  } else {
+    // Fallback für unerkannte Fragetypen - setze trotzdem ein Textfeld
+    console.warn(`Fragetyp für Frage ${questionNumber} nicht erkannt, setze Standardtextfeld`);
+    
+    const fallbackContainer = document.createElement('div');
+    fallbackContainer.className = 'text-input-container';
+    
+    const fallbackTextarea = document.createElement('textarea');
+    fallbackTextarea.className = 'text-answer';
+    fallbackTextarea.placeholder = 'Deine Antwort hier eingeben...';
+    
+    const fallbackNote = document.createElement('div');
+    fallbackNote.className = 'fallback-note';
+    fallbackNote.textContent = 'Hinweis: Fragetyp konnte nicht automatisch erkannt werden';
+    fallbackNote.style.fontSize = '0.8em';
+    fallbackNote.style.color = '#c00';
+    
+    fallbackContainer.appendChild(fallbackTextarea);
+    fallbackContainer.appendChild(fallbackNote);
+    
+    formattedQuestion.appendChild(fallbackContainer);
+    formattedQuestion.setAttribute('data-type', 'unknown');
   }
   
   // Feedback-Bereich hinzufügen
@@ -224,11 +299,23 @@ function checkAllAnswers() {
         feedbackDiv.textContent = 'Falsche Antwort.';
         feedbackDiv.className = 'feedback incorrect';
       }
-    } else if (type === 'text') {
-      const userAnswer = question.querySelector('.text-answer').value.trim();
+    } else if (type === 'text' || type === 'unknown') {
+      const answerField = question.querySelector('.text-answer');
+      if (!answerField) {
+        console.error('Textantwortfeld nicht gefunden');
+        return;
+      }
+      
+      const userAnswer = answerField.value.trim();
       
       if (!userAnswer) {
         feedbackDiv.textContent = 'Keine Antwort eingegeben.';
+        feedbackDiv.className = 'feedback no-answer';
+        return;
+      }
+      
+      if (type === 'unknown') {
+        feedbackDiv.textContent = 'Diese Antwort kann nicht automatisch überprüft werden.';
         feedbackDiv.className = 'feedback no-answer';
         return;
       }
