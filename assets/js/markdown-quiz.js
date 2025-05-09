@@ -103,95 +103,114 @@ function processQuestion(h3, elements, container, questionNumber) {
   let gapAnswers = [];
   let gapText = '';
   
-  // Nach einer <ul> (ungeordnete Liste) für Multiple-Choice oder nach einem <p> mit "Antwort:" für Textantworten suchen
-  elements.forEach(element => {
-    // Prüfen auf Lückentext - Paragraphen mit "Lücken:" 
-    if (element.tagName === 'P' && element.textContent.includes('Lücken:')) {
-      questionType = 'gap-text';
-      
-      // Suche nach dem Lückentext in den vorherigen Elementen
-      const prevElements = Array.from(elements).slice(0, Array.from(elements).indexOf(element));
-      
-      for (const prevEl of prevElements) {
-        if (prevEl.tagName === 'P' && prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
-          gapText = prevEl.innerHTML;
-          break;
-        }
-      }
-      
-      // Extrahiere die Lückentext-Antworten
-      const match = /Lücken:\s*(.+)/.exec(element.textContent);
-      if (match) {
-        const answersText = match[1].trim();
-        // Trenne Antworten durch Komma, und jede Antwort kann Alternativen mit | haben
-        gapAnswers = answersText.split(',').map(ans => ans.trim());
+  // Debug-Ausgabe zur Diagnose
+  console.log(`Verarbeite Frage: "${questionText}"`);
+  elements.forEach((el, i) => {
+    console.log(`  Element ${i}: ${el.tagName} - "${el.textContent.substring(0, 50)}..."`);
+  });
+  
+  // Prüfen, ob es einen Lückentext gibt
+  let hasGapText = false;
+  let gapParagraphIndex = -1;
+  
+  // Erst einmal alle Elemente durchgehen, um zu prüfen, ob "Lücken:" vorkommt
+  elements.forEach((element, index) => {
+    if (element.textContent.includes('Lücken:')) {
+      hasGapText = true;
+      gapParagraphIndex = index;
+      console.log(`  Lückentext erkannt in Element ${index}`);
+    }
+  });
+  
+  // Wenn Lückentext gefunden, dann verarbeiten
+  if (hasGapText) {
+    questionType = 'gap-text';
+    console.log('  Lückentext-Fragetyp erkannt');
+    
+    // Extrahiere die Lückentext-Antworten aus dem Element mit "Lücken:"
+    const gapParaElement = elements[gapParagraphIndex];
+    const match = /Lücken:\s*(.+)/.exec(gapParaElement.textContent);
+    if (match) {
+      const answersText = match[1].trim();
+      // Trenne Antworten durch Komma, und jede Antwort kann Alternativen mit | haben
+      gapAnswers = answersText.split(',').map(ans => ans.trim());
+      console.log(`  Antworten extrahiert: ${gapAnswers.join(', ')}`);
+    }
+    
+    // Suche nach dem Lückentext in den vorherigen Elementen
+    for (let i = 0; i < gapParagraphIndex; i++) {
+      const prevEl = elements[i];
+      if (prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
+        gapText = prevEl.innerHTML;
+        console.log(`  Lückentext gefunden: "${gapText.substring(0, 50)}..."`);
+        break;
       }
     }
-    else if (element.tagName === 'UL') {
-      questionType = 'multiple-choice';
-      const listItems = element.querySelectorAll('li');
+  } 
+  // Prüfe auf Multiple-Choice-Fragen
+  else if (elements.some(el => el.tagName === 'UL')) {
+    const ulElement = elements.find(el => el.tagName === 'UL');
+    questionType = 'multiple-choice';
+    console.log('  Multiple-Choice-Fragetyp erkannt');
+    
+    const listItems = ulElement.querySelectorAll('li');
+    
+    listItems.forEach((item, index) => {
+      const optionText = item.textContent.trim();
       
-      listItems.forEach((item, index) => {
-        const optionText = item.textContent.trim();
-        
-        // Richtige Option suchen und Marker entfernen
-        const cleanedText = optionText.replace(/\(richtige Option\)|\(correct\)|\(richtig\)/g, '').trim();
-        options.push(cleanedText);
-        
-        if (optionText.includes('(richtige Option)') || 
-            optionText.includes('(correct)') ||
-            optionText.includes('(richtig)')) {
-          correctIndex = index;
-        }
-      });
-    } 
-    else if (element.tagName === 'P') {
-      // Erweiterte Erkennung für Textantworten
-      if (element.textContent.includes('Antwort:')) {
-        questionType = 'text';
-        
-        // Versuche, die Antwort zu extrahieren
-        const match = /Antwort:\s*(.+)/.exec(element.textContent);
-        if (match) {
-          correctAnswer = match[1].trim();
-        }
+      // Richtige Option suchen und Marker entfernen
+      const cleanedText = optionText.replace(/\(richtige Option\)|\(correct\)|\(richtig\)/g, '').trim();
+      options.push(cleanedText);
+      
+      if (optionText.includes('(richtige Option)') || 
+          optionText.includes('(correct)') ||
+          optionText.includes('(richtig)')) {
+        correctIndex = index;
       }
-      // Beschreibung nur hinzufügen, wenn es kein Lückentext ist und kein "Lücken:" enthält
-      else if (!element.textContent.includes('Lücken:') && 
-              !(element.textContent.includes('[') && element.textContent.includes(']') && 
-                questionType === 'gap-text')) {
-        if (element.textContent.trim()) {
-          description += element.outerHTML;
-        }
-      }
+    });
+  }
+  // Prüfe auf Textantwort-Fragen
+  else if (elements.some(el => el.textContent.includes('Antwort:'))) {
+    questionType = 'text';
+    console.log('  Textantwort-Fragetyp erkannt');
+    
+    // Finde das Element mit "Antwort:"
+    const answerElement = elements.find(el => el.textContent.includes('Antwort:'));
+    
+    // Versuche, die Antwort zu extrahieren
+    const match = /Antwort:\s*(.+)/.exec(answerElement.textContent);
+    if (match) {
+      correctAnswer = match[1].trim();
+      console.log(`  Antwort extrahiert: ${correctAnswer}`);
     }
-    else {
-      // Andere Elemente als beschreibenden Text behandeln
-      if (element.textContent.trim()) {
-        // Prüfen, ob irgendwo im Element "Antwort:" vorkommt
-        if (element.textContent.includes('Antwort:')) {
-          questionType = 'text';
-          
-          const match = /Antwort:\s*(.+)/.exec(element.textContent);
-          if (match) {
-            correctAnswer = match[1].trim();
-          }
-        } 
-        // Prüfen, ob es ein Lückentext-Element ist
-        else if (element.textContent.includes('Lücken:')) {
-          questionType = 'gap-text';
-          
-          const match = /Lücken:\s*(.+)/.exec(element.textContent);
-          if (match) {
-            const answersText = match[1].trim();
-            gapAnswers = answersText.split(',').map(ans => ans.trim());
-          }
-        } 
-        else {
-          // Kein Lückentext und keine Antwort
-          description += element.outerHTML;
-        }
-      }
+  }
+  
+  // Sammle erklärende Texte für die Beschreibung
+  elements.forEach((element, index) => {
+    // Nur Elemente zur Beschreibung hinzufügen, die nicht für die Frage-Identifikation verwendet werden
+    if (questionType === 'gap-text' && index === gapParagraphIndex) {
+      // Lücken-Zeile nicht zur Beschreibung hinzufügen
+      return;
+    }
+    
+    if (questionType === 'gap-text' && gapText && gapText.includes(element.innerHTML)) {
+      // Lückentext-Paragraph nicht zur Beschreibung hinzufügen
+      return;
+    }
+    
+    if (element.tagName === 'UL' && questionType === 'multiple-choice') {
+      // Multiple-Choice-Liste nicht zur Beschreibung hinzufügen
+      return;
+    }
+    
+    if (element.textContent.includes('Antwort:') && questionType === 'text') {
+      // Antwort-Zeile nicht zur Beschreibung hinzufügen
+      return;
+    }
+    
+    // Alle anderen Elemente als Beschreibung hinzufügen
+    if (element.textContent.trim()) {
+      description += element.outerHTML;
     }
   });
   
@@ -243,6 +262,7 @@ function processQuestion(h3, elements, container, questionNumber) {
     formattedQuestion.appendChild(inputContainer);
   }
   else if (questionType === 'gap-text' && gapText && gapAnswers.length > 0) {
+    console.log('  Erstelle Lückentext-Element');
     formattedQuestion.setAttribute('data-type', 'gap-text');
     formattedQuestion.setAttribute('data-correct', JSON.stringify(gapAnswers));
     
@@ -258,10 +278,11 @@ function processQuestion(h3, elements, container, questionNumber) {
     });
     
     gapContainer.innerHTML = gapTextWithInputs;
+    console.log('  Lückentext-Container erstellt mit:', gapTextWithInputs.substring(0, 100));
     formattedQuestion.appendChild(gapContainer);
   } else {
     // Fallback für unerkannte Fragetypen - setze trotzdem ein Textfeld
-    console.warn(`Fragetyp für Frage ${questionNumber} nicht erkannt, setze Standardtextfeld`);
+    console.warn(`  Fragetyp für Frage ${questionNumber} nicht erkannt, setze Standardtextfeld`);
     
     const fallbackContainer = document.createElement('div');
     fallbackContainer.className = 'text-input-container';
@@ -288,6 +309,18 @@ function processQuestion(h3, elements, container, questionNumber) {
   feedbackDiv.className = 'feedback';
   feedbackDiv.style.display = 'none';
   formattedQuestion.appendChild(feedbackDiv);
+  
+  // Debug-Element hinzufügen
+  const debugDiv = document.createElement('div');
+  debugDiv.className = 'debug-info';
+  debugDiv.innerHTML = `DEBUG: Fragetyp=${questionType}, Elemente=${elements.length}, Lücken=${gapAnswers.length}`;
+  debugDiv.style.fontSize = '0.7em';
+  debugDiv.style.color = '#666';
+  debugDiv.style.marginTop = '5px';
+  debugDiv.style.padding = '3px';
+  debugDiv.style.backgroundColor = '#f9f9f9';
+  debugDiv.style.border = '1px dashed #ccc';
+  formattedQuestion.appendChild(debugDiv);
   
   // Frage zum Container hinzufügen
   container.appendChild(formattedQuestion);
@@ -372,55 +405,64 @@ function checkAllAnswers() {
       
       if (gapInputs.length === 0) {
         console.error('Keine Lückentext-Eingabefelder gefunden');
+        feedbackDiv.textContent = 'Fehler: Keine Eingabefelder gefunden.';
+        feedbackDiv.className = 'feedback no-answer';
         return;
       }
       
-      const correctAnswers = JSON.parse(correctAnswer);
-      
-      // Prüfe jede Lücke
-      gapInputs.forEach((input, index) => {
-        const userAnswer = input.value.trim();
+      try {
+        const correctAnswers = JSON.parse(correctAnswer);
+        console.log('Korrekte Antworten:', correctAnswers);
         
-        if (!userAnswer) {
-          allCorrect = false;
-          input.classList.add('gap-empty');
-          return;
-        }
-        
-        input.classList.remove('gap-empty');
-        
-        // Hole die korrekten Antworten für diese Lücke
-        const correctOptions = correctAnswers[index] ? correctAnswers[index].split('|').map(a => a.trim()) : [];
-        const userAnswerLower = userAnswer.toLowerCase();
-        
-        // Überprüfe, ob die Antwort korrekt ist
-        const isCorrect = correctOptions.some(option => {
-          const optionLower = option.toLowerCase();
-          return userAnswerLower === optionLower || userAnswerLower.includes(optionLower);
+        // Prüfe jede Lücke
+        gapInputs.forEach((input, index) => {
+          const userAnswer = input.value.trim();
+          
+          if (!userAnswer) {
+            allCorrect = false;
+            input.classList.add('gap-empty');
+            return;
+          }
+          
+          input.classList.remove('gap-empty');
+          
+          // Hole die korrekten Antworten für diese Lücke
+          const correctOptions = correctAnswers[index] ? correctAnswers[index].split('|').map(a => a.trim()) : [];
+          const userAnswerLower = userAnswer.toLowerCase();
+          
+          // Überprüfe, ob die Antwort korrekt ist
+          const isCorrect = correctOptions.some(option => {
+            const optionLower = option.toLowerCase();
+            return userAnswerLower === optionLower || userAnswerLower.includes(optionLower);
+          });
+          
+          if (isCorrect) {
+            input.classList.add('gap-correct');
+            input.classList.remove('gap-incorrect');
+            correctGaps++;
+          } else {
+            input.classList.add('gap-incorrect');
+            input.classList.remove('gap-correct');
+            allCorrect = false;
+          }
         });
         
-        if (isCorrect) {
-          input.classList.add('gap-correct');
-          input.classList.remove('gap-incorrect');
-          correctGaps++;
+        // Zeige das Ergebnis an
+        if (gapInputs.length === 0) {
+          feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung.';
+          feedbackDiv.className = 'feedback no-answer';
+        } else if (gapInputs.length > 0 && totalGaps === correctGaps) {
+          feedbackDiv.textContent = 'Alle Lücken richtig ausgefüllt!';
+          feedbackDiv.className = 'feedback correct';
+          correctCount++;
         } else {
-          input.classList.add('gap-incorrect');
-          input.classList.remove('gap-correct');
-          allCorrect = false;
+          feedbackDiv.textContent = `${correctGaps} von ${totalGaps} Lücken richtig ausgefüllt.`;
+          feedbackDiv.className = 'feedback incorrect';
         }
-      });
-      
-      // Zeige das Ergebnis an
-      if (gapInputs.length === 0) {
-        feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung.';
+      } catch (error) {
+        console.error('Fehler beim Parsen der korrekten Antworten:', error);
+        feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung: ' + error.message;
         feedbackDiv.className = 'feedback no-answer';
-      } else if (gapInputs.length > 0 && totalGaps === correctGaps) {
-        feedbackDiv.textContent = 'Alle Lücken richtig ausgefüllt!';
-        feedbackDiv.className = 'feedback correct';
-        correctCount++;
-      } else {
-        feedbackDiv.textContent = `${correctGaps} von ${totalGaps} Lücken richtig ausgefüllt.`;
-        feedbackDiv.className = 'feedback incorrect';
       }
     }
   });
@@ -434,4 +476,9 @@ function checkAllAnswers() {
     // Scroll zum Ergebnis
     resultDiv.scrollIntoView({ behavior: 'smooth' });
   }
+  
+  // Entferne Debug-Elemente nach der Prüfung
+  document.querySelectorAll('.debug-info').forEach(el => {
+    el.style.display = 'none';
+  });
 }
