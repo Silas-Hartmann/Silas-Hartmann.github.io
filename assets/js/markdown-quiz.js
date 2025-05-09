@@ -3,143 +3,140 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Quiz-System wird geladen...');
   
-  // Wir suchen Text-Marker für Quiz-Bereiche
-  const quizMarkers = document.querySelectorAll('p');
+  // Debug-Ausgabe der Seitenstruktur
+  const bodyHtml = document.body.innerHTML;
+  console.log('Seite geladen. HTML-Struktur:', bodyHtml.substring(0, 500) + '...');
   
-  quizMarkers.forEach(marker => {
-    if (marker.textContent.trim() === ':::quiz') {
-      console.log('Quiz gefunden');
+  // Wir suchen Text-Marker für Quiz-Bereiche
+  const paragraphs = document.querySelectorAll('p');
+  console.log('Anzahl Paragraphen:', paragraphs.length);
+  
+  paragraphs.forEach((p, index) => {
+    console.log(`Paragraph ${index}:`, p.textContent.substring(0, 50));
+    if (p.textContent.trim() === ':::quiz') {
+      console.log('Quiz-Marker gefunden!');
+    }
+  });
+  
+  // Alternativ: Wir suchen nach Listen, die nach einer h3-Überschrift kommen
+  const h3Elements = document.querySelectorAll('h3');
+  console.log('Anzahl h3:', h3Elements.length);
+  
+  h3Elements.forEach((h3, index) => {
+    console.log(`Überschrift ${index}:`, h3.textContent);
+    
+    // Erstellen eines Quiz-Containers für diese Überschrift
+    const quizContainer = document.createElement('div');
+    quizContainer.className = 'interactive-quiz';
+    quizContainer.id = `quiz-${index}`;
+    
+    // Sammeln der relevanten Elemente für diese Frage
+    const questionElements = collectQuestionElements(h3);
+    
+    if (questionElements.length > 0) {
+      console.log(`Frage ${index} hat ${questionElements.length} Elemente`);
       
-      // Wir beginnen einen neuen Quiz-Container
-      const quizContainer = document.createElement('div');
-      quizContainer.className = 'interactive-quiz';
+      // Frage verarbeiten und zum Container hinzufügen
+      processQuestion(h3, questionElements, quizContainer, index);
       
-      // Wir sammeln alle Elemente bis zum schließenden :::
-      let currentElement = marker.nextElementSibling;
-      const quizElements = [];
+      // Container nach der Überschrift einfügen
+      h3.parentNode.insertBefore(quizContainer, h3.nextSibling);
       
-      while (currentElement && !currentElement.textContent.trim().includes(':::')) {
-        quizElements.push(currentElement);
-        const nextElement = currentElement.nextElementSibling;
-        currentElement = nextElement;
-      }
-      
-      // Wir ersetzen den Start-Marker mit dem Quiz-Container
-      marker.replaceWith(quizContainer);
-      
-      // Wir entfernen den End-Marker, wenn wir ihn gefunden haben
-      if (currentElement && currentElement.textContent.trim() === ':::') {
-        currentElement.remove();
-      }
-      
-      // Verarbeiten der Quizfragen
-      processQuizElements(quizElements, quizContainer);
-      
-      // Hinzufügen des Überprüfen-Buttons
+      // Ursprüngliche Elemente ausblenden
+      h3.style.display = 'none';
+      questionElements.forEach(el => {
+        el.style.display = 'none';
+      });
+    }
+  });
+  
+  // "Antworten überprüfen"-Buttons hinzufügen
+  document.querySelectorAll('.interactive-quiz').forEach(quiz => {
+    if (!quiz.querySelector('.check-answers-btn')) {
       const checkButton = document.createElement('button');
       checkButton.textContent = 'Antworten überprüfen';
       checkButton.className = 'check-answers-btn';
-      checkButton.addEventListener('click', () => checkAnswers(quizContainer));
-      quizContainer.appendChild(checkButton);
+      checkButton.addEventListener('click', () => checkAnswers(quiz));
+      quiz.appendChild(checkButton);
     }
   });
 });
 
-function processQuizElements(elements, container) {
-  let currentQuestion = null;
-  let options = [];
-  let correctOption = -1;
-  let questionCount = 0;
-  let answerText = '';
+function collectQuestionElements(h3) {
+  const elements = [];
+  let currentElement = h3.nextElementSibling;
   
-  elements.forEach(element => {
-    // Neue Frage beginnt mit einer h3
-    if (element.tagName === 'H3') {
-      // Wenn wir bereits eine Frage bearbeiten, dann schließen wir sie erst ab
-      if (currentQuestion) {
-        finishQuestion(currentQuestion, options, correctOption, answerText, container, questionCount);
-        options = [];
-        correctOption = -1;
-        answerText = '';
-      }
-      
-      // Neue Frage starten
-      questionCount++;
-      currentQuestion = {
-        text: element.textContent.replace(/\[.*\]$/, '').trim(), // Entferne Anker-Links am Ende
-        type: 'unknown', // Wird später bestimmt
-        element: element
-      };
-    } 
-    // Wir prüfen auf Listenpunkte für Multiple Choice
-    else if (element.tagName === 'UL' && currentQuestion) {
-      currentQuestion.type = 'multiple-choice';
-      
-      // Listenpunkte verarbeiten
-      const listItems = element.querySelectorAll('li');
-      listItems.forEach((item, index) => {
-        const optionText = item.textContent.trim();
-        options.push(optionText);
-        
-        // Erste Option mit [x] oder richtige Option durch andere Informationen
-        if (optionText.includes('(richtige Option)') || 
-            optionText.includes('(correct)') ||
-            optionText.includes('(richtig)')) {
-          correctOption = index;
-        }
-      });
-      
-      // Wenn keine Option explizit als korrekt markiert ist, nehmen wir die erste
-      if (correctOption === -1 && listItems.length > 0) {
-        correctOption = 0;
-      }
-    }
-    // Text nach der Frage oder Antwort-Text
-    else if (currentQuestion) {
-      const text = element.textContent.trim();
-      
-      // Suche nach Antwort-Text
-      if (text.startsWith('Antwort:')) {
-        currentQuestion.type = 'text';
-        answerText = text.replace('Antwort:', '').trim();
-      }
-      // Sonstiger erklärender Text
-      else if (element.tagName !== 'UL') {
-        if (!currentQuestion.description) {
-          currentQuestion.description = '';
-        }
-        currentQuestion.description += element.outerHTML;
-      }
-    }
-  });
-  
-  // Die letzte Frage abschließen, falls vorhanden
-  if (currentQuestion) {
-    finishQuestion(currentQuestion, options, correctOption, answerText, container, questionCount);
+  // Sammle alle Elemente bis zur nächsten Überschrift
+  while (currentElement && 
+         !/^H[1-6]$/.test(currentElement.tagName) &&
+         !currentElement.textContent.trim().startsWith(':::')) {
+    elements.push(currentElement);
+    currentElement = currentElement.nextElementSibling;
   }
+  
+  return elements;
 }
 
-function finishQuestion(question, options, correctOption, answerText, container, questionNumber) {
-  // Wir erstellen eine formatierte Frage basierend auf dem Typ
+function processQuestion(h3, elements, container, questionNumber) {
+  const questionText = h3.textContent.replace(/\[.*\]$/, '').trim();
+  
   const formattedQuestion = document.createElement('div');
   formattedQuestion.className = 'formatted-question';
   
   const questionPrompt = document.createElement('div');
   questionPrompt.className = 'question-prompt';
-  questionPrompt.textContent = `${questionNumber}. ${question.text}`;
+  questionPrompt.textContent = `${questionNumber + 1}. ${questionText}`;
   formattedQuestion.appendChild(questionPrompt);
   
-  // Füge die Beschreibung hinzu, falls vorhanden
-  if (question.description) {
+  // Typ und Inhalt der Frage bestimmen
+  let questionType = 'unknown';
+  let correctAnswer = '';
+  let options = [];
+  let correctIndex = -1;
+  let description = '';
+  
+  elements.forEach(element => {
+    if (element.tagName === 'UL') {
+      questionType = 'multiple-choice';
+      const listItems = element.querySelectorAll('li');
+      
+      listItems.forEach((item, index) => {
+        const optionText = item.textContent.trim();
+        options.push(optionText);
+        
+        // Richtige Option suchen
+        if (optionText.includes('(richtige Option)') || 
+            optionText.includes('(correct)') ||
+            optionText.includes('(richtig)')) {
+          correctIndex = index;
+        }
+      });
+    } 
+    else if (element.tagName === 'P' && element.textContent.includes('Antwort:')) {
+      questionType = 'text';
+      const match = /Antwort:\s*(.+)/.exec(element.textContent);
+      if (match) {
+        correctAnswer = match[1].trim();
+      }
+    }
+    else {
+      // Sonstige erklärende Texte
+      description += element.outerHTML;
+    }
+  });
+  
+  // Beschreibung hinzufügen, falls vorhanden
+  if (description) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'question-content';
-    descriptionDiv.innerHTML = question.description;
+    descriptionDiv.innerHTML = description;
     formattedQuestion.appendChild(descriptionDiv);
   }
   
-  if (question.type === 'multiple-choice' && options.length > 0) {
+  // Je nach Fragetyp die entsprechenden Elemente hinzufügen
+  if (questionType === 'multiple-choice' && options.length > 0) {
     formattedQuestion.setAttribute('data-type', 'multiple-choice');
-    formattedQuestion.setAttribute('data-correct', correctOption);
+    formattedQuestion.setAttribute('data-correct', correctIndex !== -1 ? correctIndex.toString() : '0');
     
     const optionsContainer = document.createElement('div');
     optionsContainer.className = 'options-container';
@@ -167,9 +164,9 @@ function finishQuestion(question, options, correctOption, answerText, container,
     
     formattedQuestion.appendChild(optionsContainer);
   } 
-  else if (question.type === 'text' || answerText) {
+  else if (questionType === 'text') {
     formattedQuestion.setAttribute('data-type', 'text');
-    formattedQuestion.setAttribute('data-correct', answerText);
+    formattedQuestion.setAttribute('data-correct', correctAnswer);
     
     const textarea = document.createElement('textarea');
     textarea.className = 'text-answer';
@@ -183,10 +180,8 @@ function finishQuestion(question, options, correctOption, answerText, container,
   feedbackDiv.style.display = 'none';
   formattedQuestion.appendChild(feedbackDiv);
   
+  // Frage zum Container hinzufügen
   container.appendChild(formattedQuestion);
-  
-  // Die ursprünglichen Elemente verstecken
-  question.element.style.display = 'none';
 }
 
 function checkAnswers(container) {
