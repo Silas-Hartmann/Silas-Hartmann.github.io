@@ -1,126 +1,192 @@
-// markdown-quiz.js - Wandelt Markdown-Quiz-Syntax in interaktive Elemente um
+// markdown-quiz.js - Wandelt Quiz-Listen in interaktive Elemente um
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Suche nach Quiz-Bereichen
-  const quizRegex = /:::quiz\s([\s\S]*?):::/g;
-  const content = document.querySelector('.page-content') || document.body;
+  console.log('Quiz-System wird geladen...');
   
-  if (!content) return;
+  // Wir suchen Text-Marker für Quiz-Bereiche
+  const quizMarkers = document.querySelectorAll('p');
   
-  let html = content.innerHTML;
-  let quizCount = 0;
-  
-  // Ersetze jeden Quiz-Block mit einem interaktiven Quiz
-  html = html.replace(quizRegex, (match, quizContent) => {
-    quizCount++;
-    return `<div class="interactive-quiz" id="quiz-${quizCount}">${processQuizContent(quizContent, quizCount)}</div>`;
-  });
-  
-  content.innerHTML = html;
-  
-  // Füge "Überprüfen"-Buttons zu allen Quizzes hinzu
-  document.querySelectorAll('.interactive-quiz').forEach(quiz => {
-    if (!quiz.querySelector('.check-answers-btn')) {
+  quizMarkers.forEach(marker => {
+    if (marker.textContent.trim() === ':::quiz') {
+      console.log('Quiz gefunden');
+      
+      // Wir beginnen einen neuen Quiz-Container
+      const quizContainer = document.createElement('div');
+      quizContainer.className = 'interactive-quiz';
+      
+      // Wir sammeln alle Elemente bis zum schließenden :::
+      let currentElement = marker.nextElementSibling;
+      const quizElements = [];
+      
+      while (currentElement && !currentElement.textContent.trim().includes(':::')) {
+        quizElements.push(currentElement);
+        const nextElement = currentElement.nextElementSibling;
+        currentElement = nextElement;
+      }
+      
+      // Wir ersetzen den Start-Marker mit dem Quiz-Container
+      marker.replaceWith(quizContainer);
+      
+      // Wir entfernen den End-Marker, wenn wir ihn gefunden haben
+      if (currentElement && currentElement.textContent.trim() === ':::') {
+        currentElement.remove();
+      }
+      
+      // Verarbeiten der Quizfragen
+      processQuizElements(quizElements, quizContainer);
+      
+      // Hinzufügen des Überprüfen-Buttons
       const checkButton = document.createElement('button');
       checkButton.textContent = 'Antworten überprüfen';
       checkButton.className = 'check-answers-btn';
-      checkButton.addEventListener('click', () => checkAnswers(quiz));
-      quiz.appendChild(checkButton);
+      checkButton.addEventListener('click', () => checkAnswers(quizContainer));
+      quizContainer.appendChild(checkButton);
     }
   });
 });
 
-function processQuizContent(content, quizId) {
-  // Finde alle Fragen im Quiz-Content
-  const questionRegex = /#{3,6}\s(.+?)\s*\n([\s\S]*?)(?=#{3,6}|$)/g;
-  let processedContent = '';
-  let questionCount = 0;
-  
-  let match;
-  while ((match = questionRegex.exec(content)) !== null) {
-    questionCount++;
-    const questionText = match[1].trim();
-    const questionContent = match[2].trim();
-    
-    // Bestimme den Fragetyp und verarbeite entsprechend
-    if (questionContent.includes('- [ ]') || questionContent.includes('- [x]')) {
-      // Multiple-Choice-Frage
-      processedContent += processMultipleChoice(questionText, questionContent, quizId, questionCount);
-    } else {
-      // Textantwort
-      processedContent += processTextAnswer(questionText, questionContent, quizId, questionCount);
-    }
-  }
-  
-  return processedContent;
-}
-
-function processMultipleChoice(questionText, content, quizId, questionNumber) {
-  const optionRegex = /- \[([ x])\]\s(.+?)$/gm;
+function processQuizElements(elements, container) {
+  let currentQuestion = null;
   let options = [];
-  let correctIndex = -1;
+  let correctOption = -1;
+  let questionCount = 0;
+  let answerText = '';
   
-  let match;
-  let i = 0;
-  while ((match = optionRegex.exec(content)) !== null) {
-    const isCorrect = match[1] === 'x';
-    const optionText = match[2].trim();
-    
-    options.push(optionText);
-    
-    if (isCorrect) {
-      correctIndex = i;
+  elements.forEach(element => {
+    // Neue Frage beginnt mit einer h3
+    if (element.tagName === 'H3') {
+      // Wenn wir bereits eine Frage bearbeiten, dann schließen wir sie erst ab
+      if (currentQuestion) {
+        finishQuestion(currentQuestion, options, correctOption, answerText, container, questionCount);
+        options = [];
+        correctOption = -1;
+        answerText = '';
+      }
+      
+      // Neue Frage starten
+      questionCount++;
+      currentQuestion = {
+        text: element.textContent.replace(/\[.*\]$/, '').trim(), // Entferne Anker-Links am Ende
+        type: 'unknown', // Wird später bestimmt
+        element: element
+      };
+    } 
+    // Wir prüfen auf Listenpunkte für Multiple Choice
+    else if (element.tagName === 'UL' && currentQuestion) {
+      currentQuestion.type = 'multiple-choice';
+      
+      // Listenpunkte verarbeiten
+      const listItems = element.querySelectorAll('li');
+      listItems.forEach((item, index) => {
+        const optionText = item.textContent.trim();
+        options.push(optionText);
+        
+        // Erste Option mit [x] oder richtige Option durch andere Informationen
+        if (optionText.includes('(richtige Option)') || 
+            optionText.includes('(correct)') ||
+            optionText.includes('(richtig)')) {
+          correctOption = index;
+        }
+      });
+      
+      // Wenn keine Option explizit als korrekt markiert ist, nehmen wir die erste
+      if (correctOption === -1 && listItems.length > 0) {
+        correctOption = 0;
+      }
     }
-    
-    i++;
-  }
-  
-  // Fallback, wenn keine Antwort als korrekt markiert ist
-  if (correctIndex === -1) correctIndex = 0;
-  
-  // Erstelle das HTML für die Multiple-Choice-Frage
-  let html = `<div class="formatted-question" data-type="multiple-choice" data-correct="${correctIndex}">
-    <div class="question-prompt">${questionNumber}. ${questionText}</div>
-    <div class="options-container">`;
-  
-  options.forEach((option, index) => {
-    html += `
-      <label class="option-label">
-        <input type="radio" name="q-${quizId}-${questionNumber}" value="${index}">
-        ${option}
-      </label>`;
+    // Text nach der Frage oder Antwort-Text
+    else if (currentQuestion) {
+      const text = element.textContent.trim();
+      
+      // Suche nach Antwort-Text
+      if (text.startsWith('Antwort:')) {
+        currentQuestion.type = 'text';
+        answerText = text.replace('Antwort:', '').trim();
+      }
+      // Sonstiger erklärender Text
+      else if (element.tagName !== 'UL') {
+        if (!currentQuestion.description) {
+          currentQuestion.description = '';
+        }
+        currentQuestion.description += element.outerHTML;
+      }
+    }
   });
   
-  html += `
-    </div>
-    <div class="feedback" style="display: none;"></div>
-  </div>`;
-  
-  return html;
+  // Die letzte Frage abschließen, falls vorhanden
+  if (currentQuestion) {
+    finishQuestion(currentQuestion, options, correctOption, answerText, container, questionCount);
+  }
 }
 
-function processTextAnswer(questionText, content, quizId, questionNumber) {
-  // Suche nach der Antwort in einem Antwortblock in der Form:
-  // Antwort: richtige Antwort | alternative Antwort
-  const answerRegex = /Antwort:\s*(.+?)$/m;
-  let correctAnswer = '';
+function finishQuestion(question, options, correctOption, answerText, container, questionNumber) {
+  // Wir erstellen eine formatierte Frage basierend auf dem Typ
+  const formattedQuestion = document.createElement('div');
+  formattedQuestion.className = 'formatted-question';
   
-  const match = answerRegex.exec(content);
-  if (match) {
-    correctAnswer = match[1].trim();
-    // Entferne die Antwortzeile aus dem Inhalt, damit sie nicht angezeigt wird
-    content = content.replace(answerRegex, '');
+  const questionPrompt = document.createElement('div');
+  questionPrompt.className = 'question-prompt';
+  questionPrompt.textContent = `${questionNumber}. ${question.text}`;
+  formattedQuestion.appendChild(questionPrompt);
+  
+  // Füge die Beschreibung hinzu, falls vorhanden
+  if (question.description) {
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'question-content';
+    descriptionDiv.innerHTML = question.description;
+    formattedQuestion.appendChild(descriptionDiv);
   }
   
-  // Erstelle das HTML für die Textantwort-Frage
-  let html = `<div class="formatted-question" data-type="text" data-correct="${correctAnswer}">
-    <div class="question-prompt">${questionNumber}. ${questionText}</div>
-    <div class="question-content">${content.trim()}</div>
-    <textarea class="text-answer" placeholder="Deine Antwort hier eingeben..."></textarea>
-    <div class="feedback" style="display: none;"></div>
-  </div>`;
+  if (question.type === 'multiple-choice' && options.length > 0) {
+    formattedQuestion.setAttribute('data-type', 'multiple-choice');
+    formattedQuestion.setAttribute('data-correct', correctOption);
+    
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'options-container';
+    
+    options.forEach((optionText, index) => {
+      // Entferne Marker für richtige Antworten aus dem anzuzeigenden Text
+      const cleanOptionText = optionText
+        .replace('(richtige Option)', '')
+        .replace('(correct)', '')
+        .replace('(richtig)', '')
+        .trim();
+      
+      const label = document.createElement('label');
+      label.className = 'option-label';
+      
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = `q-${questionNumber}`;
+      radio.value = index;
+      
+      label.appendChild(radio);
+      label.appendChild(document.createTextNode(` ${cleanOptionText}`));
+      optionsContainer.appendChild(label);
+    });
+    
+    formattedQuestion.appendChild(optionsContainer);
+  } 
+  else if (question.type === 'text' || answerText) {
+    formattedQuestion.setAttribute('data-type', 'text');
+    formattedQuestion.setAttribute('data-correct', answerText);
+    
+    const textarea = document.createElement('textarea');
+    textarea.className = 'text-answer';
+    textarea.placeholder = 'Deine Antwort hier eingeben...';
+    formattedQuestion.appendChild(textarea);
+  }
   
-  return html;
+  // Feedback-Bereich hinzufügen
+  const feedbackDiv = document.createElement('div');
+  feedbackDiv.className = 'feedback';
+  feedbackDiv.style.display = 'none';
+  formattedQuestion.appendChild(feedbackDiv);
+  
+  container.appendChild(formattedQuestion);
+  
+  // Die ursprünglichen Elemente verstecken
+  question.element.style.display = 'none';
 }
 
 function checkAnswers(container) {
