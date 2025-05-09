@@ -172,10 +172,15 @@ function processQuestion(h3, elements, container, questionNumber) {
     formattedQuestion.setAttribute('data-type', 'text');
     formattedQuestion.setAttribute('data-correct', correctAnswer);
     
+    const inputContainer = document.createElement('div');
+    inputContainer.className = 'text-input-container';
+    
     const textarea = document.createElement('textarea');
     textarea.className = 'text-answer';
     textarea.placeholder = 'Deine Antwort hier eingeben...';
-    formattedQuestion.appendChild(textarea);
+    inputContainer.appendChild(textarea);
+    
+    formattedQuestion.appendChild(inputContainer);
   }
   
   // Feedback-Bereich hinzufügen
@@ -220,8 +225,7 @@ function checkAllAnswers() {
         feedbackDiv.className = 'feedback incorrect';
       }
     } else if (type === 'text') {
-      const userAnswer = question.querySelector('.text-answer').value.trim().toLowerCase();
-      const possibleAnswers = correctAnswer.split('|').map(a => a.trim().toLowerCase());
+      const userAnswer = question.querySelector('.text-answer').value.trim();
       
       if (!userAnswer) {
         feedbackDiv.textContent = 'Keine Antwort eingegeben.';
@@ -229,7 +233,17 @@ function checkAllAnswers() {
         return;
       }
       
-      if (possibleAnswers.some(answer => userAnswer.includes(answer))) {
+      // Verbesserte Überprüfung für Textantworten
+      const possibleAnswers = correctAnswer.split('|').map(a => a.trim());
+      const userAnswerLower = userAnswer.toLowerCase();
+      
+      // Überprüfen, ob eine der möglichen Antworten exakt übereinstimmt oder in der Benutzerantwort enthalten ist
+      const isCorrect = possibleAnswers.some(answer => {
+        const answerLower = answer.toLowerCase();
+        return userAnswerLower === answerLower || userAnswerLower.includes(answerLower);
+      });
+      
+      if (isCorrect) {
         feedbackDiv.textContent = 'Richtig!';
         feedbackDiv.className = 'feedback correct';
         correctCount++;
