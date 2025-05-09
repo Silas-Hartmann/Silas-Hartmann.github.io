@@ -15,7 +15,7 @@ Das Quiz-System ermöglicht:
 - Textantworten mit Prüfung gegen mehrere mögliche richtige Antworten
 - Kombination mehrerer Quizfragen in einem Arbeitsblatt
 - Sofortiges Feedback für Schülerinnen und Schüler
-- Zusamenfassung mit Gesamtergebnis
+- Zusammenfassung mit Gesamtergebnis
 
 ## Wie erstelle ich ein Quiz?
 
@@ -25,27 +25,29 @@ Ein Quiz-Bereich wird mit dem Tag `:::quiz` begonnen und mit `:::` beendet:
 
 ```markdown
 :::quiz
-... Deine Quizfragen hier ...
+
+[Hier kommen deine Fragen]
+
 :::
 ```
 
 ### 2. Multiple-Choice-Fragen erstellen
 
-Multiple-Choice-Fragen werden mit einer Überschrift (Markdown-Syntax `###`) und Checkboxen-Listen definiert:
+Multiple-Choice-Fragen werden mit einer Überschrift (Markdown-Syntax `###`) und einfachen Listen definiert:
 
 ```markdown
 ### Wie lautet die Hauptstadt von Deutschland?
 
-- [ ] Paris
-- [x] Berlin
-- [ ] Madrid
-- [ ] Rom
+- Paris
+- Berlin (richtige Option)
+- Madrid
+- Rom
 ```
 
 Wichtige Punkte:
 - Die Frage selbst wird als Überschrift (mit `###`) definiert
-- Antwortmöglichkeiten werden als Checkboxen-Liste dargestellt
-- Die richtige Antwort wird mit `[x]` markiert, falsche Antworten mit `[ ]`
+- Antwortmöglichkeiten werden als einfache Liste dargestellt
+- Die richtige Antwort wird mit `(richtige Option)` markiert
 
 ### 3. Textantwort-Fragen erstellen
 
@@ -64,7 +66,7 @@ Wichtige Punkte:
 - Beliebiger Erklärungstext kann hinzugefügt werden
 - Die Antwort wird in einer Zeile mit `Antwort:` angegeben
 - Mehrere akzeptable Antworten können mit `|` getrennt werden
-- Diese Antwortzeile wird in der Anzeige automatisch versteckt
+- Diese Antwortzeile wird in der interaktiven Anzeige automatisch versteckt
 
 ### 4. Beispiel für ein vollständiges Quiz
 
@@ -73,10 +75,10 @@ Wichtige Punkte:
 
 ### Die Hauptstadt von Frankreich ist:
 
-- [x] Paris
-- [ ] Lyon
-- [ ] Marseille
-- [ ] Nizza
+- Paris (richtige Option)
+- Lyon
+- Marseille
+- Nizza
 
 ### Nenne die chemische Formel für Kohlendioxid:
 
@@ -111,6 +113,7 @@ Ein vollständiges Beispiel-Arbeitsblatt mit Quiz findest du hier: [Physik-Quiz]
 
 ## Tipps und Tricks
 
+- **Wichtig**: Bei Multiple-Choice-Fragen musst du die richtige Antwort mit `(richtige Option)` kennzeichnen
 - Schreibe die Fragen in einer klaren, präzisen Sprache
 - Bei Multiple-Choice-Fragen sollten die falschen Antworten plausibel sein
 - Bei Textantworten kannst du verschiedene Schreibweisen durch die Alternative-Syntax (`|`) akzeptieren
@@ -119,6 +122,6 @@ Ein vollständiges Beispiel-Arbeitsblatt mit Quiz findest du hier: [Physik-Quiz]
 
 ## Technische Details
 
-Das Quiz-System verwendet JavaScript, um die Markdown-Syntax in interaktive Elemente umzuwandeln. Die Skripte und Stylesheets werden automatisch in jede Seite eingebunden.
+Das Quiz-System verwendet JavaScript, um die Markdown-Struktur in interaktive Elemente umzuwandeln. Die Skripte und Stylesheets werden automatisch in jede Seite eingebunden.
 
 Die richtigen Antworten werden direkt im Markdown-Code gespeichert und sind für technisch versierte Nutzer einsehbar (wie bei jeder client-seitigen Lösung). Für eine sicherere Prüfungslösung wäre ein serverseitiges System erforderlich.
