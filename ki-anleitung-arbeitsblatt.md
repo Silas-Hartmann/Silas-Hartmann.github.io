@@ -34,11 +34,23 @@ Beschreibung oder Anweisung.
 Antwort: korrekte_antwort|alternative_antwort
 ```
 
+### 3. Lückentext
+```markdown
+### Fragentitel
+Dies ist ein Text mit [Lücke1] und weiteren [Lücke2] im Text.
+
+Lücken: Antwort1|Alternative1, Antwort2|Alternative2
+```
+
 ## Wichtige Regeln
 - Jede Frage beginnt mit `###` (H3-Überschrift)
 - Multiple-Choice: Richtige Option mit `(richtige Option)`, `(richtig)` oder `(correct)` markieren
 - Textantworten: Zeile mit `Antwort:` und möglichen Lösungen, getrennt durch `|`
-- Bei Textantworten werden Teillösungen akzeptiert (z.B. "E=mc²" wird bei "E=mc²|E = mc²|e=mc2" als richtig gewertet)
+- Lückentext: 
+  - Text mit Platzhaltern in eckigen Klammern `[...]` 
+  - Lösung mit `Lücken:` und Antworten für jede Lücke, getrennt durch Komma
+  - Alternative Lösungen für eine Lücke durch `|` trennen
+- Bei Textantworten und Lückentext werden Teillösungen akzeptiert
 - HTML-Code ist nicht notwendig - Transformation erfolgt automatisch
 - Obsidian-kompatibel: Standard-Markdown funktioniert, Callouts werden nicht transformiert
 
@@ -52,24 +64,26 @@ Antwort: korrekte_antwort|alternative_antwort
 ```markdown
 ---
 layout: default
-title: Physik-Quiz
+title: Sprachen-Quiz
 ---
 
-# Physik-Arbeitsblatt: Energie
-
-## Einführung
-Kurze Einführung zum Thema...
+# Sprachen-Arbeitsblatt
 
 ## Quiz: Grundlagen
 
-### Die Einheit der Arbeit im SI-System ist:
-- Newton (N)
-- Joule (J) (richtige Option)
-- Watt (W)
-- Pascal (Pa)
+### Die Hauptstadt von Frankreich ist:
+- Rom
+- Paris (richtige Option)
+- Madrid
+- Berlin
 
-### Wie lautet die berühmte Formel von Einstein?
-Gib die mathematische Formel an.
+### Wie lautet "Guten Tag" auf Französisch?
+Gib die französische Übersetzung an.
 
-Antwort: E=mc²|E = mc²|e=mc2
+Antwort: Bonjour
+
+### Vervollständige den Satz:
+Die [Französische] Revolution begann im Jahr [1789] und endete [1799].
+
+Lücken: französische|Französische, 1789, 1799|im Jahr 1799
 ```
