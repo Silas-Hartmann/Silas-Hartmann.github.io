@@ -3,63 +3,70 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Quiz-System wird geladen...');
   
-  // Debug-Ausgabe der Seitenstruktur
-  const bodyHtml = document.body.innerHTML;
-  console.log('Seite geladen. HTML-Struktur:', bodyHtml.substring(0, 500) + '...');
+  // Wir sammeln alle h3-Überschriften als potentielle Quizfragen
+  const quizQuestions = document.querySelectorAll('h3');
+  console.log(`${quizQuestions.length} potentielle Quizfragen gefunden`);
   
-  // Wir suchen Text-Marker für Quiz-Bereiche
-  const paragraphs = document.querySelectorAll('p');
-  console.log('Anzahl Paragraphen:', paragraphs.length);
+  if (quizQuestions.length === 0) return;
   
-  paragraphs.forEach((p, index) => {
-    console.log(`Paragraph ${index}:`, p.textContent.substring(0, 50));
-    if (p.textContent.trim() === ':::quiz') {
-      console.log('Quiz-Marker gefunden!');
-    }
-  });
+  // Erstelle einen Container für alle Quiz-Fragen
+  const quizContainer = document.createElement('div');
+  quizContainer.className = 'quiz-container';
   
-  // Alternativ: Wir suchen nach Listen, die nach einer h3-Überschrift kommen
-  const h3Elements = document.querySelectorAll('h3');
-  console.log('Anzahl h3:', h3Elements.length);
+  // Zähler für die Fragen
+  let questionCount = 0;
   
-  h3Elements.forEach((h3, index) => {
-    console.log(`Überschrift ${index}:`, h3.textContent);
-    
-    // Erstellen eines Quiz-Containers für diese Überschrift
-    const quizContainer = document.createElement('div');
-    quizContainer.className = 'interactive-quiz';
-    quizContainer.id = `quiz-${index}`;
-    
+  // Verarbeite jede h3-Überschrift als potentielle Quizfrage
+  quizQuestions.forEach((h3, index) => {
     // Sammeln der relevanten Elemente für diese Frage
     const questionElements = collectQuestionElements(h3);
     
     if (questionElements.length > 0) {
-      console.log(`Frage ${index} hat ${questionElements.length} Elemente`);
+      questionCount++;
+      console.log(`Frage ${questionCount} wird verarbeitet`);
       
-      // Frage verarbeiten und zum Container hinzufügen
-      processQuestion(h3, questionElements, quizContainer, index);
+      // Wir erstellen einen Container für diese Frage
+      const questionContainer = document.createElement('div');
+      questionContainer.className = 'interactive-quiz-question';
+      questionContainer.id = `quiz-question-${questionCount}`;
       
-      // Container nach der Überschrift einfügen
-      h3.parentNode.insertBefore(quizContainer, h3.nextSibling);
+      // Verarbeite die Frage und füge sie zum Container hinzu
+      processQuestion(h3, questionElements, questionContainer, questionCount);
       
-      // Ursprüngliche Elemente ausblenden
+      // Füge die Frage zum Quiz-Container hinzu
+      quizContainer.appendChild(questionContainer);
+      
+      // Verstecke die ursprünglichen Elemente
       h3.style.display = 'none';
       questionElements.forEach(el => {
         el.style.display = 'none';
       });
+      
+      // Füge den Container nach der Überschrift ein
+      h3.parentNode.insertBefore(questionContainer, h3.nextSibling);
     }
   });
   
-  // "Antworten überprüfen"-Buttons hinzufügen
-  document.querySelectorAll('.interactive-quiz').forEach(quiz => {
-    if (!quiz.querySelector('.check-answers-btn')) {
-      const checkButton = document.createElement('button');
-      checkButton.textContent = 'Antworten überprüfen';
-      checkButton.className = 'check-answers-btn';
-      checkButton.addEventListener('click', () => checkAnswers(quiz));
-      quiz.appendChild(checkButton);
-    }
-  });
+  // Wenn Quizfragen gefunden wurden, füge einen "Antworten überprüfen" Button am Ende der Seite hinzu
+  if (questionCount > 0) {
+    const checkButton = document.createElement('button');
+    checkButton.textContent = 'Alle Antworten überprüfen';
+    checkButton.className = 'check-all-answers-btn';
+    checkButton.addEventListener('click', function() {
+      checkAllAnswers();
+    });
+    
+    // Füge den Button am Ende der Seite ein
+    const mainContent = document.querySelector('main') || document.body;
+    mainContent.appendChild(checkButton);
+    
+    // Füge auch einen Container für das Gesamtergebnis hinzu
+    const resultContainer = document.createElement('div');
+    resultContainer.id = 'quiz-total-result';
+    resultContainer.className = 'quiz-total-result';
+    resultContainer.style.display = 'none';
+    mainContent.appendChild(resultContainer);
+  }
 });
 
 function collectQuestionElements(h3) {
@@ -68,8 +75,7 @@ function collectQuestionElements(h3) {
   
   // Sammle alle Elemente bis zur nächsten Überschrift
   while (currentElement && 
-         !/^H[1-6]$/.test(currentElement.tagName) &&
-         !currentElement.textContent.trim().startsWith(':::')) {
+         !/^H[1-6]$/.test(currentElement.tagName)) {
     elements.push(currentElement);
     currentElement = currentElement.nextElementSibling;
   }
@@ -85,7 +91,7 @@ function processQuestion(h3, elements, container, questionNumber) {
   
   const questionPrompt = document.createElement('div');
   questionPrompt.className = 'question-prompt';
-  questionPrompt.textContent = `${questionNumber + 1}. ${questionText}`;
+  questionPrompt.textContent = `${questionNumber}. ${questionText}`;
   formattedQuestion.appendChild(questionPrompt);
   
   // Typ und Inhalt der Frage bestimmen
@@ -95,6 +101,7 @@ function processQuestion(h3, elements, container, questionNumber) {
   let correctIndex = -1;
   let description = '';
   
+  // Nach einer <ul> (ungeordnete Liste) für Multiple-Choice oder nach einem <p> mit "Antwort:" für Textantworten suchen
   elements.forEach(element => {
     if (element.tagName === 'UL') {
       questionType = 'multiple-choice';
@@ -102,9 +109,11 @@ function processQuestion(h3, elements, container, questionNumber) {
       
       listItems.forEach((item, index) => {
         const optionText = item.textContent.trim();
-        options.push(optionText);
         
-        // Richtige Option suchen
+        // Richtige Option suchen und Marker entfernen
+        const cleanedText = optionText.replace(/\(richtige Option\)|\(correct\)|\(richtig\)/g, '').trim();
+        options.push(cleanedText);
+        
         if (optionText.includes('(richtige Option)') || 
             optionText.includes('(correct)') ||
             optionText.includes('(richtig)')) {
@@ -121,7 +130,9 @@ function processQuestion(h3, elements, container, questionNumber) {
     }
     else {
       // Sonstige erklärende Texte
-      description += element.outerHTML;
+      if (element.textContent.trim() && !element.textContent.includes('Antwort:')) {
+        description += element.outerHTML;
+      }
     }
   });
   
@@ -142,13 +153,6 @@ function processQuestion(h3, elements, container, questionNumber) {
     optionsContainer.className = 'options-container';
     
     options.forEach((optionText, index) => {
-      // Entferne Marker für richtige Antworten aus dem anzuzeigenden Text
-      const cleanOptionText = optionText
-        .replace('(richtige Option)', '')
-        .replace('(correct)', '')
-        .replace('(richtig)', '')
-        .trim();
-      
       const label = document.createElement('label');
       label.className = 'option-label';
       
@@ -158,7 +162,7 @@ function processQuestion(h3, elements, container, questionNumber) {
       radio.value = index;
       
       label.appendChild(radio);
-      label.appendChild(document.createTextNode(` ${cleanOptionText}`));
+      label.appendChild(document.createTextNode(` ${optionText}`));
       optionsContainer.appendChild(label);
     });
     
@@ -184,12 +188,16 @@ function processQuestion(h3, elements, container, questionNumber) {
   container.appendChild(formattedQuestion);
 }
 
-function checkAnswers(container) {
-  const questions = container.querySelectorAll('.formatted-question');
+function checkAllAnswers() {
+  const questions = document.querySelectorAll('.formatted-question');
   let correctCount = 0;
+  let totalCount = 0;
   
   questions.forEach(question => {
     const type = question.getAttribute('data-type');
+    if (!type) return; // Wenn kein Typ gesetzt ist, überspringen
+    
+    totalCount++;
     const correctAnswer = question.getAttribute('data-correct');
     const feedbackDiv = question.querySelector('.feedback');
     feedbackDiv.style.display = 'block';
@@ -233,12 +241,12 @@ function checkAnswers(container) {
   });
   
   // Zeige Gesamtergebnis
-  let resultDiv = container.querySelector('.quiz-result');
-  if (!resultDiv) {
-    resultDiv = document.createElement('div');
-    resultDiv.className = 'quiz-result';
-    container.appendChild(resultDiv);
+  const resultDiv = document.getElementById('quiz-total-result');
+  if (resultDiv) {
+    resultDiv.textContent = `Gesamtergebnis: ${correctCount} von ${totalCount} Fragen richtig beantwortet!`;
+    resultDiv.style.display = 'block';
+    
+    // Scroll zum Ergebnis
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
   }
-  
-  resultDiv.textContent = `Ergebnis: ${correctCount} von ${questions.length} Fragen richtig beantwortet!`;
 }
