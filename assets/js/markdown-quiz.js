@@ -101,12 +101,6 @@ function processQuestion(h3, elements, container, questionNumber) {
   let correctIndex = -1;
   let description = '';
   
-  // Debug: Liste alle Elemente, die zur Frage gehören
-  console.log(`Elemente für Frage "${questionText}":`);
-  elements.forEach((el, idx) => {
-    console.log(`Element ${idx}: ${el.tagName} - ${el.outerHTML.substring(0, 100)}...`);
-  });
-  
   // Nach einer <ul> (ungeordnete Liste) für Multiple-Choice oder nach einem <p> mit "Antwort:" für Textantworten suchen
   elements.forEach(element => {
     if (element.tagName === 'UL') {
@@ -128,21 +122,14 @@ function processQuestion(h3, elements, container, questionNumber) {
       });
     } 
     else if (element.tagName === 'P') {
-      // Debug: Textinhalt überprüfen
-      console.log(`Prüfe Textinhalt eines Paragraphen: "${element.textContent}"`);
-      
-      // Erweiterte Erkennung für Textantworten - sowohl direkt im Inhalt als auch in Unterknoten
+      // Erweiterte Erkennung für Textantworten
       if (element.textContent.includes('Antwort:')) {
         questionType = 'text';
-        console.log('Textantwort-Frage erkannt');
         
         // Versuche, die Antwort zu extrahieren
         const match = /Antwort:\s*(.+)/.exec(element.textContent);
         if (match) {
           correctAnswer = match[1].trim();
-          console.log(`Korrekte Antwort(en): ${correctAnswer}`);
-        } else {
-          console.warn('Antwort: gefunden, aber konnte kein Muster extrahieren');
         }
       }
       else {
@@ -158,12 +145,10 @@ function processQuestion(h3, elements, container, questionNumber) {
         // Prüfen, ob irgendwo im Element "Antwort:" vorkommt
         if (element.textContent.includes('Antwort:')) {
           questionType = 'text';
-          console.log(`Textantwort in anderem Element (${element.tagName}) gefunden`);
           
           const match = /Antwort:\s*(.+)/.exec(element.textContent);
           if (match) {
             correctAnswer = match[1].trim();
-            console.log(`Korrekte Antwort(en): ${correctAnswer}`);
           }
         } else {
           description += element.outerHTML;
@@ -171,12 +156,6 @@ function processQuestion(h3, elements, container, questionNumber) {
       }
     }
   });
-  
-  // Debugausgabe für das Ergebnis
-  console.log(`Frage ${questionNumber} wurde als ${questionType} erkannt`);
-  if (questionType === 'text') {
-    console.log(`Korrekte Antwort(en): ${correctAnswer}`);
-  }
   
   // Beschreibung hinzufügen, falls vorhanden
   if (description) {
@@ -222,16 +201,6 @@ function processQuestion(h3, elements, container, questionNumber) {
     textarea.className = 'text-answer';
     textarea.placeholder = 'Deine Antwort hier eingeben...';
     inputContainer.appendChild(textarea);
-    
-    // Als Teil des Debugging: Zeige die erwartete Antwort an
-    const debugInfo = document.createElement('div');
-    debugInfo.className = 'debug-info';
-    debugInfo.textContent = `DEBUG: Erwartete Antwort(en): ${correctAnswer.split('|').join(' oder ')}`;
-    debugInfo.style.fontSize = '0.8em';
-    debugInfo.style.color = '#666';
-    debugInfo.style.marginTop = '5px';
-    debugInfo.style.fontStyle = 'italic';
-    inputContainer.appendChild(debugInfo);
     
     formattedQuestion.appendChild(inputContainer);
   } else {
