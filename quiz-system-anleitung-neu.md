@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Anleitung zum Quiz-System (neue Version)
+title: Anleitung zum Quiz-System
 ---
 
-# Anleitung zum Markdown-basierten Quiz-System (neue Version)
+# Anleitung zum Markdown-basierten Quiz-System
 
 Mit diesem System kannst du interaktive Quizfragen direkt in deinen Markdown-Dateien erstellen, ohne HTML-Code schreiben zu müssen. Das ist besonders praktisch, wenn du Obsidian für die Verwaltung deiner Inhalte verwendest.
 
@@ -13,6 +13,7 @@ Das Quiz-System ermöglicht:
 
 - Multiple-Choice-Fragen mit automatischer Auswertung
 - Textantworten mit Prüfung gegen mehrere mögliche richtige Antworten
+- Lückentexte mit mehreren Eingabefeldern
 - Kombination mehrerer Quizfragen in einem Arbeitsblatt
 - Sofortiges Feedback für Schülerinnen und Schüler
 - Zusammenfassung mit Gesamtergebnis
@@ -65,7 +66,27 @@ Wichtige Punkte:
 - Mehrere akzeptable Antworten können mit `|` getrennt werden
 - Diese Antwortzeile wird in der interaktiven Anzeige automatisch versteckt
 
-### 4. Beispiel für ein vollständiges Quiz
+### 4. Lückentext-Fragen erstellen
+
+Für Lückentexte, in denen mehrere fehlende Wörter ergänzt werden sollen:
+
+```markdown
+### Vervollständige den Satz:
+
+Die [deutsche] Einheit wurde am [3. Oktober] [1990] gefeiert.
+
+Lücken: deutsche, 3. Oktober|3.Oktober, 1990
+```
+
+Wichtige Punkte:
+- Die Frage selbst wird als Überschrift (mit `###`) definiert
+- Der Text enthält Platzhalter in eckigen Klammern `[...]`
+- Unterhalb folgt eine Zeile, die mit `Lücken:` beginnt
+- Die korrekten Antworten werden durch Kommas getrennt in der Reihenfolge der Lücken angegeben
+- Alternative Antworten für jede Lücke können mit `|` getrennt werden
+- Die Antwortzeile wird in der interaktiven Anzeige automatisch versteckt
+
+### 5. Beispiel für ein vollständiges Quiz
 
 ```markdown
 ## Quiz: Geographie-Test
@@ -82,11 +103,20 @@ Wichtige Punkte:
 Gib die Formel an.
 
 Antwort: CO2|CO₂
+
+### Vervollständige den Satz:
+
+[Deutschland] ist ein Land in [Europa] mit der Hauptstadt [Berlin].
+
+Lücken: Deutschland, Europa, Berlin
 ```
 
-## Beispiel
+## Beispiele
 
-Ein vollständiges Beispiel-Arbeitsblatt mit Quiz findest du hier: [Physik-Quiz (neu)](beispiel-quiz-neu.html)
+Vollständige Beispiel-Arbeitsblätter mit verschiedenen Quizformaten:
+
+- [Physik-Quiz](beispiel-quiz-neu.html) (Multiple-Choice und Textantwort)
+- [Lückentext-Beispiel](beispiel-lueckentext.html) (Lückentexte in verschiedenen Fächern)
 
 ## Tipps und Tricks
 
@@ -94,6 +124,7 @@ Ein vollständiges Beispiel-Arbeitsblatt mit Quiz findest du hier: [Physik-Quiz 
 - Schreibe die Fragen in einer klaren, präzisen Sprache
 - Bei Multiple-Choice-Fragen sollten die falschen Antworten plausibel sein
 - Bei Textantworten kannst du verschiedene Schreibweisen durch die Alternative-Syntax (`|`) akzeptieren
+- Bei Lückentexten achte darauf, dass die Anzahl der Lücken und der angegebenen Antworten übereinstimmt
 - Das Quiz-System ist responsive und funktioniert auf Mobilgeräten
 - Du kannst beliebig viele Quizfragen in einem Arbeitsblatt kombinieren
 
