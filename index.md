@@ -12,3 +12,6 @@ Hier findest du aktuelles Unterrichtsmaterial, Links und wichtige Informationen.
 - Physik-Arbeitsblatt mit interaktivem Quiz: [Physik-Quiz](beispiel-quiz.html)
 - letztes Arbeitsblatt: [Dreieckshandel](Dreieckshandel.html)
 
+## Hilfe und Anleitungen
+
+- [Anleitung zum Quiz-System](quiz-system-anleitung.html) - Wie du interaktive Quizzes in deinen Arbeitsblättern erstellst
