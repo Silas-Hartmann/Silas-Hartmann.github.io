@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (questionElements.length > 0) {
       questionCount++;
-      console.log(`Frage ${questionCount} wird verarbeitet`);
       
       // Wir erstellen einen Container für diese Frage
       const questionContainer = document.createElement('div');
@@ -103,12 +102,6 @@ function processQuestion(h3, elements, container, questionNumber) {
   let gapAnswers = [];
   let gapText = '';
   
-  // Debug-Ausgabe zur Diagnose
-  console.log(`Verarbeite Frage: "${questionText}"`);
-  elements.forEach((el, i) => {
-    console.log(`  Element ${i}: ${el.tagName} - "${el.textContent.substring(0, 50)}..."`);
-  });
-  
   // Prüfen, ob es einen Lückentext gibt
   let hasGapText = false;
   let gapParagraphIndex = -1;
@@ -118,14 +111,12 @@ function processQuestion(h3, elements, container, questionNumber) {
     if (element.textContent.includes('Lücken:')) {
       hasGapText = true;
       gapParagraphIndex = index;
-      console.log(`  Lückentext erkannt in Element ${index}`);
     }
   });
   
   // Wenn Lückentext gefunden, dann verarbeiten
   if (hasGapText) {
     questionType = 'gap-text';
-    console.log('  Lückentext-Fragetyp erkannt');
     
     // Extrahiere die Lückentext-Antworten aus dem Element mit "Lücken:"
     const gapParaElement = elements[gapParagraphIndex];
@@ -134,7 +125,6 @@ function processQuestion(h3, elements, container, questionNumber) {
       const answersText = match[1].trim();
       // Trenne Antworten durch Komma, und jede Antwort kann Alternativen mit | haben
       gapAnswers = answersText.split(',').map(ans => ans.trim());
-      console.log(`  Antworten extrahiert: ${gapAnswers.join(', ')}`);
     }
     
     // Suche nach dem Lückentext in den vorherigen Elementen
@@ -142,7 +132,6 @@ function processQuestion(h3, elements, container, questionNumber) {
       const prevEl = elements[i];
       if (prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
         gapText = prevEl.innerHTML;
-        console.log(`  Lückentext gefunden: "${gapText.substring(0, 50)}..."`);
         break;
       }
     }
@@ -151,7 +140,6 @@ function processQuestion(h3, elements, container, questionNumber) {
   else if (elements.some(el => el.tagName === 'UL')) {
     const ulElement = elements.find(el => el.tagName === 'UL');
     questionType = 'multiple-choice';
-    console.log('  Multiple-Choice-Fragetyp erkannt');
     
     const listItems = ulElement.querySelectorAll('li');
     
@@ -172,7 +160,6 @@ function processQuestion(h3, elements, container, questionNumber) {
   // Prüfe auf Textantwort-Fragen
   else if (elements.some(el => el.textContent.includes('Antwort:'))) {
     questionType = 'text';
-    console.log('  Textantwort-Fragetyp erkannt');
     
     // Finde das Element mit "Antwort:"
     const answerElement = elements.find(el => el.textContent.includes('Antwort:'));
@@ -181,7 +168,6 @@ function processQuestion(h3, elements, container, questionNumber) {
     const match = /Antwort:\s*(.+)/.exec(answerElement.textContent);
     if (match) {
       correctAnswer = match[1].trim();
-      console.log(`  Antwort extrahiert: ${correctAnswer}`);
     }
   }
   
@@ -262,7 +248,6 @@ function processQuestion(h3, elements, container, questionNumber) {
     formattedQuestion.appendChild(inputContainer);
   }
   else if (questionType === 'gap-text' && gapText && gapAnswers.length > 0) {
-    console.log('  Erstelle Lückentext-Element');
     formattedQuestion.setAttribute('data-type', 'gap-text');
     formattedQuestion.setAttribute('data-correct', JSON.stringify(gapAnswers));
     
@@ -270,20 +255,18 @@ function processQuestion(h3, elements, container, questionNumber) {
     gapContainer.className = 'gap-text-container';
     
     // Extrahiere Lücken aus dem Text und ersetze sie durch Eingabefelder
+    // OHNE die Lösungsvorschläge zu verwenden
     let gapIndex = 0;
-    const gapTextWithInputs = gapText.replace(/\[([^\]]*)\]/g, (match, placeholder) => {
-      const input = `<input type="text" class="gap-input" data-gap-index="${gapIndex}" placeholder="${placeholder || 'Lücke ausfüllen...'}">`;
+    const gapTextWithInputs = gapText.replace(/\[([^\]]*)\]/g, (match) => {
+      const input = `<input type="text" class="gap-input" data-gap-index="${gapIndex}" placeholder="Lücke ausfüllen...">`;
       gapIndex++;
       return input;
     });
     
     gapContainer.innerHTML = gapTextWithInputs;
-    console.log('  Lückentext-Container erstellt mit:', gapTextWithInputs.substring(0, 100));
     formattedQuestion.appendChild(gapContainer);
   } else {
     // Fallback für unerkannte Fragetypen - setze trotzdem ein Textfeld
-    console.warn(`  Fragetyp für Frage ${questionNumber} nicht erkannt, setze Standardtextfeld`);
-    
     const fallbackContainer = document.createElement('div');
     fallbackContainer.className = 'text-input-container';
     
@@ -309,18 +292,6 @@ function processQuestion(h3, elements, container, questionNumber) {
   feedbackDiv.className = 'feedback';
   feedbackDiv.style.display = 'none';
   formattedQuestion.appendChild(feedbackDiv);
-  
-  // Debug-Element hinzufügen
-  const debugDiv = document.createElement('div');
-  debugDiv.className = 'debug-info';
-  debugDiv.innerHTML = `DEBUG: Fragetyp=${questionType}, Elemente=${elements.length}, Lücken=${gapAnswers.length}`;
-  debugDiv.style.fontSize = '0.7em';
-  debugDiv.style.color = '#666';
-  debugDiv.style.marginTop = '5px';
-  debugDiv.style.padding = '3px';
-  debugDiv.style.backgroundColor = '#f9f9f9';
-  debugDiv.style.border = '1px dashed #ccc';
-  formattedQuestion.appendChild(debugDiv);
   
   // Frage zum Container hinzufügen
   container.appendChild(formattedQuestion);
@@ -412,7 +383,6 @@ function checkAllAnswers() {
       
       try {
         const correctAnswers = JSON.parse(correctAnswer);
-        console.log('Korrekte Antworten:', correctAnswers);
         
         // Prüfe jede Lücke
         gapInputs.forEach((input, index) => {
@@ -476,9 +446,4 @@ function checkAllAnswers() {
     // Scroll zum Ergebnis
     resultDiv.scrollIntoView({ behavior: 'smooth' });
   }
-  
-  // Entferne Debug-Elemente nach der Prüfung
-  document.querySelectorAll('.debug-info').forEach(el => {
-    el.style.display = 'none';
-  });
 }
