@@ -25,17 +25,17 @@ Energie und Arbeit sind grundlegende Konzepte in der Physik:
 
 ### Die Einheit der Arbeit im SI-Einheitensystem ist:
 
-- [x] Joule (J)
-- [ ] Newton (N)
-- [ ] Watt (W)
-- [ ] Pascal (Pa)
+- Joule (J) (richtige Option)
+- Newton (N)
+- Watt (W)
+- Pascal (Pa)
 
 ### Welche der folgenden ist KEINE Form von Energie?
 
-- [ ] Kinetische Energie
-- [ ] Potentielle Energie
-- [x] Newtonsche Energie
-- [ ] Thermische Energie
+- Kinetische Energie
+- Potentielle Energie
+- Newtonsche Energie (richtige Option)
+- Thermische Energie
 
 ### Wie lautet die berühmte Formel von Einstein, die die Äquivalenz von Masse und Energie beschreibt?
 
@@ -45,10 +45,10 @@ Antwort: E=mc²|E = mc²|e=mc2
 
 ### Die potentielle Energie eines Objekts in einem Gravitationsfeld hängt ab von:
 
-- [ ] Nur der Masse des Objekts
-- [ ] Nur der Höhe des Objekts
-- [ ] Nur der Gravitationskonstante
-- [x] Der Masse, der Höhe und der Gravitationskonstante
+- Nur der Masse des Objekts
+- Nur der Höhe des Objekts
+- Nur der Gravitationskonstante
+- Der Masse, der Höhe und der Gravitationskonstante (richtige Option)
 
 ### Wie lautet das Gesetz, das besagt, dass Energie weder erzeugt noch vernichtet werden kann, sondern nur von einer Form in eine andere umgewandelt wird?
 
@@ -68,10 +68,10 @@ Nachdem du die Grundkonzepte von Energie und Arbeit verstanden hast, versuche di
 
 ### Ein Körper mit einer Masse von 2 kg wird auf eine Höhe von 5 m angehoben. Die potentielle Energie beträgt:
 
-- [ ] 10 J
-- [x] 98 J
-- [ ] 100 J
-- [ ] 49 J
+- 10 J
+- 98 J (richtige Option)
+- 100 J
+- 49 J
 
 ### Ein Körper mit einer Masse von 500 g besitzt eine kinetische Energie von 250 J. Mit welcher Geschwindigkeit bewegt sich der Körper?
 
