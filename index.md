@@ -7,11 +7,14 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 Hier findest du aktuelles Unterrichtsmaterial, Links und wichtige Informationen. 
 
+## Arbeitsblätter und Material
 
 - Hier gibt es ein neues Arbeitsblatt: [neues Arbeitsblatt](neues%20Arbeitsblatt.md)
-- Physik-Arbeitsblatt mit interaktivem Quiz: [Physik-Quiz](beispiel-quiz.html)
+- Interaktives Physik-Arbeitsblatt: [Physik-Quiz (neue Version)](beispiel-quiz-neu.html)
+- Älteres Physik-Quiz: [Physik-Quiz](beispiel-quiz.html)
 - letztes Arbeitsblatt: [Dreieckshandel](Dreieckshandel.html)
 
 ## Hilfe und Anleitungen
 
-- [Anleitung zum Quiz-System](quiz-system-anleitung.html) - Wie du interaktive Quizzes in deinen Arbeitsblättern erstellst
+- [Anleitung zum Quiz-System (neue Version)](quiz-system-anleitung-neu.html) - Wie du interaktive Quizzes in deinen Arbeitsblättern erstellst
+- [Ältere Anleitung zum Quiz-System](quiz-system-anleitung.html)
