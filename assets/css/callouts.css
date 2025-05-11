@@ -1,0 +1,189 @@
+/* Obsidian Callouts CSS */
+
+.callout {
+  border-radius: 5px;
+  margin: 1em 0;
+  padding: 1em 1em 1em 1em;
+  display: flex;
+  gap: 10px;
+  border-left: 4px solid;
+  background-color: rgba(var(--callout-color), 0.1);
+  color: var(--text-color);
+}
+
+.callout-icon {
+  flex: 0 0 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  color: rgba(var(--callout-color), 1);
+}
+
+.callout-content {
+  flex: 1;
+}
+
+.callout-title {
+  font-weight: bold;
+  color: rgba(var(--callout-color), 1);
+  margin-bottom: 0.5em;
+}
+
+.callout-content > p:first-child {
+  margin-top: 0;
+}
+
+.callout-content > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Collapsible callouts */
+.callout[data-callout-fold="1"] .callout-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.callout[data-callout-fold="1"] .callout-title::before {
+  content: "▼";
+  font-size: 0.8em;
+  margin-right: 5px;
+  transition: transform 0.2s;
+}
+
+.callout[data-callout-fold="1"].is-collapsed .callout-title::before {
+  transform: rotate(-90deg);
+}
+
+.callout[data-callout-fold="1"].is-collapsed .callout-content > *:not(.callout-title) {
+  display: none;
+}
+
+/* Common callout types */
+.callout[data-callout="note"] {
+  --callout-color: 68, 138, 255; /* blue */
+}
+
+.callout[data-callout="abstract"],
+.callout[data-callout="summary"],
+.callout[data-callout="tldr"] {
+  --callout-color: 0, 176, 255; /* light blue */
+}
+
+.callout[data-callout="info"],
+.callout[data-callout="todo"] {
+  --callout-color: 0, 184, 212; /* cyan */
+}
+
+.callout[data-callout="tip"],
+.callout[data-callout="hint"],
+.callout[data-callout="important"] {
+  --callout-color: 0, 191, 165; /* teal */
+}
+
+.callout[data-callout="success"],
+.callout[data-callout="check"],
+.callout[data-callout="done"] {
+  --callout-color: 0, 200, 83; /* green */
+}
+
+.callout[data-callout="question"],
+.callout[data-callout="help"],
+.callout[data-callout="faq"] {
+  --callout-color: 100, 221, 23; /* light green */
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+  --callout-color: 255, 145, 0; /* orange */
+}
+
+.callout[data-callout="failure"],
+.callout[data-callout="fail"],
+.callout[data-callout="missing"] {
+  --callout-color: 255, 82, 82; /* red */
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"] {
+  --callout-color: 255, 23, 68; /* dark red */
+}
+
+.callout[data-callout="bug"] {
+  --callout-color: 245, 0, 87; /* pink */
+}
+
+.callout[data-callout="example"] {
+  --callout-color: 124, 77, 255; /* purple */
+}
+
+.callout[data-callout="quote"],
+.callout[data-callout="cite"] {
+  --callout-color: 158, 158, 158; /* gray */
+}
+
+/* Icons for each callout type */
+.callout[data-callout="note"] .callout-icon::before {
+  content: "📝";
+}
+
+.callout[data-callout="abstract"] .callout-icon::before,
+.callout[data-callout="summary"] .callout-icon::before,
+.callout[data-callout="tldr"] .callout-icon::before {
+  content: "📋";
+}
+
+.callout[data-callout="info"] .callout-icon::before,
+.callout[data-callout="todo"] .callout-icon::before {
+  content: "ℹ️";
+}
+
+.callout[data-callout="tip"] .callout-icon::before,
+.callout[data-callout="hint"] .callout-icon::before,
+.callout[data-callout="important"] .callout-icon::before {
+  content: "💡";
+}
+
+.callout[data-callout="success"] .callout-icon::before,
+.callout[data-callout="check"] .callout-icon::before,
+.callout[data-callout="done"] .callout-icon::before {
+  content: "✅";
+}
+
+.callout[data-callout="question"] .callout-icon::before,
+.callout[data-callout="help"] .callout-icon::before,
+.callout[data-callout="faq"] .callout-icon::before {
+  content: "❓";
+}
+
+.callout[data-callout="warning"] .callout-icon::before,
+.callout[data-callout="caution"] .callout-icon::before,
+.callout[data-callout="attention"] .callout-icon::before {
+  content: "⚠️";
+}
+
+.callout[data-callout="failure"] .callout-icon::before,
+.callout[data-callout="fail"] .callout-icon::before,
+.callout[data-callout="missing"] .callout-icon::before {
+  content: "❌";
+}
+
+.callout[data-callout="danger"] .callout-icon::before,
+.callout[data-callout="error"] .callout-icon::before {
+  content: "🚨";
+}
+
+.callout[data-callout="bug"] .callout-icon::before {
+  content: "🐛";
+}
+
+.callout[data-callout="example"] .callout-icon::before {
+  content: "🔍";
+}
+
+.callout[data-callout="quote"] .callout-icon::before,
+.callout[data-callout="cite"] .callout-icon::before {
+  content: "💬";
+}
