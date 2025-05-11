@@ -15,3 +15,6 @@ Bearbeite die drei Arbeitsblätter zu diesem Thema. Du darfst selbst wählen, mi
 - [Aufgaben zur Wiederholung (gut vor der Probe am Montag)](https://www.hanisauland.de/lehrer-innen/unterrichtsmaterial/Erster-Weltkrieg-interaktiv)
 - [Ein Video zum ersten Weltkrieg in Afrika (wenn du kannst, verwende bitte Kopfhörer):](https://www.youtube.com/watch?v=5PTF76OPsn0)
 
+
+---
+
