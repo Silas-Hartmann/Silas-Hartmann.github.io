@@ -17,7 +17,7 @@ function processCallouts() {
       let firstLine = firstParagraph.textContent.trim();
       
       // Extrahiere den Callout-Typ
-      const calloutTypeMatch = firstLine.match(/\\[!([a-zA-Z0-9-_]+)\\]/);
+      const calloutTypeMatch = firstLine.match(/\[!([a-zA-Z0-9-_]+)\]/);
       
       if (calloutTypeMatch) {
         const calloutType = calloutTypeMatch[1].toLowerCase();
@@ -36,7 +36,7 @@ function processCallouts() {
         
         // Extrahiere den Titel (Text nach der Callout-Deklaration)
         let title = '';
-        let titleMatch = firstLine.match(/\\]([^\\[]*)$/);
+        let titleMatch = firstLine.match(/\]([^\[]*?)$/);
         
         if (titleMatch && titleMatch[1].trim()) {
           title = titleMatch[1].trim();
@@ -78,7 +78,7 @@ function processCallouts() {
         }
         
         // Entferne die Callout-Deklaration aus dem ersten Absatz
-        firstParagraph.innerHTML = firstParagraph.innerHTML.replace(/\\[!([a-zA-Z0-9-_]+)\\](\+|-)?([^\\[]*)/, '');
+        firstParagraph.innerHTML = firstParagraph.innerHTML.replace(/\[!([a-zA-Z0-9-_]+)\](\+|-)?([^\[]*?)/, '');
         
         // Wenn der erste Absatz nach der Entfernung der Deklaration leer ist, entferne ihn
         if (firstParagraph.textContent.trim() === '') {
