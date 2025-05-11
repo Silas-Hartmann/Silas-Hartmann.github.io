@@ -26,7 +26,7 @@ Vor dem Ersten Weltkrieg hatte Deutschland ein Kolonialreich, das weit über Afr
 
 Diese Kolonien waren wirtschaftlich und strategisch wichtig für das Deutsche Reich. Besonders Tsingtao war ein Schmuckstück der deutschen Kolonien – mit Brauereien (das berühmte Tsingtao-Bier gibt es noch heute), europäischen Gebäuden und einem modernen Hafen.
 
-![Tsingato-Bier](https://ww1.valuecellars.com.au/files/2016/08/6901035606417-3-1200x1200.png)
+![Tsingato-Bier|200](https://ww1.valuecellars.com.au/files/2016/08/6901035606417-3-1200x1200.png)
 
 ### 🖊️ 1) Welche dieser Gebiete waren deutsche Kolonien zur Zeit des 1. Weltkriegs?
 
