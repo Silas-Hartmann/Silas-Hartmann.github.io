@@ -11,10 +11,10 @@ function processCallouts() {
   
   blockquotes.forEach(blockquote => {
     // Überprüfe, ob es sich um einen Obsidian-Callout handelt
-    const firstParagraph = blockquote.querySelector('p:first-child');
+    const paragraphs = blockquote.querySelectorAll('p');
     
-    if (firstParagraph && firstParagraph.textContent.trim().startsWith('[!')) {
-      let firstParagraphText = firstParagraph.textContent.trim();
+    if (paragraphs.length > 0 && paragraphs[0].textContent.trim().startsWith('[!')) {
+      let firstParagraphText = paragraphs[0].textContent.trim();
       
       // Extrahiere den Callout-Typ
       const calloutTypeMatch = firstParagraphText.match(/\[!([a-zA-Z0-9-_]+)\]/);
@@ -78,19 +78,12 @@ function processCallouts() {
           });
         }
         
-        // Zuerst schauen, ob der erste Paragraph weitere Inhalte hat (nach einem Link)
-        if (firstParagraph.querySelector('a')) {
-          const contentPara = document.createElement('p');
-          const link = firstParagraph.querySelector('a').cloneNode(true);
-          contentPara.appendChild(link);
+        // Verarbeite alle weiteren Paragraphen (außer dem ersten mit der Callout-Deklaration)
+        for (let i = 1; i < paragraphs.length; i++) {
+          // Erstelle eine Kopie des Paragraphen und füge ihn zum Content-Div hinzu
+          const contentPara = paragraphs[i].cloneNode(true);
           contentDiv.appendChild(contentPara);
         }
-        
-        // Dann alle weiteren Elemente (nach dem ersten Paragraph) hinzufügen
-        const contentElements = Array.from(blockquote.children).slice(1);
-        contentElements.forEach(element => {
-          contentDiv.appendChild(element.cloneNode(true));
-        });
         
         // Füge das Content-Div zum Callout-Div hinzu
         calloutDiv.appendChild(contentDiv);
