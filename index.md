@@ -2,16 +2,21 @@
 layout: default
 title: Unterrichtsmaterial von Herrn Hartmann
 ---
-
 # Herzlich Willkommen!
 
 Hier findest du aktuelles Unterrichtsmaterial, Links und wichtige Informationen. 
 
-## Arbeitsblätter und Beispiele
+>[!important] GPG 7 - Unterrichtsmaterial
+>[hier klicken, um zum aktuellen Thema zu gelangen](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
 
-- [Physik-Quiz](beispiel-quiz-neu.html) - Multiple-Choice und Textantworten
-- [Lückentext-Beispiel](beispiel-lueckentext.html) - Fragen mit Lückentext-Format
+---
 
-## Hilfe und Anleitungen
+## Archiv: Unterrichtsmaterial
 
-- [Anleitung zum Quiz-System](quiz-system-anleitung-neu.html) - Wie du interaktive Quizzes in deinen Arbeitsblättern erstellst
+hier findest du Arbeitsblätter, weiterführende Informationen und teilweise Hefteinträge zu den letzten Stunden. Bitte **wähle deine Klasse**, um zu dem Material zu kommen.
+
+- [Klasse 6 - GPG und Kunst](Klasse%206%20-%20GPG%20und%20Kunst.md)
+- [Klasse 7 - GPG und Kunst](Klasse%207%20-%20GPG%20und%20Kunst)
+
+
+ 
