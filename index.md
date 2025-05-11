@@ -27,7 +27,7 @@ title: Unterrichtsmaterial von Herrn Hartmann
 hier findest du Arbeitsblätter, weiterführende Informationen und teilweise Hefteinträge zu den letzten Stunden. Bitte **wähle deine Klasse**, um zu dem Material zu kommen.
 
 - [Klasse_6_GPG_Kunst](Klasse_6_GPG_Kunst.md)
-- [Klasse 7 - GPG und Kunst](Klasse%207%20-%20GPG%20und%20Kunst)
+- [Klasse_7_GPG_Kunst](Klasse_7_GPG_Kunst.md)
 
 
  
