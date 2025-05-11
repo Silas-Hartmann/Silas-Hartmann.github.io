@@ -34,7 +34,7 @@ function processCallouts() {
           defaultState = 'collapsed';
         }
         
-        // Extrahiere den Titel (Text nach der Callout-Deklaration)
+        // Extrahiere den Titel (Text nach der Callout-Deklaration in der ersten Zeile)
         let title = '';
         const titleRegex = new RegExp('\\[!' + calloutType + '\\][+-]?\\s*(.*?)$');
         const titleMatch = firstParagraphText.match(titleRegex);
@@ -78,8 +78,15 @@ function processCallouts() {
           });
         }
         
-        // Kopiere alle Elemente aus der Blockquote außer dem ersten Paragraph
-        // in das Content-Div
+        // Zuerst schauen, ob der erste Paragraph weitere Inhalte hat (nach einem Link)
+        if (firstParagraph.querySelector('a')) {
+          const contentPara = document.createElement('p');
+          const link = firstParagraph.querySelector('a').cloneNode(true);
+          contentPara.appendChild(link);
+          contentDiv.appendChild(contentPara);
+        }
+        
+        // Dann alle weiteren Elemente (nach dem ersten Paragraph) hinzufügen
         const contentElements = Array.from(blockquote.children).slice(1);
         contentElements.forEach(element => {
           contentDiv.appendChild(element.cloneNode(true));
