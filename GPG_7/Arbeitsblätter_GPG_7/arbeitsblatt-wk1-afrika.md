@@ -8,8 +8,7 @@ date: 2025-05-12
 
 [➡️ Zum Arbeitsblatt Naher Osten](arbeitsblatt-wk1-nahost.html) | [➡️ Zum Arbeitsblatt Asien und Pazifik](arbeitsblatt-wk1-asien.html)
 
-![Afrikanische Soldaten im Ersten Weltkrieg](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/German_askaris.jpg/640px-German_askaris.jpg)
-
+![Afrikanische Soldaten im Ersten Weltkrieg](https://img.welt.de/img/geschichte/mobile128383706/9692509137-ci102l-w1024/Schutztruppen-Dt-Ostafrika-Feldstellung.jpg)
 *Afrikanische Soldaten ("Askaris") in der deutschen Kolonialtruppe in Deutsch-Ostafrika*
 
 ## Die deutschen Kolonien in Afrika
