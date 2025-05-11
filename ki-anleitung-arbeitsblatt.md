@@ -54,6 +54,24 @@ Lücken: Antwort1|Alternative1, Antwort2|Alternative2
 - HTML-Code ist nicht notwendig - Transformation erfolgt automatisch
 - Obsidian-kompatibel: Standard-Markdown funktioniert, Callouts werden nicht transformiert
 
+## PDF-Export
+Die Arbeitsblätter können als PDF heruntergeladen werden:
+
+### PDF-Varianten
+- **Arbeitsblatt-PDF**: Interaktive Elemente werden durch ausdruckbare Formate ersetzt
+  - Textfelder werden durch linierte Bereiche zum handschriftlichen Ausfüllen ersetzt
+  - Multiple-Choice-Optionen werden zu Checkboxen 
+  - Lückentexte erhalten Unterstreichungen für handschriftliche Einträge
+- **Lösungs-PDF**: Enthält alle korrekten Antworten
+  - Richtige Multiple-Choice-Optionen sind markiert und hervorgehoben
+  - Textantworten zeigen die korrekte Lösung
+  - Lückentexte sind mit richtigen Einträgen ausgefüllt
+
+### Eigenschaften
+- Standardschriftgröße im PDF beträgt 9 PT für optimale Lesbarkeit
+- Automatische Umformatierung für Druckmedien
+- Buttons zum Download erscheinen automatisch am Ende jedes Arbeitsblatts
+
 ## Formatierung
 - Strukturiere mit `#` (H1), `##` (H2) für Abschnitte
 - Nutze Markdown-Formatierung für Listen, *Hervorhebungen*, **Fettdruck**, etc.
