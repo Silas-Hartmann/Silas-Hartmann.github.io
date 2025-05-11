@@ -23,6 +23,12 @@ Vor dem Ersten Weltkrieg besaß Deutschland mehrere Kolonien in Afrika. Diese Ge
 
 Als der Krieg in Europa ausbrach, wurden diese Kolonien zu wichtigen Schauplätzen des Konfliktes. Die europäischen Kolonialmächte kämpften nicht nur in Europa, sondern auch um die Kontrolle über ihre überseeischen Territorien.
 
+### 1) 🖊️ Warum gab es auch in Afrika Konflikte während dem ersten Weltkrieg?
+
+- [ ] Weil Afrika mit Großbritannien verbündet war
+- [ ] Weil es in Afrika viel Gold gab
+- [x] Weil die europäischen Mächte Kolonien in Afrika hatten
+
 ## Der Kriegsverlauf in den deutschen Kolonien
 
 ### Schnelle Eroberungen: Togo und Kamerun
@@ -38,6 +44,12 @@ In Kamerun verlief der Krieg anders:
 - Sie hielt den Kampf bis **Februar 1916** aufrecht
 - Am Ende flohen die deutschen Soldaten in die neutrale spanische Kolonie Río Muni
 
+### 2) 🖊️ Warum wurde die deutsche Kolonie Togo so schnell besiegt?
+
+- [ ] Die Menschen in Togo hatten keine Lust zu kämpfen
+- [x] Die Kolonie in Togo hatte keine eigene Schutztruppe
+- [ ] Es gab in Togo kaum Waffen
+
 ### Der Kampf um Deutsch-Südwestafrika
 
 In Südwestafrika standen etwa 5.000 deutsche Soldaten und Reservisten einer überlegenen südafrikanischen Armee gegenüber:
@@ -47,6 +59,11 @@ In Südwestafrika standen etwa 5.000 deutsche Soldaten und Reservisten einer üb
 - Anfangs half den Deutschen ein Aufstand der Buren gegen die britische Herrschaft
 - Doch im **Juli 1915** kapitulierte die Kolonie
 
+### 3) 🖊️ Welche dieser Gegenstände standen den Soldaten in Deutsch-Südwestafrika zur Verfügung?
+
+- [ ] gepanzerte Lastwagen
+- [x] Ochsenkarren
+
 ### Der lange Widerstand in Deutsch-Ostafrika
 
 Am längsten hielten die Deutschen in Ostafrika durch:
@@ -55,6 +72,12 @@ Am längsten hielten die Deutschen in Ostafrika durch:
 - Sie schlugen anfangs eine britisch-indische Invasion zurück
 - Die "Schutztruppe" bestand aus etwa 3.000 deutschen und 11.000 afrikanischen Soldaten
 - Sie kämpften bis zum **25. November 1918** – zwei Wochen nach dem Ende des Krieges in Europa!
+
+### 4) 🖊️ Vervollständige den Lückentext: 
+
+Die Kolonie Deutsch-Ostafrika wurde als [letzte] Kolonie von Deutschland besiegt. Sie [siegten|gewannen] direkt zu Beginn gegen eine britisch-indische Invasion. Sie kämpften sogar noch zwei Wochen [nach] dem Ende des ersten Weltkriegs in Europa. 
+
+Lücken: letzte, siegten|gewannen, nach
 
 ## Afrikaner im Ersten Weltkrieg
 
@@ -78,6 +101,13 @@ Viele Afrikaner wurden als "Träger" rekrutiert:
 Wie Nwose, ein Träger aus Nigeria, berichtete:
 > "Der weiße Mann schrieb unsere Namen in ein Buch, band uns nummerierte Messingstücke um den Hals und gab jedem Essen und eine Decke."
 
+### 5) 🖊️ Wähle die richtigen Aussagen aus: 
+
+- [ ] Afrikanische Soldaten kämpften nur in Afrika
+- [ ] Die meisten afrikanischen Soldaten setzte Deutschland ein
+- [x] Frankreich setzte die meisten afrikanischen Soldaten ein
+- [ ] Die meisten Afrikaner starben als Soldaten
+
 ## Folgen des Krieges für Afrika
 
 Der Erste Weltkrieg hatte weitreichende Folgen für den afrikanischen Kontinent:
@@ -88,16 +118,14 @@ Der Erste Weltkrieg hatte weitreichende Folgen für den afrikanischen Kontinent:
 - Die ersten Ideen für die Unabhängigkeit der Kolonien entstanden
 - Viele zurückkehrende Soldaten erwarteten Anerkennung, wurden aber weiterhin diskriminiert
 
-## Aufgaben
+### 6) 🖊️ Wo überall wurde in Afrika gekämpft?
 
-### 1. Wo überall wurde in Afrika gekämpft?
+- [ ] Nur in Deutsch-Ostafrika
+- [x] In allen deutschen Kolonien 
+- [ ] Nur in Nordafrika
+- [ ] In Afrika wurde nicht gekämpft
 
-- Nur in Deutsch-Ostafrika
-- In allen deutschen Kolonien (richtige Option)
-- Nur in Nordafrika
-- In Afrika wurde nicht gekämpft
-
-### 2. Was passierte mit den afrikanischen Soldaten?
+### 7) 🖊️ Was passierte mit den afrikanischen Soldaten?
 
 Kreuze alle richtigen Aussagen an:
 
@@ -107,17 +135,14 @@ Kreuze alle richtigen Aussagen an:
 - [x] Viele wurden als Träger eingesetzt
 - [ ] Sie wurden von den Deutschen gut behandelt
 
-### 3. Was war nach dem Krieg anders?
 
-Welche Folgen hatte der Erste Weltkrieg für Afrika? Verbinde die Aussagen.
+### Nach dem ersten Weltkrieg wollten mehr afrikanische Staaten unabhängig sein als vorher. Was glaubst du, warum sich das geändert hat?
 
-Die deutschen Kolonien | wurden an die Sieger verteilt
-Viele Afrikaner | forderten mehr Rechte
-Die ersten Ideen | für Unabhängigkeit entstanden
-Die Kolonien | blieben aber unter europäischer Herrschaft
+Schreibe einen vollständigen Satz auf.
 
-### 4. Was hat dich am meisten überrascht?
+Antwort: Dieses Ergebnis besprechen wir gemeinsam, es gibt hier nicht **eine** richtige Lösung.
 
-Schreibe einen kurzen Text über etwas, das du in diesem Arbeitsblatt gelernt hast und das dich überrascht hat.
 
-Antwort: 
+
+✅ Schon fertig? Hier gehts [🏠 zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md), von dort kommst du zu den anderen Arbeitsblättern oder den Aufgaben für schnelle. 
+
