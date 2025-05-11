@@ -27,9 +27,9 @@ Als der Krieg in Europa ausbrach, wurden diese Kolonien zu wichtigen Schauplätz
 
 ### 1) 🖊️ Warum gab es auch in Afrika Konflikte während dem ersten Weltkrieg?
 
-- [ ] Weil Afrika mit Großbritannien verbündet war
-- [ ] Weil es in Afrika viel Gold gab
-- [x] Weil die europäischen Mächte Kolonien in Afrika hatten
+-  Weil Afrika mit Großbritannien verbündet war
+-  Weil es in Afrika viel Gold gab
+-  Weil die europäischen Mächte Kolonien in Afrika hatten (richtig)
 
 ## Der Kriegsverlauf in den deutschen Kolonien
 
@@ -48,9 +48,9 @@ In Kamerun verlief der Krieg anders:
 
 ### 2) 🖊️ Warum wurde die deutsche Kolonie Togo so schnell besiegt?
 
-- [ ] Die Menschen in Togo hatten keine Lust zu kämpfen
-- [x] Die Kolonie in Togo hatte keine eigene Schutztruppe
-- [ ] Es gab in Togo kaum Waffen
+- Die Menschen in Togo hatten keine Lust zu kämpfen
+- Die Kolonie in Togo hatte keine eigene Schutztruppe (richtig)
+- Es gab in Togo kaum Waffen
 
 ### Der Kampf um Deutsch-Südwestafrika
 
@@ -63,8 +63,8 @@ In Südwestafrika standen etwa 5.000 deutsche Soldaten und Reservisten einer üb
 
 ### 3) 🖊️ Welche dieser Gegenstände standen den Soldaten in Deutsch-Südwestafrika zur Verfügung?
 
-- [ ] gepanzerte Lastwagen
-- [x] Ochsenkarren
+- gepanzerte Lastwagen
+- Ochsenkarren (richtig)
 
 ### Der lange Widerstand in Deutsch-Ostafrika
 
@@ -105,10 +105,10 @@ Wie Nwose, ein Träger aus Nigeria, berichtete:
 
 ### 5) 🖊️ Wähle die richtigen Aussagen aus: 
 
-- [ ] Afrikanische Soldaten kämpften nur in Afrika
-- [ ] Die meisten afrikanischen Soldaten setzte Deutschland ein
-- [x] Frankreich setzte die meisten afrikanischen Soldaten ein
-- [ ] Die meisten Afrikaner starben als Soldaten
+- Afrikanische Soldaten kämpften nur in Afrika
+- Die meisten afrikanischen Soldaten setzte Deutschland ein
+- Frankreich setzte die meisten afrikanischen Soldaten ein (richtig)
+- Die meisten Afrikaner starben als Soldaten
 
 ## Folgen des Krieges für Afrika
 
@@ -122,20 +122,20 @@ Der Erste Weltkrieg hatte weitreichende Folgen für den afrikanischen Kontinent:
 
 ### 6) 🖊️ Wo überall wurde in Afrika gekämpft?
 
-- [ ] Nur in Deutsch-Ostafrika
-- [x] In allen deutschen Kolonien 
-- [ ] Nur in Nordafrika
-- [ ] In Afrika wurde nicht gekämpft
+- Nur in Deutsch-Ostafrika
+- In allen deutschen Kolonien (richtig)
+- Nur in Nordafrika
+- In Afrika wurde nicht gekämpft
 
 ### 7) 🖊️ Was passierte mit den afrikanischen Soldaten?
 
 Kreuze alle richtigen Aussagen an:
 
-- [ ] Sie kämpften nur in Afrika
-- [x] Sie mussten auch in Europa kämpfen
-- [x] Sie wurden oft für gefährliche Angriffe eingesetzt
-- [x] Viele wurden als Träger eingesetzt
-- [ ] Sie wurden von den Deutschen gut behandelt
+- Sie kämpften nur in Afrika
+- Sie mussten auch in Europa kämpfen (richtig)
+- Sie wurden oft für gefährliche Angriffe eingesetzt (richtig)
+- Viele wurden als Träger eingesetzt (richtig)
+- Sie wurden von den Deutschen gut behandelt
 
 
 ### Nach dem ersten Weltkrieg wollten mehr afrikanische Staaten unabhängig sein als vorher. Was glaubst du, warum sich das geändert hat?
