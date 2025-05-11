@@ -36,7 +36,7 @@ function processCallouts() {
         
         // Extrahiere den Titel (Text nach der Callout-Deklaration)
         let title = '';
-        let titleMatch = firstLine.match(/\]([^\[]*?)$/);
+        let titleMatch = firstLine.match(/\][+-]?\s*(.*?)$/);
         
         if (titleMatch && titleMatch[1].trim()) {
           title = titleMatch[1].trim();
@@ -77,13 +77,9 @@ function processCallouts() {
           });
         }
         
-        // Entferne die Callout-Deklaration aus dem ersten Absatz
-        firstParagraph.innerHTML = firstParagraph.innerHTML.replace(/\[!([a-zA-Z0-9-_]+)\](\+|-)?([^\[]*?)/, '');
-        
-        // Wenn der erste Absatz nach der Entfernung der Deklaration leer ist, entferne ihn
-        if (firstParagraph.textContent.trim() === '') {
-          firstParagraph.remove();
-        }
+        // Entferne die erste Zeile vollständig, da sie den Titel enthält
+        // und wir den Titel bereits als separates Element hinzugefügt haben
+        firstParagraph.remove();
         
         // Füge den restlichen Inhalt zum Content-Div hinzu
         while (blockquote.childNodes.length > 0) {
