@@ -1,5 +1,9 @@
 /* Obsidian Callouts CSS */
 
+:root {
+  --text-color: #333333;
+}
+
 .callout {
   border-radius: 5px;
   margin: 1em 0;
