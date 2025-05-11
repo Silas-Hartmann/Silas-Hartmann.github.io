@@ -2,13 +2,13 @@
 layout: default
 title: Unterrichtsmaterial von Herrn Hartmann
 ---
+![[freddie-marriage-vSchPA-YA_A-unsplash.jpg]]
+
 # Herzlich Willkommen!
 
-Hier findest du aktuelles Unterrichtsmaterial, Links und wichtige Informationen. 
+## Aktuelles Unterrichtsmaterial
 
-### GPG 7 - Unterrichtsmaterial
-
-[hier klicken, um zum aktuellen Thema zu gelangen](GPG_7/Arbeitsblätter_GPG_7/Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
+Montag 12.05. GPG, Klasse 7: [✅ Der erste WELTkrieg](GPG_7/Arbeitsblätter_GPG_7/Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
 
 ---
 
