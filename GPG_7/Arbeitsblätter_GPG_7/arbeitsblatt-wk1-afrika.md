@@ -61,6 +61,10 @@ In Südwestafrika standen etwa 5.000 deutsche Soldaten und Reservisten einer üb
 - Anfangs half den Deutschen ein Aufstand der Buren gegen die britische Herrschaft
 - Doch im **Juli 1915** kapitulierte die Kolonie
 
+![ein Ochsenkarren](https://upload.wikimedia.org/wikipedia/commons/8/8f/Bundesarchiv_Bild_183-R91954%2C_bei_Randow_-_Mecklenburg%2C_Bauer_hat_Kuh_eingespannt..jpg)
+
+
+
 ### 3) 🖊️ Welche dieser Gegenstände standen den Soldaten in Deutsch-Südwestafrika zur Verfügung?
 
 - gepanzerte Lastwagen
@@ -146,5 +150,7 @@ Antwort: Dieses Ergebnis besprechen wir gemeinsam, es gibt hier nicht **eine** r
 
 
 
-✅ Schon fertig? Hier gehts [🏠 zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md), von dort kommst du zu den anderen Arbeitsblättern oder den Aufgaben für schnelle. 
+### ✅ Schon fertig? 
+
+Hier gehts [🏠 zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md), von dort kommst du zu den anderen Arbeitsblättern oder den Aufgaben für schnelle. 
 
