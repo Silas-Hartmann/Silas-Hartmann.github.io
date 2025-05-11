@@ -30,7 +30,9 @@ Jede Quizfrage beginnt mit einer Überschrift der dritten Ebene (`###`):
 
 ### 2. Multiple-Choice-Fragen erstellen
 
-Multiple-Choice-Fragen werden mit einer Liste von Optionen definiert:
+Multiple-Choice-Fragen werden mit einer Liste von Optionen definiert. Es gibt zwei Möglichkeiten:
+
+#### a) Mit klassischen Aufzählungspunkten und Markierung der richtigen Antwort:
 
 ```markdown
 ### Wie lautet die Hauptstadt von Deutschland?
@@ -46,6 +48,23 @@ Wichtige Punkte:
 - Antwortmöglichkeiten werden als einfache Liste dargestellt
 - Die richtige Antwort wird mit `(richtige Option)` markiert
 - Du kannst alternativ auch `(richtig)` oder `(correct)` verwenden
+
+#### b) Mit Checkboxen (Aufgaben zum Ankreuzen):
+
+```markdown
+### Welche der folgenden Städte sind Hauptstädte?
+
+- [ ] New York
+- [x] Berlin
+- [ ] Sydney
+- [x] Paris
+```
+
+Wichtige Punkte:
+- Die Frage selbst wird als Überschrift (mit `###`) definiert
+- Antwortmöglichkeiten werden als Checkboxen dargestellt
+- Richtige Antworten werden mit `[x]` oder `[X]` markiert, falsche mit `[ ]`
+- Dieses Format ist besonders hilfreich für Fragen, bei denen mehrere Antworten richtig sein können
 
 ### 3. Textantwort-Fragen erstellen
 
@@ -86,7 +105,25 @@ Wichtige Punkte:
 - Alternative Antworten für jede Lücke können mit `|` getrennt werden
 - Die Antwortzeile wird in der interaktiven Anzeige automatisch versteckt
 
-### 5. Beispiel für ein vollständiges Quiz
+## Wichtiger Hinweis zu normalen Aufzählungen vs. Quizfragen
+
+Eine normale Aufzählung nach einer `###`-Überschrift wird **NICHT** automatisch als Quizfrage erkannt:
+
+```markdown
+### Merkmale des Ersten Weltkriegs
+
+* Erster globaler Konflikt
+* Einsatz neuer Waffentechnologien
+* Millionen von Opfern
+```
+
+Die obige Aufzählung wird als normaler Text angezeigt und nicht in ein interaktives Quiz umgewandelt.
+
+**Um eine Multiple-Choice-Quizfrage zu erstellen**, muss ENTWEDER:
+- Eine der Antwortoptionen mit `(richtige Option)`, `(richtig)` oder `(correct)` markiert sein, ODER
+- Das Checkbox-Format mit `- [ ]` und `- [x]` verwendet werden
+
+## Beispiel für ein vollständiges Quiz
 
 ```markdown
 ## Quiz: Geographie-Test
@@ -97,6 +134,13 @@ Wichtige Punkte:
 - Lyon
 - Marseille
 - Nizza
+
+### Welche dieser Städte liegen in Afrika?
+
+- [ ] Seoul
+- [x] Kairo
+- [x] Nairobi
+- [ ] Bangkok
 
 ### Nenne die chemische Formel für Kohlendioxid:
 
@@ -120,7 +164,9 @@ Vollständige Beispiel-Arbeitsblätter mit verschiedenen Quizformaten:
 
 ## Tipps und Tricks
 
-- **Wichtig**: Bei Multiple-Choice-Fragen musst du die richtige Antwort mit `(richtige Option)` kennzeichnen
+- **Wichtig**: Bei Multiple-Choice-Fragen mit einfachen Aufzählungen musst du die richtige Antwort mit `(richtige Option)` kennzeichnen
+- Für Aufgaben mit mehreren richtigen Antworten oder zum Ankreuzen, verwende das Checkbox-Format mit `- [ ]` und `- [x]`
+- Normale Aufzählungen unter einer `###`-Überschrift werden nicht als Quizfragen erkannt
 - Schreibe die Fragen in einer klaren, präzisen Sprache
 - Bei Multiple-Choice-Fragen sollten die falschen Antworten plausibel sein
 - Bei Textantworten kannst du verschiedene Schreibweisen durch die Alternative-Syntax (`|`) akzeptieren
