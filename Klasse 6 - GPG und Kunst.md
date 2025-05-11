@@ -4,7 +4,7 @@
 
 >[!important] Hefteinträge
 >hier findest du einen Teil der Hefteinträge bisher:
->[Hefteinträge GPG 6](Hefteinträge%20GPG%206.md)
+>[Hefteinträge GPG 6](GPG_6/Hefteinträge_GPG_6/Hefteinträge%20GPG%206.md)
 
 ### Arbeitsblätter
 
