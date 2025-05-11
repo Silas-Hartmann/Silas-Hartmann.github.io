@@ -77,14 +77,25 @@ function processCallouts() {
           });
         }
         
-        // Entferne die erste Zeile vollständig, da sie den Titel enthält
-        // und wir den Titel bereits als separates Element hinzugefügt haben
-        firstParagraph.remove();
+        // Behandle den Inhalt des Callouts
         
-        // Füge den restlichen Inhalt zum Content-Div hinzu
-        while (blockquote.childNodes.length > 0) {
-          contentDiv.appendChild(blockquote.childNodes[0]);
+        // 1. Entferne die Callout-Deklaration aus dem ersten Absatz
+        const firstParaContent = firstParagraph.innerHTML;
+        const cleanedContent = firstParaContent.replace(/\[!([a-zA-Z0-9-_]+)\][+-]?\s*(.*?)(?=<br|$)/, '');
+        
+        // 2. Wenn nach dem Entfernen der Deklaration noch Text übrig ist, verwende ihn
+        if (cleanedContent.trim()) {
+          // Erstelle einen neuen Absatz mit dem bereinigten Inhalt
+          const contentPara = document.createElement('p');
+          contentPara.innerHTML = cleanedContent;
+          contentDiv.appendChild(contentPara);
         }
+        
+        // 3. Füge alle anderen Elemente außer dem ersten Absatz zum Content-Div hinzu
+        const otherElements = Array.from(blockquote.children).slice(1);
+        otherElements.forEach(element => {
+          contentDiv.appendChild(element.cloneNode(true));
+        });
         
         // Füge das Content-Div zum Callout-Div hinzu
         calloutDiv.appendChild(contentDiv);
