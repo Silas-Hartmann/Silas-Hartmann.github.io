@@ -7,9 +7,9 @@ date: 2025-05-11
 # Der Erste Weltkrieg im Nahen Osten
 
 [➡️ Zum Arbeitsblatt Afrika](arbeitsblatt-wk1-afrika.html) | [➡️ Zum Arbeitsblatt Asien und Pazifik](arbeitsblatt-wk1-asien.html)
+[🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
 
-![Osmanische Soldaten im Ersten Weltkrieg](https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ottoman_troops_ww1.jpg/640px-Ottoman_troops_ww1.jpg)
-
+![Osmanische Soldaten im Ersten Weltkrieg](https://i0.wp.com/www.militaer-wissen.de/wp-content/uploads/2016/08/Osmanische-Soldaten.jpg)
 *Osmanische Soldaten während des Ersten Weltkriegs*
 
 ## Das Osmanische Reich – ein Vielvölkerstaat am Scheideweg
@@ -126,3 +126,10 @@ d) Die Briten eroberten Jerusalem während des Krieges.
 Warum war der Kriegseintritt des Osmanischen Reiches so wichtig für den Verlauf des Ersten Weltkriegs? Schreibe 2-3 Sätze.
 
 Antwort:
+
+
+
+---
+
+Mit allem fertig? Richtig gut! Hier findest du noch mehr interessante Informationen und Aufgaben: [🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
+
