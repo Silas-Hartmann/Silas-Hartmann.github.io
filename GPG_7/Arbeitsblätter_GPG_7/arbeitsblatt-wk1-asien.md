@@ -26,6 +26,19 @@ Vor dem Ersten Weltkrieg hatte Deutschland ein Kolonialreich, das weit über Afr
 
 Diese Kolonien waren wirtschaftlich und strategisch wichtig für das Deutsche Reich. Besonders Tsingtao war ein Schmuckstück der deutschen Kolonien – mit Brauereien (das berühmte Tsingtao-Bier gibt es noch heute), europäischen Gebäuden und einem modernen Hafen.
 
+![Tsingato-Bier](https://ww1.valuecellars.com.au/files/2016/08/6901035606417-3-1200x1200.png)
+
+### 🖊️ 1) Welche dieser Gebiete waren deutsche Kolonien zur Zeit des 1. Weltkriegs?
+
+- Japan 
+- Kiautschou in China (richtig)
+- Indonesien
+- Deutsch-Neuguinea (richtig)
+- Deutsch-Samoa (richtig)
+- Deutsch-Indien
+- Marshallinseln (richtig)
+
+![deutsche Kolonien](https://upload.wikimedia.org/wikipedia/de/0/0e/Erster_Weltkrieg_in_Kolonien_1914-18.png)
 ## Japan tritt in den Krieg ein
 
 Zu Beginn des 20. Jahrhunderts war Japan eine aufstrebende Macht in Asien. Das Land hatte sich nach seiner Öffnung in der zweiten Hälfte des 19. Jahrhunderts rasch modernisiert und industrialisiert. Nach dem Sieg im Russisch-Japanischen Krieg (1904-1905) war Japan zu einer bedeutenden Militärmacht in Asien geworden.
@@ -37,6 +50,18 @@ Als der Erste Weltkrieg ausbrach, nutzte Japan die Gelegenheit, seinen Einfluss 
 - Am **23. August 1914** erklärte Japan Deutschland offiziell den Krieg
 
 Japan trat damit als einzige asiatische Großmacht aktiv in den Ersten Weltkrieg ein – und zwar auf der Seite der Entente (Großbritannien, Frankreich, Russland).
+
+### 2) 🖊️ Kreuze die richtigen Aussagen an:
+
+- Japan hatte zu dieser Zeit kaum Industrie, die Menschen lebten wie im Mittelalter
+- Japan hatte einen Krieg gegen Russland gewonnen
+- Japan war durch ein Bündnis mit Großbritannien verbunden
+- Japan kämpfte auf der Seite von Deutschland
+
+![japanische Truppen landen in Quingdao](https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Imperial_Japanese_Sailors_Coming_Ashore_at_the_Siege_of_Tsingtao_1914.png/1280px-Imperial_Japanese_Sailors_Coming_Ashore_at_the_Siege_of_Tsingtao_1914.png)
+
+<iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=61.25976562500001%2C3.9519408561575946%2C174.28710937500003%2C51.83577752045248&amp;layer=mapnik" style="border: 1px solid black"></iframe>
+
 
 ## Die Belagerung von Tsingtao
 
@@ -51,18 +76,11 @@ Der wichtigste Kampf in Asien war die Belagerung der deutschen Kolonie Tsingtao 
 
 Die deutsche Verteidigung war tapfer, aber angesichts der zahlenmäßigen Überlegenheit der Japaner letztlich aussichtslos. Die Japaner behandelten die deutschen Kriegsgefangenen gut und brachten ihnen sogar Respekt entgegen.
 
-## Das deutsche Ostasiengeschwader auf der Flucht
+### 3) 🖊️ Ergänze den Lückentext
 
-Die deutschen Kriegsschiffe in Asien bildeten das sogenannte "Ostasiengeschwader" unter dem Kommando von Admiral Graf Spee. Als der Krieg ausbrach, war klar, dass die deutschen Schiffe in Asien keine Chance haben würden:
+In Tsingtao waren die meisten Schiffe der [deutschen] Flotte. Deshalb griffen dort [japanische|britische] und [japanische|britische] Soldaten an. Sie belagerten die Stadt [zwei Monate| 2 Monate] lang, bis die deutsche Besatzung aufgab. 
 
-- Die Schiffe verließen Tsingtao, bevor die Stadt eingeschlossen wurde
-- Ein Schiff, die **SMS Emden**, wurde auf Kaperfahrt in den Indischen Ozean geschickt
-- Die Emden versenkte zwei feindliche Kriegsschiffe und nahm 23 Handelsschiffe auf
-- Im November 1914 wurde die Emden vor den Kokosinseln von einem australischen Kreuzer gestellt und versenkt
-- Das restliche Geschwader floh über den Pazifik nach Südamerika
-- Nach einigen erfolgreichen Gefechten wurde es im Dezember 1914 vor den Falklandinseln von der britischen Marine vernichtet
-
-Die Kaperfahrt der Emden wurde später zu einer berühmten Episode des Krieges. Ihr Kommandant, Karl von Müller, wurde für seine ritterliche Kriegsführung bekannt – er sorgte stets dafür, dass die Besatzungen der gekaperten Schiffe in Sicherheit waren, bevor er die Schiffe versenkte.
+Lücken: deutschen, japanische|britische, japanische|britische, zwei Monate| 2 Monate
 
 ## Der schnelle Fall der deutschen Pazifikkolonien
 
@@ -72,7 +90,13 @@ Die deutschen Kolonien auf den Pazifikinseln fielen schnell an die Alliierten:
 - **Deutsch-Neuguinea** wurde im September 1914 von australischen Truppen erobert
 - Die meisten kleineren Inseln wurden von Japanern, Australiern oder Neuseeländern besetzt, oft ohne größere Kampfhandlungen
 
-In Neuguinea kam es sogar zu Meutereien unter den einheimischen Soldaten in deutschen Diensten. Sie erklärten: "Der Krieg geht uns nichts an, es ist ein Kampf zwischen Weißen." Diese Aussage zeigt, wie sehr der Erste Weltkrieg ein Konflikt war, den die europäischen Mächte in alle Welt trugen.
+In Neuguinea kam es sogar zu Meutereien unter den einheimischen Soldaten in deutschen Diensten. Sie erklärten: **"Der Krieg geht uns nichts an, es ist ein Kampf zwischen Weißen."** Diese Aussage zeigt, wie sehr der Erste Weltkrieg ein Konflikt war, den die europäischen Mächte in alle Welt trugen.
+
+### 4) 🖊️ Stell dir vor du bist aus Neuguinea und musst als Soldat für ein fremdes Land kämpfen. Was denkst du über die Aussage: "Der Krieg geht uns nichts an, es ist ein Kampf zwischen Weißen."
+
+Versetze dich in die Rolle des Soldaten und schreibe kurz deine Gedanken auf.
+
+Antwort: Ich gehe davon aus, dass du die Aussage verstehen kannst. Trotzdem gibt es hier nicht nur **eine** richtige Antwort. 
 
 ## Indien im Ersten Weltkrieg
 
@@ -84,6 +108,13 @@ Auch wenn Indien selbst nicht direkt Kriegsschauplatz war, spielte es eine wicht
 - Indischen Truppen wurde oft nicht der gleiche Respekt wie europäischen Soldaten entgegengebracht
 
 Für viele Inder war es eine bittere Erfahrung, für ihre Kolonialherren zu kämpfen, ohne dafür mehr Rechte zu erhalten. Nach dem Krieg wurden ihre Hoffnungen auf mehr Selbstbestimmung enttäuscht, was den Wunsch nach Unabhängigkeit verstärkte.
+
+### 5)🖊️ Wähle die richtigen Aussagen aus:
+
+- Indische Soldaten kämpften für das britische Empire, also für England (richtig)
+- Indische Soldaten kämpften vor allem in asiatischen Kolonien
+- Indische Soldaten wurden mit dem gleichen Respekt wie europäische Soldaten behandelt
+- Indische Soldaten waren nach dem Krieg unzufrieden damit, dass sie so wenig Rechte hatten und wollten unabhängig von England werden (richtig)
 
 ## Die Folgen des Krieges in Asien und im Pazifik
 
@@ -100,49 +131,21 @@ Besonders Japan nutzte den Krieg, um seinen Einfluss in Asien auszubauen. Dieser
 
 ## Aufgaben
 
-### 1. Welches Land trat auf der Seite der Entente (Großbritannien und Frankreich) in den Krieg ein?
+### 6) 🖊️ Welches asiatische Land kämpfte auf der Seite der Entente? (Großbritannien und Frankreich)?
 
 - China
 - Japan (richtige Option)
 - Indien
 - Korea
 
-### 2. Vervollständige den Satz:
 
-Die deutschen Kriegsschiffe in Asien bildeten das [Ostasiengeschwader], ein Schiff namens [Emden] versenkte viele britische Handelsschiffe, bevor es im [November] 1914 versenkt wurde.
+### 7) 🖊️ Welche Folgen hatte der Erste Weltkrieg in Asien und im Pazifik? (Mehrere Antworten möglich)
 
-Lücken: Ostasiengeschwader, Emden, November
+- Japan wurde stärker (richtig)
+- Die deutschen Kolonien wurden aufgeteilt (richtig)
+- In Indien wuchs der Wunsch nach Unabhängigkeit (richtig)
+- China wurde eine Kolonie Japans
+- Der Krieg endete in Asien früher als in Europa
 
-### 3. Wahr oder falsch?
 
-a) Tsingtao war ein deutscher Stützpunkt in Japan.
-   - [ ] Wahr
-   - [x] Falsch
 
-b) Japan erklärte Deutschland den Krieg.
-   - [x] Wahr
-   - [ ] Falsch
-
-c) Die deutschen Kolonien in der Südsee wurden hart umkämpft.
-   - [ ] Wahr
-   - [x] Falsch
-
-d) Indische Soldaten kämpften nur in Indien.
-   - [ ] Wahr
-   - [x] Falsch
-
-### 4. Mehrere Antworten möglich
-
-Welche Folgen hatte der Erste Weltkrieg in Asien und im Pazifik? (Mehrere Antworten möglich)
-
-- [x] Japan wurde stärker
-- [x] Die deutschen Kolonien wurden aufgeteilt
-- [x] In Indien wuchs der Wunsch nach Unabhängigkeit
-- [ ] China wurde eine Kolonie Japans
-- [ ] Der Krieg endete in Asien früher als in Europa
-
-### 5. Deine Meinung
-
-Was glaubst du, warum die Menschen in den Kolonien für ihre Kolonialherren kämpfen mussten? War das fair? Schreibe 2-3 Sätze.
-
-Antwort:
