@@ -49,22 +49,7 @@ Wichtige Punkte:
 - Die richtige Antwort wird mit `(richtige Option)` markiert
 - Du kannst alternativ auch `(richtig)` oder `(correct)` verwenden
 
-#### b) Mit Checkboxen (Aufgaben zum Ankreuzen):
 
-```markdown
-### Welche der folgenden Städte sind Hauptstädte?
-
-- [ ] New York
-- [x] Berlin
-- [ ] Sydney
-- [x] Paris
-```
-
-Wichtige Punkte:
-- Die Frage selbst wird als Überschrift (mit `###`) definiert
-- Antwortmöglichkeiten werden als Checkboxen dargestellt
-- Richtige Antworten werden mit `[x]` oder `[X]` markiert, falsche mit `[ ]`
-- Dieses Format ist besonders hilfreich für Fragen, bei denen mehrere Antworten richtig sein können
 
 ### 3. Textantwort-Fragen erstellen
 
@@ -119,9 +104,8 @@ Eine normale Aufzählung nach einer `###`-Überschrift wird **NICHT** automatisc
 
 Die obige Aufzählung wird als normaler Text angezeigt und nicht in ein interaktives Quiz umgewandelt.
 
-**Um eine Multiple-Choice-Quizfrage zu erstellen**, muss ENTWEDER:
+**Um eine Multiple-Choice-Quizfrage zu erstellen**, muss:
 - Eine der Antwortoptionen mit `(richtige Option)`, `(richtig)` oder `(correct)` markiert sein, ODER
-- Das Checkbox-Format mit `- [ ]` und `- [x]` verwendet werden
 
 ## Beispiel für ein vollständiges Quiz
 
@@ -134,13 +118,6 @@ Die obige Aufzählung wird als normaler Text angezeigt und nicht in ein interakt
 - Lyon
 - Marseille
 - Nizza
-
-### Welche dieser Städte liegen in Afrika?
-
-- [ ] Seoul
-- [x] Kairo
-- [x] Nairobi
-- [ ] Bangkok
 
 ### Nenne die chemische Formel für Kohlendioxid:
 
@@ -155,17 +132,10 @@ Antwort: CO2|CO₂
 Lücken: Deutschland, Europa, Berlin
 ```
 
-## Beispiele
-
-Vollständige Beispiel-Arbeitsblätter mit verschiedenen Quizformaten:
-
-- [Physik-Quiz](beispiel-quiz-neu.html) (Multiple-Choice und Textantwort)
-- [Lückentext-Beispiel](beispiel-lueckentext.html) (Lückentexte in verschiedenen Fächern)
 
 ## Tipps und Tricks
 
 - **Wichtig**: Bei Multiple-Choice-Fragen mit einfachen Aufzählungen musst du die richtige Antwort mit `(richtige Option)` kennzeichnen
-- Für Aufgaben mit mehreren richtigen Antworten oder zum Ankreuzen, verwende das Checkbox-Format mit `- [ ]` und `- [x]`
 - Normale Aufzählungen unter einer `###`-Überschrift werden nicht als Quizfragen erkannt
 - Schreibe die Fragen in einer klaren, präzisen Sprache
 - Bei Multiple-Choice-Fragen sollten die falschen Antworten plausibel sein
@@ -173,16 +143,6 @@ Vollständige Beispiel-Arbeitsblätter mit verschiedenen Quizformaten:
 - Bei Lückentexten achte darauf, dass die Anzahl der Lücken und der angegebenen Antworten übereinstimmt
 - Das Quiz-System ist responsive und funktioniert auf Mobilgeräten
 - Du kannst beliebig viele Quizfragen in einem Arbeitsblatt kombinieren
-
-## Anpassung für den Obsidian-Workflow
-
-Diese Syntax ist besonders vorteilhaft für den Obsidian-Workflow:
-
-1. Du kannst die Fragen ganz normal in Obsidian schreiben und bearbeiten
-2. Die Syntax verwendet Standard-Markdown-Elemente (Überschriften und Listen)
-3. Die Markierung der richtigen Antwort ist einfach zu lesen und zu bearbeiten
-4. Wenn du das Dokument in Obsidian betrachtest, siehst du bereits, welche Antworten richtig sind
-5. Nach dem Export zu GitHub Pages werden die statischen Markdown-Elemente in interaktive Quiz-Elemente umgewandelt
 
 ## Technische Details
 
