@@ -14,10 +14,10 @@ function processCallouts() {
     const firstParagraph = blockquote.querySelector('p:first-child');
     
     if (firstParagraph && firstParagraph.textContent.trim().startsWith('[!')) {
-      let firstLine = firstParagraph.textContent.trim();
+      let firstParagraphText = firstParagraph.textContent.trim();
       
       // Extrahiere den Callout-Typ
-      const calloutTypeMatch = firstLine.match(/\[!([a-zA-Z0-9-_]+)\]/);
+      const calloutTypeMatch = firstParagraphText.match(/\[!([a-zA-Z0-9-_]+)\]/);
       
       if (calloutTypeMatch) {
         const calloutType = calloutTypeMatch[1].toLowerCase();
@@ -26,17 +26,18 @@ function processCallouts() {
         let foldable = 0;
         let defaultState = 'expanded';
         
-        if (firstLine.includes('[!' + calloutType + ']+')) {
+        if (firstParagraphText.includes('[!' + calloutType + ']+')) {
           foldable = 1;
           defaultState = 'expanded';
-        } else if (firstLine.includes('[!' + calloutType + ']-')) {
+        } else if (firstParagraphText.includes('[!' + calloutType + ']-')) {
           foldable = 1;
           defaultState = 'collapsed';
         }
         
         // Extrahiere den Titel (Text nach der Callout-Deklaration)
         let title = '';
-        let titleMatch = firstLine.match(/\][+-]?\s*(.*?)$/);
+        const titleRegex = new RegExp('\\[!' + calloutType + '\\][+-]?\\s*(.*?)$');
+        const titleMatch = firstParagraphText.match(titleRegex);
         
         if (titleMatch && titleMatch[1].trim()) {
           title = titleMatch[1].trim();
@@ -77,23 +78,10 @@ function processCallouts() {
           });
         }
         
-        // Behandle den Inhalt des Callouts
-        
-        // 1. Entferne die Callout-Deklaration aus dem ersten Absatz
-        const firstParaContent = firstParagraph.innerHTML;
-        const cleanedContent = firstParaContent.replace(/\[!([a-zA-Z0-9-_]+)\][+-]?\s*(.*?)(?=<br|$)/, '');
-        
-        // 2. Wenn nach dem Entfernen der Deklaration noch Text übrig ist, verwende ihn
-        if (cleanedContent.trim()) {
-          // Erstelle einen neuen Absatz mit dem bereinigten Inhalt
-          const contentPara = document.createElement('p');
-          contentPara.innerHTML = cleanedContent;
-          contentDiv.appendChild(contentPara);
-        }
-        
-        // 3. Füge alle anderen Elemente außer dem ersten Absatz zum Content-Div hinzu
-        const otherElements = Array.from(blockquote.children).slice(1);
-        otherElements.forEach(element => {
+        // Kopiere alle Elemente aus der Blockquote außer dem ersten Paragraph
+        // in das Content-Div
+        const contentElements = Array.from(blockquote.children).slice(1);
+        contentElements.forEach(element => {
           contentDiv.appendChild(element.cloneNode(true));
         });
         
