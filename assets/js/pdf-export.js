@@ -3,9 +3,17 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('PDF-Export-System wird geladen...');
   
+  // Prüfen, ob html2pdf verfügbar ist
+  if (typeof html2pdf === 'undefined') {
+    console.error('HTML2PDF-Bibliothek wurde nicht geladen. PDF-Export wird nicht verfügbar sein.');
+    return;
+  } else {
+    console.log('HTML2PDF-Bibliothek gefunden. PDF-Export ist verfügbar.');
+  }
+  
   // Funktion zum Hinzufügen der PDF-Download-Buttons am Ende der Seite
   function addPdfButtons() {
-    const mainContent = document.querySelector('main') || document.querySelector('.main-content') || document.body;
+    const mainContent = document.querySelector('.main-content') || document.querySelector('main') || document.body;
     const existingButtons = document.querySelectorAll('.pdf-download-btn');
     
     // Nur hinzufügen, wenn noch keine PDF-Buttons vorhanden sind
@@ -34,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
       buttonContainer.appendChild(worksheetButton);
       buttonContainer.appendChild(solutionButton);
       
-      // Container nach dem "Antworten überprüfen" Button einfügen
+      // Container nach dem "Antworten überprüfen" Button einfügen oder am Ende
       const checkButton = document.querySelector('.check-all-answers-btn');
-      if (checkButton) {
+      if (checkButton && checkButton.parentNode) {
         checkButton.parentNode.insertBefore(buttonContainer, checkButton.nextSibling);
       } else {
         mainContent.appendChild(buttonContainer);
@@ -46,53 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Funktion zur Generierung des PDFs
   function generatePDF(includeSolutions) {
-    // HTML2PDF-Bibliothek dynamisch laden, falls noch nicht vorhanden
-    if (typeof html2pdf === 'undefined') {
-      console.log('HTML2PDF wird geladen...');
-      
-      // Status-Anzeige für den Benutzer
-      const loadingMsg = document.createElement('div');
-      loadingMsg.className = 'pdf-loading-message';
-      loadingMsg.textContent = 'PDF wird vorbereitet, bitte warten...';
-      loadingMsg.style.position = 'fixed';
-      loadingMsg.style.top = '50%';
-      loadingMsg.style.left = '50%';
-      loadingMsg.style.transform = 'translate(-50%, -50%)';
-      loadingMsg.style.padding = '20px';
-      loadingMsg.style.background = 'rgba(0,0,0,0.7)';
-      loadingMsg.style.color = 'white';
-      loadingMsg.style.borderRadius = '5px';
-      loadingMsg.style.zIndex = '9999';
-      document.body.appendChild(loadingMsg);
-      
-      // Script laden
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
-      script.onload = function() {
-        console.log('HTML2PDF erfolgreich geladen');
-        
-        // Kurze Verzögerung, um sicherzustellen, dass alles initialisiert ist
-        setTimeout(() => {
-          document.body.removeChild(loadingMsg);
-          createPDF(includeSolutions);
-        }, 500);
-      };
-      script.onerror = function() {
-        console.error('Fehler beim Laden von HTML2PDF');
-        loadingMsg.textContent = 'Fehler beim Laden der PDF-Bibliothek. Bitte später erneut versuchen.';
-        setTimeout(() => {
-          document.body.removeChild(loadingMsg);
-        }, 3000);
-      };
-      document.head.appendChild(script);
-    } else {
-      createPDF(includeSolutions);
-    }
-  }
-  
-  // Funktion zur eigentlichen PDF-Erstellung
-  function createPDF(includeSolutions) {
-    console.log('Beginne PDF-Generierung...');
+    console.log('PDF-Generierung gestartet, Lösungen einschließen:', includeSolutions);
     
     // Status-Anzeige
     const statusMsg = document.createElement('div');
@@ -110,119 +72,184 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(statusMsg);
     
     try {
-      // Kompletten Inhalt der Seite holen
-      const contentElement = document.querySelector('.main-content') || document.querySelector('main') || document.body;
-      
-      // Neuen Container für den PDF-Inhalt erstellen
-      const pdfContainer = document.createElement('div');
-      pdfContainer.className = 'pdf-content-container';
-      
-      // Seiteninhalt klonen
-      const clonedContent = contentElement.cloneNode(true);
-      pdfContainer.appendChild(clonedContent);
-      
-      // PDF für Druck vorbereiten
-      preparePDFContent(pdfContainer, includeSolutions);
-      
-      // PDF-Container in die Seite einfügen (aber nicht sichtbar)
-      pdfContainer.style.position = 'absolute';
-      pdfContainer.style.width = '210mm'; // A4 Breite
-      pdfContainer.style.padding = '10mm';
-      pdfContainer.style.visibility = 'hidden';
-      document.body.appendChild(pdfContainer);
-      
-      // PDF Dateiname
-      const title = document.title || 'Arbeitsblatt';
-      const filename = includeSolutions ? `${title} - Lösung.pdf` : `${title}.pdf`;
-      
-      // PDF-Optionen
-      const options = {
-        margin: 10,
-        filename: filename,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-          scale: 2, 
-          useCORS: true,
-          logging: true,
-          letterRendering: true
-        },
-        jsPDF: { 
-          unit: 'mm', 
-          format: 'a4', 
-          orientation: 'portrait',
-          compress: true
-        },
-        fontFaces: [
-          {
-            family: 'Arial',
-            style: 'normal'
-          }
-        ]
-      };
-      
-      console.log('Starte HTML2PDF Konvertierung');
-      
-      // PDF generieren
-      html2pdf()
-        .from(pdfContainer)
-        .set(options)
-        .save()
-        .then(() => {
-          console.log('PDF erfolgreich generiert');
-          // Aufräumen
-          document.body.removeChild(pdfContainer);
-          document.body.removeChild(statusMsg);
-        })
-        .catch(error => {
-          console.error('Fehler bei der PDF-Generierung:', error);
-          statusMsg.textContent = 'Fehler bei der PDF-Generierung. Bitte später erneut versuchen.';
-          setTimeout(() => {
-            document.body.removeChild(statusMsg);
-          }, 3000);
-        });
-    } catch (error) {
-      console.error('Fehler bei der Vorbereitung der PDF-Generierung:', error);
-      statusMsg.textContent = 'Fehler bei der Vorbereitung des PDFs. Bitte später erneut versuchen.';
+      // Warten, um der Status-Anzeige Zeit zum Rendern zu geben
       setTimeout(() => {
+        try {
+          // PDF Dateiname
+          const pageTitle = document.querySelector('h1')?.textContent || document.title || 'Arbeitsblatt';
+          const sanitizedTitle = pageTitle.replace(/[^a-z0-9äöüß\s-]/gi, '').trim();
+          const filename = includeSolutions 
+            ? `${sanitizedTitle} - Lösung.pdf` 
+            : `${sanitizedTitle}.pdf`;
+          
+          console.log(`Erzeuge PDF mit Dateinamen: ${filename}`);
+          
+          // Gesamtes Dokument für PDF vorbereiten
+          const content = preparePDFDocument(includeSolutions);
+          
+          // PDF-Optionen
+          const options = {
+            margin: [10, 10, 10, 10],
+            filename: filename,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+              scale: 2,
+              useCORS: true,
+              logging: true,
+              backgroundColor: '#FFFFFF'
+            },
+            jsPDF: { 
+              unit: 'mm', 
+              format: 'a4', 
+              orientation: 'portrait',
+            }
+          };
+          
+          // PDF generieren
+          html2pdf().from(content).set(options).save().then(() => {
+            console.log('PDF erfolgreich generiert und zum Download angeboten');
+            document.body.removeChild(statusMsg);
+            
+            // Temporäres Element entfernen, wenn es existiert
+            const tempElement = document.getElementById('temp-pdf-content');
+            if (tempElement && tempElement.parentNode) {
+              tempElement.parentNode.removeChild(tempElement);
+            }
+          }).catch(error => {
+            console.error('Fehler beim Generieren des PDFs:', error);
+            statusMsg.textContent = 'Fehler beim Generieren des PDFs. Bitte später erneut versuchen.';
+            setTimeout(() => {
+              if (document.body.contains(statusMsg)) {
+                document.body.removeChild(statusMsg);
+              }
+            }, 3000);
+          });
+        } catch (error) {
+          console.error('Fehler beim Vorbereiten des PDFs:', error);
+          statusMsg.textContent = 'Fehler beim Vorbereiten des PDFs. Bitte später erneut versuchen.';
+          setTimeout(() => {
+            if (document.body.contains(statusMsg)) {
+              document.body.removeChild(statusMsg);
+            }
+          }, 3000);
+        }
+      }, 100);
+    } catch (error) {
+      console.error('Allgemeiner Fehler bei der PDF-Generierung:', error);
+      if (document.body.contains(statusMsg)) {
         document.body.removeChild(statusMsg);
-      }, 3000);
+      }
     }
   }
   
-  // Inhalt für PDF vorbereiten
+  // Bereitet das gesamte Dokument für den PDF-Export vor
+  function preparePDFDocument(includeSolutions) {
+    console.log('Bereite gesamtes Dokument für PDF-Export vor');
+    
+    // Hauptinhalt finden
+    const mainContent = document.querySelector('.main-content') || document.querySelector('main') || document.body;
+    
+    // Temporäres Element erstellen
+    const tempElement = document.createElement('div');
+    tempElement.id = 'temp-pdf-content';
+    tempElement.className = 'pdf-document';
+    tempElement.style.padding = '20px';
+    tempElement.style.backgroundColor = '#fff';
+    tempElement.style.position = 'fixed';
+    tempElement.style.top = '-9999px';
+    tempElement.style.left = '-9999px';
+    tempElement.style.width = '210mm'; // A4-Breite
+    
+    // Inhalt kopieren
+    tempElement.innerHTML = mainContent.innerHTML;
+    
+    // PDF für Druck vorbereiten
+    preparePDFContent(tempElement, includeSolutions);
+    
+    // An Dokument anhängen (außerhalb des sichtbaren Bereichs)
+    document.body.appendChild(tempElement);
+    
+    return tempElement;
+  }
+  
+  // Bereitet den Inhalt für das PDF vor
   function preparePDFContent(container, includeSolutions) {
-    console.log('PDF-Inhalt wird vorbereitet, Lösungen einschließen:', includeSolutions);
+    console.log('Vorbereitung der PDF-Inhalte, Lösungen einschließen:', includeSolutions);
     
     try {
-      // Sicherstellen, dass wir mit dem Inhalt innerhalb des Containers arbeiten
-      const content = container.querySelector('.main-content') || container.querySelector('main') || container.firstChild;
+      // PDF-spezifische Stile direkt einfügen
+      const styleElement = document.createElement('style');
+      styleElement.textContent = `
+        * {
+          font-family: Arial, sans-serif !important;
+          font-size: 9pt !important;
+        }
+        h1 { font-size: 14pt !important; }
+        h2 { font-size: 12pt !important; }
+        h3 { font-size: 10pt !important; }
+        .question-prompt { font-weight: bold; }
+        .pdf-checkbox {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border: 1px solid #000;
+          margin-right: 8px;
+          vertical-align: middle;
+        }
+        .pdf-lined-textarea {
+          position: relative;
+          width: 100%;
+          min-height: 120px;
+          border: 1px solid #ddd;
+          padding: 0;
+          background: linear-gradient(transparent, transparent 19px, #ccc 19px, #ccc 20px);
+          background-size: 100% 20px;
+          line-height: 20px;
+          margin-top: 10px;
+        }
+        .pdf-gap-line {
+          display: inline-block;
+          width: 100px;
+          height: 1px;
+          border-bottom: 1px solid #000;
+          margin: 0 3px;
+          vertical-align: middle;
+        }
+        .pdf-correct-answer {
+          font-weight: bold;
+          color: #388E3C;
+          background-color: rgba(76, 175, 80, 0.1);
+          border-radius: 4px;
+          padding: 5px;
+        }
+        .interactive-quiz-question {
+          border: 1px solid #ddd;
+          margin: 15px 0;
+          padding: 10px;
+          page-break-inside: avoid;
+        }
+      `;
+      container.prepend(styleElement);
       
-      if (!content) {
-        console.error('Kein Content-Element gefunden!');
-        return;
-      }
+      // Nicht benötigte Elemente entfernen
+      const elementsToRemove = [
+        '.pdf-buttons-container',
+        '.check-all-answers-btn',
+        '#quiz-total-result',
+        '.feedback'
+      ];
       
-      // PDF-spezifische Klasse hinzufügen
-      container.classList.add('pdf-document');
+      elementsToRemove.forEach(selector => {
+        const elements = container.querySelectorAll(selector);
+        elements.forEach(element => {
+          if (element.parentNode) {
+            element.parentNode.removeChild(element);
+          }
+        });
+      });
       
-      // PDF-Download-Buttons entfernen
-      const pdfButtons = content.querySelectorAll('.pdf-buttons-container');
-      pdfButtons.forEach(btn => btn.parentNode && btn.parentNode.removeChild(btn));
-      
-      // "Antworten überprüfen" Button entfernen
-      const checkButton = content.querySelector('.check-all-answers-btn');
-      if (checkButton && checkButton.parentNode) {
-        checkButton.parentNode.removeChild(checkButton);
-      }
-      
-      // Quiz-Ergebnis-Container entfernen
-      const resultContainer = content.querySelector('#quiz-total-result');
-      if (resultContainer && resultContainer.parentNode) {
-        resultContainer.parentNode.removeChild(resultContainer);
-      }
-      
-      // Interaktive Elemente anpassen
-      const quizQuestions = content.querySelectorAll('.interactive-quiz-question');
+      // Interaktive Elemente für das PDF anpassen
+      const quizQuestions = container.querySelectorAll('.interactive-quiz-question');
       console.log(`${quizQuestions.length} Quizfragen gefunden`);
       
       quizQuestions.forEach((question, questionIndex) => {
@@ -234,12 +261,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const questionType = formattedQuestion.getAttribute('data-type');
         console.log(`Bearbeite Frage ${questionIndex+1}, Typ: ${questionType}`);
-        
-        // Rückmeldungen entfernen
-        const feedback = formattedQuestion.querySelector('.feedback');
-        if (feedback && feedback.parentNode) {
-          feedback.parentNode.removeChild(feedback);
-        }
         
         // Je nach Fragetyp anpassen
         if (questionType === 'multiple-choice') {
@@ -255,23 +276,12 @@ document.addEventListener('DOMContentLoaded', function() {
               // Lösungs-PDF: Richtige Antwort markieren
               if (index.toString() === correctIndex) {
                 option.classList.add('pdf-correct-answer');
-                option.style.fontWeight = 'bold';
-                option.style.color = '#388E3C';
-                option.style.backgroundColor = 'rgba(76, 175, 80, 0.1)';
-                option.style.padding = '5px';
-                option.style.borderRadius = '4px';
                 radio.checked = true;
               }
             } else {
               // Arbeitsblatt-PDF: Checkbox statt Radio
               const checkbox = document.createElement('div');
               checkbox.className = 'pdf-checkbox';
-              checkbox.style.display = 'inline-block';
-              checkbox.style.width = '12px';
-              checkbox.style.height = '12px';
-              checkbox.style.border = '1px solid #000';
-              checkbox.style.marginRight = '8px';
-              checkbox.style.verticalAlign = 'middle';
               
               // Radiobutton ersetzen
               if (radio.parentNode) {
@@ -301,15 +311,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Arbeitsblatt-PDF: Liniertes Textfeld
             const lines = document.createElement('div');
             lines.className = 'pdf-lined-textarea';
-            lines.style.position = 'relative';
-            lines.style.width = '100%';
-            lines.style.minHeight = '120px';
-            lines.style.border = '1px solid #ddd';
-            lines.style.padding = '0';
-            lines.style.background = 'linear-gradient(transparent, transparent 19px, #ccc 19px, #ccc 20px)';
-            lines.style.backgroundSize = '100% 20px';
-            lines.style.lineHeight = '20px';
-            lines.style.marginTop = '10px';
             
             if (textarea.parentNode) {
               textarea.parentNode.replaceChild(lines, textarea);
@@ -341,12 +342,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Arbeitsblatt-PDF: Linie zum Ausfüllen
                 const line = document.createElement('span');
                 line.className = 'pdf-gap-line';
-                line.style.display = 'inline-block';
-                line.style.width = '120px';
-                line.style.height = '1px';
-                line.style.borderBottom = '1px solid #000';
-                line.style.margin = '0 3px';
-                line.style.verticalAlign = 'middle';
                 
                 if (input.parentNode) {
                   input.parentNode.replaceChild(line, input);
@@ -358,32 +353,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       });
-      
-      // PDF-spezifischen Stil hinzufügen
-      const styleElement = document.createElement('style');
-      styleElement.textContent = `
-        .pdf-document {
-          font-size: 9pt !important;
-          line-height: 1.3 !important;
-          font-family: Arial, sans-serif !important;
-        }
-        
-        .pdf-document .interactive-quiz-question {
-          border: 1px solid #ddd;
-          break-inside: avoid;
-          margin: 15px 0;
-          padding: 10px;
-          page-break-inside: avoid;
-        }
-        
-        @media print {
-          body {
-            font-size: 9pt !important;
-          }
-        }
-      `;
-      container.appendChild(styleElement);
-      
     } catch (error) {
       console.error('Fehler bei der Vorbereitung des PDF-Inhalts:', error);
     }
