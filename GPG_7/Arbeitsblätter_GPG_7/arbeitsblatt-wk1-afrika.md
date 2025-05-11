@@ -7,6 +7,7 @@ date: 2025-05-12
 # Der Erste Weltkrieg in Afrika
 
 [➡️ Zum Arbeitsblatt Naher Osten](arbeitsblatt-wk1-nahost.html) | [➡️ Zum Arbeitsblatt Asien und Pazifik](arbeitsblatt-wk1-asien.html)
+[🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
 
 ![Afrikanische Soldaten im Ersten Weltkrieg](https://img.welt.de/img/geschichte/mobile128383706/9692509137-ci102l-w1024/Schutztruppen-Dt-Ostafrika-Feldstellung.jpg)
 *Afrikanische Soldaten ("Askaris") in der deutschen Kolonialtruppe in Deutsch-Ostafrika*
