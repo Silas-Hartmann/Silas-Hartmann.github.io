@@ -79,6 +79,8 @@ Am längsten hielten die Deutschen in Ostafrika durch:
 - Die "Schutztruppe" bestand aus etwa 3.000 deutschen und 11.000 afrikanischen Soldaten
 - Sie kämpften bis zum **25. November 1918** – zwei Wochen nach dem Ende des Krieges in Europa!
 
+>*Du weißt nicht, was ein Guerillakrieg ist? Schau mal hier: https://www.hanisauland.de/wissen/lexikon/grosses-lexikon/g/guerillakrieg.html
+
 ### 4) 🖊️ Vervollständige den Lückentext: 
 
 Die Kolonie Deutsch-Ostafrika wurde als [letzte] Kolonie von Deutschland besiegt. Sie [siegten|gewannen] direkt zu Beginn gegen eine britisch-indische Invasion. Sie kämpften sogar noch zwei Wochen [nach] dem Ende des ersten Weltkriegs in Europa. 
