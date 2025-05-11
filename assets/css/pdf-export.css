@@ -1,0 +1,123 @@
+/* pdf-export.css - Stile für den PDF-Export von Arbeitsblättern */
+
+/* Container für die PDF-Download-Buttons */
+.pdf-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+/* Styling der PDF-Download-Buttons */
+.pdf-download-btn {
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Arbeitsblatt-Button */
+.worksheet-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.worksheet-btn:hover {
+  background-color: #388E3C;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Lösungs-Button */
+.solution-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.solution-btn:hover {
+  background-color: #1976D2;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Stile für das PDF-Dokument */
+@media print {
+  body {
+    font-size: 9pt !important;
+    line-height: 1.3 !important;
+  }
+  
+  .interactive-quiz-question {
+    border: 1px solid #ddd;
+    break-inside: avoid;
+    margin: 15px 0;
+    padding: 10px;
+    page-break-inside: avoid;
+  }
+  
+  .question-prompt {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Checkboxen für Multiple-Choice im Arbeitsblatt */
+  .pdf-checkbox {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #000;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Eingabefelder im Arbeitsblatt mit Lineatur */
+  .pdf-lined-textarea {
+    position: relative;
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid #ddd;
+    padding: 0;
+    background: linear-gradient(transparent, transparent 19px, #ccc 19px, #ccc 20px);
+    background-size: 100% 20px;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+  
+  /* Lücken im Arbeitsblatt */
+  .pdf-gap-line {
+    display: inline-block;
+    width: 120px;
+    height: 1px;
+    border-bottom: 1px solid #000;
+    margin: 0 3px;
+    vertical-align: middle;
+  }
+  
+  /* Hervorhebung der Lösungen */
+  .pdf-solution {
+    font-weight: bold;
+    color: #1976D2;
+    border: 1px solid #1976D2;
+    background-color: rgba(33, 150, 243, 0.1);
+  }
+  
+  /* Hervorhebung der richtigen Antwort bei Multiple-Choice */
+  .pdf-correct-answer {
+    font-weight: bold;
+    color: #388E3C;
+    background-color: rgba(76, 175, 80, 0.1);
+    border-radius: 4px;
+    padding: 5px;
+  }
+  
+  /* Ausblenden von Elementen, die nicht im PDF erscheinen sollen */
+  .pdf-buttons-container,
+  .check-all-answers-btn,
+  #quiz-total-result,
+  .feedback {
+    display: none !important;
+  }
+}
