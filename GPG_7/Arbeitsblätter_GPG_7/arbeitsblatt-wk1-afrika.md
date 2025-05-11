@@ -23,6 +23,8 @@ Vor dem Ersten Weltkrieg besaß Deutschland mehrere Kolonien in Afrika. Diese Ge
 
 Als der Krieg in Europa ausbrach, wurden diese Kolonien zu wichtigen Schauplätzen des Konfliktes. Die europäischen Kolonialmächte kämpften nicht nur in Europa, sondern auch um die Kontrolle über ihre überseeischen Territorien.
 
+![Deutsche Kolonien in Afrika](https://img.welt.de/img/geschichte/mobile128383696/6562509987-ci102l-w1024/Afrika-im-Ersten-Weltkrieg-Korrektur-14042014.jpg)
+
 ### 1) 🖊️ Warum gab es auch in Afrika Konflikte während dem ersten Weltkrieg?
 
 - [ ] Weil Afrika mit Großbritannien verbündet war
