@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sammeln der relevanten Elemente für diese Frage
     const questionElements = collectQuestionElements(h3);
     
-    if (questionElements.length > 0) {
+    // ÄNDERUNG: Prüfen, ob es sich um eine Quizfrage handelt
+    const isQuizQuestion = checkIfQuizQuestion(questionElements);
+    
+    if (questionElements.length > 0 && isQuizQuestion) {
       questionCount++;
       
       // Wir erstellen einen Container für diese Frage
@@ -67,6 +70,46 @@ document.addEventListener('DOMContentLoaded', function() {
     mainContent.appendChild(resultContainer);
   }
 });
+
+// NEUE FUNKTION: Prüft, ob es sich um eine Quizfrage handelt
+function checkIfQuizQuestion(elements) {
+  // Überprüfen, ob ein Lückentext vorliegt
+  if (elements.some(el => el.textContent.includes('Lücken:'))) {
+    return true;
+  }
+  
+  // Überprüfen, ob Textantwort vorliegt
+  if (elements.some(el => el.textContent.includes('Antwort:'))) {
+    return true;
+  }
+  
+  // Überprüfen, ob eine UL mit Checkboxen vorliegt
+  const ulElement = elements.find(el => el.tagName === 'UL');
+  if (ulElement) {
+    const listItems = ulElement.querySelectorAll('li');
+    
+    // Multiple-Choice-Frage mit (richtige Option) markiert
+    const hasCorrectMarker = Array.from(listItems).some(item => {
+      return item.textContent.includes('(richtige Option)') || 
+             item.textContent.includes('(correct)') || 
+             item.textContent.includes('(richtig)');
+    });
+    
+    if (hasCorrectMarker) {
+      return true;
+    }
+    
+    // Überprüfen auf Checkboxen - nur als Quiz betrachten, wenn Checkboxen vorhanden sind
+    const hasCheckboxes = Array.from(listItems).some(item => {
+      const itemText = item.textContent.trim();
+      return itemText.startsWith('[ ]') || itemText.startsWith('[x]') || itemText.startsWith('[X]');
+    });
+    
+    return hasCheckboxes;
+  }
+  
+  return false;
+}
 
 function collectQuestionElements(h3) {
   const elements = [];
@@ -148,11 +191,20 @@ function processQuestion(h3, elements, container, questionNumber) {
       
       // Richtige Option suchen und Marker entfernen
       const cleanedText = optionText.replace(/\(richtige Option\)|\(correct\)|\(richtig\)/g, '').trim();
-      options.push(cleanedText);
+      
+      // Checkbox-Format verarbeiten
+      let processedText = cleanedText;
+      if (cleanedText.startsWith('[ ]') || cleanedText.startsWith('[x]') || cleanedText.startsWith('[X]')) {
+        processedText = cleanedText.substring(3).trim();
+      }
+      
+      options.push(processedText);
       
       if (optionText.includes('(richtige Option)') || 
           optionText.includes('(correct)') ||
-          optionText.includes('(richtig)')) {
+          optionText.includes('(richtig)') ||
+          optionText.includes('[x]') ||
+          optionText.includes('[X]')) {
         correctIndex = index;
       }
     });
