@@ -7,10 +7,9 @@ date: 2025-05-12
 # Der Erste Weltkrieg in Asien und im Pazifik
 
 [➡️ Zum Arbeitsblatt Afrika](arbeitsblatt-wk1-afrika.html) | [➡️ Zum Arbeitsblatt Naher Osten](arbeitsblatt-wk1-nahost.html)
+[🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
 
-![Japanische Soldaten im Ersten Weltkrieg](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Troops_of_Japanese_navy_siege_of_Tsingtao.jpg/640px-Troops_of_Japanese_navy_siege_of_Tsingtao.jpg)
-
-*Japanische Marineinheiten während der Belagerung von Tsingtao, 1914*
+![Die Marine in Kiautschou](https://cdn.prod.www.spiegel.de/images/bfad4599-0002-0004-0000-000053c8b8e5_w948_r1.778_fpx29_fpy37.jpg)
 
 ## Die vergessenen Kriegsschauplätze in Fernost
 
