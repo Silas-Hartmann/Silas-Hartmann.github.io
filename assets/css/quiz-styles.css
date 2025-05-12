@@ -37,7 +37,7 @@
 
 .option-label {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
   padding: 5px;
   border-radius: 4px;
@@ -46,6 +46,19 @@
 
 .option-label:hover {
   background-color: #f0f0f0;
+}
+
+/* Styling für richtige und falsche Optionen */
+.option-label.correct-option {
+  background-color: rgba(40, 167, 69, 0.1);
+  border-left: 3px solid #28a745;
+  font-weight: bold;
+}
+
+.option-label.incorrect-option {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left: 3px solid #dc3545;
+  text-decoration: line-through;
 }
 
 .text-input-container {
@@ -65,49 +78,130 @@
   margin-top: 10px;
 }
 
+/* Modellösung für offene Fragen */
+.model-answer {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #e8f4f8;
+  border-radius: 6px;
+  border-left: 3px solid #17a2b8;
+}
+
+.model-answer h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1em;
+  color: #17a2b8;
+}
+
+.model-answer-content {
+  font-style: italic;
+}
+
 /* Lückentext-Styling */
 .gap-text-container {
+  margin: 15px 0;
+}
+
+.gap-text-content {
   margin: 15px 0;
   line-height: 1.7;
 }
 
-.gap-input {
+.gap-options-box {
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #eaf7ff;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.gap-hint {
+  flex-basis: 100%;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: #0056b3;
+  font-size: 0.9em;
+}
+
+.gap-option {
+  padding: 6px 12px;
+  background-color: #ffffff;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: grab;
+  user-select: none;
+  transition: all 0.2s;
   display: inline-block;
-  border: 1px solid #aaa;
-  border-radius: 3px;
+  margin: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gap-option:hover {
+  background-color: #f0f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.gap-option.dragging {
+  opacity: 0.5;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.gap-option.in-drop-zone {
+  margin: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.gap-drop-zone {
+  display: inline-flex;
+  align-items: center;
+  min-width: 120px;
+  min-height: 32px;
   padding: 2px 5px;
-  min-width: 100px;
+  border: 1px dashed #aaa;
+  border-radius: 4px;
   margin: 0 3px;
-  font-family: inherit;
-  font-size: 0.95em;
-  transition: border-color 0.2s, background-color 0.2s;
+  background-color: #f9f9f9;
+  vertical-align: middle;
+  transition: all 0.2s;
 }
 
-.gap-input:focus {
-  outline: none;
-  border-color: #4285f4;
-  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.25);
+.gap-drop-zone.drag-over {
+  background-color: #e6f7ff;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
-.gap-input.gap-correct {
+.gap-placeholder {
+  font-style: italic;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.gap-option.gap-correct {
   border-color: #28a745;
   background-color: rgba(40, 167, 69, 0.1);
 }
 
-.gap-input.gap-incorrect {
+.gap-option.gap-incorrect {
   border-color: #dc3545;
   background-color: rgba(220, 53, 69, 0.1);
+  text-decoration: line-through;
 }
 
-.gap-input.gap-empty {
-  border-color: #ffc107;
-  background-color: rgba(255, 193, 7, 0.1);
-}
-
-/* Typspezifische Stilanpassungen */
-.formatted-question[data-type="single-choice"] .option-label,
-.formatted-question[data-type="multiple-choice"] .option-label {
-  margin-bottom: 4px;
+.gap-correct-answer {
+  margin-top: 5px;
+  font-size: 0.85em;
+  color: #28a745;
+  font-weight: bold;
+  padding: 2px 5px;
+  background-color: rgba(40, 167, 69, 0.05);
+  border-radius: 3px;
 }
 
 /* Allgemeine Buttons und Feedback-Elemente */
@@ -152,6 +246,11 @@
   color: #856404;
 }
 
+.feedback.self-check {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
 .quiz-total-result {
   margin: 30px auto;
   padding: 15px;
@@ -189,5 +288,14 @@
   .check-all-answers-btn {
     font-size: 1em;
     padding: 10px 15px;
+  }
+  
+  .gap-options-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .gap-option {
+    margin: 5px 0;
   }
 }
