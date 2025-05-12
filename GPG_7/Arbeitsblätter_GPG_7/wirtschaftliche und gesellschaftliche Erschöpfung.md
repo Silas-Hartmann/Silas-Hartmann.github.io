@@ -41,4 +41,4 @@ Die Erschöpfung der Bevölkerung und die Unruhen im Land machten es für die de
 - C) Die Arbeiter der Werften streikten
 - D) Der Kaiser besuchte die Flotte
 
-🏠 zurück zur [[Das_Ende_des_ersten_Weltkriegs|Übersicht]]
+🏠 zurück zur [Übersicht](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs.md)
