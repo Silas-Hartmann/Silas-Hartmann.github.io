@@ -44,3 +44,5 @@ Gegen diese neue Übermacht konnte Deutschland langfristig nicht bestehen. Die a
 - B) Nur moderne Waffen
 - C) Nur finanzielle Unterstützung
 - D) Waffen, Munition, Lebensmittel und finanzielle Unterstützung (richtige Option)
+
+🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)

@@ -7,8 +7,12 @@
 
 Dafür gibt es mehrere Gründe: 
 
-- [[Militärische Niederlage]]
-- [[Kriegseintritt der USA]]
-- [[wirtschaftliche und gesellschaftliche Erschöpfung]]
-- [[Politische Revolutionen]]
+- [Militärische Niederlage](Militärische%20Niederlage.md)
+- [Kriegseintritt der USA](Kriegseintritt%20der%20USA.md)
+- [wirtschaftliche und gesellschaftliche Erschöpfung](wirtschaftliche%20und%20gesellschaftliche%20Erschöpfung.md)
+- [Politische Revolutionen](Politische%20Revolutionen.md)
+
+---
+
+🏠 zurück zur [Startseite](../../index.md)
 

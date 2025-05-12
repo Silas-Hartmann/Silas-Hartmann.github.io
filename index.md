@@ -6,22 +6,11 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 # Aktuelles Unterrichtsmaterial
 
-➡️ 6️⃣ Mittwoch 14.05. GPG, Klasse 6, 
-➡️ 7️⃣ Mittwoch 14.05. GPG, Klasse 7: [[Das_Ende_des_ersten_Weltkriegs]]
+Bitte wähle die richtige Jahrgangsstufe:
+
+- Klasse 6: 
+- Klasse 7: ➡️ [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs.md)
  
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 ## Archiv: Unterrichtsmaterial
 

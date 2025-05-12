@@ -45,3 +45,5 @@ Die Novemberrevolution veränderte Deutschland grundlegend. Aus einem Kaiserreic
 - Am 11. November 1918 (richtige Option)
 - Am 15. November 1918
 - Am 28. Juni 1919
+
+🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)

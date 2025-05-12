@@ -40,3 +40,5 @@ Die Erschöpfung der Bevölkerung und die Unruhen im Land machten es für die de
 - B) Die Briten bombardierten den Hafen
 - C) Die Arbeiter der Werften streikten
 - D) Der Kaiser besuchte die Flotte
+
+🏠 zurück zur [[Das_Ende_des_ersten_Weltkriegs|Übersicht]]
