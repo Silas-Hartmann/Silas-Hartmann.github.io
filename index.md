@@ -6,8 +6,9 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 # Aktuelles Unterrichtsmaterial
 
-➡️ Montag 12.05. GPG, Klasse 7: [Der erste WELTkrieg](GPG_7/Arbeitsblätter_GPG_7/Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
-
+➡️ 6️⃣ Mittwoch 14.05. GPG, Klasse 6, 
+➡️ 7️⃣ Mittwoch 14.05. GPG, Klasse 7: [[Das_Ende_des_ersten_Weltkriegs]]
+ 
 
 
 
