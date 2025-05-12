@@ -48,3 +48,28 @@ Bringe die Schritte zur Zubereitung eines Kuchens in die richtige Reihenfolge:
 7. Kuchen abkühlen lassen
 8. Kuchen nach Wunsch dekorieren
 ---
+
+### Aufgabe 3 [OFFEN]
+
+Erkläre in eigenen Worten, was der Klimawandel ist und nenne mindestens zwei Folgen.
+
+  
+
+Antwort: Der Klimawandel bezeichnet die langfristige Veränderung des Erdklimas durch menschliche Aktivitäten. Folgen sind unter anderem steigende Meeresspiegel und extreme Wetterereignisse.
+
+---
+
+### Aufgabe 4 [LÜCKE]
+
+Vervollständige den Text über das Sonnensystem:
+
+  
+
+Das [Sonnensystem] besteht aus der [Sonne] und allen Himmelskörpern, die sie umkreisen.
+
+  
+
+Lücken: Sonnensystem, Sonne
+
+---
+
