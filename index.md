@@ -9,7 +9,7 @@ title: Unterrichtsmaterial von Herrn Hartmann
 Bitte wähle die richtige Jahrgangsstufe:
 
 - Klasse 6: 
-- Klasse 7: ➡️ [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs.md)
+- Klasse 7: ➡️ [Das_Ende_des_ersten_Weltkriegs](Das_Ende_des_ersten_Weltkriegs.md)
  
 ---
 ## Archiv: Unterrichtsmaterial

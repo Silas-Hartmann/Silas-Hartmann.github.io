@@ -12,8 +12,8 @@ Bearbeite die drei Arbeitsblätter zu diesem Thema. Du darfst selbst wählen, mi
 
 ### 🏎️ Aufgaben für Schnelle
 
-- [Aufgaben zur Wiederholung (gut vor der Probe am Montag)](gut%20vor%20der%20Probe%20am%20Montag)))))))
-- [Ein Video zum ersten Weltkrieg in Afrika (wenn du kannst, verwende bitte Kopfhörer):](wenn%20du%20kannst,%20verwende%20bitte%20Kopfhörer):):):):):):)
+- [Aufgaben zur Wiederholung (gut vor der Probe am Montag)](gut%20vor%20der%20Probe%20am%20Montag))))))))
+- [Ein Video zum ersten Weltkrieg in Afrika (wenn du kannst, verwende bitte Kopfhörer):](wenn%20du%20kannst,%20verwende%20bitte%20Kopfhörer):):):):):):):)
 
 
 ---
