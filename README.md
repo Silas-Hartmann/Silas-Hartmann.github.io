@@ -5,7 +5,7 @@ Ein einfaches, auf Markdown basierendes System zur Erstellung interaktiver Arbei
 ## Funktionen
 
 - Automatische Umwandlung von Markdown zu interaktiven Quiz-Elementen
-- Verschiedene Aufgabentypen: Multiple-Choice, Textantworten, Lückentext
+- Verschiedene Aufgabentypen: Multiple-Choice, Single-Choice, Textantworten, Lückentext
 - Sofortiges Feedback zu Antworten
 - Einfache Integration in beliebige Markdown-Dokumente
 - PDF-Export für Arbeitsblätter und Lösungen
@@ -14,37 +14,78 @@ Ein einfaches, auf Markdown basierendes System zur Erstellung interaktiver Arbei
 
 ## Aufgabentypen
 
-### 1. Multiple-Choice-Fragen
+Es gibt zwei Möglichkeiten, Aufgaben zu definieren:
 
-Einfache Auswahl aus mehreren Optionen. Die richtige Antwort wird durch `(richtige Option)`, `(richtig)` oder `(correct)` am Ende markiert.
+### A. Neue Format-Definition mit Typ-Markierung
+
+Jede Aufgabe beginnt mit einer H3-Überschrift (###), gefolgt vom Wort "Aufgabe", einer Nummer und dem Typ in eckigen Klammern. Die Aufgabe wird durch eine horizontale Linie (---) beendet.
 
 ```markdown
-### Wie lautet die Hauptstadt von Deutschland?
+### Aufgabe 1 [TYP]
+
+Inhalt der Aufgabe...
+
+---
+```
+
+Dabei kann TYP einer der folgenden sein:
+- [MC] - Multiple Choice
+- [SC] - Single Choice
+- [OFFEN] - Offene Texteingabe
+- [LÜCKE] - Lückentext
+
+### B. Herkömmliches Format (weiterhin unterstützt)
+
+Alternativ können Aufgaben auch weiterhin im herkömmlichen Format ohne explizite Typ-Markierung erstellt werden. Das System erkennt den Typ anhand des Inhalts.
+
+### 1. Multiple-Choice-Fragen [MC]
+
+Auswahl aus mehreren Optionen. Die richtige Antwort wird durch `(richtige Option)`, `(richtig)` oder `(correct)` am Ende markiert.
+
+```markdown
+### Aufgabe 1 [MC]
+
+Welches dieser Tiere ist ein Säugetier?
+
+- Krokodil
+- Adler
+- Delfin (richtige Option)
+- Forelle
+```
+
+### 2. Single-Choice-Fragen [SC]
+
+Ähnlich wie Multiple-Choice, jedoch wird explizit deutlich gemacht, dass nur eine Option ausgewählt werden soll.
+
+```markdown
+### Aufgabe 2 [SC]
+
+Was ist die Hauptstadt von Deutschland?
 
 - Paris
+- London
 - Berlin (richtige Option)
-- Madrid
 - Rom
 ```
 
-### 2. Textantwort-Fragen
+### 3. Textantwort-Fragen [OFFEN]
 
 Freitextfelder, bei denen die Antwort gegen eine oder mehrere mögliche Lösungen geprüft wird.
 
 ```markdown
-### Was ist die chemische Formel für Wasser?
+### Aufgabe 3 [OFFEN]
 
-Gib die Formel an.
+Was ist die chemische Formel für Wasser?
 
 Antwort: H2O|H₂O
 ```
 
-### 3. Lückentext
+### 4. Lückentext [LÜCKE]
 
 Texte mit Lücken, in die der Benutzer die korrekten Begriffe eintragen muss.
 
 ```markdown
-### Vervollständige den Satz:
+### Aufgabe 4 [LÜCKE]
 
 Die [deutsche] Einheit wurde am [3. Oktober] [1990] gefeiert.
 
@@ -63,6 +104,7 @@ Lücken: deutsche, 3. Oktober|3.Oktober, 1990
    ```
 3. Strukturiere dein Dokument mit Überschriften (# für Haupttitel, ## für Abschnitte)
 4. Füge Quizfragen mit H3-Überschriften (###) hinzu und folge den Formatvorgaben
+5. Du kannst entweder das neue Format mit Typkennzeichnung oder das herkömmliche Format verwenden
 
 ## Beispiele
 
@@ -70,6 +112,7 @@ Im Repository findest du bereits einige Beispiel-Arbeitsblätter:
 
 - [Physik-Quiz](https://silas-hartmann.github.io/beispiel-quiz-neu.html) - Demonstriert Multiple-Choice und Textantworten
 - [Lückentext-Beispiel](https://silas-hartmann.github.io/beispiel-lueckentext.html) - Zeigt die Verwendung von Lückentexten
+- [Neue Aufgabenformate](https://silas-hartmann.github.io/beispiel-aufgabenformate.html) - Demonstriert alle Aufgabentypen im neuen Format
 
 ## PDF-Export
 
