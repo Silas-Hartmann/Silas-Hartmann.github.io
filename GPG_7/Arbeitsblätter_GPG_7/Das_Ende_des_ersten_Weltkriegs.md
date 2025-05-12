@@ -10,8 +10,9 @@ Dafür gibt es mehrere Gründe:
 
 [Politische_Revolutionen](GPG_7/Arbeitsblätter_GPG_7/Politische_Revolutionen.html)
 [Militärische_Niederlage](GPG_7/Arbeitsblätter_GPG_7/Militärische_Niederlage.html)
-[Kriegseintritt_der USA](GPG_7/Arbeitsblätter_GPG_7/Kriegseintritt_der%20USA.md)
-[wirtschaftliche_und_gesellschaftliche_Erschöpfung](GPG_7/Arbeitsblätter_GPG_7/wirtschaftliche_und_gesellschaftliche_Erschöpfung.md)
+[Kriegseintritt_der USA](GPG_7/Arbeitsblätter_GPG_7/Kriegseintritt_der%20USA.html)
+[wirtschaftliche_und_gesellschaftliche_Erschöpfung](GPG_7/Arbeitsblätter_GPG_7/wirtschaftliche_und_gesellschaftliche_Erschöpfung.html)
+
 
 
 ---
