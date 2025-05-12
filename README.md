@@ -1,119 +1,203 @@
+# Quiz-Beispielformate für interaktive Arbeitsblätter
+
+Hier ist eine Datei, die alle unterstützten Aufgabenformate mit korrekter Markdown-Syntax demonstriert:
+
+```markdown
+# Quiz-Übungssammlung
+
+## Multiple-Choice-Aufgaben
+
+### Aufgabe 1 [MC]
+Welche Planeten gehören zu unserem Sonnensystem?
+- Merkur (richtige Option)
+- Pluto
+- Venus (richtige Option)
+- Andromeda
+- Mars (richtige Option)
+---
+
+## Single-Choice-Aufgaben
+
+### Aufgabe 2 [SC]
+Was ist die Hauptstadt von Frankreich?
+- London
+- Berlin
+- Paris (richtig)
+- Madrid
+---
+
+## Offene Fragen
+
+### Aufgabe 3 [OFFEN]
+Erkläre in eigenen Worten, was der Klimawandel ist und nenne mindestens zwei Folgen.
+
+Antwort: Der Klimawandel bezeichnet die langfristige Veränderung des Erdklimas durch menschliche Aktivitäten. Folgen sind unter anderem steigende Meeresspiegel und extreme Wetterereignisse.
+---
+
+## Lückentext-Aufgaben
+
+### Aufgabe 4 [LÜCKE]
+Vervollständige den Text über das Sonnensystem:
+
+Das [Sonnensystem] besteht aus der [Sonne] und allen Himmelskörpern, die sie umkreisen.
+
+Lücken: Sonnensystem, Sonne
+---
+
+## Reihenfolge-Aufgaben
+
+### Aufgabe 5 [ORDER]
+Bringe die folgenden Schritte in die richtige Reihenfolge:
+
+1. Erster Schritt
+2. Zweiter Schritt
+3. Dritter Schritt
+4. Vierter Schritt
+---
+```
+
+# Überarbeitete README.md
+
+```markdown
 # Quiz-System für interaktive Arbeitsblätter
 
-Ein einfaches, auf Markdown basierendes System zur Erstellung interaktiver Arbeitsblätter und Quizzes. Mit diesem System können Lehrkräfte und Bildungsexperten ohne HTML- oder JavaScript-Kenntnisse interaktive Übungen erstellen.
+Ein modulares JavaScript-System zur automatischen Umwandlung von Markdown-Aufgaben in interaktive Quiz-Elemente. Einfach zu verwenden, ohne HTML- oder JavaScript-Kenntnisse.
 
-## Funktionen
+## Aufgabenformat und Syntax
 
-- Automatische Umwandlung von Markdown zu interaktiven Quiz-Elementen
-- Verschiedene Aufgabentypen: Multiple-Choice, Textantworten, Lückentext
-- Sofortiges Feedback zu Antworten
-- Einfache Integration in beliebige Markdown-Dokumente
-- PDF-Export für Arbeitsblätter und Lösungen
-- Optimiert für die Verwendung mit Obsidian
-- Mobil-freundliches, responsives Design
-
-## Aufgabentypen
-
-### 1. Multiple-Choice-Fragen
-
-Einfache Auswahl aus mehreren Optionen. Die richtige Antwort wird durch `(richtige Option)`, `(richtig)` oder `(correct)` am Ende markiert.
+Alle Aufgaben folgen diesem einheitlichen Format:
 
 ```markdown
-### Wie lautet die Hauptstadt von Deutschland?
-
-- Paris
-- Berlin (richtige Option)
-- Madrid
-- Rom
+### Aufgabe X [TYP]
+Aufgabentext und -inhalte je nach Typ
+---
 ```
 
-### 2. Textantwort-Fragen
+- Die Überschrift beginnt mit `### Aufgabe` gefolgt von einer Nummer
+- Der Typ steht in eckigen Klammern: [MC], [SC], [OFFEN], [LÜCKE] oder [ORDER]
+- Jede Aufgabe endet mit einem Trennstrich `---`
 
-Freitextfelder, bei denen die Antwort gegen eine oder mehrere mögliche Lösungen geprüft wird.
+## Unterstützte Aufgabentypen
 
+### 1. Multiple-Choice [MC]
+**Format:**
 ```markdown
-### Was ist die chemische Formel für Wasser?
-
-Gib die Formel an.
-
-Antwort: H2O|H₂O
+### Aufgabe X [MC]
+Fragetext
+- Option 1
+- Option 2 (richtige Option)
+- Option 3
+---
 ```
+Markierung richtiger Antworten durch `(richtige Option)`, `(richtig)` oder `(correct)`.
 
-### 3. Lückentext
-
-Texte mit Lücken, in die der Benutzer die korrekten Begriffe eintragen muss.
-
+### 2. Single-Choice [SC]
+**Format:**
 ```markdown
-### Vervollständige den Satz:
-
-Die [deutsche] Einheit wurde am [3. Oktober] [1990] gefeiert.
-
-Lücken: deutsche, 3. Oktober|3.Oktober, 1990
+### Aufgabe X [SC]
+Fragetext
+- Option 1
+- Option 2 (richtig)
+- Option 3
+---
 ```
+Technisch wie MC, aber semantisch für Einzelauswahl.
 
-## Einfache Erstellung
+### 3. Lückentext [LÜCKE]
+**Format:**
+```markdown
+### Aufgabe X [LÜCKE]
+Text mit [Lücke1] und [Lücke2].
+Lücken: Wort1, Wort2
+---
+```
+Alternative Antworten mit Pipe-Symbol: `Lücken: Wort1|Alternative1, Wort2`
 
-1. Erstelle eine neue `.md` Datei in diesem Repository
-2. Füge den YAML-Header hinzu:
-   ```yaml
-   ---
-   layout: default
-   title: Dein Arbeitsblatt-Titel
-   ---
+### 4. Offene Aufgaben [OFFEN]
+**Format:**
+```markdown
+### Aufgabe X [OFFEN]
+Fragetext
+Antwort: Erwartete Antwort als Musterlösung
+---
+```
+Mit Selbsteinschätzungs-Buttons nach der Überprüfung.
+
+### 5. Reihenfolge [ORDER]
+**Format:**
+```markdown
+### Aufgabe X [ORDER]
+Aufgabenstellung
+1. Erster Schritt
+2. Zweiter Schritt
+3. Dritter Schritt
+---
+```
+Die korrekte Reihenfolge wird aus der nummerierten Liste übernommen.
+
+## Code-Struktur und Funktionsweise
+
+Das System besteht aus zwei Hauptdateien:
+- **markdown-quiz.js**: Transformiert Markdown zu interaktiven Quiz-Elementen
+- **quiz-styles.css**: Definiert das visuelle Erscheinungsbild der Quiz-Elemente
+
+### Hauptkomponenten des Codes:
+
+1. **Erkennung der Quizfragen**: 
+   - Scannt nach H3-Überschriften mit dem Format `### Aufgabe X [TYP]`
+   - Sammelt alle zugehörigen Elemente bis zum nächsten Trennstrich
+
+2. **Aufgabenverarbeitung**:
+   - Extrahiert Typ, Frage, Optionen und korrekte Antworten
+   - Erstellt entsprechende interaktive HTML-Elemente (Checkboxen, Eingabefelder, etc.)
+   - Implementiert Drag & Drop für Lückentext und Reihenfolge-Aufgaben
+
+3. **Antwortüberprüfung**:
+   - Vergleicht Benutzereingaben mit den hinterlegten korrekten Antworten
+   - Gibt visuelles Feedback und zeigt bei Bedarf korrekte Lösungen
+   - Berechnet das Gesamtergebnis aller Aufgaben
+
+### JavaScript-Funktionen:
+
+- `checkIfNewFormatQuizQuestion()`: Erkennt Quizfragen im vorgegebenen Format
+- `collectQuestionElements()`: Sammelt alle zu einer Frage gehörenden Elemente
+- `processQuestion()`: Hauptfunktion zur Umwandlung in interaktive Elemente
+- `checkAllAnswers()`: Überprüft alle Antworten und gibt Feedback
+- `shuffleArray()`: Hilfsfunktion zum Zufallsmischen von Arrays (für Lückentext)
+
+## Spezielle Features
+
+- **Drag & Drop**: Für Lückentext und Reihenfolge-Aufgaben mit der nativen Drag & Drop API
+- **Visuelle Rückmeldung**: Farbliches Feedback (grün für richtig, rot für falsch)
+- **Anzeige korrekter Lösungen**: Bei falschen Antworten werden die richtigen Lösungen angezeigt
+- **Selbsteinschätzung**: Bei offenen Aufgaben mit Bewertungsbuttons
+
+## Integration in eigene Seiten
+
+1. Binde die CSS- und JS-Dateien in dein HTML-Dokument ein:
+   ```html
+   <link rel="stylesheet" href="quiz-styles.css">
+   <script src="markdown-quiz.js" defer></script>
    ```
-3. Strukturiere dein Dokument mit Überschriften (# für Haupttitel, ## für Abschnitte)
-4. Füge Quizfragen mit H3-Überschriften (###) hinzu und folge den Formatvorgaben
+
+2. Erstelle Markdown-Inhalte mit den beschriebenen Aufgabenformaten
+3. Das Script wandelt automatisch alle passenden H3-Überschriften in interaktive Quizfragen um
 
 ## Beispiele
 
-Im Repository findest du bereits einige Beispiel-Arbeitsblätter:
-
-- [Physik-Quiz](https://silas-hartmann.github.io/beispiel-quiz-neu.html) - Demonstriert Multiple-Choice und Textantworten
-- [Lückentext-Beispiel](https://silas-hartmann.github.io/beispiel-lueckentext.html) - Zeigt die Verwendung von Lückentexten
-
-## PDF-Export
-
-Das System bietet die Möglichkeit, Arbeitsblätter und Lösungen als PDF zu exportieren:
-
-- **Arbeitsblatt als PDF**: Wandelt die interaktiven Elemente in ein druckbares Format um, mit ausreichend Platz zum handschriftlichen Ausfüllen
-- **Lösung als PDF**: Enthält alle korrekten Antworten für eine einfache Kontrolle
-
-Beide PDF-Varianten haben folgende Eigenschaften:
-- Standardschriftgröße von 9 PT für optimale Lesbarkeit
-- Lineatur für handschriftliche Einträge bei Textfeldern
-- Checkbox-Darstellung für Multiple-Choice-Fragen
-- Automatische Formatierung von Lückentexten mit Linien zum Ausfüllen
-
-## Technische Details
-
-Das System verwendet:
-- Jekyll für die statische Website-Generierung
-- Vanilla JavaScript für die Umwandlung der Markdown-Elemente in interaktive Quiz-Elemente
-- CSS für das responsive Design und die Darstellung der Quiz-Elemente
-- html2pdf.js für die Generierung der PDF-Dateien
-
-Die Transformation von Markdown zu interaktiven Elementen erfolgt client-seitig mit dem JavaScript-Code in `assets/js/markdown-quiz.js`. Die Styles werden in `assets/css/quiz-styles.css` definiert. Die PDF-Export-Funktionalität befindet sich in `assets/js/pdf-export.js` mit zugehörigen Stilen in `assets/css/pdf-export.css`.
+Im Repository findest du Beispiel-Arbeitsblätter:
+- [Physik-Quiz](https://silas-hartmann.github.io/beispiel-quiz-neu.html)
+- [Lückentext-Beispiel](https://silas-hartmann.github.io/beispiel-lueckentext.html)
 
 ## Anpassung und Erweiterung
 
-- **Design anpassen**: Ändere die CSS-Dateien, um das Aussehen der Quiz-Elemente anzupassen
-- **Neue Aufgabentypen hinzufügen**: Erweitere die JavaScript-Dateien, um neue Aufgabentypen zu unterstützen
-- **Markdown-Regeln ändern**: Passe die Erkennungsmuster für Fragen in der JavaScript-Datei an
-- **PDF-Format anpassen**: Passe die PDF-Generierungsoptionen in `pdf-export.js` an
+- **Design anpassen**: Modifiziere die CSS-Datei `quiz-styles.css`
+- **Neue Aufgabentypen**: Erweitere die `processQuestion()` Funktion in `markdown-quiz.js`
+- **Markdown-Regeln ändern**: Passe die Erkennungsmuster in `checkIfNewFormatQuizQuestion()` an
+```
 
-## Verwendung mit Obsidian
-
-Dieses System ist optimal für den Obsidian-Workflow, da:
-1. Du deine Arbeitsblätter in Obsidian erstellen und bearbeiten kannst
-2. Die Markdown-Syntax mit Obsidian kompatibel ist
-3. Nach dem Export zu GitHub Pages werden die statischen Markdown-Elemente in interaktive Quiz-Elemente umgewandelt
-
-## Anleitung
-
-Für eine detaillierte Anleitung besuche:
-- [Anleitung zum Quiz-System](https://silas-hartmann.github.io/quiz-system-anleitung-neu.html)
-
-## Für KI-Tools
-
-Eine kompakte Anleitung für KI-Tools ist unter folgendem Link verfügbar:
-- [KI-Anleitung für Arbeitsblatt-Erstellung](https://silas-hartmann.github.io/ki-anleitung-arbeitsblatt.html)
+Diese README bietet jetzt detaillierte Informationen über:
+1. Das korrekte Markdown-Format für alle Quiz-Typen
+2. Die Struktur des JavaScript-Codes und seine Hauptfunktionen
+3. Die Integration des Systems in eigene Seiten
+4. Anpassungs- und Erweiterungsmöglichkeiten
