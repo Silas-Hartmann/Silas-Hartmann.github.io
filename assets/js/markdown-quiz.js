@@ -78,7 +78,7 @@ function identifyQuestionType(h3, elements) {
     type: 'unknown'
   };
   
-  // Prüfen, ob es das Muster "### Aufgabe X [TYP]" gibt
+  // Prüfen, ob es das Muster "### Aufgabe X [TYP]" gibt oder ob die Überschrift selbst "Aufgabe" enthält
   const headingText = h3.textContent.trim();
   const typePattern = /Aufgabe\s+\d+\s*\[([^\]]+)\]/i;
   const typeMatch = headingText.match(typePattern);
@@ -161,15 +161,10 @@ function collectQuestionElements(h3) {
   const elements = [];
   let currentElement = h3.nextElementSibling;
   
-  // Sammle alle Elemente bis zur nächsten Überschrift oder bis zum Trennstrich
+  // Sammle alle Elemente bis zur nächsten Überschrift oder einem Trennstrich
   while (currentElement && 
-         !/^H[1-6]$/.test(currentElement.tagName)) {
-    
-    // Wenn ein Trennstrich (---) gefunden wird, beende die Sammlung
-    if (currentElement.tagName === 'HR') {
-      break;
-    }
-    
+         !/^H[1-6]$/.test(currentElement.tagName) &&
+         !(currentElement.tagName === 'HR')) {
     elements.push(currentElement);
     currentElement = currentElement.nextElementSibling;
   }
@@ -191,22 +186,26 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
   
   // Sammle erklärende Texte für die Beschreibung
   let description = '';
-  elements.forEach(element => {
-    if (element.tagName !== 'UL' && 
-        !element.textContent.includes('Antwort:') && 
-        !element.textContent.includes('Lücken:') &&
-        !element.textContent.includes('---')) {
-      description += element.outerHTML;
+  let gapParagraphIndex = -1;
+  let gapTextIndex = -1;
+  let answerElementIndex = -1;
+  let ulElementIndex = -1;
+  
+  // Indizes wichtiger Elemente identifizieren
+  elements.forEach((element, index) => {
+    if (element.textContent.includes('Lücken:')) {
+      gapParagraphIndex = index;
+    }
+    if (element.textContent.includes('[') && element.textContent.includes(']') && element.tagName !== 'UL') {
+      gapTextIndex = index;
+    }
+    if (element.textContent.includes('Antwort:')) {
+      answerElementIndex = index;
+    }
+    if (element.tagName === 'UL') {
+      ulElementIndex = index;
     }
   });
-  
-  // Beschreibung hinzufügen, falls vorhanden
-  if (description) {
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'question-content';
-    descriptionDiv.innerHTML = description;
-    formattedQuestion.appendChild(descriptionDiv);
-  }
   
   // Inhalt der Frage bestimmen (basierend auf dem bereits erkannten Typ)
   let correctAnswer = '';
@@ -215,21 +214,13 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
   let gapAnswers = [];
   let gapText = '';
   
-  // Prüfen, ob es einen Lückentext gibt
-  let hasGapText = false;
-  let gapParagraphIndex = -1;
-  
   // Wenn der Fragetyp als 'gap-text' (Lückentext) erkannt wurde
   if (questionType === 'gap-text') {
-    // Erst einmal alle Elemente durchgehen, um zu prüfen, ob "Lücken:" vorkommt
-    elements.forEach((element, index) => {
-      if (element.textContent.includes('Lücken:')) {
-        hasGapText = true;
-        gapParagraphIndex = index;
-      }
-    });
+    let hasGapText = false;
     
-    if (hasGapText) {
+    if (gapParagraphIndex !== -1) {
+      hasGapText = true;
+      
       // Extrahiere die Lückentext-Antworten aus dem Element mit "Lücken:"
       const gapParaElement = elements[gapParagraphIndex];
       const match = /Lücken:\s*(.+)/.exec(gapParaElement.textContent);
@@ -240,19 +231,16 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
       }
       
       // Suche nach dem Lückentext in den vorherigen Elementen
-      for (let i = 0; i < gapParagraphIndex; i++) {
-        const prevEl = elements[i];
-        if (prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
-          gapText = prevEl.innerHTML;
-          break;
-        }
+      if (gapTextIndex !== -1) {
+        gapText = elements[gapTextIndex].innerHTML;
       }
     } else {
       // Suche nach dem Lückentext mit eckigen Klammern in allen Elementen
       for (let i = 0; i < elements.length; i++) {
         const el = elements[i];
-        if (el.textContent.includes('[') && el.textContent.includes(']')) {
+        if (el.textContent.includes('[') && el.textContent.includes(']') && el.tagName !== 'UL') {
           gapText = el.innerHTML;
+          gapTextIndex = i;
           
           // Extrahiere die Antworten aus den eckigen Klammern
           const tempAnswers = [];
@@ -275,9 +263,8 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
   // Verarbeitung von Multiple-Choice oder Single-Choice Fragen
   else if (questionType === 'multiple-choice' || questionType === 'single-choice') {
     // Suche nach UL-Element
-    const ulElement = elements.find(el => el.tagName === 'UL');
-    
-    if (ulElement) {
+    if (ulElementIndex !== -1) {
+      const ulElement = elements[ulElementIndex];
       const listItems = ulElement.querySelectorAll('li');
       
       listItems.forEach((item, index) => {
@@ -307,15 +294,32 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
   // Verarbeitung von Textantwort-Fragen
   else if (questionType === 'text') {
     // Finde das Element mit "Antwort:"
-    const answerElement = elements.find(el => el.textContent.includes('Antwort:'));
-    
-    if (answerElement) {
+    if (answerElementIndex !== -1) {
+      const answerElement = elements[answerElementIndex];
+      
       // Versuche, die Antwort zu extrahieren
       const match = /Antwort:\s*(.+)/.exec(answerElement.textContent);
       if (match) {
         correctAnswer = match[1].trim();
       }
     }
+  }
+  
+  // Sammle die Beschreibung, indem du die Elemente ausschließt, die für die Frage-Identifikation verwendet werden
+  elements.forEach((element, index) => {
+    if (index !== gapParagraphIndex && index !== gapTextIndex && index !== answerElementIndex && index !== ulElementIndex) {
+      if (element.textContent.trim()) {
+        description += element.outerHTML;
+      }
+    }
+  });
+  
+  // Beschreibung hinzufügen, falls vorhanden
+  if (description) {
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'question-content';
+    descriptionDiv.innerHTML = description;
+    formattedQuestion.appendChild(descriptionDiv);
   }
   
   // Je nach Fragetyp die entsprechenden Elemente hinzufügen
