@@ -20,21 +20,21 @@ Die deutsche Oberste Heeresleitung unter General Ludendorff forderte am 29. Sept
 
 ## Aufgaben
 
-### 1. Wann begann die militärische Lage für Deutschland besonders schlecht zu werden?
+### Aufgabe 1 [SC] Wann begann die militärische Lage für Deutschland besonders schlecht zu werden?
 
 - A) Im Frühjahr 1917
 - B) Im Sommer 1918 (richtige Option)
 - C) Im Winter 1918
 - D) Im Herbst 1917
 
-### 2. Was geschah am 8. August 1918?
+### Aufgabe 2 [MC] Was geschah am 8. August 1918?
 
 - A) Deutschland erklärte den USA den Krieg
 - B) Deutschland startete seine letzte große Offensive
 - C) Die Alliierten durchbrachen mit Panzern die deutschen Linien (richtige Option)
 - D) Der deutsche Kaiser dankte ab
 
-### 3. In welcher Reihenfolge kapitulierten die Verbündeten Deutschlands?
+### Aufgabe 3 [MC] In welcher Reihenfolge kapitulierten die Verbündeten Deutschlands?
 
 - A) Osmanisches Reich, Bulgarien, Österreich-Ungarn
 - B) Österreich-Ungarn, Bulgarien, Osmanisches Reich
@@ -43,4 +43,12 @@ Die deutsche Oberste Heeresleitung unter General Ludendorff forderte am 29. Sept
 
 ---
 
-🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
+
+## Zusammenfassung am Ende
+
+<span style="color:rgb(255, 148, 148)">Wie hat das, was du gerade kennengelernt hast, zum Ende des Krieges geführt?</span>
+Schreibe dir einen Satz in eigenen Worten auf einen Notizzettel!
+
+Danach kannst du deine Ergebnisse unten kontrollieren und 🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
+![Sharing articles-pana](../../Sharing%20articles-pana.png)
+

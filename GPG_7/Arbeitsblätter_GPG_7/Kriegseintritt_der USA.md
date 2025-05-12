@@ -24,21 +24,21 @@ Gegen diese neue Übermacht konnte Deutschland langfristig nicht bestehen. Die a
 ---
 ## Aufgaben
 
-### 1. Wann traten die USA in den Ersten Weltkrieg ein?
+### Aufgabe 1 [SC] Wann traten die USA in den Ersten Weltkrieg ein?
 
 - A) April 1917 (richtige Option)
 - B) Januar 1918
 - C) Dezember 1916
 - D) August 1914
 
-### 2. Wie viele amerikanische Soldaten landeten bis Juli 1918 in Europa?
+### Aufgabe 2 [SC] Wie viele amerikanische Soldaten landeten bis Juli 1918 in Europa?
 
 - A) Etwa 100.000
 - B) Etwa 500.000
 - C) Über 1 Million (richtige Option)
 - D) Etwa 2 Millionen
 
-### 3. Was brachten die USA außer Soldaten noch in den Krieg ein?
+### Aufgabe 3 [SC] Was brachten die USA außer Soldaten noch in den Krieg ein?
 
 - A) Nur Lebensmittel
 - B) Nur moderne Waffen
@@ -47,4 +47,11 @@ Gegen diese neue Übermacht konnte Deutschland langfristig nicht bestehen. Die a
 
 ---
 
-🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
+## Zusammenfassung am Ende
+
+<span style="color:rgb(255, 148, 148)">Wie hat das, was du gerade kennengelernt hast, zum Ende des Krieges geführt?</span>
+Schreibe dir einen Satz in eigenen Worten auf einen Notizzettel!
+
+Danach kannst du deine Ergebnisse unten kontrollieren und 🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
+![Sharing articles-pana](../../Sharing%20articles-pana.png)
+

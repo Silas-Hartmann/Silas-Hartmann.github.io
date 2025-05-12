@@ -20,21 +20,21 @@ Die Erschöpfung der Bevölkerung und die Unruhen im Land machten es für die de
 
 ## Aufgaben
 
-### 1. Was war der "Steckrübenwinter"?
+### Aufgabe 1 [MC] Was war der "Steckrübenwinter"?
 
 - A) Ein besonders kalter Winter
 - B) Ein Winter, in dem die Menschen hauptsächlich Steckrüben essen mussten (richtige Option)
 - C) Ein Winter mit vielen Schneestürmen
 - D) Ein Winter, in dem die Steckrüben-Ernte besonders gut war
 
-### 2. Warum litten die Menschen in Deutschland Hunger?
+### Aufgabe 2 [MC] Warum litten die Menschen in Deutschland Hunger?
 
 - A) Weil die Bauern streikten
 - B) Weil es zu viel regnete
 - C) Wegen der britischen Seeblockade (richtige Option)
 - D) Weil alle Lebensmittel an die Soldaten gingen
 
-### 3. Was geschah Ende Oktober 1918 in Kiel?
+### Aufgabe 3 [MC] Was geschah Ende Oktober 1918 in Kiel?
 
 - A) Die Matrosen weigerten sich, zu einer Schlacht auszulaufen (richtige Option)
 - B) Die Briten bombardierten den Hafen
@@ -43,4 +43,12 @@ Die Erschöpfung der Bevölkerung und die Unruhen im Land machten es für die de
 
 ---
 
-🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
+
+## Zusammenfassung am Ende
+
+<span style="color:rgb(255, 148, 148)">Wie hat das, was du gerade kennengelernt hast, zum Ende des Krieges geführt?</span>
+Schreibe dir einen Satz in eigenen Worten auf einen Notizzettel!
+
+Danach kannst du deine Ergebnisse unten kontrollieren und 🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
+![Sharing articles-pana](../../Sharing%20articles-pana.png)
+
