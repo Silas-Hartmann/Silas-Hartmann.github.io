@@ -30,16 +30,18 @@ Die Novemberrevolution veränderte Deutschland grundlegend. Aus einem Kaiserreic
 - In Kiel (richtige Option)
 - In München
 
-### 2. Was wurde am 9. November 1918 verkündet?
+---
 
-- A) Der Waffenstillstand
-- B) Die Republik (richtige Option)
-- C) Der Friedensvertrag
-- D) Die Wiederwahl des Kaisers
+### Aufgabe 3 [MC] Was wurde am 9. November 1918 verkündet?
 
-### 3. Wann wurde der Waffenstillstand unterzeichnet, der den Ersten Weltkrieg beendete?
+- Der Waffenstillstand
+- Die Republik (richtige Option)
+- Der Friedensvertrag
+- Die Wiederwahl des Kaisers
 
-- A) Am 9. November 1918
-- B) Am 11. November 1918 (richtige Option)
-- C) Am 15. November 1918
-- D) Am 28. Juni 1919
+### Aufgabe 4 [SC] Wann wurde der Waffenstillstand unterzeichnet, der den Ersten Weltkrieg beendete?
+
+- Am 9. November 1918
+- Am 11. November 1918 (richtige Option)
+- Am 15. November 1918
+- Am 28. Juni 1919
