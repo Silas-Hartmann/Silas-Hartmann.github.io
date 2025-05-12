@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sammeln der relevanten Elemente für diese Frage
     const questionElements = collectQuestionElements(h3);
     
-    // ÄNDERUNG: Prüfen, ob es sich um eine Quizfrage handelt
-    const isQuizQuestion = checkIfQuizQuestion(questionElements);
+    // Prüfen, ob es sich um eine Aufgabe handelt und welchen Typ sie hat
+    const questionInfo = identifyQuestionType(h3, questionElements);
     
-    if (questionElements.length > 0 && isQuizQuestion) {
+    if (questionElements.length > 0 && questionInfo.isQuizQuestion) {
       questionCount++;
       
       // Wir erstellen einen Container für diese Frage
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
       questionContainer.id = `quiz-question-${questionCount}`;
       
       // Verarbeite die Frage und füge sie zum Container hinzu
-      processQuestion(h3, questionElements, questionContainer, questionCount);
+      processQuestion(h3, questionElements, questionContainer, questionCount, questionInfo.type);
       
       // Füge die Frage zum Quiz-Container hinzu
       quizContainer.appendChild(questionContainer);
@@ -71,16 +71,56 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// NEUE FUNKTION: Prüft, ob es sich um eine Quizfrage handelt
-function checkIfQuizQuestion(elements) {
+// Neue Funktion zur Identifikation des Aufgabentyps anhand der Überschrift und Elemente
+function identifyQuestionType(h3, elements) {
+  const result = {
+    isQuizQuestion: false,
+    type: 'unknown'
+  };
+  
+  // Prüfen, ob es das Muster "### Aufgabe X [TYP]" gibt
+  const headingText = h3.textContent.trim();
+  const typePattern = /Aufgabe\s+\d+\s*\[([^\]]+)\]/i;
+  const typeMatch = headingText.match(typePattern);
+  
+  if (typeMatch) {
+    // Hier wurde ein Aufgabentyp in der Überschrift gefunden
+    const taskType = typeMatch[1].toUpperCase();
+    result.isQuizQuestion = true;
+    
+    switch (taskType) {
+      case 'MC':
+        result.type = 'multiple-choice';
+        break;
+      case 'SC':
+        result.type = 'single-choice';
+        break;
+      case 'OFFEN':
+        result.type = 'text';
+        break;
+      case 'LÜCKE':
+        result.type = 'gap-text';
+        break;
+      default:
+        result.type = 'unknown';
+    }
+    
+    return result;
+  }
+  
+  // Falls kein [TYP] gefunden wurde, verwende die bisherige Logik
   // Überprüfen, ob ein Lückentext vorliegt
   if (elements.some(el => el.textContent.includes('Lücken:'))) {
-    return true;
+    result.isQuizQuestion = true;
+    result.type = 'gap-text';
+    return result;
   }
   
   // Überprüfen, ob Textantwort vorliegt
   if (elements.some(el => el.textContent.includes('Antwort:'))) {
-    return true;
+    result.isQuizQuestion = true;
+    result.type = 'text';
+    return result;
   }
   
   // Überprüfen, ob eine UL mit Checkboxen vorliegt
@@ -96,7 +136,9 @@ function checkIfQuizQuestion(elements) {
     });
     
     if (hasCorrectMarker) {
-      return true;
+      result.isQuizQuestion = true;
+      result.type = 'multiple-choice';
+      return result;
     }
     
     // Überprüfen auf Checkboxen - nur als Quiz betrachten, wenn Checkboxen vorhanden sind
@@ -105,19 +147,29 @@ function checkIfQuizQuestion(elements) {
       return itemText.startsWith('[ ]') || itemText.startsWith('[x]') || itemText.startsWith('[X]');
     });
     
-    return hasCheckboxes;
+    if (hasCheckboxes) {
+      result.isQuizQuestion = true;
+      result.type = 'multiple-choice';
+      return result;
+    }
   }
   
-  return false;
+  return result;
 }
 
 function collectQuestionElements(h3) {
   const elements = [];
   let currentElement = h3.nextElementSibling;
   
-  // Sammle alle Elemente bis zur nächsten Überschrift
+  // Sammle alle Elemente bis zur nächsten Überschrift oder bis zum Trennstrich
   while (currentElement && 
          !/^H[1-6]$/.test(currentElement.tagName)) {
+    
+    // Wenn ein Trennstrich (---) gefunden wird, beende die Sammlung
+    if (currentElement.tagName === 'HR') {
+      break;
+    }
+    
     elements.push(currentElement);
     currentElement = currentElement.nextElementSibling;
   }
@@ -125,8 +177,9 @@ function collectQuestionElements(h3) {
   return elements;
 }
 
-function processQuestion(h3, elements, container, questionNumber) {
-  const questionText = h3.textContent.replace(/\[.*\]$/, '').trim();
+function processQuestion(h3, elements, container, questionNumber, questionType = 'unknown') {
+  // Extrahiere den Fragetext ohne den [TYP] Teil
+  const questionText = h3.textContent.replace(/\s*\[.*?\]\s*/, '').trim();
   
   const formattedQuestion = document.createElement('div');
   formattedQuestion.className = 'formatted-question';
@@ -136,118 +189,13 @@ function processQuestion(h3, elements, container, questionNumber) {
   questionPrompt.textContent = `${questionNumber}. ${questionText}`;
   formattedQuestion.appendChild(questionPrompt);
   
-  // Typ und Inhalt der Frage bestimmen
-  let questionType = 'unknown';
-  let correctAnswer = '';
-  let options = [];
-  let correctIndex = -1;
-  let description = '';
-  let gapAnswers = [];
-  let gapText = '';
-  
-  // Prüfen, ob es einen Lückentext gibt
-  let hasGapText = false;
-  let gapParagraphIndex = -1;
-  
-  // Erst einmal alle Elemente durchgehen, um zu prüfen, ob "Lücken:" vorkommt
-  elements.forEach((element, index) => {
-    if (element.textContent.includes('Lücken:')) {
-      hasGapText = true;
-      gapParagraphIndex = index;
-    }
-  });
-  
-  // Wenn Lückentext gefunden, dann verarbeiten
-  if (hasGapText) {
-    questionType = 'gap-text';
-    
-    // Extrahiere die Lückentext-Antworten aus dem Element mit "Lücken:"
-    const gapParaElement = elements[gapParagraphIndex];
-    const match = /Lücken:\s*(.+)/.exec(gapParaElement.textContent);
-    if (match) {
-      const answersText = match[1].trim();
-      // Trenne Antworten durch Komma, und jede Antwort kann Alternativen mit | haben
-      gapAnswers = answersText.split(',').map(ans => ans.trim());
-    }
-    
-    // Suche nach dem Lückentext in den vorherigen Elementen
-    for (let i = 0; i < gapParagraphIndex; i++) {
-      const prevEl = elements[i];
-      if (prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
-        gapText = prevEl.innerHTML;
-        break;
-      }
-    }
-  } 
-  // Prüfe auf Multiple-Choice-Fragen
-  else if (elements.some(el => el.tagName === 'UL')) {
-    const ulElement = elements.find(el => el.tagName === 'UL');
-    questionType = 'multiple-choice';
-    
-    const listItems = ulElement.querySelectorAll('li');
-    
-    listItems.forEach((item, index) => {
-      const optionText = item.textContent.trim();
-      
-      // Richtige Option suchen und Marker entfernen
-      const cleanedText = optionText.replace(/\(richtige Option\)|\(correct\)|\(richtig\)/g, '').trim();
-      
-      // Checkbox-Format verarbeiten
-      let processedText = cleanedText;
-      if (cleanedText.startsWith('[ ]') || cleanedText.startsWith('[x]') || cleanedText.startsWith('[X]')) {
-        processedText = cleanedText.substring(3).trim();
-      }
-      
-      options.push(processedText);
-      
-      if (optionText.includes('(richtige Option)') || 
-          optionText.includes('(correct)') ||
-          optionText.includes('(richtig)') ||
-          optionText.includes('[x]') ||
-          optionText.includes('[X]')) {
-        correctIndex = index;
-      }
-    });
-  }
-  // Prüfe auf Textantwort-Fragen
-  else if (elements.some(el => el.textContent.includes('Antwort:'))) {
-    questionType = 'text';
-    
-    // Finde das Element mit "Antwort:"
-    const answerElement = elements.find(el => el.textContent.includes('Antwort:'));
-    
-    // Versuche, die Antwort zu extrahieren
-    const match = /Antwort:\s*(.+)/.exec(answerElement.textContent);
-    if (match) {
-      correctAnswer = match[1].trim();
-    }
-  }
-  
   // Sammle erklärende Texte für die Beschreibung
-  elements.forEach((element, index) => {
-    // Nur Elemente zur Beschreibung hinzufügen, die nicht für die Frage-Identifikation verwendet werden
-    if (questionType === 'gap-text' && index === gapParagraphIndex) {
-      // Lücken-Zeile nicht zur Beschreibung hinzufügen
-      return;
-    }
-    
-    if (questionType === 'gap-text' && gapText && gapText.includes(element.innerHTML)) {
-      // Lückentext-Paragraph nicht zur Beschreibung hinzufügen
-      return;
-    }
-    
-    if (element.tagName === 'UL' && questionType === 'multiple-choice') {
-      // Multiple-Choice-Liste nicht zur Beschreibung hinzufügen
-      return;
-    }
-    
-    if (element.textContent.includes('Antwort:') && questionType === 'text') {
-      // Antwort-Zeile nicht zur Beschreibung hinzufügen
-      return;
-    }
-    
-    // Alle anderen Elemente als Beschreibung hinzufügen
-    if (element.textContent.trim()) {
+  let description = '';
+  elements.forEach(element => {
+    if (element.tagName !== 'UL' && 
+        !element.textContent.includes('Antwort:') && 
+        !element.textContent.includes('Lücken:') &&
+        !element.textContent.includes('---')) {
       description += element.outerHTML;
     }
   });
@@ -260,9 +208,143 @@ function processQuestion(h3, elements, container, questionNumber) {
     formattedQuestion.appendChild(descriptionDiv);
   }
   
+  // Inhalt der Frage bestimmen (basierend auf dem bereits erkannten Typ)
+  let correctAnswer = '';
+  let options = [];
+  let correctIndex = -1;
+  let gapAnswers = [];
+  let gapText = '';
+  
+  // Prüfen, ob es einen Lückentext gibt
+  let hasGapText = false;
+  let gapParagraphIndex = -1;
+  
+  // Wenn der Fragetyp als 'gap-text' (Lückentext) erkannt wurde
+  if (questionType === 'gap-text') {
+    // Erst einmal alle Elemente durchgehen, um zu prüfen, ob "Lücken:" vorkommt
+    elements.forEach((element, index) => {
+      if (element.textContent.includes('Lücken:')) {
+        hasGapText = true;
+        gapParagraphIndex = index;
+      }
+    });
+    
+    if (hasGapText) {
+      // Extrahiere die Lückentext-Antworten aus dem Element mit "Lücken:"
+      const gapParaElement = elements[gapParagraphIndex];
+      const match = /Lücken:\s*(.+)/.exec(gapParaElement.textContent);
+      if (match) {
+        const answersText = match[1].trim();
+        // Trenne Antworten durch Komma, und jede Antwort kann Alternativen mit | haben
+        gapAnswers = answersText.split(',').map(ans => ans.trim());
+      }
+      
+      // Suche nach dem Lückentext in den vorherigen Elementen
+      for (let i = 0; i < gapParagraphIndex; i++) {
+        const prevEl = elements[i];
+        if (prevEl.textContent.includes('[') && prevEl.textContent.includes(']')) {
+          gapText = prevEl.innerHTML;
+          break;
+        }
+      }
+    } else {
+      // Suche nach dem Lückentext mit eckigen Klammern in allen Elementen
+      for (let i = 0; i < elements.length; i++) {
+        const el = elements[i];
+        if (el.textContent.includes('[') && el.textContent.includes(']')) {
+          gapText = el.innerHTML;
+          
+          // Extrahiere die Antworten aus den eckigen Klammern
+          const tempAnswers = [];
+          const regex = /\[([^\]]+)\]/g;
+          let match;
+          
+          while ((match = regex.exec(el.textContent)) !== null) {
+            tempAnswers.push(match[1]);
+          }
+          
+          if (tempAnswers.length > 0) {
+            gapAnswers = tempAnswers;
+          }
+          
+          break;
+        }
+      }
+    }
+  } 
+  // Verarbeitung von Multiple-Choice oder Single-Choice Fragen
+  else if (questionType === 'multiple-choice' || questionType === 'single-choice') {
+    // Suche nach UL-Element
+    const ulElement = elements.find(el => el.tagName === 'UL');
+    
+    if (ulElement) {
+      const listItems = ulElement.querySelectorAll('li');
+      
+      listItems.forEach((item, index) => {
+        const optionText = item.textContent.trim();
+        
+        // Richtige Option suchen und Marker entfernen
+        const cleanedText = optionText.replace(/\(richtige Option\)|\(correct\)|\(richtig\)/g, '').trim();
+        
+        // Checkbox-Format verarbeiten
+        let processedText = cleanedText;
+        if (cleanedText.startsWith('[ ]') || cleanedText.startsWith('[x]') || cleanedText.startsWith('[X]')) {
+          processedText = cleanedText.substring(3).trim();
+        }
+        
+        options.push(processedText);
+        
+        if (optionText.includes('(richtige Option)') || 
+            optionText.includes('(correct)') ||
+            optionText.includes('(richtig)') ||
+            optionText.includes('[x]') ||
+            optionText.includes('[X]')) {
+          correctIndex = index;
+        }
+      });
+    }
+  }
+  // Verarbeitung von Textantwort-Fragen
+  else if (questionType === 'text') {
+    // Finde das Element mit "Antwort:"
+    const answerElement = elements.find(el => el.textContent.includes('Antwort:'));
+    
+    if (answerElement) {
+      // Versuche, die Antwort zu extrahieren
+      const match = /Antwort:\s*(.+)/.exec(answerElement.textContent);
+      if (match) {
+        correctAnswer = match[1].trim();
+      }
+    }
+  }
+  
   // Je nach Fragetyp die entsprechenden Elemente hinzufügen
   if (questionType === 'multiple-choice' && options.length > 0) {
     formattedQuestion.setAttribute('data-type', 'multiple-choice');
+    formattedQuestion.setAttribute('data-correct', correctIndex !== -1 ? correctIndex.toString() : '0');
+    
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'options-container';
+    
+    options.forEach((optionText, index) => {
+      const label = document.createElement('label');
+      label.className = 'option-label';
+      
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = `q-${questionNumber}`;
+      radio.value = index;
+      
+      label.appendChild(radio);
+      label.appendChild(document.createTextNode(` ${optionText}`));
+      optionsContainer.appendChild(label);
+    });
+    
+    formattedQuestion.appendChild(optionsContainer);
+  }
+  else if (questionType === 'single-choice' && options.length > 0) {
+    // Single-Choice nutzt auch Radio-Buttons wie Multiple-Choice
+    formattedQuestion.setAttribute('data-type', 'single-choice');
     formattedQuestion.setAttribute('data-correct', correctIndex !== -1 ? correctIndex.toString() : '0');
     
     const optionsContainer = document.createElement('div');
@@ -363,7 +445,7 @@ function checkAllAnswers() {
     const feedbackDiv = question.querySelector('.feedback');
     feedbackDiv.style.display = 'block';
     
-    if (type === 'multiple-choice') {
+    if (type === 'multiple-choice' || type === 'single-choice') {
       const selectedOption = question.querySelector('input[type="radio"]:checked');
       
       if (!selectedOption) {
