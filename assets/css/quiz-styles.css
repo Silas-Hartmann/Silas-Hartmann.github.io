@@ -104,33 +104,13 @@
   background-color: rgba(255, 193, 7, 0.1);
 }
 
-/* Single-Choice und Multiple-Choice Styling */
+/* Typspezifische Stilanpassungen */
 .formatted-question[data-type="single-choice"] .option-label,
 .formatted-question[data-type="multiple-choice"] .option-label {
-  margin-bottom: 5px;
-  border: 1px solid transparent;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: all 0.2s;
+  margin-bottom: 4px;
 }
 
-.formatted-question[data-type="single-choice"] .option-label:hover,
-.formatted-question[data-type="multiple-choice"] .option-label:hover {
-  border-color: #4285f4;
-  background-color: rgba(66, 133, 244, 0.05);
-}
-
-.formatted-question[data-type="single-choice"] input[type="radio"]:checked + span,
-.formatted-question[data-type="multiple-choice"] input[type="radio"]:checked + span {
-  font-weight: bold;
-}
-
-/* Offene Fragen Styling */
-.formatted-question[data-type="text"] .text-input-container {
-  border-left: 3px solid #4285f4;
-  padding-left: 10px;
-}
-
+/* Allgemeine Buttons und Feedback-Elemente */
 .check-all-answers-btn {
   display: block;
   margin: 30px auto;
@@ -186,10 +166,15 @@
   border-left: 5px solid #4285f4;
 }
 
-/* Mobile responsives Design */
-@media screen and (max-width: 768px) {
+/* Hinweistext für unerkannte Fragetypen */
+.fallback-note {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Verbesserung für mobile Ansicht */
+@media (max-width: 600px) {
   .interactive-quiz-question {
-    margin: 15px 0;
     padding: 10px;
   }
   
@@ -197,27 +182,12 @@
     padding: 10px;
   }
   
-  .check-all-answers-btn {
-    width: 90%;
-    max-width: 300px;
+  .question-prompt {
+    font-size: 1em;
   }
   
-  .gap-input {
-    min-width: 80px;
-    margin: 2px;
+  .check-all-answers-btn {
+    font-size: 1em;
+    padding: 10px 15px;
   }
-}
-
-/* Fallback-Styling */
-.fallback-note {
-  margin-top: 5px;
-  font-style: italic;
-}
-
-/* Trennstrich am Ende von Aufgaben */
-hr {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
-  margin: 30px 0;
 }
