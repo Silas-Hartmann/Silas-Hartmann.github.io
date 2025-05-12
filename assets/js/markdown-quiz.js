@@ -161,7 +161,297 @@ function collectQuestionElements(h3) {
 }
 
 // AKTUALISIERTE FUNKTION: Verarbeite die Frage mit dem erkannten Typ
-function processQuestion(h3, elements, container, questionNumber, questionInfo) {
+function checkAllAnswers() {
+  const questions = document.querySelectorAll('.formatted-question');
+  let correctCount = 0;
+  let totalCount = 0;
+  
+  questions.forEach(question => {
+    const type = question.getAttribute('data-type');
+    if (!type) return; // Wenn kein Typ gesetzt ist, überspringen
+    
+    totalCount++;
+    const correctAnswer = question.getAttribute('data-correct');
+    const feedbackDiv = question.querySelector('.feedback');
+    feedbackDiv.style.display = 'block';
+    
+    if (type === 'multiple-choice') {
+      const checkedOptions = question.querySelectorAll('input[type="checkbox"]:checked');
+      let correctIndices = [];
+      
+      try {
+        correctIndices = JSON.parse(correctAnswer);
+      } catch (e) {
+        // Fallback für alte Datenformate
+        if (correctAnswer && !isNaN(parseInt(correctAnswer))) {
+          correctIndices = [parseInt(correctAnswer)];
+        }
+      }
+      
+      // Wenn keine Option ausgewählt wurde
+      if (checkedOptions.length === 0) {
+        feedbackDiv.textContent = 'Keine Antwort ausgewählt.';
+        feedbackDiv.className = 'feedback no-answer';
+        
+        // Zeige die richtigen Antworten an
+        showCorrectMCAnswers(question, correctIndices);
+        return;
+      }
+      
+      // Überprüfe, ob alle ausgewählten Optionen korrekt sind
+      let allCorrect = true;
+      let selectedIndices = Array.from(checkedOptions).map(option => parseInt(option.dataset.index));
+      
+      // Bei nur einer korrekten Antwort
+      if (correctIndices.length === 1 && selectedIndices.length === 1) {
+        allCorrect = selectedIndices[0] === correctIndices[0];
+      }
+      // Bei mehreren korrekten Antworten - alle ausgewählten müssen korrekt sein
+      else {
+        // Alle ausgewählten müssen in der korrekten Liste sein
+        selectedIndices.forEach(index => {
+          if (!correctIndices.includes(index)) {
+            allCorrect = false;
+          }
+        });
+        
+        // Zusätzlich muss mindestens eine korrekte Option gewählt sein
+        if (selectedIndices.length === 0 || !selectedIndices.some(index => correctIndices.includes(index))) {
+          allCorrect = false;
+        }
+      }
+      
+      if (allCorrect) {
+        feedbackDiv.textContent = 'Richtig!';
+        feedbackDiv.className = 'feedback correct';
+        correctCount++;
+      } else {
+        feedbackDiv.textContent = 'Falsche Antwort.';
+        feedbackDiv.className = 'feedback incorrect';
+        
+        // Zeige die richtigen Antworten an
+        showCorrectMCAnswers(question, correctIndices);
+      }
+    } else if (type === 'text' || type === 'unknown') {
+      const answerField = question.querySelector('.text-answer');
+      if (!answerField) {
+        console.error('Textantwortfeld nicht gefunden');
+        return;
+      }
+      
+      const userAnswer = answerField.value.trim();
+      
+      if (type === 'text') {
+        // Bei offenen Aufgaben zeigen wir die Musterlösung und Selbsteinschätzung
+        const solutionContainer = question.querySelector('.solution-container');
+        const selfAssessment = question.querySelector('.self-assessment');
+        
+        if (solutionContainer) solutionContainer.style.display = 'block';
+        if (selfAssessment) selfAssessment.style.display = 'block';
+        
+        feedbackDiv.textContent = 'Vergleiche deine Antwort mit der Musterlösung und bewerte sie selbst.';
+        feedbackDiv.className = 'feedback info';
+      }
+      else if (type === 'unknown') {
+        feedbackDiv.textContent = 'Diese Antwort kann nicht automatisch überprüft werden.';
+        feedbackDiv.className = 'feedback no-answer';
+      }
+      else if (!userAnswer) {
+        feedbackDiv.textContent = 'Keine Antwort eingegeben.';
+        feedbackDiv.className = 'feedback no-answer';
+      }
+      else {
+        // Verbesserte Überprüfung für Textantworten
+        const possibleAnswers = correctAnswer.split('|').map(a => a.trim());
+        const userAnswerLower = userAnswer.toLowerCase();
+        
+        // Überprüfen, ob eine der möglichen Antworten exakt übereinstimmt oder in der Benutzerantwort enthalten ist
+        const isCorrect = possibleAnswers.some(answer => {
+          const answerLower = answer.toLowerCase();
+          return userAnswerLower === answerLower || userAnswerLower.includes(answerLower);
+        });
+        
+        if (isCorrect) {
+          feedbackDiv.textContent = 'Richtig!';
+          feedbackDiv.className = 'feedback correct';
+          correctCount++;
+        } else {
+          feedbackDiv.textContent = 'Falsche oder unvollständige Antwort. Die richtige Antwort wäre: ' + possibleAnswers[0];
+          feedbackDiv.className = 'feedback incorrect';
+        }
+      }
+    } else if (type === 'order') {
+      // Überprüfung für die Reihenfolge-Aufgaben
+      const sortableList = question.querySelector('.sortable-list');
+      
+      if (!sortableList) {
+        console.error('Sortierbare Liste nicht gefunden');
+        feedbackDiv.textContent = 'Fehler: Keine sortierbaren Elemente gefunden.';
+        feedbackDiv.className = 'feedback no-answer';
+        return;
+      }
+      
+      try {
+        // Hole die korrekten Positionen aus dem Attribut
+        const correctPositions = JSON.parse(correctAnswer);
+        
+        // Sammle die aktuellen Positionen
+        const currentItems = Array.from(sortableList.querySelectorAll('.order-item'));
+        const currentPositions = currentItems.map(item => parseInt(item.dataset.originalPosition));
+        
+        // Prüfe, ob die aktuelle Reihenfolge korrekt ist
+        let isCorrect = true;
+        for (let i = 0; i < correctPositions.length; i++) {
+          if (correctPositions[i] !== currentPositions[i]) {
+            isCorrect = false;
+            break;
+          }
+        }
+        
+        if (isCorrect) {
+          feedbackDiv.textContent = 'Richtige Reihenfolge!';
+          feedbackDiv.className = 'feedback correct';
+          correctCount++;
+        } else {
+          feedbackDiv.textContent = 'Die Reihenfolge ist nicht korrekt.';
+          feedbackDiv.className = 'feedback incorrect';
+          
+          // Zeige die korrekte Reihenfolge an
+          const correctOrderDiv = document.createElement('div');
+          correctOrderDiv.className = 'correct-order';
+          correctOrderDiv.innerHTML = '<strong>Richtige Reihenfolge:</strong>';
+          
+          const correctItemsList = document.createElement('ol');
+          correctItemsList.className = 'correct-order-list';
+          
+          // Sortiere die Items nach den korrekten Positionen und füge sie zur Liste hinzu
+          const itemsWithCorrectOrder = currentItems
+            .map((item, i) => ({ item: item.textContent, originalPosition: parseInt(item.dataset.originalPosition) }))
+            .sort((a, b) => a.originalPosition - b.originalPosition);
+          
+          itemsWithCorrectOrder.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item.item;
+            correctItemsList.appendChild(listItem);
+          });
+          
+          correctOrderDiv.appendChild(correctItemsList);
+          feedbackDiv.appendChild(correctOrderDiv);
+        }
+      } catch (error) {
+        console.error('Fehler bei der Überprüfung der Reihenfolge:', error);
+        feedbackDiv.textContent = 'Fehler bei der Überprüfung: ' + error.message;
+        feedbackDiv.className = 'feedback no-answer';
+      }
+    }
+    else if (type === 'gap-text') {
+      // Überprüfung für Lückentext mit Drag & Drop
+      const gapDropzones = question.querySelectorAll('.gap-dropzone');
+      let allCorrect = true;
+      let totalGaps = gapDropzones.length;
+      let correctGaps = 0;
+      
+      if (gapDropzones.length === 0) {
+        console.error('Keine Lückentext-Dropzones gefunden');
+        feedbackDiv.textContent = 'Fehler: Keine Dropzones gefunden.';
+        feedbackDiv.className = 'feedback no-answer';
+        return;
+      }
+      
+      try {
+        const correctAnswers = JSON.parse(correctAnswer);
+        
+        // Prüfe jede Lücke
+        gapDropzones.forEach((dropzone, index) => {
+          const userAnswer = dropzone.dataset.filledWith || '';
+          
+          if (!userAnswer || dropzone.textContent === 'Wort hier ablegen...') {
+            allCorrect = false;
+            dropzone.classList.add('gap-empty');
+            return;
+          }
+          
+          dropzone.classList.remove('gap-empty');
+          
+          // Hole die korrekten Antworten für diese Lücke
+          const correctOptions = correctAnswers[index] ? correctAnswers[index].split('|').map(a => a.trim()) : [];
+          const userAnswerLower = userAnswer.toLowerCase();
+          
+          // Überprüfe, ob die Antwort korrekt ist
+          const isCorrect = correctOptions.some(option => {
+            const optionLower = option.toLowerCase();
+            return userAnswerLower === optionLower;
+          });
+          
+          if (isCorrect) {
+            dropzone.classList.add('gap-correct');
+            dropzone.classList.remove('gap-incorrect');
+            correctGaps++;
+          } else {
+            dropzone.classList.add('gap-incorrect');
+            dropzone.classList.remove('gap-correct');
+            allCorrect = false;
+            
+            // Zeige die richtige Antwort an
+            const correctTip = document.createElement('div');
+            correctTip.className = 'gap-correct-answer';
+            correctTip.textContent = "Richtig wäre: " + correctOptions[0];
+            dropzone.appendChild(correctTip);
+          }
+        });
+        
+        // Zeige das Ergebnis an
+        if (gapDropzones.length === 0) {
+          feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung.';
+          feedbackDiv.className = 'feedback no-answer';
+        } else if (gapDropzones.length > 0 && totalGaps === correctGaps) {
+          feedbackDiv.textContent = 'Alle Lücken richtig ausgefüllt!';
+          feedbackDiv.className = 'feedback correct';
+          correctCount++;
+        } else {
+          feedbackDiv.textContent = `${correctGaps} von ${totalGaps} Lücken richtig ausgefüllt.`;
+          feedbackDiv.className = 'feedback incorrect';
+        }
+      } catch (error) {
+        console.error('Fehler beim Parsen der korrekten Antworten:', error);
+        feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung: ' + error.message;
+        feedbackDiv.className = 'feedback no-answer';
+      }
+    }
+  });
+  
+  // Zeige Gesamtergebnis
+  const resultDiv = document.getElementById('quiz-total-result');
+  if (resultDiv) {
+    resultDiv.textContent = `Gesamtergebnis: ${correctCount} von ${totalCount} Fragen richtig beantwortet!`;
+    resultDiv.style.display = 'block';
+    
+    // Scroll zum Ergebnis
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Hilfsfunktion zum Anzeigen der richtigen MC-Antworten
+function showCorrectMCAnswers(question, correctIndices) {
+  const options = question.querySelectorAll('.option-label');
+  
+  options.forEach((option, index) => {
+    const checkbox = option.querySelector('input[type="checkbox"]');
+    const isCorrect = correctIndices.includes(index);
+    
+    if (isCorrect) {
+      option.classList.add('correct-option');
+      
+      // Füge ein visuelles Indikator hinzu
+      const correctIndicator = document.createElement('span');
+      correctIndicator.className = 'correct-indicator';
+      correctIndicator.textContent = ' ✓';
+      correctIndicator.style.color = 'green';
+      correctIndicator.style.fontWeight = 'bold';
+      option.appendChild(correctIndicator);
+    }
+  });
+}
   // Falls questionInfo nicht übergeben wurde, erstelle ein Standard-Objekt
   if (!questionInfo) {
     questionInfo = {
@@ -698,6 +988,154 @@ function processQuestion(h3, elements, container, questionNumber, questionInfo) 
     const moveUpButton = document.createElement('button');
     moveUpButton.className = 'order-control-button';
     moveUpButton.textContent = '↑ Nach oben';
+    moveUpButton.addEventListener('click', function() {
+      moveSelectedItem(sortableList, -1);
+    });
+    
+    const moveDownButton = document.createElement('button');
+    moveDownButton.className = 'order-control-button';
+    moveDownButton.textContent = '↓ Nach unten';
+    moveDownButton.addEventListener('click', function() {
+      moveSelectedItem(sortableList, 1);
+    });
+    
+    controlsContainer.appendChild(moveUpButton);
+    controlsContainer.appendChild(moveDownButton);
+    orderContainer.appendChild(controlsContainer);
+    
+    // Funktion zum Verschieben eines ausgewählten Elements
+    function moveSelectedItem(container, direction) {
+      const selected = container.querySelector('.order-item.selected');
+      if (!selected) {
+        alert('Bitte wähle zuerst ein Element aus.');
+        return;
+      }
+      
+      const itemContainer = selected.parentNode;
+      const index = Array.from(container.children).indexOf(itemContainer);
+      const newIndex = index + direction;
+      
+      // Prüfe, ob die neue Position gültig ist
+      if (newIndex >= 0 && newIndex < container.children.length) {
+        if (direction > 0) {
+          container.insertBefore(itemContainer, container.children[newIndex + 1]);
+        } else {
+          container.insertBefore(itemContainer, container.children[newIndex]);
+        }
+        
+        // Aktualisiere die Nummerierung
+        updateOrderNumbers(container);
+      }
+    }
+    
+    // Klick-Ereignis für die Auswahl von Elementen
+    sortableList.addEventListener('click', function(e) {
+      const item = e.target.closest('.order-item');
+      if (item) {
+        // Entferne die Auswahl von allen anderen Elementen
+        Array.from(this.querySelectorAll('.order-item')).forEach(el => {
+          el.classList.remove('selected');
+        });
+        
+        // Markiere das angeklickte Element
+        item.classList.add('selected');
+      }
+    });
+    
+    formattedQuestion.appendChild(orderContainer);
+    
+    // Hilfsfunktion zum Mischen eines Arrays
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+  }
+        // Einfügen an der richtigen Position
+        if (insertAfter) {
+          this.insertBefore(draggedItem, targetContainer.nextSibling);
+        } else {
+          this.insertBefore(draggedItem, targetContainer);
+        }
+        
+        // Aktualisiere die Nummerierung
+        updateOrderNumbers(this);
+      }
+      
+      clearDropEffects(this);
+    });
+    
+    // Hilfsfunktionen für das Drag & Drop
+    function findDropTarget(clientY, container) {
+      return Array.from(container.children).find(child => {
+        const rect = child.getBoundingClientRect();
+        return clientY >= rect.top && clientY <= rect.bottom;
+      });
+    }
+    
+    function clearDropEffects(container) {
+      Array.from(container.children).forEach(child => {
+        child.classList.remove('drop-before', 'drop-after');
+      });
+    }
+    
+    function updateOrderNumbers(container) {
+      Array.from(container.children).forEach((child, index) => {
+        const numberLabel = child.querySelector('.order-number');
+        if (numberLabel) {
+          numberLabel.textContent = (index + 1) + '.';
+        }
+      });
+    }
+    
+    orderContainer.appendChild(sortableList);
+    
+    // Füge Buttons zum Verschieben hinzu
+    const controlsContainer = document.createElement('div');
+    controlsContainer.className = 'order-controls';
+    
+    // Hilfsfunktion zum Mischen eines Arrays
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+  }
+  else {
+    // Fallback für unerkannte Fragetypen - setze trotzdem ein Textfeld
+    const fallbackContainer = document.createElement('div');
+    fallbackContainer.className = 'text-input-container';
+    
+    const fallbackTextarea = document.createElement('textarea');
+    fallbackTextarea.className = 'text-answer';
+    fallbackTextarea.placeholder = 'Deine Antwort hier eingeben...';
+    
+    const fallbackNote = document.createElement('div');
+    fallbackNote.className = 'fallback-note';
+    fallbackNote.textContent = 'Hinweis: Fragetyp konnte nicht automatisch erkannt werden';
+    fallbackNote.style.fontSize = '0.8em';
+    fallbackNote.style.color = '#c00';
+    
+    fallbackContainer.appendChild(fallbackTextarea);
+    fallbackContainer.appendChild(fallbackNote);
+    
+    formattedQuestion.appendChild(fallbackContainer);
+    formattedQuestion.setAttribute('data-type', 'unknown');
+  }
+  
+  // Feedback-Bereich hinzufügen
+  const feedbackDiv = document.createElement('div');
+  feedbackDiv.className = 'feedback';
+  feedbackDiv.style.display = 'none';
+  formattedQuestion.appendChild(feedbackDiv);
+  
+  // Frage zum Container hinzufügen
+  container.appendChild(formattedQuestion);
+}Button.textContent = '↑ Nach oben';
     moveUpButton.addEventListener('click', function() {
       moveSelectedItem(sortableList, -1);
     });
