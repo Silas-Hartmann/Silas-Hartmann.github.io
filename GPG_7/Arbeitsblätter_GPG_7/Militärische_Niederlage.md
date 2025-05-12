@@ -41,4 +41,4 @@ Die deutsche Oberste Heeresleitung unter General Ludendorff forderte am 29. Sept
 - C) Bulgarien, Osmanisches Reich, Österreich-Ungarn (richtige Option)
 - D) Alle kapitulierten am selben Tag
 
-🏠 zurück zur [Übersicht](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs.md)
+🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)

@@ -7,12 +7,13 @@
 
 Dafür gibt es mehrere Gründe: 
 
-- [Militärische Niederlage](GPG_7/Arbeitsblätter_GPG_7/Militärische%20Niederlage.md)
-- [Kriegseintritt der USA](GPG_7/Arbeitsblätter_GPG_7/Kriegseintritt%20der%20USA.md)
-- [wirtschaftliche und gesellschaftliche Erschöpfung](GPG_7/Arbeitsblätter_GPG_7/wirtschaftliche%20und%20gesellschaftliche%20Erschöpfung.md)
-- [Politische Revolutionen](GPG_7/Arbeitsblätter_GPG_7/Politische%20Revolutionen.md)
+[Politische_Revolutionen](GPG_7/Arbeitsblätter_GPG_7/Politische_Revolutionen.md)
+[Militärische_Niederlage](GPG_7/Arbeitsblätter_GPG_7/Militärische_Niederlage.md)
+[Kriegseintritt_der USA](GPG_7/Arbeitsblätter_GPG_7/Kriegseintritt_der%20USA.md)
+[wirtschaftliche_und_gesellschaftliche_Erschöpfung](GPG_7/Arbeitsblätter_GPG_7/wirtschaftliche_und_gesellschaftliche_Erschöpfung.md)
+
 
 ---
 
-🏠 zurück zur [Startseite](index.md)
+🏠 zurück zur [Startseite](../../index.md)
 

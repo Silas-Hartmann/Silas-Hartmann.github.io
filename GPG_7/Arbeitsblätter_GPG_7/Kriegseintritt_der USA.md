@@ -45,4 +45,4 @@ Gegen diese neue Übermacht konnte Deutschland langfristig nicht bestehen. Die a
 - C) Nur finanzielle Unterstützung
 - D) Waffen, Munition, Lebensmittel und finanzielle Unterstützung (richtige Option)
 
-🏠 zurück zur [Übersicht](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs.md)
+🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
