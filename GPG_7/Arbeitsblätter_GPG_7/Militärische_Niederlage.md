@@ -51,4 +51,5 @@ Schreibe dir einen Satz in eigenen Worten auf einen Notizzettel!
 
 Danach kannst du deine Ergebnisse unten kontrollieren und 🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
 ![Sharing articles-pana](../../Sharing%20articles-pana.png)
+<a href="https://storyset.com/online">Online illustrations by Storyset</a>
 
