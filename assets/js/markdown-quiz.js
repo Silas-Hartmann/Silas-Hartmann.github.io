@@ -3,63 +3,98 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Quiz-System wird geladen...');
   
+  // Warten auf ein kurzes Delay, um sicherzustellen, dass das DOM vollständig geladen ist
+  setTimeout(function() {
+    initializeQuizSystem();
+  }, 500); // Kurzes Delay für DOM-Stabilität
+});
+
+function initializeQuizSystem() {
   // Wir sammeln alle h3-Überschriften als potentielle Quizfragen
   const quizQuestions = document.querySelectorAll('h3');
   console.log(`${quizQuestions.length} potentielle Quizfragen gefunden`);
   
   if (quizQuestions.length === 0) return;
   
-  // Erstelle einen Container für alle Quiz-Fragen
-  const quizContainer = document.createElement('div');
-  quizContainer.className = 'quiz-container';
+  // Debug-Information
+  console.log('Quiz-Überschriften gefunden:');
+  quizQuestions.forEach((h3, index) => {
+    console.log(`${index + 1}: "${h3.textContent.trim()}"`);
+  });
   
   // Zähler für die Fragen
   let questionCount = 0;
   
   // Verarbeite jede h3-Überschrift als potentielle Quizfrage
   quizQuestions.forEach((h3, index) => {
-    // Sammeln der relevanten Elemente für diese Frage
-    const questionElements = collectQuestionElements(h3);
-    
-    // Prüfen, ob es sich um eine Aufgabe handelt und welchen Typ sie hat
-    const questionInfo = identifyQuestionType(h3, questionElements);
-    
-    if (questionElements.length > 0 && questionInfo.isQuizQuestion) {
-      questionCount++;
+    try {
+      // Debug-Info für jede Überschrift
+      console.log(`Verarbeite Überschrift: "${h3.textContent.trim()}"`);
       
-      // Wir erstellen einen Container für diese Frage
-      const questionContainer = document.createElement('div');
-      questionContainer.className = 'interactive-quiz-question';
-      questionContainer.id = `quiz-question-${questionCount}`;
+      // Sammeln der relevanten Elemente für diese Frage
+      const questionElements = collectQuestionElements(h3);
+      console.log(`- ${questionElements.length} zugehörige Elemente gefunden`);
+      
+      // Prüfen, ob es sich um eine Aufgabe handelt und welchen Typ sie hat
+      const questionInfo = identifyQuestionType(h3, questionElements);
+      console.log(`- Fragetyp: ${questionInfo.type}, isQuizQuestion: ${questionInfo.isQuizQuestion}`);
+      
+      // Das Muster für Aufgaben-Überschriften, die den Marker [MC], [SC] usw. enthalten
+      // Verbesserte Regex, die auch Überschriften ohne Aufgabe-Wort erkennt
+      const aufgabenPattern = /\[(MC|SC|OFFEN|LÜCKE|ORDER)\]/i;
+      
+      // Auch Fragen verarbeiten, die durch Elemente als Quiz erkannt wurden oder die [TYP] enthalten
+      if ((questionElements.length > 0 && questionInfo.isQuizQuestion) || 
+          aufgabenPattern.test(h3.textContent.trim())) {
+        
+        console.log(`- Überschrift als Quiz-Frage erkannt`);
+        questionCount++;
+        
+        // Wir erstellen einen Container für diese Frage
+        const questionContainer = document.createElement('div');
+        questionContainer.className = 'interactive-quiz-question';
+        questionContainer.id = `quiz-question-${questionCount}`;
       
       // Verarbeite die Frage und füge sie zum Container hinzu
       processQuestion(h3, questionElements, questionContainer, questionCount, questionInfo.type);
       
-      // Füge die Frage zum Quiz-Container hinzu
-      quizContainer.appendChild(questionContainer);
+      // Füge die Frage direkt vor die Aufgaben-Überschrift ein
+      h3.parentNode.insertBefore(questionContainer, h3);
       
-      // Verstecke die ursprünglichen Elemente
-      h3.style.display = 'none';
-      questionElements.forEach(el => {
-        el.style.display = 'none';
-      });
+      // Entferne NUR die Aufgaben-Überschrift und die zugehörigen Elemente bis zur nächsten HR
+      let el = h3.nextElementSibling;
+      while (el && el.tagName !== 'HR') {
+        const toRemove = el;
+        el = el.nextElementSibling;
+        toRemove.parentNode.removeChild(toRemove);
+      }
       
-      // Füge den Container nach der Überschrift ein
-      h3.parentNode.insertBefore(questionContainer, h3.nextSibling);
+      // Entferne die Aufgaben-Überschrift selbst
+      h3.parentNode.removeChild(h3);
+      
+      // Entferne die HR-Trennlinie (falls vorhanden)
+      if (el && el.tagName === 'HR') {
+        el.parentNode.removeChild(el);
+      }
+    } else {
+      console.log(`- Überschrift nicht als Quiz-Frage erkannt`);
     }
   });
   
-  // Wenn Quizfragen gefunden wurden, füge einen "Antworten überprüfen" Button am Ende der Seite hinzu
+  // Button-Logik wie gehabt, aber nur einfügen, wenn mindestens eine Aufgabe erkannt wurde
   if (questionCount > 0) {
+    console.log(`Insgesamt ${questionCount} Quiz-Fragen erfolgreich verarbeitet`);
+    
+    const mainContent = document.querySelector('.page-content .wrapper') || 
+                        document.querySelector('main') || 
+                        document.body;
+    
     const checkButton = document.createElement('button');
     checkButton.textContent = 'Alle Antworten überprüfen';
     checkButton.className = 'check-all-answers-btn';
     checkButton.addEventListener('click', function() {
       checkAllAnswers();
     });
-    
-    // Füge den Button am Ende der Seite ein
-    const mainContent = document.querySelector('main') || document.body;
     mainContent.appendChild(checkButton);
     
     // Füge auch einen Container für das Gesamtergebnis hinzu
@@ -68,19 +103,24 @@ document.addEventListener('DOMContentLoaded', function() {
     resultContainer.className = 'quiz-total-result';
     resultContainer.style.display = 'none';
     mainContent.appendChild(resultContainer);
+  } else {
+    console.log('Keine Quiz-Fragen zum Verarbeiten gefunden');
   }
-});
+}
 
-// Neue Funktion zur Identifikation des Aufgabentyps anhand der Überschrift und Elemente
+// Verbesserte Funktion zur Identifikation des Aufgabentyps anhand der Überschrift und Elemente
 function identifyQuestionType(h3, elements) {
   const result = {
     isQuizQuestion: false,
     type: 'unknown'
   };
   
-  // Prüfen, ob es das Muster "### Aufgabe X [TYP]" gibt oder ob die Überschrift selbst "Aufgabe" enthält
+  // Zunächst den Überschriftstext untersuchen
   const headingText = h3.textContent.trim();
-  const typePattern = /Aufgabe\s+\d+\s*\[([^\]]+)\]/i;
+  
+  // Prüfen, ob es das Muster mit [TYP] in der Überschrift gibt
+  // Unterstützt sowohl "Aufgabe X [TYP]" als auch nur "[TYP]" oder "Frage X [TYP]"
+  const typePattern = /\[(MC|SC|OFFEN|LÜCKE|ORDER)\]/i;
   const typeMatch = headingText.match(typePattern);
   
   if (typeMatch) {
@@ -101,6 +141,9 @@ function identifyQuestionType(h3, elements) {
       case 'LÜCKE':
         result.type = 'gap-text';
         break;
+      case 'ORDER':
+        result.type = 'order';
+        break;
       default:
         result.type = 'unknown';
     }
@@ -108,7 +151,9 @@ function identifyQuestionType(h3, elements) {
     return result;
   }
   
-  // Falls kein [TYP] gefunden wurde, verwende die bisherige Logik
+  // Falls kein [TYP] gefunden wurde, analysiere den Inhalt der Frage
+  if (elements.length === 0) return result;
+  
   // Überprüfen, ob ein Lückentext vorliegt
   if (elements.some(el => el.textContent.includes('Lücken:'))) {
     result.isQuizQuestion = true;
@@ -123,7 +168,7 @@ function identifyQuestionType(h3, elements) {
     return result;
   }
   
-  // Überprüfen, ob eine UL mit Checkboxen vorliegt
+  // Überprüfen, ob eine UL mit Optionen vorliegt
   const ulElement = elements.find(el => el.tagName === 'UL');
   if (ulElement) {
     const listItems = ulElement.querySelectorAll('li');
@@ -137,11 +182,18 @@ function identifyQuestionType(h3, elements) {
     
     if (hasCorrectMarker) {
       result.isQuizQuestion = true;
-      result.type = 'multiple-choice';
+      // Wenn nur eine richtige Option markiert ist, könnte es Single-Choice sein
+      const correctOptions = Array.from(listItems).filter(item => {
+        return item.textContent.includes('(richtige Option)') || 
+               item.textContent.includes('(correct)') || 
+               item.textContent.includes('(richtig)');
+      });
+      
+      result.type = correctOptions.length === 1 ? 'single-choice' : 'multiple-choice';
       return result;
     }
     
-    // Überprüfen auf Checkboxen - nur als Quiz betrachten, wenn Checkboxen vorhanden sind
+    // Überprüfen auf Checkboxen-Format
     const hasCheckboxes = Array.from(listItems).some(item => {
       const itemText = item.textContent.trim();
       return itemText.startsWith('[ ]') || itemText.startsWith('[x]') || itemText.startsWith('[X]');
@@ -152,6 +204,14 @@ function identifyQuestionType(h3, elements) {
       result.type = 'multiple-choice';
       return result;
     }
+  }
+  
+  // Überprüfen auf ORDER-Typ (nummerierte Liste)
+  const olElement = elements.find(el => el.tagName === 'OL');
+  if (olElement) {
+    result.isQuizQuestion = true;
+    result.type = 'order';
+    return result;
   }
   
   return result;
@@ -386,7 +446,7 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
     
     formattedQuestion.appendChild(inputContainer);
   }
-  else if (questionType === 'gap-text' && gapText && gapAnswers.length > 0) {
+  else if (questionType === 'gap-text') {
     formattedQuestion.setAttribute('data-type', 'gap-text');
     formattedQuestion.setAttribute('data-correct', JSON.stringify(gapAnswers));
     
@@ -496,6 +556,92 @@ function processQuestion(h3, elements, container, questionNumber, questionType =
     });
     
     formattedQuestion.appendChild(gapContainer);
+  } else if (questionType === 'order') {
+    // ORDER-Aufgabe: Nummerierte Liste als Drag-and-Drop-Sortieraufgabe
+    // 1. Finde die OL oder nummerierte LI-Elemente
+    let orderItems = [];
+    let correctOrder = [];
+    let olElement = elements.find(el => el.tagName === 'OL');
+    if (olElement) {
+      // OL vorhanden
+      orderItems = Array.from(olElement.querySelectorAll('li')).map(li => li.textContent.trim());
+    } else {
+      // Fallback: Suche nach Zeilen, die wie "1. ..." beginnen
+      elements.forEach(el => {
+        if (/^\d+\.\s+/.test(el.textContent.trim())) {
+          orderItems.push(el.textContent.trim().replace(/^\d+\.\s+/, ''));
+        }
+      });
+    }
+    correctOrder = [...orderItems];
+    // Mische die Reihenfolge für die Anzeige
+    let shuffled = [...orderItems];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    formattedQuestion.setAttribute('data-type', 'order');
+    formattedQuestion.setAttribute('data-correct', JSON.stringify(correctOrder));
+    // Drag-and-Drop-Liste
+    const orderContainer = document.createElement('div');
+    orderContainer.className = 'order-container';
+    shuffled.forEach((itemText, idx) => {
+      const item = document.createElement('div');
+      item.className = 'order-item';
+      item.setAttribute('draggable', 'true');
+      item.setAttribute('data-index', idx);
+      item.textContent = itemText;
+      orderContainer.appendChild(item);
+    });
+    // Drag-and-Drop-Logik
+    let dragSrcEl = null;
+    orderContainer.addEventListener('dragstart', function(e) {
+      if (e.target.classList.contains('order-item')) {
+        dragSrcEl = e.target;
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', e.target.textContent);
+        setTimeout(() => { e.target.classList.add('dragging'); }, 0);
+      }
+    });
+    orderContainer.addEventListener('dragend', function(e) {
+      if (e.target.classList.contains('order-item')) {
+        e.target.classList.remove('dragging');
+      }
+    });
+    orderContainer.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      if (e.target.classList.contains('order-item')) {
+        e.target.classList.add('drag-over');
+      }
+    });
+    orderContainer.addEventListener('dragleave', function(e) {
+      if (e.target.classList.contains('order-item')) {
+        e.target.classList.remove('drag-over');
+      }
+    });
+    orderContainer.addEventListener('drop', function(e) {
+      e.preventDefault();
+      if (e.target.classList.contains('order-item') && dragSrcEl && dragSrcEl !== e.target) {
+        e.target.classList.remove('drag-over');
+        // Elemente tauschen
+        const items = Array.from(orderContainer.children);
+        const fromIdx = items.indexOf(dragSrcEl);
+        const toIdx = items.indexOf(e.target);
+        if (fromIdx > -1 && toIdx > -1) {
+          if (fromIdx < toIdx) {
+            orderContainer.insertBefore(dragSrcEl, e.target.nextSibling);
+          } else {
+            orderContainer.insertBefore(dragSrcEl, e.target);
+          }
+        }
+      }
+    });
+    formattedQuestion.appendChild(orderContainer);
+    // Hinweistext
+    const infoDiv = document.createElement('div');
+    infoDiv.textContent = 'Ziehe die Aussagen in die richtige Reihenfolge!';
+    infoDiv.className = 'order-hint';
+    formattedQuestion.appendChild(infoDiv);
   } else {
     // Fallback für unerkannte Fragetypen - setze trotzdem ein Textfeld
     const fallbackContainer = document.createElement('div');
@@ -706,9 +852,6 @@ function checkAllAnswers() {
             allCorrect = false;
             
             // Zeige die korrekte Antwort an
-            if (correctAnswers[gapIndex]) {
-              const correctAnswer = correctAnswers[gapIndex].split('|')[0].trim();
-              dropZone.innerHTML = `<div class="gap-correct-answer">${correctAnswer}</div>`;
               if (correctAnswers[gapIndex]) {
               const correctAnswer = correctAnswers[gapIndex].split('|')[0].trim();
               dropZone.innerHTML = `<div class="gap-correct-answer">${correctAnswer}</div>`;
@@ -760,6 +903,38 @@ function checkAllAnswers() {
         console.error('Fehler beim Parsen der korrekten Antworten:', error);
         feedbackDiv.textContent = 'Fehler bei der Lückentext-Prüfung: ' + error.message;
         feedbackDiv.className = 'feedback no-answer';
+      }
+    } else if (type === 'order') {
+      // Überprüfung für Sortieraufgabe
+      const orderItems = Array.from(question.querySelectorAll('.order-item'));
+      const userOrder = orderItems.map(item => item.textContent.trim());
+      let correctOrder = [];
+      try {
+        correctOrder = JSON.parse(correctAnswer);
+      } catch (e) {
+        feedbackDiv.textContent = 'Fehler bei der Auswertung.';
+        feedbackDiv.className = 'feedback no-answer';
+        return;
+      }
+      if (userOrder.length !== correctOrder.length) {
+        feedbackDiv.textContent = 'Fehler: Anzahl der Elemente stimmt nicht.';
+        feedbackDiv.className = 'feedback no-answer';
+        return;
+      }
+      let allCorrect = true;
+      for (let i = 0; i < userOrder.length; i++) {
+        if (userOrder[i] !== correctOrder[i]) {
+          allCorrect = false;
+          break;
+        }
+      }
+      if (allCorrect) {
+        feedbackDiv.textContent = 'Richtige Reihenfolge!';
+        feedbackDiv.className = 'feedback correct';
+        correctCount++;
+      } else {
+        feedbackDiv.textContent = 'Die Reihenfolge stimmt noch nicht.';
+        feedbackDiv.className = 'feedback incorrect';
       }
     }
   });
