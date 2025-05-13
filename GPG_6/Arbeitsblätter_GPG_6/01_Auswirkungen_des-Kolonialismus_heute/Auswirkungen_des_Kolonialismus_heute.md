@@ -13,3 +13,15 @@
 ## 🏎️ Aufgabe für Schnelle: Was kannst du noch darüber erfahren, wie das Leben für die Sklaven in Amerika war? 
 
 Lies zum Beispiel [diesen Artikel](https://www.planet-wissen.de/geschichte/menschenrechte/sklaverei/pwiesklavenfueramerika100.html), oder suche im Internet nach weiteren Informationen
+
+----
+
+# Das Lied: "Steal Away"
+
+Das Lied **„Steal Away“** wurde von Menschen gesungen, die als Sklaven auf Plantagen in Amerika arbeiten mussten. Für sie war das Leben sehr schwer: Sie mussten hart arbeiten, hatten kaum Rechte und wurden oft schlecht behandelt. Viele Sklaven fanden Trost in der Musik. Sie sangen Lieder, um ihre Gefühle auszudrücken – zum Beispiel Traurigkeit, Angst, aber auch Hoffnung.
+
+„Steal Away“ bedeutet auf Deutsch „Davonschleichen“ oder „Heimlich weggehen“. In diesem Lied geht es darum, dass jemand davon träumt, frei zu sein und zu entkommen. Das Lied klingt traurig, aber auch hoffnungsvoll. Manche Sklaven benutzten solche Lieder sogar, um sich heimlich Nachrichten zu schicken, zum Beispiel, wenn sie eine Flucht planten.
+
+Wenn ihr das Lied gleich hört, achtet darauf, welche Gefühle darin stecken. Wie klingt die Musik? Was denkt ihr, wollten die Menschen mit diesem Lied sagen?
+
+![Steal away - Mahalia Jackson](https://www.youtube.com/watch?v=-O5hz5KnSdc)
