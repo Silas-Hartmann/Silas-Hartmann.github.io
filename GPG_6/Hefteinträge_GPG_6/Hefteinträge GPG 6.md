@@ -77,3 +77,27 @@ Die drei G:
 >CO2 sorgt dafür, dass es auf der Erde wärmer wird. 
 >Das bedeutet, dass es auf der Erde ohne den Amazonas-Regenwald viel wärmer werden würde!
 
+
+---
+
+## Wie sah das Leben als Sklave in Amerika aus?
+
+### 1. Arbeit
+- Bis zu 18 Stunden täglich
+- schwere Arbeit auf dem Feld
+
+### 2. Lebensbedingungen
+- Einfache Hütten
+- Schlechte Ernährung
+- Keine Bildung erlaubt
+
+### 3. Rechtliche Stellung
+- Eigentum des Besitzers, wie ein Gegenstand
+- Keine Menschenrechte
+- Familien wurden getrennt
+
+### 4. Widerstand
+- Fluchtversuche
+- Spirituals (religiöse Lieder)
+- Bewahrung der Kultur
+
