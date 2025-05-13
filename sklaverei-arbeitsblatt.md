@@ -4,23 +4,11 @@
 
 Die Sklaven in Amerika hatten ein sehr schweres Leben. Sie waren aus Afrika nach Amerika verschleppt worden und mussten dort hart arbeiten. Besonders in den Südstaaten der USA und in Mittel- und Südamerika wurden viele Sklaven auf Plantagen eingesetzt.
 
-**Arbeit und Alltag**
-
 Die Sklaven mussten täglich bis zu 18 Stunden arbeiten. Sie begannen ihre Arbeit bei Sonnenaufgang und arbeiteten oft bis in die Nacht hinein. Hauptsächlich bauten sie Baumwolle, Tabak, Kaffee, Zuckerrohr oder Reis an. Die Arbeit auf den Feldern war sehr anstrengend, besonders bei großer Hitze. Viele Sklaven starben durch die harte Arbeit oder wurden krank.
 
-**Lebensbedingungen**
+Die Lebensbedingungen waren sehr schlecht. Die Sklaven lebten in einfachen Hütten, die oft nur aus einem Raum bestanden. Mehrere Personen mussten sich den kleinen Raum teilen. Sie bekamen nur wenig zu essen, meist Mais, etwas Gemüse und selten Fleisch. Ihre Kleidung war einfach und schlecht. Da Sklaven als Eigentum galten, durften sie nicht zur Schule gehen. Das Lesen und Schreiben war ihnen oft verboten.
 
-Die Sklaven lebten in einfachen Hütten, die oft nur aus einem Raum bestanden. Mehrere Personen mussten sich den kleinen Raum teilen. Sie bekamen nur wenig zu essen, meist Mais, etwas Gemüse und selten Fleisch. Ihre Kleidung war einfach und schlecht. Da Sklaven als Eigentum galten, durften sie nicht zur Schule gehen. Das Lesen und Schreiben war ihnen oft verboten.
-
-**Rechte und Regeln**
-
-Sklaven galten als Besitz ihrer Herren, nicht als Menschen mit Rechten. Sie konnten wie Gegenstände gekauft und verkauft werden. Dabei wurden Familien oft auseinandergerissen. Eltern und Kinder, Ehepartner oder Geschwister wurden an verschiedene Besitzer verkauft und sahen sich nie wieder. Sklaven durften sich nicht frei bewegen und brauchten für alles die Erlaubnis ihrer Besitzer.
-
-**Strafen und Kontrolle**
-
-Wenn Sklaven nicht gehorchten oder zu langsam arbeiteten, wurden sie bestraft. Häufige Strafen waren Auspeitschen, Nahrungsentzug oder Isolation. Die Aufseher auf den Plantagen waren oft sehr grausam. Sklaven, die zu fliehen versuchten, wurden gejagt und schwer bestraft, wenn man sie fand.
-
-**Widerstand**
+Sklaven hatten keine Rechte und galten als Besitz ihrer Herren, nicht als Menschen. Sie konnten wie Gegenstände gekauft und verkauft werden. Dabei wurden Familien oft auseinandergerissen. Eltern und Kinder, Ehepartner oder Geschwister wurden an verschiedene Besitzer verkauft und sahen sich nie wieder. Wenn Sklaven nicht gehorchten oder zu langsam arbeiteten, wurden sie bestraft. Häufige Strafen waren Auspeitschen, Nahrungsentzug oder Isolation. Die Aufseher auf den Plantagen waren oft sehr grausam.
 
 Trotz der strengen Kontrolle leisteten viele Sklaven Widerstand. Einige versuchten zu fliehen, besonders in den Norden der USA, wo die Sklaverei verboten war. Andere sabotierten ihre Arbeit, indem sie Werkzeuge zerbrachen oder langsam arbeiteten. Die Sklaven bewahrten auch ihre Kultur und Traditionen. Sie erzählten Geschichten aus Afrika und sangen Lieder, die oft versteckte Botschaften enthielten. Diese Lieder, genannt "Spirituals", vermischten christliche Themen mit Hoffnungen auf Freiheit.
 
