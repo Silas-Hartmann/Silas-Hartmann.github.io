@@ -59,4 +59,8 @@ Welche Formen des Widerstands nutzten Sklaven? (Mehrere Antworten möglich)
 Erkläre, warum das Auseinanderreißen von Familien für die Sklaven besonders schlimm war und welche Folgen dies hatte.
 
 Antwort: Das Auseinanderreißen von Familien war besonders schlimm, weil die Sklaven dadurch ihre engsten Bezugspersonen und emotionale Unterstützung verloren. Eltern konnten ihre Kinder nicht aufwachsen sehen, Ehepartner wurden getrennt und Geschwister verloren den Kontakt zueinander. Dies führte zu großem seelischen Leid und zerstörte wichtige familiäre Bindungen. Die Sklaven verloren dadurch nicht nur ihre Heimat und Freiheit, sondern auch ihre Familienstrukturen, die ihnen Halt hätten geben können.
+
 ---
+
+🏠 Zurück zum [heutigen Thema](Auswirkungen_des_Kolonialismus_heute)
+
