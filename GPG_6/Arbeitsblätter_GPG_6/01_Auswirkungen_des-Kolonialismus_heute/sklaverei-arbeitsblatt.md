@@ -1,5 +1,6 @@
 # Das Leben als Sklave in Amerika
 
+![Bild_Sklavenkinder](https://www.planet-wissen.de/geschichte/menschenrechte/sklaverei/sklaverei-schiff-100~_v-gseagaleriexl.jpg)
 ## Sachtext: Leben in der Sklaverei
 
 Die Sklaven in Amerika hatten ein sehr schweres Leben. Sie waren aus Afrika nach Amerika verschleppt worden und mussten dort hart arbeiten. Besonders in den Südstaaten der USA und in Mittel- und Südamerika wurden viele Sklaven auf Plantagen eingesetzt.
