@@ -11,7 +11,7 @@ Bitte wähle die richtige Jahrgangsstufe:
 - Klasse 6: ➡️ [Auswirkungen des Kolonialismus heute](GPG_6/Arbeitsblätter_GPG_6/01_Auswirkungen_des-Kolonialismus_heute/Auswirkungen_des_Kolonialismus_heute)
 - Klasse 7: ➡️ 
 	  - [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
-	  - [[Barocke_Archtiektur]]
+	  - [Barocke_Archtiektur](Kunst_7/Barocke_Archtiektur)
 
  
 ---
