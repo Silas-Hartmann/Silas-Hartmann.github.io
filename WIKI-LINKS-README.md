@@ -8,7 +8,7 @@ Das Skript:
 
 1. Durchsucht alle Markdown-Dateien (`.md`) im Repository
 2. Findet alle Wiki-Links im Format `[[Link]]` oder `[[Link|Text]]`
-3. Wandelt diese in Markdown-Links im Format `[Text](Link.html)` um
+3. Wandelt diese in Markdown-Links im Format `[[Link.html|Text]]` um
 4. Speichert die Dateien mit den umgewandelten Links
 
 ## Vorteile
@@ -43,14 +43,14 @@ Sie können dieses Skript in Ihren GitHub-Workflow integrieren, um die Links aut
 
 ### Vor der Konvertierung (in Obsidian):
 ```markdown
-Hier ist ein Link zu [[Das_Ende_des_ersten_Weltkriegs]].
-Und hier ist ein Link mit benutzerdefiniertem Text: [[Das_Ende_des_ersten_Weltkriegs|Ende des Krieges]].
+Hier ist ein Link zu [[Das_Ende_des_ersten_Weltkriegs.md]].
+Und hier ist ein Link mit benutzerdefiniertem Text: [[Das_Ende_des_ersten_Weltkriegs.md|Ende des Krieges]].
 ```
 
 ### Nach der Konvertierung (für GitHub Pages):
 ```markdown
-Hier ist ein Link zu [Das_Ende_des_ersten_Weltkriegs](Das_Ende_des_ersten_Weltkriegs.html).
-Und hier ist ein Link mit benutzerdefiniertem Text: [Ende des Krieges](Das_Ende_des_ersten_Weltkriegs.html).
+Hier ist ein Link zu [[Das_Ende_des_ersten_Weltkriegs.html|Das_Ende_des_ersten_Weltkriegs]].
+Und hier ist ein Link mit benutzerdefiniertem Text: [[Das_Ende_des_ersten_Weltkriegs.html|Ende des Krieges]].
 ```
 
 ## Anpassung
