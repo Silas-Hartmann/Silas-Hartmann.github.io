@@ -6,8 +6,7 @@
 
 *im Bild: Ein Sklavenschiff, mit dem Menschen von Afrika nach Amerika gebracht wurden. Quelle: Planet Wissen*
 
-![Video zur Geschichte des Kolonialismus](https://www.youtube.com/watch?v=xuYw-YMSJfc)
-
+<iframe width="864" height="486" src="https://www.youtube.com/embed/xuYw-YMSJfc" title="Die Geschichte des Kolonialismus | Easy erklärt | Doku" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 *Video: [Geschichte des Kolonialismus](https://www.planet-wissen.de/geschichte/menschenrechte/sklaverei/pwiesklavenfueramerika100.html)*
 
 ## 🏎️ Aufgabe für Schnelle: Was kannst du noch darüber erfahren, wie das Leben für die Sklaven in Amerika war? 
@@ -24,4 +23,4 @@ Das Lied **„Steal Away“** wurde von Menschen gesungen, die als Sklaven auf P
 
 Wenn ihr das Lied gleich hört, achtet darauf, welche Gefühle darin stecken. Wie klingt die Musik? Was denkt ihr, wollten die Menschen mit diesem Lied sagen?
 
-![Steal away - Mahalia Jackson](https://www.youtube.com/watch?v=-O5hz5KnSdc)
+<iframe width="648" height="486" src="https://www.youtube.com/embed/-O5hz5KnSdc" title="Steal Away-Mahalia Jackson &amp; Nat King Cole from Emeless" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
