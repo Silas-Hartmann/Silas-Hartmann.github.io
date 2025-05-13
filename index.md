@@ -8,7 +8,7 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 Bitte wähle die richtige Jahrgangsstufe:
 
-- Klasse 6: 
+- Klasse 6: ➡️ [[Auswirkungen_des_Kolonialismus_heute|Auswirkungen des Kolonialismus heute]]
 - Klasse 7: ➡️ [[Das_Ende_des_ersten_Weltkriegs]]
  
 ---
