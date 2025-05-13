@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Konfiguration
-const repoPath = '.'; // Aktuelles Verzeichnis (passen Sie das an, wenn Sie das Skript von einem anderen Verzeichnis aus ausführen)
+const repoPath = '.'; // Aktuelles Verzeichnis
 const fileExtension = '.md'; // Dateierweiterung der zu verarbeitenden Dateien
 
 // Regex-Pattern für Wiki-Links
@@ -10,13 +10,50 @@ const fileExtension = '.md'; // Dateierweiterung der zu verarbeitenden Dateien
 const wikiLinkRegex = /\[\[(.*?)(?:\|(.*?))?\]\]/g;
 
 // Funktion zum Umwandeln von Wiki-Links in Markdown-Links
-function convertWikiLinksToMarkdown(content) {
+function convertWikiLinksToMarkdown(content, sourceFilePath) {
   return content.replace(wikiLinkRegex, (match, link, altText) => {
     // Wenn kein alternativer Text vorhanden ist, verwenden wir den Link als Text
     const displayText = altText || link;
     
-    // Erstelle den Markdown-Link mit .html-Endung
-    return `[${displayText}](${link}.html)`;
+    // Prüfe, ob der Link bereits einen Pfad enthält
+    let linkPath = link;
+    let targetFileExists = false;
+    
+    // Checke, ob die Datei existiert (mit oder ohne .md-Endung)
+    const possiblePaths = [
+      path.join(path.dirname(sourceFilePath), `${linkPath}.md`),
+      path.join(path.dirname(sourceFilePath), linkPath, 'index.md'),
+      path.join(repoPath, `${linkPath}.md`),
+      path.join(repoPath, linkPath, 'index.md')
+    ];
+    
+    let finalPath = linkPath;
+    for (const pathToCheck of possiblePaths) {
+      if (fs.existsSync(pathToCheck)) {
+        // Datei gefunden, berechne relativen Pfad
+        const relPath = path.relative(path.dirname(sourceFilePath), path.dirname(pathToCheck));
+        const fileName = path.basename(pathToCheck, '.md');
+        
+        // Kombiniere relativen Pfad und Dateinamen
+        finalPath = relPath !== '' 
+          ? `${relPath}/${fileName === 'index' ? '' : fileName}`
+          : fileName;
+          
+        if (finalPath === '') finalPath = '.';
+        if (finalPath !== '.' && !finalPath.endsWith('/')) finalPath += '.html';
+        
+        targetFileExists = true;
+        break;
+      }
+    }
+    
+    // Wenn die Datei nicht gefunden wurde, verwenden wir den ursprünglichen Link mit .html-Endung
+    if (!targetFileExists) {
+      finalPath = `${linkPath}.html`;
+    }
+    
+    // Erstelle den Markdown-Link
+    return `[${displayText}](${finalPath})`;
   });
 }
 
@@ -50,7 +87,7 @@ function processFile(filePath) {
     let content = fs.readFileSync(filePath, 'utf8');
     
     // Wiki-Links in Markdown-Links umwandeln
-    const updatedContent = convertWikiLinksToMarkdown(content);
+    const updatedContent = convertWikiLinksToMarkdown(content, filePath);
     
     // Wenn Änderungen vorgenommen wurden, schreibe die aktualisierte Datei
     if (content !== updatedContent) {
