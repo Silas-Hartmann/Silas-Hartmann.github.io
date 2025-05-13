@@ -5,56 +5,50 @@ const path = require('path');
 const repoPath = '.'; // Aktuelles Verzeichnis
 const fileExtension = '.md'; // Dateierweiterung der zu verarbeitenden Dateien
 
-// Regex-Pattern für Wiki-Links
-// [[Link]] oder [[Link|Text]]
-const wikiLinkRegex = /\[\[(.*?)(?:\|(.*?))?\]\]/g;
+// Regex-Pattern für Wiki-Links - erfasst auch Bild-Links mit ![[...]]
+// Hinweis: (?<![!]) bedeutet, dass dem [[ kein ! voransteht (negative lookbehind)
+const wikiLinkRegex = /(?<!!)\[\[(.*?)(?:\|(.*?))?\]\]/g;
+const wikiImageLinkRegex = /!\[\[(.*?)\]\]/g;
+
+// Debug-Funktion zum Anzeigen von verarbeiteten Links
+function debugLink(originalText, newText, filePath) {
+  if (originalText !== newText) {
+    console.log(`\nIn Datei ${filePath}:`);
+    console.log(`Original: ${originalText}`);
+    console.log(`Neu:      ${newText}`);
+  }
+}
 
 // Funktion zum Umwandeln von Wiki-Links in Markdown-Links
 function convertWikiLinksToMarkdown(content, sourceFilePath) {
-  return content.replace(wikiLinkRegex, (match, link, altText) => {
+  let newContent = content;
+  
+  // 1. Normale Wiki-Links umwandeln
+  newContent = newContent.replace(wikiLinkRegex, (match, link, altText) => {
     // Wenn kein alternativer Text vorhanden ist, verwenden wir den Link als Text
     const displayText = altText || link;
     
-    // Prüfe, ob der Link bereits einen Pfad enthält
-    let linkPath = link;
-    let targetFileExists = false;
+    // Erstelle den Markdown-Link mit .html-Endung
+    const newLink = `[${displayText}](${link}.html)`;
     
-    // Checke, ob die Datei existiert (mit oder ohne .md-Endung)
-    const possiblePaths = [
-      path.join(path.dirname(sourceFilePath), `${linkPath}.md`),
-      path.join(path.dirname(sourceFilePath), linkPath, 'index.md'),
-      path.join(repoPath, `${linkPath}.md`),
-      path.join(repoPath, linkPath, 'index.md')
-    ];
+    // Debug-Ausgabe
+    debugLink(match, newLink, sourceFilePath);
     
-    let finalPath = linkPath;
-    for (const pathToCheck of possiblePaths) {
-      if (fs.existsSync(pathToCheck)) {
-        // Datei gefunden, berechne relativen Pfad
-        const relPath = path.relative(path.dirname(sourceFilePath), path.dirname(pathToCheck));
-        const fileName = path.basename(pathToCheck, '.md');
-        
-        // Kombiniere relativen Pfad und Dateinamen
-        finalPath = relPath !== '' 
-          ? `${relPath}/${fileName === 'index' ? '' : fileName}`
-          : fileName;
-          
-        if (finalPath === '') finalPath = '.';
-        if (finalPath !== '.' && !finalPath.endsWith('/')) finalPath += '.html';
-        
-        targetFileExists = true;
-        break;
-      }
-    }
-    
-    // Wenn die Datei nicht gefunden wurde, verwenden wir den ursprünglichen Link mit .html-Endung
-    if (!targetFileExists) {
-      finalPath = `${linkPath}.html`;
-    }
-    
-    // Erstelle den Markdown-Link
-    return `[${displayText}](${finalPath})`;
+    return newLink;
   });
+  
+  // 2. Bild-Links umwandeln
+  newContent = newContent.replace(wikiImageLinkRegex, (match, imageLink) => {
+    // Erstelle den Markdown-Bild-Link
+    const newImageLink = `![${imageLink}](${imageLink})`;
+    
+    // Debug-Ausgabe
+    debugLink(match, newImageLink, sourceFilePath);
+    
+    return newImageLink;
+  });
+  
+  return newContent;
 }
 
 // Funktion zum rekursiven Durchsuchen eines Verzeichnisses
@@ -68,7 +62,7 @@ function processDirectory(dirPath) {
     if (stats.isDirectory()) {
       // Wenn es ein Verzeichnis ist, verarbeite es rekursiv
       // Ignoriere .git und andere spezielle Verzeichnisse
-      if (item !== '.git' && item !== 'node_modules' && !item.startsWith('.')) {
+      if (item !== '.git' && item !== 'node_modules' && item !== '_site' && !item.startsWith('.')) {
         processDirectory(itemPath);
       }
     } else if (stats.isFile() && item.endsWith(fileExtension)) {
@@ -104,8 +98,24 @@ function processFile(filePath) {
 // Hauptfunktion
 function main() {
   console.log('Starte Umwandlung von Wiki-Links zu Markdown-Links...');
-  processDirectory(repoPath);
-  console.log('Umwandlung abgeschlossen!');
+  console.log(`Arbeitsverzeichnis: ${process.cwd()}`);
+  console.log('Verzeichnisinhalt:');
+  try {
+    const files = fs.readdirSync('.');
+    files.forEach(file => {
+      console.log(`- ${file}`);
+    });
+  } catch (error) {
+    console.error('Fehler beim Lesen des Verzeichnisinhalts:', error);
+  }
+  
+  try {
+    processDirectory(repoPath);
+    console.log('Umwandlung abgeschlossen!');
+  } catch (error) {
+    console.error('Fehler während der Verarbeitung:', error);
+    process.exit(1);
+  }
 }
 
 main();
