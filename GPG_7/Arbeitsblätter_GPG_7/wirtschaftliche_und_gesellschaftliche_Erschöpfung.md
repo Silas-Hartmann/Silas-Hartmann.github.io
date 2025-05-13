@@ -44,7 +44,7 @@ Die Erschöpfung der Bevölkerung und die Unruhen im Land machten es für die de
 ---
 
 
-## Zusammenfassung am Ende
+## 💬 Zusammenfassung am Ende
 
 <span style="color:rgb(255, 148, 148)">Wie hat das, was du gerade kennengelernt hast, zum Ende des Krieges geführt?</span>
 Schreibe dir einen Satz in eigenen Worten auf einen Notizzettel!
