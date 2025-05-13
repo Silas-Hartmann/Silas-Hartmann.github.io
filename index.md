@@ -10,8 +10,8 @@ Bitte wähle die richtige Jahrgangsstufe:
 
 - Klasse 6: ➡️ [Das Leben als Sklave im Kolonialismus](Das_Leben_als_Sklave.md)
 - Klasse 7: ➡️ 
-	  - [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
-	  - [Barocke_Archtiektur](Kunst_7/Barocke_Archtiektur)
+	- [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
+	- [Barocke_Archtiektur](Kunst_7/Barocke_Archtiektur)
 
  
 ---
