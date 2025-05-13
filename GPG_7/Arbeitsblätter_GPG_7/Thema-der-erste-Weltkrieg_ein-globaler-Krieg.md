@@ -4,16 +4,16 @@
 
 Bearbeite die drei Arbeitsblätter zu diesem Thema. Du darfst selbst wählen, mit welchem du anfangen möchtest: 
 
-- [der erste Weltkrieg in Afrika](arbeitsblatt-wk1-afrika.md)
-- [der erste Weltkrieg in Asien](arbeitsblatt-wk1-asien.md)
-- [der erste Weltkrieg im nahen Osten](arbeitsblatt-wk1-nahost.md)
+- [[arbeitsblatt-wk1-afrika.md.md|der erste Weltkrieg in Afrika]]
+- [[arbeitsblatt-wk1-asien.md.md|der erste Weltkrieg in Asien]]
+- [[arbeitsblatt-wk1-nahost.md.md|der erste Weltkrieg im nahen Osten]]
 
 ---
 
 ### 🏎️ Aufgaben für Schnelle
 
-- [Aufgaben zur Wiederholung (gut vor der Probe am Montag)](gut%20vor%20der%20Probe%20am%20Montag))))))))
-- [Ein Video zum ersten Weltkrieg in Afrika (wenn du kannst, verwende bitte Kopfhörer):](wenn%20du%20kannst,%20verwende%20bitte%20Kopfhörer):):):):):):):)
+- [[gut vor der Probe am Montag)](gut vor der Probe am Montag|Aufgaben zur Wiederholung (gut vor der Probe am Montag)]]))))))))
+- [[wenn du kannst, verwende bitte Kopfhörer):](wenn du kannst, verwende bitte Kopfhörer|Ein Video zum ersten Weltkrieg in Afrika (wenn du kannst, verwende bitte Kopfhörer):]]:):):):):):):):)
 
 
 ---

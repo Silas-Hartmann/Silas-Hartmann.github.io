@@ -49,6 +49,4 @@ Die Erschöpfung der Bevölkerung und die Unruhen im Land machten es für die de
 <span style="color:rgb(255, 148, 148)">Wie hat das, was du gerade kennengelernt hast, zum Ende des Krieges geführt?</span>
 Schreibe dir einen Satz in eigenen Worten auf einen Notizzettel!
 
-Danach kannst du deine Ergebnisse unten kontrollieren und 🏠 zurück zur [Übersicht](Das_Ende_des_ersten_Weltkriegs.md)
-![Sharing articles-pana](../../Sharing%20articles-pana.png)
-<a href="https://storyset.com/online">Online illustrations by Storyset</a>
+Danach kannst du deine Ergebnisse unten kontrollieren und 🏠 zurück zur [[Das_Ende_des_ersten_Weltkriegs.md.md|Übersicht]]

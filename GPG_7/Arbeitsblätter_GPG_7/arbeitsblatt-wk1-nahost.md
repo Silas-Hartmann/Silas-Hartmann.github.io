@@ -5,8 +5,8 @@ date: 2025-05-12
 ---
 # Der Erste Weltkrieg im Nahen Osten
 
-[➡️ Zum Arbeitsblatt Afrika](arbeitsblatt-wk1-afrika.html) | [➡️ Zum Arbeitsblatt Asien und Pazifik](arbeitsblatt-wk1-asien.html)
-[🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
+[[arbeitsblatt-wk1-afrika.html|➡️ Zum Arbeitsblatt Afrika]] | [[arbeitsblatt-wk1-asien.html|➡️ Zum Arbeitsblatt Asien und Pazifik]]
+[[Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md.md|🏠 Zurück zur Übersicht]]
 
 ![Osmanische Soldaten im Ersten Weltkrieg](https://i0.wp.com/www.militaer-wissen.de/wp-content/uploads/2016/08/Osmanische-Soldaten.jpg)
 *Osmanische Soldaten während des Ersten Weltkriegs*
@@ -119,5 +119,5 @@ Antwort:
 
 ---
 
-Mit allem fertig? Richtig gut! Hier findest du noch mehr interessante Informationen und Aufgaben: [🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
+Mit allem fertig? Richtig gut! Hier findest du noch mehr interessante Informationen und Aufgaben: [[Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md.md|🏠 Zurück zur Übersicht]]
 

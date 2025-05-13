@@ -4,11 +4,11 @@
 
 >[!important] Hefteinträge
 >hier findest du einen Teil der Hefteinträge bisher:
->[Hefteinträge GPG 6](Hefteinträge%20GPG%206.md)
+>[[Hefteinträge GPG 6.md.md|Hefteinträge GPG 6]]
 
 ### Arbeitsblätter
 
-- [Dreieckshandel](GPG_6/Arbeitsblätter_GPG_6/Dreieckshandel.html)
+- [[GPG_6/Arbeitsblätter_GPG_6/Dreieckshandel.html]]
 
 
 

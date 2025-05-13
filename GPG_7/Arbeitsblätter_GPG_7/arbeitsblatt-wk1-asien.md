@@ -6,8 +6,8 @@ date: 2025-05-12
 
 # Der Erste Weltkrieg in Asien und im Pazifik
 
-[➡️ Zum Arbeitsblatt Afrika](arbeitsblatt-wk1-afrika.html) | [➡️ Zum Arbeitsblatt Naher Osten](arbeitsblatt-wk1-nahost.html)
-[🏠 Zurück zur Übersicht](Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md)
+[[arbeitsblatt-wk1-afrika.html|➡️ Zum Arbeitsblatt Afrika]] | [[arbeitsblatt-wk1-nahost.html|➡️ Zum Arbeitsblatt Naher Osten]]
+[[Thema-der-erste-Weltkrieg_ein-globaler-Krieg.md.md|🏠 Zurück zur Übersicht]]
 
 ![Die Marine in Kiautschou](https://cdn.prod.www.spiegel.de/images/bfad4599-0002-0004-0000-000053c8b8e5_w948_r1.778_fpx29_fpy37.jpg)
 
