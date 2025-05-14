@@ -9,6 +9,9 @@ function initTextHighlighter() {
   
   // Gespeicherte Highlights laden und anwenden
   loadHighlights();
+  
+  // Prüfe, ob es der erste Besuch ist und zeige ggf. den Tooltip an
+  checkFirstVisitAndShowTooltip();
 }
 
 // UI-Elemente erstellen
@@ -68,6 +71,76 @@ function createHighlighterUI() {
       container.classList.remove('colors-visible');
     }
   });
+}
+
+// Prüft, ob es der erste Besuch ist und zeigt ggf. den Tooltip an
+function checkFirstVisitAndShowTooltip() {
+  if (!localStorage.getItem('highlighter-tooltip-shown')) {
+    // Erstelle den Tooltip
+    createTooltip();
+    
+    // Markiere, dass der Tooltip angezeigt wurde
+    localStorage.setItem('highlighter-tooltip-shown', 'true');
+  }
+}
+
+// Erstellt den Tooltip
+function createTooltip() {
+  // Erstelle Tooltip-Element
+  const tooltip = document.createElement('div');
+  tooltip.className = 'highlighter-tooltip';
+  tooltip.innerHTML = `
+    <div class="highlighter-tooltip-content">
+      <p><strong>Text-Markierung:</strong></p>
+      <ol>
+        <li>Text markieren</li>
+        <li>Auf diesen Button klicken <span class="tooltip-icon">🎯</span></li>
+        <li>Farbe auswählen</li>
+      </ol>
+      <button class="tooltip-close-btn">Verstanden</button>
+    </div>
+    <div class="tooltip-arrow"></div>
+  `;
+  
+  // Zur Seite hinzufügen
+  document.body.appendChild(tooltip);
+  
+  // Position des Tooltips berechnen und setzen
+  const highlighterButton = document.querySelector('.highlighter-toggle');
+  if (highlighterButton) {
+    const buttonRect = highlighterButton.getBoundingClientRect();
+    
+    // Position des Tooltips setzen
+    tooltip.style.bottom = `${window.innerHeight - buttonRect.top + 10}px`;
+    tooltip.style.right = `${window.innerWidth - buttonRect.left - buttonRect.width / 2}px`;
+  }
+  
+  // Event-Listener für den "Verstanden"-Button
+  const closeButton = tooltip.querySelector('.tooltip-close-btn');
+  closeButton.addEventListener('click', () => {
+    tooltip.classList.add('tooltip-hiding');
+    
+    // Nach der Animation entfernen
+    setTimeout(() => {
+      if (tooltip.parentNode) {
+        tooltip.parentNode.removeChild(tooltip);
+      }
+    }, 300);
+  });
+  
+  // Tooltip automatisch nach 10 Sekunden ausblenden
+  setTimeout(() => {
+    if (tooltip.parentNode && !tooltip.classList.contains('tooltip-hiding')) {
+      tooltip.classList.add('tooltip-hiding');
+      
+      // Nach der Animation entfernen
+      setTimeout(() => {
+        if (tooltip.parentNode) {
+          tooltip.parentNode.removeChild(tooltip);
+        }
+      }, 300);
+    }
+  }, 10000);
 }
 
 // Behandelt die Textauswahl
