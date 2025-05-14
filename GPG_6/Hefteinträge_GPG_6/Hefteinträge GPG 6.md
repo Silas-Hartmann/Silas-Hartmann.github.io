@@ -26,7 +26,7 @@ Die drei G:
 - möchte die Einwohner versklaven und bekämpfen
 - plant von Anfang an Gewalt gegen die "Taino"
 
->Antwort: weil durch Kolumbus sehr viele Menschen gestorben sind
+>Merke: weil durch Kolumbus sehr viele Menschen gestorben sind
 
 
 *Tipp: Hier findest du ein gutes Video, dass nochmal das wichtigste zu Kolumbus erklärt: [hier klicken, um zum Video zu kommen](https://www.planet-wissen.de/geschichte/neuzeit/entdeckung_amerikas/index.html)*
