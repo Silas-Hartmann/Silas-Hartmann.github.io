@@ -8,8 +8,7 @@ Die drei G:
 2. **Gewürze**: Hohe Preise in Europa, Umgehen des Landwegs
 3. **Glaube**: Verbeitung des Christentums (Missionierung)
 
->[!info] Merksatz
->Der Kolonialismus begann, weil die Europäer nach Reichtum und wertvollen Gewürzen suchten und ihren Glauben verbreiten wollten. 
+ >ℹ️Merksatz: Der Kolonialismus begann, weil die Europäer nach Reichtum und wertvollen Gewürzen suchten und ihren Glauben verbreiten wollten. 
 
 
 ---
@@ -27,8 +26,7 @@ Die drei G:
 - möchte die Einwohner versklaven und bekämpfen
 - plant von Anfang an Gewalt gegen die "Taino"
 
->[!info] Antwort:
->weil durch Kolumbus sehr viele Menschen gestorben sind
+>Antwort: weil durch Kolumbus sehr viele Menschen gestorben sind
 
 
 *Tipp: Hier findest du ein gutes Video, dass nochmal das wichtigste zu Kolumbus erklärt: [hier klicken, um zum Video zu kommen](https://www.planet-wissen.de/geschichte/neuzeit/entdeckung_amerikas/index.html)*
@@ -45,7 +43,7 @@ Die drei G:
 - kann sich jede Pflanze genau an ihren Standort anpassen
 - bietet jedes Stockwerk Platz für unterschiedliche Arten
 
->[!important] Wichtig!
+>Wichtig!
 >Die Stockwerke sind perfekt aufeinander abgestimmt. Wird ein Stockwerk gestört, leiden alle anderen auch. 
 
 ---
@@ -54,7 +52,7 @@ Die drei G:
 
 ![Abb_Nährstoffkreislauf](Abb_Nährstoffkreislauf.png)
 
->[!important] Merke dir: 
+>Merke dir: 
 >Nährstoffe sind nur in den Pflanzen, aber nicht im Boden gespeichert!
 
 ---
@@ -66,7 +64,7 @@ Die drei G:
 
 *Große Teile des Regenwalds sind in den letzten Jahren verschwunden und Feldern, Straßen und Siedlungen gewichen. *
 
->[!important] Merke dir: 
+>Merke dir: 
 >In ganz Südamerika wird der Regenwald abgeholzt (Waldverlust).
 
 ---
@@ -75,7 +73,7 @@ Die drei G:
 
 ![Abb_Co2-Aufnahme](Abb_Co2-Aufnahme.png)
 
->[!important] Merke dir:
+>Merke dir:
 >CO2 sorgt dafür, dass es auf der Erde wärmer wird. 
 >Das bedeutet, dass es auf der Erde ohne den Amazonas-Regenwald viel wärmer werden würde!
 
