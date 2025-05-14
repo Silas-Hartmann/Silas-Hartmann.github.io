@@ -1,0 +1,113 @@
+/* Text-Highlighter Styles */
+.text-highlight {
+  border-radius: 2px;
+  padding: 0 2px;
+  margin: 0 -2px;
+}
+
+.text-highlight.yellow {
+  background-color: rgba(255, 235, 59, 0.5);
+}
+
+.text-highlight.green {
+  background-color: rgba(76, 175, 80, 0.4);
+}
+
+.text-highlight.blue {
+  background-color: rgba(33, 150, 243, 0.4);
+}
+
+.text-highlight.red {
+  background-color: rgba(244, 67, 54, 0.4);
+}
+
+/* Highlighter UI Container */
+.highlighter-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Haupt-Toggle-Button */
+.highlighter-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #2196F3;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.highlighter-toggle:hover {
+  background-color: #1976D2;
+  transform: scale(1.05);
+}
+
+/* Farb-Auswahlcontainer */
+.highlighter-colors {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.colors-visible .highlighter-colors {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Farb-Optionen */
+.highlighter-color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.highlighter-color-option:hover {
+  transform: scale(1.1);
+}
+
+/* Medienabfragen für kleinere Bildschirme */
+@media (max-width: 768px) {
+  .highlighter-container {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .highlighter-toggle {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .highlighter-color-option {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Unterstützung für Touch-Geräte */
+@media (hover: none) {
+  .highlighter-toggle, 
+  .highlighter-color-option {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
