@@ -38,8 +38,7 @@ Die drei G:
 
 ---
 
-### Wie ist der Regenwald aufgebaut?
-
+## Wie ist der Regenwald aufgebaut?
 
 ![Grafik_Stockwerkbau-Regenwald](Grafik_Stockwerkbau-Regenwald.png)
 
