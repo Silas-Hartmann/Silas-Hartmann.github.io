@@ -1,3 +1,5 @@
+[🏠 Zurück zur Übersicht](../../index)
+
 ## Warum begann der europäische Kolonialismus?
 
 Die drei G:
@@ -36,7 +38,7 @@ Die drei G:
 ### Wie ist der Regenwald aufgebaut?
 
 
-![[Grafik_Stockwerkbau-Regenwald.png]]
+![Grafik_Stockwerkbau-Regenwald](Grafik_Stockwerkbau-Regenwald.png)
 
 **der Regenwald ist in Stockwerken aufgebaut, dadurch:**
 - kann das Sonnenlicht optimal genutzt werden
@@ -50,7 +52,7 @@ Die drei G:
 
 ## Woher bekommen Pflanzen im Regenwald ihre Nährstoffe?
 
-![[Abb_Nährstoffkreislauf.png]]
+![Abb_Nährstoffkreislauf](Abb_Nährstoffkreislauf.png)
 
 >[!important] Merke dir: 
 >Nährstoffe sind nur in den Pflanzen, aber nicht im Boden gespeichert!
@@ -71,7 +73,7 @@ Die drei G:
 
 ## Warum ist der Amazonas-Regenwald so wichtig für das Klima?
 
-![[Abb_Co2-Aufnahme.png]]
+![Abb_Co2-Aufnahme](Abb_Co2-Aufnahme.png)
 
 >[!important] Merke dir:
 >CO2 sorgt dafür, dass es auf der Erde wärmer wird. 
