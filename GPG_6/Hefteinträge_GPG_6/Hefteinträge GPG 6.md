@@ -1,5 +1,10 @@
 [🏠 Zurück zur Übersicht](../../index)
 
+### Wichtiger Hinweis zu den Hefteinträgen:
+Es kann sein, dass die genauen Wörter in deinem Heft ein bisschen anders sind. Das ist grundsätzlich nicht schlimm. Trotzdem sollten deine Hefteinträge alle vollständig sein. Es ist weiterhin deine Aufgabe, die Hefteinträge selbstständig mitzuschreiben und wenn du krank bist, dir bei einem Mitschüler oder einer Mitschülerin zu besorgen!
+
+---
+
 ## Warum begann der europäische Kolonialismus?
 
 Die drei G:
@@ -76,6 +81,45 @@ Die drei G:
 >Merke dir:
 >CO2 sorgt dafür, dass es auf der Erde wärmer wird. 
 >Das bedeutet, dass es auf der Erde ohne den Amazonas-Regenwald viel wärmer werden würde!
+
+---
+## Wieso wird der Regenwald für Soja abgeholzt?
+
+![Abb_Soja](../../GPG_7/Arbeitsblätter_GPG_7/Abb_Soja.png)
+
+>Merke: Auf den abgeholzten Flächen wird Soja angebaut, das in Deutschland als Tierfutter verwendet wird, für Fleisch- und Milchprodukte. 
+
+---
+## Wieso wird der Regenwald auch für Kakao und Kaffee abgeholzt?
+
+### Traditioneller Anbau im Schatten:
+- große Bäume bleiben stehen
+- der Regenwald bleibt gesund 
+- Kaffee / Kakao sind teurer
+
+### Moderne Monokulturen:
+- es wächst nur noch eine Art Pflanze
+- viele Bäume werden gefällt
+- Kaffee / Kakao ist billiger
+
+>Merke: Da Kaffee und Kakao oft als Monokultur angebaut werden, damit die Preise billig bleiben und die Gewinne für die Schokoladen-Firmen hoch.
+
+---
+## Wie eroberte Cortez das Aztekenreich?
+
+>Achtung: Besonders: ca. 600 spanische Soldaten besiegten das riesige Reich der Azteken!
+
+- moderne Waffen und Pfere
+- Spanier nutzen Gastfreundschaft aus
+- Bündnisse mit Feinden der Azteken
+- Azteken sind empfindlich für unbekannte Krankheiten
+
+### Folgen der Eroberung:
+
+- Tod durch Krankheiten
+- Herrschaft der Spanier, Unterdrückung
+- Verlust der Kultur
+- Austausch zwischen Europa und Mittelamerika
 
 
 ---
