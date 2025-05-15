@@ -3,8 +3,7 @@
 
 ## 📝letzte Arbeitsblätter:
 
-- [Thema - Warum sprechen wir vom 1. WELTkrieg](GPG_7/Arbeitsblätter_GPG_7/Thema-der-erste-Weltkrieg_ein-globaler-Krieg) - Montag 12.05.2025
-	- [der erste Weltkrieg in Afrika](GPG_7/Arbeitsblätter_GPG_7/arbeitsblatt-wk1-afrika)
-	- [der erste Weltkrieg in Asien](GPG_7/Arbeitsblätter_GPG_7/arbeitsblatt-wk1-asien)
-	- [der erste Weltkrieg im nahen Osten](GPG_7/Arbeitsblätter_GPG_7/arbeitsblatt-wk1-nahost)
+- [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
+- [Barocke_Archtiektur](Kunst_7/Barocke_Archtiektur)
+- [Warum sprechen wir vom 1. WELTkrieg](GPG_7/Arbeitsblätter_GPG_7/Thema-der-erste-Weltkrieg_ein-globaler-Krieg)
 

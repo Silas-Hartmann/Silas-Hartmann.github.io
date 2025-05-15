@@ -8,10 +8,8 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 Bitte wähle die richtige Jahrgangsstufe:
 
-- Klasse 6: ➡️ [Das_Leben_als_Sklave](GPG_6/Arbeitsblätter_GPG_6/01_Auswirkungen_des-Kolonialismus_heute/Das_Leben_als_Sklave)
+- Klasse 6: ➡️
 - Klasse 7: ➡️ 
-	- [Das_Ende_des_ersten_Weltkriegs](GPG_7/Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
-	- [Barocke_Archtiektur](Kunst_7/Barocke_Archtiektur)
 
  
 ---
@@ -22,3 +20,6 @@ hier findest du Arbeitsblätter, weiterführende Informationen und teilweise Hef
 - [Klasse_6_GPG_Kunst](Klasse_6_GPG_Kunst)
 - [Klasse_7_GPG_Kunst](Klasse_7_GPG_Kunst)
 
+---
+
+[Tafelbild.excalidraw](GPG_7/Hefteinträge_GPG7/Tafelbild.excalidraw)
