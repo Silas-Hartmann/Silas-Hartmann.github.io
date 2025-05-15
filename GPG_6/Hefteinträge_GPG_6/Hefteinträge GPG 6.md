@@ -120,6 +120,10 @@ Die drei G:
 - Verlust der Kultur
 - Austausch zwischen Europa und Mittelamerika
 
+---
+
+![Abb_Dreieckshandel](Abb_Dreieckshandel.png)
+
 
 ---
 
