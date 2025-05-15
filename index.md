@@ -22,4 +22,4 @@ hier findest du Arbeitsblätter, weiterführende Informationen und teilweise Hef
 
 ---
 
-[Tafelbild.excalidraw](GPG_7/Hefteinträge_GPG7/Tafelbild.excalidraw)
+[Tafelbild.excalidraw](Tafelbild.excalidraw.md)
