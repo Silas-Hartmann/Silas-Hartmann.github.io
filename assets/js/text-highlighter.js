@@ -7,6 +7,9 @@ function initTextHighlighter() {
   document.addEventListener('mouseup', handleTextSelection);
   document.addEventListener('touchend', handleTextSelection);
   
+  // Event-Listener für Klicks auf markierte Textstellen (Radiergummi-Funktion)
+  document.addEventListener('click', handleEraserClick);
+  
   // Gespeicherte Highlights laden und anwenden
   loadHighlights();
   
@@ -14,11 +17,18 @@ function initTextHighlighter() {
   checkFirstVisitAndShowTooltip();
 }
 
+// Variable, um den Radiergummi-Modus zu verfolgen
+let eraserModeActive = false;
+
 // UI-Elemente erstellen
 function createHighlighterUI() {
   // Floating-Button-Container erstellen
   const container = document.createElement('div');
   container.className = 'highlighter-container';
+  
+  // Button-Container für Highlighter und Radiergummi
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'highlighter-buttons';
   
   // Haupt-Toggle-Button
   const toggleButton = document.createElement('button');
@@ -26,7 +36,18 @@ function createHighlighterUI() {
   // Lucide Highlighter-Icon
   toggleButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>';
   toggleButton.title = 'Text markieren';
-  container.appendChild(toggleButton);
+  buttonContainer.appendChild(toggleButton);
+  
+  // Radiergummi-Button
+  const eraserButton = document.createElement('button');
+  eraserButton.className = 'eraser-toggle';
+  // Lucide Eraser-Icon
+  eraserButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eraser"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>';
+  eraserButton.title = 'Markierungen entfernen';
+  buttonContainer.appendChild(eraserButton);
+  
+  // Button-Container dem Hauptcontainer hinzufügen
+  container.appendChild(buttonContainer);
   
   // Farbauswahl-Container
   const colorContainer = document.createElement('div');
@@ -63,7 +84,22 @@ function createHighlighterUI() {
   
   // Toggle-Funktion für die Farbauswahl
   toggleButton.addEventListener('click', () => {
+    // Wenn Radiergummi aktiv ist, deaktivieren
+    if (eraserModeActive) {
+      deactivateEraserMode();
+    }
+    
+    // Farbauswahl umschalten
     container.classList.toggle('colors-visible');
+  });
+
+  // Radiergummi-Funktion
+  eraserButton.addEventListener('click', () => {
+    // Immer Farbauswahl schließen
+    container.classList.remove('colors-visible');
+    
+    // Radiergummi-Modus umschalten
+    toggleEraserMode(eraserButton);
   });
 
   // Außerhalb klicken schließt Farbauswahl
@@ -72,6 +108,88 @@ function createHighlighterUI() {
       container.classList.remove('colors-visible');
     }
   });
+}
+
+// Umschalten des Radiergummi-Modus
+function toggleEraserMode(eraserButton) {
+  eraserModeActive = !eraserModeActive;
+  
+  if (eraserModeActive) {
+    // Radiergummi aktivieren
+    eraserButton.classList.add('active');
+    document.body.classList.add('eraser-mode');
+  } else {
+    // Radiergummi deaktivieren
+    deactivateEraserMode();
+  }
+}
+
+// Deaktiviert den Radiergummi-Modus
+function deactivateEraserMode() {
+  eraserModeActive = false;
+  const eraserButton = document.querySelector('.eraser-toggle');
+  if (eraserButton) {
+    eraserButton.classList.remove('active');
+  }
+  document.body.classList.remove('eraser-mode');
+}
+
+// Handler für Klicks im Radiergummi-Modus
+function handleEraserClick(event) {
+  // Nur im Radiergummi-Modus aktiv
+  if (!eraserModeActive) return;
+  
+  // Überprüfe, ob auf eine Textmarkierung geklickt wurde
+  let target = event.target;
+  
+  // Wenn direkt auf eine Textmarkierung geklickt wurde
+  if (target.classList && target.classList.contains('text-highlight')) {
+    removeHighlight(target);
+  }
+  // Wenn auf ein Element innerhalb einer Textmarkierung geklickt wurde
+  else {
+    // Suche nach der übergeordneten Textmarkierung
+    let parent = target.closest('.text-highlight');
+    if (parent) {
+      removeHighlight(parent);
+    }
+  }
+}
+
+// Entfernt eine Textmarkierung
+function removeHighlight(highlightElement) {
+  const highlightId = highlightElement.dataset.highlightId;
+  
+  try {
+    // Text aus dem markierten Element extrahieren
+    const text = highlightElement.textContent;
+    
+    // Erstelle ein Textknoten mit dem Inhalt
+    const textNode = document.createTextNode(text);
+    
+    // Ersetze das Highlight-Element durch den Textknoten
+    highlightElement.parentNode.replaceChild(textNode, highlightElement);
+    
+    // Aus dem localStorage entfernen
+    removeHighlightFromStorage(highlightId);
+  } catch (e) {
+    console.error('Fehler beim Entfernen des Highlights:', e);
+  }
+}
+
+// Entfernt ein Highlight aus dem localStorage
+function removeHighlightFromStorage(highlightId) {
+  try {
+    let highlights = getHighlights();
+    
+    // Filtere das zu entfernende Highlight heraus
+    highlights = highlights.filter(h => h.id !== highlightId);
+    
+    // Aktualisiere den localStorage
+    localStorage.setItem('text-highlights', JSON.stringify(highlights));
+  } catch (e) {
+    console.error('Fehler beim Entfernen des Highlights aus dem Speicher:', e);
+  }
 }
 
 // Prüft, ob es der erste Besuch ist und zeigt ggf. den Tooltip an
@@ -90,6 +208,9 @@ function createTooltip() {
   // Das Highlighter-Icon für den Tooltip
   const highlighterIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>';
   
+  // Das Eraser-Icon für den Tooltip
+  const eraserIconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eraser"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>';
+  
   // Erstelle Tooltip-Element
   const tooltip = document.createElement('div');
   tooltip.className = 'highlighter-tooltip';
@@ -100,6 +221,11 @@ function createTooltip() {
         <li>Text markieren</li>
         <li>Auf diesen Button klicken <span class="tooltip-icon">${highlighterIconSvg}</span></li>
         <li>Farbe auswählen</li>
+      </ol>
+      <p><strong>Markierungen entfernen:</strong></p>
+      <ol>
+        <li>Auf diesen Button klicken <span class="tooltip-icon eraser-icon">${eraserIconSvg}</span></li>
+        <li>Auf eine Markierung klicken, um sie zu entfernen</li>
       </ol>
       <button class="tooltip-close-btn">Verstanden</button>
     </div>
@@ -132,7 +258,7 @@ function createTooltip() {
     }, 300);
   });
   
-  // Tooltip automatisch nach 10 Sekunden ausblenden
+  // Tooltip automatisch nach 15 Sekunden ausblenden (längere Zeit wegen mehr Inhalt)
   setTimeout(() => {
     if (tooltip.parentNode && !tooltip.classList.contains('tooltip-hiding')) {
       tooltip.classList.add('tooltip-hiding');
@@ -144,11 +270,14 @@ function createTooltip() {
         }
       }, 300);
     }
-  }, 10000);
+  }, 15000);
 }
 
 // Behandelt die Textauswahl
 function handleTextSelection(event) {
+  // Im Radiergummi-Modus keine Textauswahl verarbeiten
+  if (eraserModeActive) return;
+  
   const selection = window.getSelection();
   const highlighterContainer = document.querySelector('.highlighter-container');
   
@@ -193,9 +322,13 @@ function highlightSelection(color) {
       return;
     }
     
+    // Generiere eine eindeutige ID
+    const highlightId = generateUniqueId();
+    
     // Highlight-Span erstellen
     const highlightSpan = document.createElement('span');
     highlightSpan.className = 'text-highlight ' + color;
+    highlightSpan.dataset.highlightId = highlightId;
     
     // Wende das Highlight an
     range.surroundContents(highlightSpan);
@@ -206,7 +339,7 @@ function highlightSelection(color) {
       color: color,
       textContent: highlightSpan.textContent,
       html: highlightSpan.outerHTML,
-      id: generateUniqueId()
+      id: highlightId
     });
     
     // Auswahl löschen
