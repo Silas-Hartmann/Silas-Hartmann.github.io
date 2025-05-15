@@ -490,11 +490,13 @@ function processQuestion(h3, elements, container, questionNumber, questionInfo) 
       wordElement.textContent = word;
       wordElement.setAttribute('draggable', 'true');
       wordElement.dataset.word = word;
+      wordElement.dataset.wordIndex = wordIndex;
       
       // Drag & Drop-Eventlistener
       wordElement.addEventListener('dragstart', function(e) {
         e.dataTransfer.setData('text/plain', word);
         e.dataTransfer.setData('application/word-index', wordIndex);
+        e.dataTransfer.setData('application/word-element-id', this.id);
         this.classList.add('dragging');
       });
       
@@ -502,18 +504,43 @@ function processQuestion(h3, elements, container, questionNumber, questionInfo) 
         this.classList.remove('dragging');
       });
       
+      // Eindeutige ID für jedes Wort-Element
+      wordElement.id = `word-${questionNumber}-${wordIndex}`;
+      
       wordsList.appendChild(wordElement);
     });
     
     wordsContainer.appendChild(wordsList);
     
+    // Erstelle einen Container für den Lückentext
+    const gapTextContainer = document.createElement('div');
+    gapTextContainer.className = 'gap-text-content';
+    
     // Extrahiere Lücken aus dem Text und ersetze sie durch Drop-Bereiche
     let gapIndex = 0;
-    const gapTextWithDropzones = gapText.replace(/\[([^\]]*)\]/g, (match) => {
+    let lastIndex = 0;
+    let textParts = [];
+    
+    // Regulärer Ausdruck, der alle Lücken findet
+    const regex = /\[([^\]]*)\]/g;
+    let match;
+    
+    // Teile den Text in normale Textabschnitte und Lücken auf
+    while ((match = regex.exec(gapText)) !== null) {
+      // Text vor der Lücke hinzufügen
+      if (match.index > lastIndex) {
+        const textBefore = gapText.substring(lastIndex, match.index);
+        const textNode = document.createElement('span');
+        textNode.innerHTML = textBefore;
+        gapTextContainer.appendChild(textNode);
+      }
+      
+      // Erstelle die Dropzone für die Lücke
       const dropzone = document.createElement('div');
       dropzone.className = 'gap-dropzone';
       dropzone.dataset.gapIndex = gapIndex;
       dropzone.textContent = 'Wort hier ablegen...';
+      dropzone.id = `gap-${questionNumber}-${gapIndex}`;
       
       // Drop-Events
       dropzone.addEventListener('dragover', function(e) {
@@ -531,18 +558,72 @@ function processQuestion(h3, elements, container, questionNumber, questionInfo) 
         
         const word = e.dataTransfer.getData('text/plain');
         const wordIndex = e.dataTransfer.getData('application/word-index');
+        const wordElementId = e.dataTransfer.getData('application/word-element-id');
+        const wordElement = document.getElementById(wordElementId);
+        
+        // Wenn diese Lücke bereits ein Wort enthält, gib das alte Wort zurück
+        if (this.dataset.filledWith && this.dataset.wordElementId) {
+          const oldWordElement = document.getElementById(this.dataset.wordElementId);
+          if (oldWordElement) {
+            oldWordElement.style.display = 'block'; // Mache das alte Wort wieder sichtbar
+          }
+        }
         
         // Setze das Wort in die Lücke
         this.textContent = word;
         this.classList.add('filled');
         this.dataset.filledWith = word;
+        this.dataset.wordElementId = wordElementId;
+        
+        // Verstecke das Wort in der Wortliste
+        if (wordElement) {
+          wordElement.style.display = 'none';
+        }
+        
+        // Mache die Lücke klickbar, um das Wort zurückzulegen
+        this.style.cursor = 'pointer';
+        
+        // Entferne bestehende Event-Listener, um Doppelregistrierung zu vermeiden
+        this.removeEventListener('click', this.clickHandler);
+        
+        // Definiere den Click-Handler als Eigenschaft des Elements, damit wir ihn später entfernen können
+        this.clickHandler = function() {
+          // Nur reagieren, wenn die Lücke gefüllt ist
+          if (this.classList.contains('filled')) {
+            // Mache das Wort in der Wortliste wieder sichtbar
+            const wordEl = document.getElementById(this.dataset.wordElementId);
+            if (wordEl) {
+              wordEl.style.display = 'block';
+            }
+            
+            // Setze die Lücke zurück
+            this.textContent = 'Wort hier ablegen...';
+            this.classList.remove('filled');
+            delete this.dataset.filledWith;
+            delete this.dataset.wordElementId;
+            this.style.cursor = 'default';
+          }
+        };
+        
+        // Füge den Click-Handler hinzu
+        this.addEventListener('click', this.clickHandler);
       });
       
+      gapTextContainer.appendChild(dropzone);
+      
+      lastIndex = regex.lastIndex;
       gapIndex++;
-      return dropzone.outerHTML;
-    });
+    }
     
-    gapContainer.innerHTML = gapTextWithDropzones;
+    // Text nach der letzten Lücke hinzufügen
+    if (lastIndex < gapText.length) {
+      const textAfter = gapText.substring(lastIndex);
+      const textNode = document.createElement('span');
+      textNode.innerHTML = textAfter;
+      gapTextContainer.appendChild(textNode);
+    }
+    
+    gapContainer.appendChild(gapTextContainer);
     
     // Füge erst den Text mit den Lücken, dann die Wörter hinzu
     formattedQuestion.appendChild(gapContainer);
@@ -974,44 +1055,52 @@ function checkAllAnswers() {
       try {
         const correctAnswers = JSON.parse(correctAnswer);
         
-        // Prüfe jede Lücke
-        gapDropzones.forEach((dropzone, index) => {
-          const userAnswer = dropzone.dataset.filledWith || '';
-          
-          if (!userAnswer || dropzone.textContent === 'Wort hier ablegen...') {
-            allCorrect = false;
-            dropzone.classList.add('gap-empty');
-            return;
-          }
-          
-          dropzone.classList.remove('gap-empty');
-          
-          // Hole die korrekten Antworten für diese Lücke
-          const correctOptions = correctAnswers[index] ? correctAnswers[index].split('|').map(a => a.trim()) : [];
-          const userAnswerLower = userAnswer.toLowerCase();
-          
-          // Überprüfe, ob die Antwort korrekt ist
-          const isCorrect = correctOptions.some(option => {
-            const optionLower = option.toLowerCase();
-            return userAnswerLower === optionLower;
-          });
-          
-          if (isCorrect) {
-            dropzone.classList.add('gap-correct');
-            dropzone.classList.remove('gap-incorrect');
-            correctGaps++;
-          } else {
-            dropzone.classList.add('gap-incorrect');
-            dropzone.classList.remove('gap-correct');
-            allCorrect = false;
-            
-            // Zeige die richtige Antwort an
-            const correctTip = document.createElement('div');
-            correctTip.className = 'gap-correct-answer';
-            correctTip.textContent = "Richtig wäre: " + correctOptions[0];
-            dropzone.appendChild(correctTip);
-          }
+      // Prüfe jede Lücke
+      gapDropzones.forEach((dropzone, index) => {
+        const userAnswer = dropzone.dataset.filledWith || '';
+        
+        if (!userAnswer || dropzone.textContent === 'Wort hier ablegen...') {
+          allCorrect = false;
+          dropzone.classList.add('gap-empty');
+          return;
+        }
+        
+        dropzone.classList.remove('gap-empty');
+        
+        // Hole die korrekten Antworten für diese Lücke
+        const correctOptions = correctAnswers[index] ? correctAnswers[index].split('|').map(a => a.trim()) : [];
+        const userAnswerLower = userAnswer.toLowerCase();
+        
+        // Überprüfe, ob die Antwort korrekt ist
+        const isCorrect = correctOptions.some(option => {
+          const optionLower = option.toLowerCase();
+          return userAnswerLower === optionLower;
         });
+        
+        if (isCorrect) {
+          dropzone.classList.add('gap-correct');
+          dropzone.classList.remove('gap-incorrect');
+          correctGaps++;
+          
+          // Deaktiviere den Click-Handler nach der Überprüfung
+          dropzone.removeEventListener('click', dropzone.clickHandler);
+          dropzone.style.cursor = 'default';
+        } else {
+          dropzone.classList.add('gap-incorrect');
+          dropzone.classList.remove('gap-correct');
+          allCorrect = false;
+          
+          // Zeige die richtige Antwort an
+          const correctTip = document.createElement('div');
+          correctTip.className = 'gap-correct-answer';
+          correctTip.textContent = "Richtig wäre: " + correctOptions[0];
+          dropzone.appendChild(correctTip);
+          
+          // Deaktiviere den Click-Handler nach der Überprüfung
+          dropzone.removeEventListener('click', dropzone.clickHandler);
+          dropzone.style.cursor = 'default';
+        }
+      });
         
         // Zeige das Ergebnis an
         if (gapDropzones.length === 0) {
