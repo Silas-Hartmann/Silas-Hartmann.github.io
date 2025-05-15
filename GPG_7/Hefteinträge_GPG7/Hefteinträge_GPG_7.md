@@ -49,10 +49,10 @@ Die wichtigsten deutschen Kolonien in Afrika waren:
 ### Ein Beispiel für den Wettlauf um Afrika: Die Faschoda-Krise
 
 ```flow-chart
-- England und Frankreich wollen das gleiche Stück Land kontrollieren
-- Es kommt zum Streit, es droht Krieg auch in Europa
-- Frankreich gibt nach
-- Die Beiden schließen ein Bündnis, weil sie Angst vor Deutschland haben
+1. England und Frankreich wollen das gleiche Stück Land kontrollieren
+2. Es kommt zum Streit, es droht Krieg auch in Europa
+3. Frankreich gibt nach
+4. Die Beiden schließen ein Bündnis, weil sie Angst vor Deutschland haben
 ```
 
 >Merke: Wir sprechen vom Wettlauf um Afrika, weil die Europäer möglichst viel Land in Afrika kontrollieren wollen.

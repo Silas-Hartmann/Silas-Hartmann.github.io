@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     flowChartBlocks.forEach(block => {
         const parentPre = block.parentNode; // Get the <pre> element
         const markdownContent = block.textContent || block.innerText;
-        const lines = markdownContent.split('\\n').map(line => line.trim()).filter(line => line.startsWith('- '));
+        // Regex to match lines starting with "1. ", "2. ", etc.
+        const lineRegex = /^\s*\d+\.\s*(.*)/;
+        
+        let lines = markdownContent.split('\\n')
+            .map(line => line.trim())
+            .filter(line => lineRegex.test(line));
 
         if (lines.length === 0) {
             // If no valid lines, try splitting by <br> if innerHTML was used by a Markdown parser
@@ -15,39 +20,49 @@ document.addEventListener('DOMContentLoaded', function () {
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = line;
                 return (tempDiv.textContent || tempDiv.innerText).trim();
-            }).filter(line => line.startsWith('- '));
+            }).filter(line => lineRegex.test(line));
             
             if(htmlLines.length > 0) {
                 lines.push(...htmlLines);
             } else {
                  // If still no lines, maybe it's just a plain text block without <pre><code>
                 const plainTextContent = parentPre.textContent || parentPre.innerText;
-                const plainLines = plainTextContent.split('\\n').map(line => line.trim()).filter(line => line.startsWith('- '));
+                const plainLines = plainTextContent.split('\\n')
+                    .map(line => line.trim())
+                    .filter(line => lineRegex.test(line));
                 if(plainLines.length > 0) lines.push(...plainLines);
             }
         }
         
         // Fallback for cases where the markdown is directly in a div with a specific class
-        // This is a common pattern if users manually create a div for the flow chart
         if (lines.length === 0 && parentPre.tagName !== 'PRE' && parentPre.classList.contains('flow-chart-markdown')) {
             const divContent = parentPre.textContent || parentPre.innerText;
-            const divLines = divContent.split('\\n').map(line => line.trim()).filter(line => line.startsWith('- '));
+            const divLines = divContent.split('\\n')
+                .map(line => line.trim())
+                .filter(line => lineRegex.test(line));
             if (divLines.length > 0) {
                 lines.push(...divLines);
             }
         }
-
 
         if (lines.length > 0) {
             const flowChartContainer = document.createElement('div');
             flowChartContainer.className = 'flow-chart-container';
 
             lines.forEach(line => {
-                const itemText = line.substring(2).trim(); // Remove '- '
-                
+                const match = line.match(lineRegex);
+                if (!match) return; // Should not happen due to filter, but good practice
+
+                const itemText = match[1].trim();
+                // const itemNumber = line.match(/^\s*(\d+)\./)[1]; // Extract number if needed later for display
+
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'flow-chart-item';
                 
+                // Create a span for the step number (optional, can be styled with CSS counters too)
+                // For now, the dot from ::before serves as the step marker.
+                // If explicit numbers are needed in the box, we can add them here.
+
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'flow-chart-content';
                 
@@ -83,14 +98,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const manualFlowChartElements = document.querySelectorAll('.flow-chart-markdown-source');
     manualFlowChartElements.forEach(element => {
         const markdownContent = element.textContent || element.innerText;
-        const lines = markdownContent.split('\\n').map(line => line.trim()).filter(line => line.startsWith('- '));
+        // Regex to match lines starting with "1. ", "2. ", etc.
+        const lineRegex = /^\s*\d+\.\s*(.*)/; 
+        const lines = markdownContent.split('\\n')
+            .map(line => line.trim())
+            .filter(line => lineRegex.test(line));
 
         if (lines.length > 0) {
             const flowChartContainer = document.createElement('div');
             flowChartContainer.className = 'flow-chart-container';
 
             lines.forEach(line => {
-                const itemText = line.substring(2).trim(); // Remove '- '
+                const match = line.match(lineRegex);
+                if (!match) return;
+                const itemText = match[1].trim();
                 
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'flow-chart-item';

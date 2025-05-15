@@ -10,20 +10,20 @@ Dies ist eine Demo, wie ein Flow Chart aus Markdown-Syntax generiert werden kann
 ## Beispiel Flow Chart
 
 ```flow-chart
-- England und Frankreich wollen das gleiche Stück Land kontrollieren
-- Es kommt zum Streit, es droht Krieg auch in Europa
-- Frankreich gibt nach
-- Die Beiden schließen ein Bündnis, weil sie Angst vor Deutschland haben
+1. England und Frankreich wollen das gleiche Stück Land kontrollieren
+2. Es kommt zum Streit, es droht Krieg auch in Europa
+3. Frankreich gibt nach
+4. Die Beiden schließen ein Bündnis, weil sie Angst vor Deutschland haben
 ```
 
 ## Zweites Beispiel (kürzer)
 
 ```flow-chart
-- Schritt 1: Idee
-- Schritt 2: Planung
-- Schritt 3: Umsetzung
-- Schritt 4: Testen
-- Schritt 5: Veröffentlichung
+1. Schritt 1: Idee
+2. Schritt 2: Planung
+3. Schritt 3: Umsetzung
+4. Schritt 4: Testen
+5. Schritt 5: Veröffentlichung
 ```
 
 ## Wichtige Hinweise
