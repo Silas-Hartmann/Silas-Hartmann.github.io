@@ -142,9 +142,22 @@ Arbeitsblatt aus dieser Stunde: [[Der Schlieffen-Plan.pdf]]
 
 # Wie war das Leben an der Front?
 
+![[Abb_Leben_an_der_Front.png]]
 
+___
 
-# Warum war der erste Weltkrieg ein WELTkrieg? (11.05.2025)
+# Wie verändert der Krieg das Leben in der Heimat?
+
+1. Großbritannien blockiert den Transport mit Schiffen → **Hungersnot**
+2. Viele Männer sind als Soldaten im Krieg → **Frauen arbeiten z.B. in Fabriken
+3. Neue Kriegswaffen brauchen viel Metall → Man muss sein Metall abgeben für Waffen
+
+>Merke: Es gibt Unzufriedenheit und Angst auch in der Heimat
+
+Arbeitsblatt zu dieser Stunde: [[Das Leben in der Heimat.pdf]]
+
+___
+# Warum war der erste Weltkrieg ein WELTkrieg? 
 
 **KOLONIALISMUS** - Europäische Mächte hatten in der ganzen Welt Gebiete und Einfluss
 
@@ -156,4 +169,21 @@ zum Beispiel:
 
 > 💡Merke: der erste Weltkrieg fand auf der ganzen Welt statt, auch wegen des europäischen Kolonialismus!
 
+[[Thema-der-erste-Weltkrieg_ein-globaler-Krieg|Arbeitsblätter aus dieser Stunde]]
 
+___
+
+# Warum endete der erste Weltkrieg?
+
+- Militärische Niederlage der Mittelmächte (Deutschland und Verbündete)
+- Kriegseintritt der USA (Soldaten, Waffen)
+- Wirtschaftliche und gesellschaftliche Erschöpfung (Hunger, Streiks)
+- Politische Veränderung und Revolution (Ende des Kaiserreichs)
+
+→ **Waffenstillstand, Deutschland verliert den Krieg
+
+[[Das_Ende_des_ersten_Weltkriegs|Arbeitsblätter aus dieser Stunde]]
+
+___
+
+🏠 Zurück zur [[index|Startseite]]
