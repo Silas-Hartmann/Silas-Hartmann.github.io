@@ -30,9 +30,6 @@ const HIGHLIGHT_COLORS = [
   { name: 'red', hex: '#F44336' }
 ];
 
-// Aktuelle Position im Farb-Rotationssystem
-let currentColorIndex = 0;
-
 // UI-Elemente erstellen
 function createHighlighterUI() {
   // Floating-Button-Container erstellen
@@ -62,22 +59,57 @@ function createHighlighterUI() {
   // Button-Container dem Hauptcontainer hinzufügen
   container.appendChild(buttonContainer);
   
+  // Farbauswahl-Container
+  const colorContainer = document.createElement('div');
+  colorContainer.className = 'highlighter-colors';
+  
+  // Farboptionen
+  HIGHLIGHT_COLORS.forEach(color => {
+    const colorButton = document.createElement('button');
+    colorButton.className = 'highlighter-color-option';
+    colorButton.dataset.color = color.name;
+    colorButton.style.backgroundColor = color.hex;
+    colorButton.title = color.name.charAt(0).toUpperCase() + color.name.slice(1);
+    
+    colorButton.addEventListener('click', () => {
+      // Aktiviere den Textmarker mit der gewählten Farbe
+      activateHighlighterWithColor(color.name);
+      // Farbauswahl schließen
+      container.classList.remove('colors-visible');
+    });
+    
+    colorContainer.appendChild(colorButton);
+  });
+  
+  // Farboptionen in Container einfügen
+  container.appendChild(colorContainer);
+  
   // Container zur Seite hinzufügen
   document.body.appendChild(container);
   
-  // Event-Listener für den Highlighter-Button
+  // Haupt-Toggle-Button Klick-Handler
   toggleButton.addEventListener('click', () => {
     // Wenn Radiergummi aktiv ist, deaktivieren
     if (eraserModeActive) {
       deactivateEraserMode();
     }
     
-    // Textmarker-Modus umschalten
-    toggleHighlighterMode(toggleButton);
+    // Wenn Highlighter aktiv ist, deaktivieren
+    if (highlighterModeActive) {
+      deactivateHighlighterMode();
+      // Farbauswahl anzeigen
+      container.classList.add('colors-visible');
+    } else {
+      // Farbauswahl umschalten
+      container.classList.toggle('colors-visible');
+    }
   });
 
   // Radiergummi-Funktion
   eraserButton.addEventListener('click', () => {
+    // Farbauswahl schließen
+    container.classList.remove('colors-visible');
+    
     // Wenn Textmarker aktiv ist, deaktivieren
     if (highlighterModeActive) {
       deactivateHighlighterMode();
@@ -86,28 +118,35 @@ function createHighlighterUI() {
     // Radiergummi-Modus umschalten
     toggleEraserMode(eraserButton);
   });
+
+  // Außerhalb klicken schließt Farbauswahl
+  document.addEventListener('click', (event) => {
+    if (!container.contains(event.target)) {
+      container.classList.remove('colors-visible');
+    }
+  });
 }
 
-// Aktiviert oder deaktiviert den Textmarker-Modus
-function toggleHighlighterMode(toggleButton) {
-  if (highlighterModeActive) {
-    // Wenn bereits aktiv, deaktivieren
-    deactivateHighlighterMode();
-  } else {
-    // Wenn nicht aktiv, aktivieren und Farbe rotieren
-    highlighterModeActive = true;
-    
-    // Zur nächsten Farbe wechseln
-    currentColorIndex = (currentColorIndex + 1) % HIGHLIGHT_COLORS.length;
-    activeHighlightColor = HIGHLIGHT_COLORS[currentColorIndex].name;
-    
-    // UI aktualisieren
-    updateHighlighterButton(toggleButton, activeHighlightColor);
-    
-    // Hinzufügen der Klasse für den aktiven Textmarker-Modus
-    document.body.classList.add('highlighter-mode');
-    document.body.classList.add(`highlighter-${activeHighlightColor}`);
+// Aktiviert den Textmarker mit einer bestimmten Farbe
+function activateHighlighterWithColor(color) {
+  // Deaktiviere Radiergummi, falls aktiv
+  if (eraserModeActive) {
+    deactivateEraserMode();
   }
+  
+  // Aktiviere Highlighter mit der gewählten Farbe
+  highlighterModeActive = true;
+  activeHighlightColor = color;
+  
+  // UI aktualisieren
+  const toggleButton = document.querySelector('.highlighter-toggle');
+  if (toggleButton) {
+    updateHighlighterButton(toggleButton, color);
+  }
+  
+  // Hinzufügen der Klasse für den aktiven Textmarker-Modus
+  document.body.classList.add('highlighter-mode');
+  document.body.classList.add(`highlighter-${color}`);
 }
 
 // Deaktiviert den Textmarker-Modus
@@ -150,6 +189,8 @@ function resetHighlighterButton(button) {
     button.classList.remove(`highlighter-active-${color.name}`);
   });
   
+  // Setze den Button auf inaktiv (grau)
+  button.classList.add('highlighter-inactive');
   button.title = 'Text markieren';
 }
 
@@ -261,8 +302,8 @@ function createTooltip() {
     <div class="highlighter-tooltip-content">
       <p><strong>Text-Markierung:</strong></p>
       <ol>
-        <li>Auf diesen Button klicken <span class="tooltip-icon">${highlighterIconSvg}</span></li>
-        <li>Text markieren, er wird automatisch hervorgehoben</li>
+        <li>Auf diesen Button klicken <span class="tooltip-icon">${highlighterIconSvg}</span> und eine Farbe wählen</li>
+        <li>Text markieren, er wird automatisch in der gewählten Farbe hervorgehoben</li>
         <li>Erneuter Klick auf den Button deaktiviert die Funktion</li>
       </ol>
       <p><strong>Markierungen entfernen:</strong></p>
@@ -499,5 +540,13 @@ function getTextNodesIn(element) {
   return textNodes;
 }
 
-// Ereignis-Listener für das Laden des DOM
-document.addEventListener('DOMContentLoaded', initTextHighlighter);
+// Nach dem Laden der Seite den Highlighter initialisieren und Button auf inaktiv (grau) setzen
+document.addEventListener('DOMContentLoaded', () => {
+  initTextHighlighter();
+  
+  // Button in den inaktiven Zustand versetzen
+  const toggleButton = document.querySelector('.highlighter-toggle');
+  if (toggleButton) {
+    toggleButton.classList.add('highlighter-inactive');
+  }
+});
