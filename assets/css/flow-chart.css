@@ -1,0 +1,112 @@
+/* assets/css/flow-chart.css */
+
+.flow-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start for a common line */
+    padding: 20px;
+    font-family: sans-serif;
+    position: relative;
+    margin-left: 30px; /* Space for the main vertical line */
+}
+
+.flow-chart-container::before {
+    content: '';
+    position: absolute;
+    left: 15px; /* Centered with the node connector */
+    top: 20px;
+    bottom: 20px;
+    width: 4px;
+    background-color: #007bff; /* Main line color */
+    border-radius: 2px;
+    z-index: 0;
+}
+
+.flow-chart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Space between items */
+    position: relative; /* For z-index and pseudo-elements */
+    padding-left: 40px; /* Space for connector dot and line */
+    width: 100%;
+    max-width: 600px; /* Max width of the content box */
+    box-sizing: border-box;
+}
+
+.flow-chart-item:last-child {
+    margin-bottom: 0;
+}
+
+.flow-chart-item::before { /* Connector dot */
+    content: '';
+    position: absolute;
+    left: 7px; /* (15px main line center) - (16px dot width / 2) */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: #007bff;
+    border: 3px solid #fff; /* White border to make it pop */
+    border-radius: 50%;
+    z-index: 2; /* Above the main line and item line */
+}
+
+.flow-chart-item::after { /* Line from main vertical to content */
+    content: '';
+    position: absolute;
+    left: 15px; /* Aligns with the main vertical line */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px; /* Length of the horizontal connector */
+    height: 2px;
+    background-color: #007bff;
+    z-index: 1; /* Above main line, below dot */
+}
+
+
+.flow-chart-content {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    position: relative; /* For z-index */
+    z-index: 1;
+}
+
+.flow-chart-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.flow-chart-content p {
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flow-chart-container {
+        margin-left: 20px;
+        padding: 15px;
+    }
+    .flow-chart-item {
+        padding-left: 30px; /* Adjust for smaller screens */
+    }
+    .flow-chart-container::before {
+        left: 10px;
+    }
+    .flow-chart-item::before {
+        left: 2px; /* (10px main line center) - (16px dot width / 2) */
+    }
+    .flow-chart-item::after {
+        left: 10px;
+        width: 20px;
+    }
+    .flow-chart-content {
+        padding: 10px 15px;
+    }
+}

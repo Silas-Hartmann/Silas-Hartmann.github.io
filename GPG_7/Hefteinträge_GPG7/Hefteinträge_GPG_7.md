@@ -55,6 +55,8 @@ Die wichtigsten deutschen Kolonien in Afrika waren:
 - Die Beiden schließen ein Bündnis, weil sie Angst vor Deutschland haben
 ```
 
+>Merke: Wir sprechen vom Wettlauf um Afrika, weil die Europäer möglichst viel Land in Afrika kontrollieren wollen.
+
 # Warum war der erste Weltkrieg ein WELTkrieg? (11.05.2025)
 
 **KOLONIALISMUS** - Europäische Mächte hatten in der ganzen Welt Gebiete und Einfluss
