@@ -116,9 +116,32 @@ ___
 3. Sie wollten als starke Männer gelten
 4. Sie glaubten an einen schnellen Sieg
 
+Arbeitsblätter aus dieser Stunde: [[Bildanalyse_Kriegsbegeisterung.pdf]], [[Kriegsbegeisterung.pdf]]
+
 ___
 
-# 
+# Warum wollte Deutschland Frankreich zu Beginn des 1. Weltkriegs schnell besiegen?
+
+Ziel: Deutschland möchte nicht an zwei Fronten gleichzeitig kämpfen. 
+
+→ **der Schlieffen-Plan**: Da sie davon ausgehen, dass die russische Armee 6 Wochen bis zur Grenze braucht, wollen sie vorher schnell Frankreich besiegen. 
+
+![[Abb_Schlieffen-Plan.png]]
+
+Arbeitsblatt aus dieser Stunde: [[Der Schlieffen-Plan.pdf]]
+
+---
+
+# Was geschah bei der Schlacht an der Marne 1914?
+
+![[Abb_Schlacht_an_der_Marne.png]]
+
+>Die Deutschen verlieren die Schlacht an der Marne 1914. Aus einem schnellen Bewegungskrieg wird ein langsamer Stellungskrieg. 
+
+----
+
+# Wie war das Leben an der Front?
+
 
 
 # Warum war der erste Weltkrieg ein WELTkrieg? (11.05.2025)
