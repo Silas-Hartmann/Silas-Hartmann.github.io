@@ -20,8 +20,8 @@ Die wichtigsten deutschen Kolonien in Afrika waren:
 - Kamerun
 
 ☝️ Tipp: Schau dir nochmal diese beiden Arbeitsblätter an: 
-- [[AB_deutscher Kolonialismus.pdf]]
-- [[AB_Nation und Nationalismus.pdf]]
+- [AB_deutscher Kolonialismus](../Arbeitsblätter_GPG_7/Kolonialismus/AB_deutscher%20Kolonialismus.pdf)
+- [AB_Nation und Nationalismus](../Arbeitsblätter_GPG_7/Kolonialismus/AB_Nation%20und%20Nationalismus.pdf)
 
 ---
 # Welche Kulturen hat Afrika vor dem Kolonialismus?
@@ -34,7 +34,7 @@ Die wichtigsten deutschen Kolonien in Afrika waren:
 
 >Merke: In Afrika existierten lange vor der europäischen Kolonisation hochentwickelte Kulturen mit beeindruckenden Leistungen in Architektur, Kunst, Wissenschaft und Handel.
 
-→ zum Arbeitsblatt aus dieser Stunde: [[Kulturen in Afrika.pdf]]
+→ zum Arbeitsblatt aus dieser Stunde: [Kulturen in Afrika](../Arbeitsblätter_GPG_7/Kolonialismus/Kulturen%20in%20Afrika.pdf)
 
 ---
 
@@ -57,13 +57,13 @@ Die wichtigsten deutschen Kolonien in Afrika waren:
 
 >Merke: Wir sprechen vom Wettlauf um Afrika, weil die Europäer möglichst viel Land in Afrika kontrollieren wollen.
 
-Arbeitsblatt aus dieser Stunde: [[Der Wettlauf um Afrika.pdf]]
+Arbeitsblatt aus dieser Stunde: [Der Wettlauf um Afrika](../Arbeitsblätter_GPG_7/Kolonialismus/Der%20Wettlauf%20um%20Afrika.pdf)
 
 ___
 
 # Warum führen England und China Krieg?
 
-![[Abb_Opiumkrieg.png]]
+![Abb_Opiumkrieg](Abb_Opiumkrieg.png)
 
 3. Der chinesische Kaiser lässt Opium verbieten und vernichten.
 4. England greift China an.
@@ -71,7 +71,7 @@ ___
 
 >Merke: Sie führen Krieg, da England seine wirtschaftlichen Interessen durchsetzen möchte. Europäische Länder werden durch Kolonien und Kriege auf anderen Kontinenten reicher. 
 
-Arbeitsblatt aus dieser Stunde: [[AB_Der_Opiumkrieg.pdf]]
+Arbeitsblatt aus dieser Stunde: [AB_Der_Opiumkrieg](../Arbeitsblätter_GPG_7/Kolonialismus/AB_Der_Opiumkrieg.pdf)
 
 ___
 # Was ist Imperialismus?
@@ -83,12 +83,12 @@ ___
 - Politische Gründe (z.B. Umgang mit den Herero)
 - Überlegenheitsgefühl (z.B. deutscher Kolonialismus, Faschoda Krise)
 
-Arbeitsblatt aus dieser Stunde: [[Der Imperialismus.pdf]]
+Arbeitsblatt aus dieser Stunde: [Der Imperialismus](../Arbeitsblätter_GPG_7/Kolonialismus/Der%20Imperialismus.pdf)
 
 ___
 
 # Warum war Europa 1914 wie ein Pulverfass?
-![[Abb_Bündnisse_WK.png]]
+![Abb_Bündnisse_WK](Abb_Bündnisse_WK.png)
 - Zwischen dem deutschen Reich und Frankreich: Streit um Elsass-Lothringen
 - Zwischen dem Deutschen Reich und Großbritannien: Streit um Kolonien, Konflikte wegen der deutschen Flotte
 - Zwischen Österreich-Ungarn und Russland: Spannungen in Serbien
@@ -99,13 +99,13 @@ ___
 
 Arbeitsblatt zu dieser Stunde:
 
-[[AB_Pulverfass_Europa.pdf]]
+[AB_Pulverfass_Europa](../Arbeitsblätter_GPG_7/1_Weltkrieg/AB_Pulverfass_Europa.pdf)
 
 ---
 
 # Wieso bricht der 1. Weltkrieg aus?
 
-![[Abb_Pulverfass_Europa.png]]
+![Abb_Pulverfass_Europa](Abb_Pulverfass_Europa.png)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 3. Sie wollten als starke Männer gelten
 4. Sie glaubten an einen schnellen Sieg
 
-Arbeitsblätter aus dieser Stunde: [[Bildanalyse_Kriegsbegeisterung.pdf]], [[Kriegsbegeisterung.pdf]]
+Arbeitsblätter aus dieser Stunde: [Bildanalyse_Kriegsbegeisterung](../Arbeitsblätter_GPG_7/1_Weltkrieg/Bildanalyse_Kriegsbegeisterung.pdf), [Kriegsbegeisterung](../Arbeitsblätter_GPG_7/1_Weltkrieg/Kriegsbegeisterung.pdf)
 
 ___
 
@@ -126,15 +126,15 @@ Ziel: Deutschland möchte nicht an zwei Fronten gleichzeitig kämpfen.
 
 → **der Schlieffen-Plan**: Da sie davon ausgehen, dass die russische Armee 6 Wochen bis zur Grenze braucht, wollen sie vorher schnell Frankreich besiegen. 
 
-![[Abb_Schlieffen-Plan.png]]
+![Abb_Schlieffen-Plan](Abb_Schlieffen-Plan.png)
 
-Arbeitsblatt aus dieser Stunde: [[Der Schlieffen-Plan.pdf]]
+Arbeitsblatt aus dieser Stunde: [Der Schlieffen-Plan](../Arbeitsblätter_GPG_7/1_Weltkrieg/Der%20Schlieffen-Plan.pdf)
 
 ---
 
 # Was geschah bei der Schlacht an der Marne 1914?
 
-![[Abb_Schlacht_an_der_Marne.png]]
+![Abb_Schlacht_an_der_Marne](Abb_Schlacht_an_der_Marne.png)
 
 >Die Deutschen verlieren die Schlacht an der Marne 1914. Aus einem schnellen Bewegungskrieg wird ein langsamer Stellungskrieg. 
 
@@ -142,7 +142,7 @@ Arbeitsblatt aus dieser Stunde: [[Der Schlieffen-Plan.pdf]]
 
 # Wie war das Leben an der Front?
 
-![[Abb_Leben_an_der_Front.png]]
+![Abb_Leben_an_der_Front](Abb_Leben_an_der_Front.png)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 >Merke: Es gibt Unzufriedenheit und Angst auch in der Heimat
 
-Arbeitsblatt zu dieser Stunde: [[Das Leben in der Heimat.pdf]]
+Arbeitsblatt zu dieser Stunde: [Das Leben in der Heimat](../Arbeitsblätter_GPG_7/Das%20Leben%20in%20der%20Heimat.pdf)
 
 ___
 # Warum war der erste Weltkrieg ein WELTkrieg? 
@@ -169,7 +169,7 @@ zum Beispiel:
 
 > 💡Merke: der erste Weltkrieg fand auf der ganzen Welt statt, auch wegen des europäischen Kolonialismus!
 
-[[Thema-der-erste-Weltkrieg_ein-globaler-Krieg|Arbeitsblätter aus dieser Stunde]]
+[Arbeitsblätter aus dieser Stunde](../Arbeitsblätter_GPG_7/Thema-der-erste-Weltkrieg_ein-globaler-Krieg)
 
 ___
 
@@ -182,8 +182,8 @@ ___
 
 → **Waffenstillstand, Deutschland verliert den Krieg
 
-[[Das_Ende_des_ersten_Weltkriegs|Arbeitsblätter aus dieser Stunde]]
+[Arbeitsblätter aus dieser Stunde](../Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
 
 ___
 
-🏠 Zurück zur [[index|Startseite]]
+🏠 Zurück zur [Startseite](../../index)
