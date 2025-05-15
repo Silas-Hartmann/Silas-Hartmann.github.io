@@ -34,6 +34,13 @@
   transition: all 0.3s ease;
 }
 
+/* Buttons Container */
+.highlighter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 /* Haupt-Toggle-Button */
 .highlighter-toggle {
   width: 40px;
@@ -53,6 +60,42 @@
 .highlighter-toggle:hover {
   background-color: #1976D2;
   transform: scale(1.05);
+}
+
+/* Radiergummi-Button */
+.eraser-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #9E9E9E;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.eraser-toggle:hover {
+  background-color: #757575;
+  transform: scale(1.05);
+}
+
+/* Aktivierter Radiergummi */
+.eraser-toggle.active {
+  background-color: #F44336;
+}
+
+/* Radiergummi-Modus Cursor */
+.eraser-mode .text-highlight {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eraser"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>'), auto;
+}
+
+/* Radiergummi-Modus Hover-Effekt */
+.eraser-mode .text-highlight:hover {
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.5);
 }
 
 /* Farb-Auswahlcontainer */
@@ -89,7 +132,7 @@
 /* Tooltip Styles */
 .highlighter-tooltip {
   position: fixed;
-  max-width: 250px;
+  max-width: 280px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -157,6 +200,11 @@
   margin-left: 3px;
 }
 
+/* Eraser-Icon im Tooltip */
+.tooltip-icon.eraser-icon {
+  background-color: #9E9E9E;
+}
+
 .tooltip-icon svg {
   width: 12px;
   height: 12px;
@@ -198,7 +246,12 @@
     right: 15px;
   }
   
-  .highlighter-toggle {
+  .highlighter-buttons {
+    gap: 8px;
+  }
+  
+  .highlighter-toggle,
+  .eraser-toggle {
     width: 35px;
     height: 35px;
   }
@@ -209,13 +262,14 @@
   }
   
   .highlighter-tooltip {
-    max-width: 220px;
+    max-width: 260px;
   }
 }
 
 /* Unterstützung für Touch-Geräte */
 @media (hover: none) {
   .highlighter-toggle, 
+  .eraser-toggle,
   .highlighter-color-option {
     -webkit-tap-highlight-color: transparent;
   }
