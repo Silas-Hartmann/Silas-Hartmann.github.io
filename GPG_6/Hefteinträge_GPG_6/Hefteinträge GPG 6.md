@@ -2,6 +2,7 @@
 
 ### Wichtiger Hinweis zu den Hefteinträgen:
 Es kann sein, dass die genauen Wörter in deinem Heft ein bisschen anders sind. Das ist grundsätzlich nicht schlimm. Trotzdem sollten deine Hefteinträge alle vollständig sein. Es ist weiterhin deine Aufgabe, die Hefteinträge selbstständig mitzuschreiben und wenn du krank bist, dir bei einem Mitschüler oder einer Mitschülerin zu besorgen!
+**Leistungsnachweise müssen sich nicht NUR auf die Hefteinträge beschränken, auch wenn darauf der Fokus liegt. Für eine optimale Vorbereitung ist es gut, sich auch Arbeitsblätter nochmal anzuschauen.**
 
 ---
 
