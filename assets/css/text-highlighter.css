@@ -62,6 +62,46 @@
   transform: scale(1.05);
 }
 
+/* Aktive Highlighter-Buttons in verschiedenen Farben */
+.highlighter-active-yellow {
+  background-color: #FFEB3B !important;
+  color: #212121 !important;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.highlighter-active-green {
+  background-color: #4CAF50 !important;
+}
+
+.highlighter-active-blue {
+  background-color: #2196F3 !important;
+}
+
+.highlighter-active-red {
+  background-color: #F44336 !important;
+}
+
+/* Highlighter-Modus Cursor für verschiedene Farben */
+.highlighter-mode {
+  cursor: text;
+}
+
+.highlighter-yellow {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23FFEB3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>'), auto;
+}
+
+.highlighter-green {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%234CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>'), auto;
+}
+
+.highlighter-blue {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%232196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>'), auto;
+}
+
+.highlighter-red {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23F44336" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-highlighter"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>'), auto;
+}
+
 /* Radiergummi-Button */
 .eraser-toggle {
   width: 40px;
@@ -98,35 +138,9 @@
   box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.5);
 }
 
-/* Farb-Auswahlcontainer */
+/* Farb-Auswahlcontainer (verbergen, da nicht mehr benötigt) */
 .highlighter-colors {
   display: none;
-  flex-direction: column;
-  gap: 10px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-}
-
-.colors-visible .highlighter-colors {
-  display: flex;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Farb-Optionen */
-.highlighter-color-option {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-}
-
-.highlighter-color-option:hover {
-  transform: scale(1.1);
 }
 
 /* Tooltip Styles */
@@ -210,6 +224,24 @@
   height: 12px;
 }
 
+/* Colored tooltip icons */
+.tooltip-icon.yellow {
+  background-color: #FFEB3B;
+  color: #212121;
+}
+
+.tooltip-icon.green {
+  background-color: #4CAF50;
+}
+
+.tooltip-icon.blue {
+  background-color: #2196F3;
+}
+
+.tooltip-icon.red {
+  background-color: #F44336;
+}
+
 .tooltip-close-btn {
   display: block;
   width: 100%;
@@ -239,6 +271,30 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Pulsieren-Animation für aktive Modi */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.highlighter-active-yellow,
+.highlighter-active-green,
+.highlighter-active-blue,
+.highlighter-active-red,
+.eraser-toggle.active {
+  animation: pulse 2s infinite;
+}
+
 /* Medienabfragen für kleinere Bildschirme */
 @media (max-width: 768px) {
   .highlighter-container {
@@ -256,11 +312,6 @@
     height: 35px;
   }
   
-  .highlighter-color-option {
-    width: 25px;
-    height: 25px;
-  }
-  
   .highlighter-tooltip {
     max-width: 260px;
   }
@@ -269,8 +320,7 @@
 /* Unterstützung für Touch-Geräte */
 @media (hover: none) {
   .highlighter-toggle, 
-  .eraser-toggle,
-  .highlighter-color-option {
+  .eraser-toggle {
     -webkit-tap-highlight-color: transparent;
   }
 }
