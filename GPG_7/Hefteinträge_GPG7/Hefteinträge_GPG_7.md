@@ -180,7 +180,7 @@ ___
 - Wirtschaftliche und gesellschaftliche Erschöpfung (Hunger, Streiks)
 - Politische Veränderung und Revolution (Ende des Kaiserreichs)
 
-→ **Waffenstillstand, Deutschland verliert den Krieg
+→ **Waffenstillstand, Deutschland verliert den Krieg**
 
 [Arbeitsblätter aus dieser Stunde](../Arbeitsblätter_GPG_7/Das_Ende_des_ersten_Weltkriegs)
 
