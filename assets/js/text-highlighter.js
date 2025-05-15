@@ -94,13 +94,12 @@ function createHighlighterUI() {
       deactivateEraserMode();
     }
     
-    // Wenn Highlighter aktiv ist, deaktivieren
+    // Wenn Highlighter aktiv ist, deaktivieren, aber KEINE Farbauswahl anzeigen
     if (highlighterModeActive) {
       deactivateHighlighterMode();
-      // Farbauswahl anzeigen
-      container.classList.add('colors-visible');
+      // NICHT mehr die Farbauswahl anzeigen
     } else {
-      // Farbauswahl umschalten
+      // Nur wenn inaktiv, die Farbauswahl anzeigen
       container.classList.toggle('colors-visible');
     }
   });
@@ -174,6 +173,9 @@ function updateHighlighterButton(button, color) {
   HIGHLIGHT_COLORS.forEach(c => {
     button.classList.remove(`highlighter-active-${c.name}`);
   });
+  
+  // Entferne inaktiven Status
+  button.classList.remove('highlighter-inactive');
   
   // Füge die Klasse für die aktive Farbe hinzu
   button.classList.add(`highlighter-active-${color}`);
