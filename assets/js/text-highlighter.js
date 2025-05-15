@@ -17,8 +17,21 @@ function initTextHighlighter() {
   checkFirstVisitAndShowTooltip();
 }
 
-// Variable, um den Radiergummi-Modus zu verfolgen
+// Zustandsvariablen
 let eraserModeActive = false;
+let highlighterModeActive = false;
+let activeHighlightColor = null;
+
+// Die verfügbaren Farben als Konstante
+const HIGHLIGHT_COLORS = [
+  { name: 'yellow', hex: '#FFEB3B' },
+  { name: 'green', hex: '#4CAF50' },
+  { name: 'blue', hex: '#2196F3' },
+  { name: 'red', hex: '#F44336' }
+];
+
+// Aktuelle Position im Farb-Rotationssystem
+let currentColorIndex = 0;
 
 // UI-Elemente erstellen
 function createHighlighterUI() {
@@ -49,65 +62,95 @@ function createHighlighterUI() {
   // Button-Container dem Hauptcontainer hinzufügen
   container.appendChild(buttonContainer);
   
-  // Farbauswahl-Container
-  const colorContainer = document.createElement('div');
-  colorContainer.className = 'highlighter-colors';
-  
-  // Farboptionen
-  const colors = [
-    { name: 'yellow', hex: '#FFEB3B' },
-    { name: 'green', hex: '#4CAF50' },
-    { name: 'blue', hex: '#2196F3' },
-    { name: 'red', hex: '#F44336' }
-  ];
-  
-  // Erstellung der Farbschaltflächen
-  colors.forEach(color => {
-    const colorButton = document.createElement('button');
-    colorButton.className = 'highlighter-color-option';
-    colorButton.dataset.color = color.name;
-    colorButton.style.backgroundColor = color.hex;
-    colorButton.title = color.name.charAt(0).toUpperCase() + color.name.slice(1);
-    
-    colorButton.addEventListener('click', () => {
-      highlightSelection(color.name);
-    });
-    
-    colorContainer.appendChild(colorButton);
-  });
-  
-  // Farboptionen in Container einfügen
-  container.appendChild(colorContainer);
-  
   // Container zur Seite hinzufügen
   document.body.appendChild(container);
   
-  // Toggle-Funktion für die Farbauswahl
+  // Event-Listener für den Highlighter-Button
   toggleButton.addEventListener('click', () => {
     // Wenn Radiergummi aktiv ist, deaktivieren
     if (eraserModeActive) {
       deactivateEraserMode();
     }
     
-    // Farbauswahl umschalten
-    container.classList.toggle('colors-visible');
+    // Textmarker-Modus umschalten
+    toggleHighlighterMode(toggleButton);
   });
 
   // Radiergummi-Funktion
   eraserButton.addEventListener('click', () => {
-    // Immer Farbauswahl schließen
-    container.classList.remove('colors-visible');
+    // Wenn Textmarker aktiv ist, deaktivieren
+    if (highlighterModeActive) {
+      deactivateHighlighterMode();
+    }
     
     // Radiergummi-Modus umschalten
     toggleEraserMode(eraserButton);
   });
+}
 
-  // Außerhalb klicken schließt Farbauswahl
-  document.addEventListener('click', (event) => {
-    if (!container.contains(event.target)) {
-      container.classList.remove('colors-visible');
-    }
+// Aktiviert oder deaktiviert den Textmarker-Modus
+function toggleHighlighterMode(toggleButton) {
+  if (highlighterModeActive) {
+    // Wenn bereits aktiv, deaktivieren
+    deactivateHighlighterMode();
+  } else {
+    // Wenn nicht aktiv, aktivieren und Farbe rotieren
+    highlighterModeActive = true;
+    
+    // Zur nächsten Farbe wechseln
+    currentColorIndex = (currentColorIndex + 1) % HIGHLIGHT_COLORS.length;
+    activeHighlightColor = HIGHLIGHT_COLORS[currentColorIndex].name;
+    
+    // UI aktualisieren
+    updateHighlighterButton(toggleButton, activeHighlightColor);
+    
+    // Hinzufügen der Klasse für den aktiven Textmarker-Modus
+    document.body.classList.add('highlighter-mode');
+    document.body.classList.add(`highlighter-${activeHighlightColor}`);
+  }
+}
+
+// Deaktiviert den Textmarker-Modus
+function deactivateHighlighterMode() {
+  highlighterModeActive = false;
+  
+  // Entferne alle Farb-Klassen vom Body
+  document.body.classList.remove('highlighter-mode');
+  HIGHLIGHT_COLORS.forEach(color => {
+    document.body.classList.remove(`highlighter-${color.name}`);
   });
+  
+  // Button zurücksetzen
+  const toggleButton = document.querySelector('.highlighter-toggle');
+  if (toggleButton) {
+    resetHighlighterButton(toggleButton);
+  }
+  
+  activeHighlightColor = null;
+}
+
+// Aktualisiert das Aussehen des Textmarker-Buttons basierend auf der aktiven Farbe
+function updateHighlighterButton(button, color) {
+  // Entferne alle vorherigen Farb-Klassen
+  HIGHLIGHT_COLORS.forEach(c => {
+    button.classList.remove(`highlighter-active-${c.name}`);
+  });
+  
+  // Füge die Klasse für die aktive Farbe hinzu
+  button.classList.add(`highlighter-active-${color}`);
+  
+  // Setze Titel für bessere Bedienbarkeit
+  button.title = `Textmarker aktiv (${color})`;
+}
+
+// Setzt den Textmarker-Button zurück
+function resetHighlighterButton(button) {
+  // Entferne alle Farb-Klassen
+  HIGHLIGHT_COLORS.forEach(color => {
+    button.classList.remove(`highlighter-active-${color.name}`);
+  });
+  
+  button.title = 'Text markieren';
 }
 
 // Umschalten des Radiergummi-Modus
@@ -218,9 +261,9 @@ function createTooltip() {
     <div class="highlighter-tooltip-content">
       <p><strong>Text-Markierung:</strong></p>
       <ol>
-        <li>Text markieren</li>
         <li>Auf diesen Button klicken <span class="tooltip-icon">${highlighterIconSvg}</span></li>
-        <li>Farbe auswählen</li>
+        <li>Text markieren, er wird automatisch hervorgehoben</li>
+        <li>Erneuter Klick auf den Button deaktiviert die Funktion</li>
       </ol>
       <p><strong>Markierungen entfernen:</strong></p>
       <ol>
@@ -278,14 +321,14 @@ function handleTextSelection(event) {
   // Im Radiergummi-Modus keine Textauswahl verarbeiten
   if (eraserModeActive) return;
   
-  const selection = window.getSelection();
-  const highlighterContainer = document.querySelector('.highlighter-container');
-  
-  if (selection.toString().trim() !== '' && !selection.isCollapsed) {
-    // Nur anzeigen, wenn die Highlighter-Farbauswahl sichtbar ist
-    if (highlighterContainer.classList.contains('colors-visible')) {
-      // Positioniere die Schaltflächen nicht - sie sind bereits als schwebende Schaltfläche sichtbar
+  // Wenn Textmarker-Modus aktiv ist, automatisch hervorheben
+  if (highlighterModeActive && activeHighlightColor) {
+    const selection = window.getSelection();
+    
+    if (selection.toString().trim() !== '' && !selection.isCollapsed) {
+      highlightSelection(activeHighlightColor);
     }
+    return;
   }
 }
 
@@ -344,9 +387,6 @@ function highlightSelection(color) {
     
     // Auswahl löschen
     selection.removeAllRanges();
-    
-    // Farbauswahl schließen
-    document.querySelector('.highlighter-container').classList.remove('colors-visible');
   } catch (e) {
     console.error('Fehler beim Hervorheben:', e);
   }
