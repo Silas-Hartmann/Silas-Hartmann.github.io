@@ -5,6 +5,8 @@ title: Wiederholung - Imperialismus, Reichsgründung und Erster Weltkrieg
 
 # Wiederholung: Imperialismus, Reichsgründung und Erster Weltkrieg
 
+**Wichtig:** Dieses Arbeitsblatt ist nur zur unterstützenden Übung, keine Garantie, dass genau diese Inhalte im Leistungsnachweis vorkommen. Grundlage für den Leistungsnachweis ist und bleibt dein Heft und dein Schnellhefter!
+
 ## 1. Reichsgründung und Nationalismus
 
 ### Warum führte Bismarck Krieg? [SC]
