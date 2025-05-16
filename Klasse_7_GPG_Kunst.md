@@ -1,5 +1,6 @@
 ## 📕 [Link zu den letzten Hefteinträgen](GPG_7/Hefteinträge_GPG7/Hefteinträge_GPG_7)
 
+Zusätzliches Übungsblatt vor der Probe: [Übungsblatt-1.Weltkrieg](GPG_7/Übungsblatt-1.Weltkrieg)
 
 ## 📝letzte Arbeitsblätter:
 

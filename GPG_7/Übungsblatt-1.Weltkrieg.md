@@ -2,8 +2,9 @@
 layout: default
 title: Wiederholung - Imperialismus, Reichsgründung und Erster Weltkrieg
 ---
-
 # Wiederholung: Imperialismus, Reichsgründung und Erster Weltkrieg
+
+[[Klasse_7_GPG_Kunst|Zurück zur Übersicht 🏠]]
 
 **Wichtig:** Dieses Arbeitsblatt ist nur zur unterstützenden Übung, keine Garantie, dass genau diese Inhalte im Leistungsnachweis vorkommen. Grundlage für den Leistungsnachweis ist und bleibt dein Heft und dein Schnellhefter!
 
