@@ -1,3 +1,7 @@
+# Der Verlauf der Revolution 1848/49
+
+die Ergebnisse dieser Stunde haben wir auf folgendem Arbeitsblatt festgehalten: [Der Verlauf der Revolution 184849 - Lösung](../Arbeitsblätter_GPG_7/Der%20Verlauf%20der%20Revolution%20184849%20-%20Lösung.pdf)
+
 # Warum wollte Bismarck Krieg führen?
 
 >1848/49: Die Revolution war ohne Erfolg, Deutschland besteht aus vielen kleinen Reichen
