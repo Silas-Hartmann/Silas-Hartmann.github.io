@@ -19,6 +19,8 @@ dies ist ein github Pages repository, mithilfe dessen eine Lehkraft Unterrichtsm
 
 # Quiz-Beispielformate für interaktive Arbeitsblätter
 
+> **WICHTIG:** Für die korrekte Erkennung und Verarbeitung der Quiz-Aufgaben ist die genaue Einhaltung des Formats entscheidend. Jede Aufgabe muss mit einer H3-Überschrift im Format `### Aufgabe X [TYP]` beginnen, wobei X die Aufgabennummer und TYP einer der unterstützten Typen (MC, SC, OFFEN, LÜCKE, ORDER) ist. Nach jeder Aufgabe muss ein horizontaler Trennstrich (`---`) folgen, um die Aufgaben voneinander zu trennen. Abweichungen von diesem Format können dazu führen, dass die Aufgaben nicht korrekt erkannt und in interaktive Elemente umgewandelt werden.
+
 Hier ist eine Datei, die alle unterstützten Aufgabenformate mit korrekter Markdown-Syntax demonstriert:
 
 ## Multiple-Choice-Aufgaben
