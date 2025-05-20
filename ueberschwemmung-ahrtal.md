@@ -63,10 +63,11 @@ Bei der Flutkatastrophe im Ahrtal fielen innerhalb von 24 Stunden etwa 100 bis 1
 Bringe die folgenden Schritte in die richtige Reihenfolge, die zur Entstehung einer Sturzflut wie im Ahrtal führen:
 
 1. Starke Regenfälle
-2. Der Boden kann nicht mehr Wasser aufnehmen
-3. Der Fluss füllt sich über seine Kapazitätsgrenzen
+2. Das Wasser des Regens landet im Fluss
+3. Der Fluss füllt sich über das, was er aufnehmen kann
 4. Das Wasser tritt über die Ufer
 5. Überschwemmung der umliegenden Gebiete
+6. Schäden an Menschen, Gebäuden und der Natur
 
 ---
 
@@ -83,7 +84,17 @@ Erkläre in deinen eigenen Worten, warum eine Überschwemmung entsteht und was d
 
 Antwort: Eine Überschwemmung entsteht, wenn mehr Wasser vorhanden ist, als der Boden aufnehmen oder ein Fluss ableiten kann. Im Ahrtal fiel innerhalb kurzer Zeit sehr viel Regen, der schnell ins enge Tal floss. Die Ahr konnte die Wassermassen nicht mehr aufnehmen und trat über die Ufer. Dadurch wurden Ortschaften überschwemmt und viele Gebäude und Infrastruktur zerstört.
 
-![Zeichung_Ahrtal](Zeichnung_Ahrtal.excalidraw)
+<div id="excalidraw-container"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Pfad zur Excalidraw-Datei (relativ zur HTML-Datei)
+    const excalidrawFilePath = '/Zeichnung_Ahrtal.excalidraw';
+    
+    // Excalidraw initialisieren
+    initExcalidraw('excalidraw-container', excalidrawFilePath, true);
+  });
+</script>
+
 
 ---
 
