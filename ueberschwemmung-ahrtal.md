@@ -6,8 +6,8 @@ In der Nacht vom 14. auf den 15. Juli 2021 ereignete sich in Teilen von Rheinlan
 
 Die folgenden Aufgaben helfen dir, zu verstehen, was eine Überschwemmung ist und was im Ahrtal passiert ist.
 
-![Ahrtal Flut vorher-nachher](https://cdn.prod.www.spiegel.de/images/7c5b1c55-ce59-484c-a073-ed68d8b54cdd_w996_r1.778_fpx48.75_fpy50.jpg)
-*Bildvergleich eines Abschnitts des Ahrtals vor und nach der Flut. Quelle: DER SPIEGEL*
+![Ahrtal Flut vorher-nachher](https://static.dw.com/image/58298051_1004.webp)
+*Bildvergleich eines Abschnitts des Ahrtals vor und nach der Flut. Quelle: DW
 
 ## Aufgaben
 
@@ -23,14 +23,12 @@ Welcher Begriff beschreibt das Ereignis im Ahrtal am 14./15. Juli 2021 am besten
 Beschreibe anhand des Bildes, was du unter einer Überschwemmung verstehst.
 
 Antwort: Eine Überschwemmung ist, wenn Wasser Flächen bedeckt, die normalerweise trocken sind. Beim Ahrtal-Hochwasser trat der Fluss über seine Ufer und überschwemmte Straßen, Häuser und ganze Ortschaften.
+
 ---
 
 ## Die Charakteristik einer Überschwemmung
 
 Eine Überschwemmung ist ein Ereignis, bei dem normalerweise trockene Landflächen vorübergehend mit Wasser bedeckt werden. Unterschiedliche Arten von Überschwemmungen können verschiedene Ursachen und Charakteristika haben.
-
-![Arten von Überschwemmungen](https://www.researchgate.net/profile/Heidi-Kreibich/publication/26615397/figure/fig1/AS:669968564133895@1536742175471/Types-of-floods-and-their-associated-characterisation-with-regard-to-temporal-and-spatial.png)
-*Unterschiedliche Arten von Überschwemmungen und ihre Eigenschaften. Quelle: ResearchGate*
 
 ### Aufgabe 3 [LÜCKE]
 Vervollständige den Text zum Thema "Überschwemmung":
@@ -38,6 +36,7 @@ Vervollständige den Text zum Thema "Überschwemmung":
 Eine [Überschwemmung] entsteht, wenn mehr Wasser vorhanden ist, als ein [Fluss] aufnehmen oder abtransportieren kann. Das Wasser tritt dann über die [Ufer] und überflutet das [Umland].
 
 Lücken: Überschwemmung, Fluss, Ufer, Umland
+
 ---
 
 ## Arten von Überschwemmungen
@@ -85,4 +84,6 @@ Bringe die folgenden Schritte in die richtige Reihenfolge, die zur Entstehung ei
 Erkläre in deinen eigenen Worten, warum eine Überschwemmung entsteht und was dabei im Ahrtal passiert ist.
 
 Antwort: Eine Überschwemmung entsteht, wenn mehr Wasser vorhanden ist, als der Boden aufnehmen oder ein Fluss ableiten kann. Im Ahrtal fiel innerhalb kurzer Zeit sehr viel Regen, der schnell ins enge Tal floss. Die Ahr konnte die Wassermassen nicht mehr aufnehmen und trat über die Ufer. Dadurch wurden Ortschaften überschwemmt und viele Gebäude und Infrastruktur zerstört.
+
 ---
+
