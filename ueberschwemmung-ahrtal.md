@@ -40,8 +40,8 @@ Es gibt verschiedene Arten von Überschwemmungen:
 2. **Sturzflut**: Entsteht durch starke, örtliche Regenfälle in kurzer Zeit. Sturzfluten kommen sehr plötzlich und haben eine große Zerstörungskraft durch das schnell fließende Wasser.
 3. **Sturmflut**: Tritt an Küsten auf, wenn starke Winde das Meerwasser in Richtung Land drücken und der Wasserstand ansteigt.
 
-![Luftaufnahme Ahrtal nach der Flut](https://img.br.de/a8aeac9c-5f0c-4b0d-92db-baa71458a7d4.jpeg)
-*Luftaufnahme des Ahrtals nach der Flut. Quelle: BR*
+![Sturmflut an der Ostsee](https://aiswetter-a.akamaihd.net/masters/1372345/image.jpg)
+*Sturmflut an der Ostsee. Quelle: Wetter.de*
 
 ### Aufgabe 4 [MC]
 Welche Merkmale treffen auf eine Sturzflut zu, wie sie im Ahrtal stattfand?
@@ -50,6 +50,7 @@ Welche Merkmale treffen auf eine Sturzflut zu, wie sie im Ahrtal stattfand?
 - Sie hat eine hohe Fließgeschwindigkeit (richtige Option)
 - Sie kündigt sich mehrere Tage vorher an
 - Sie entsteht durch starke Regenfälle in kurzer Zeit (richtige Option)
+
 ---
 
 ## Die Flutkatastrophe im Ahrtal 2021
@@ -64,6 +65,7 @@ Bringe die folgenden Schritte in die richtige Reihenfolge, die zur Entstehung ei
 3. Der Fluss füllt sich über seine Kapazitätsgrenzen
 4. Das Wasser tritt über die Ufer
 5. Überschwemmung der umliegenden Gebiete
+
 ---
 
 ## Interaktiver Vorher-Nachher-Vergleich
