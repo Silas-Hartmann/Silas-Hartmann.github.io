@@ -5,7 +5,7 @@
 
 ## 📝 Zu dem Arbeitsblatt:
 
-[Arbeitsblatt zur Überschwemmung im Ahrtal](ueberschwemmung-ahrtal.md)
+[Arbeitsblatt zur Überschwemmung im Ahrtal](Arbeitsblätter_GPG_6/ueberschwemmung-ahrtal)
 
 ---
 
