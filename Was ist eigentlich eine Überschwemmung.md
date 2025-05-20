@@ -5,20 +5,21 @@
 
 ## 📝 Zu dem Arbeitsblatt:
 
-[[ueberschwemmung-ahrtal|Arbeitsblatt zur Überschwemmung im Ahrtal]]
+[Arbeitsblatt zur Überschwemmung im Ahrtal](ueberschwemmung-ahrtal)
 
 ---
 
 🎬 Das Video vom Beginn der Stunde, nochmal zum Nachgucken bei Bedarf:
 
-![SWR_Flut_ueber_Nacht](https://www.youtube.com/watch?v=fkHOlQNeQPg)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fkHOlQNeQPg?si=wr3aAQjqDq7gYaLs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 *Video: Flut über Nacht – Hochwasser-Katastrophe im Ahrtal: Ein Dorf baut auf, SWR*
 
 
 
 ---
 
-## Mehr Informationen, falls dich das Thema interessiert:
+## Mehr Informationen, falls du noch mehr zu dem Thema erfahren möchtest:
 
 Eine gute Erklärung zu den Ereignissen im Ahrtal, mit interessanten Bildern: [https://www.zdf.de/kinder/logo/ueberschwemmung-ahrtal-120.html](https://www.zdf.de/kinder/logo/ueberschwemmung-ahrtal-120.html)
 
