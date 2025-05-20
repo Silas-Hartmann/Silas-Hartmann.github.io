@@ -79,9 +79,11 @@ Bewege den Schieberegler, um zu sehen, wie das Ahrtal vor und nach der Flut auss
 ---
 
 ### Aufgabe 6 [OFFEN]
-Erkläre in deinen eigenen Worten, warum eine Überschwemmung entsteht und was dabei im Ahrtal passiert ist.
+Erkläre in deinen eigenen Worten, warum eine Überschwemmung entsteht und was dabei im Ahrtal passiert ist. Du kannst auch eine Zeichnung, z.B. mit Pfeilen anfertigen. 
 
 Antwort: Eine Überschwemmung entsteht, wenn mehr Wasser vorhanden ist, als der Boden aufnehmen oder ein Fluss ableiten kann. Im Ahrtal fiel innerhalb kurzer Zeit sehr viel Regen, der schnell ins enge Tal floss. Die Ahr konnte die Wassermassen nicht mehr aufnehmen und trat über die Ufer. Dadurch wurden Ortschaften überschwemmt und viele Gebäude und Infrastruktur zerstört.
+
+![Zeichung_Ahrtal](Zeichnung_Ahrtal.excalidraw)
 
 ---
 
