@@ -2,24 +2,17 @@
 
 ## Das Beispiel Ahrtal 2021
 
-In der Nacht vom 14. auf den 15. Juli 2021 ereignete sich in Teilen von Rheinland-Pfalz und Nordrhein-Westfalen eine der schwersten Flutkatastrophen in der deutschen Geschichte. Besonders schwer getroffen wurde das Ahrtal. 
+In der Nacht vom 14. auf den 15. Juli 2021 gab es in Teilen von Rheinland-Pfalz und Nordrhein-Westfalen eine sehr schwere Flutkatastrophe. Das Ahrtal wurde besonders stark getroffen. 
 
-Die folgenden Aufgaben helfen dir, zu verstehen, was eine Überschwemmung ist und was im Ahrtal passiert ist.
+Die folgenden Aufgaben helfen dir zu verstehen, was eine Überschwemmung ist und was im Ahrtal passiert ist.
 
 ![Ahrtal Flut vorher-nachher](https://static.dw.com/image/58298051_1004.webp)
-*Bildvergleich eines Abschnitts des Ahrtals vor und nach der Flut. Quelle: DW
+*Bildvergleich eines Abschnitts des Ahrtals vor und nach der Flut. Quelle: DW*
 
 ## Aufgaben
 
-### Aufgabe 1 [SC]
-Welcher Begriff beschreibt das Ereignis im Ahrtal am 14./15. Juli 2021 am besten?
-- Tsunami
-- Sturzflut (richtig)
-- Sturmflut
-- Murgang
 ---
-
-### Aufgabe 2 [OFFEN]
+### Aufgabe 1 [OFFEN]
 Beschreibe anhand des Bildes, was du unter einer Überschwemmung verstehst.
 
 Antwort: Eine Überschwemmung ist, wenn Wasser Flächen bedeckt, die normalerweise trocken sind. Beim Ahrtal-Hochwasser trat der Fluss über seine Ufer und überschwemmte Straßen, Häuser und ganze Ortschaften.
@@ -28,9 +21,9 @@ Antwort: Eine Überschwemmung ist, wenn Wasser Flächen bedeckt, die normalerwei
 
 ## Die Charakteristik einer Überschwemmung
 
-Eine Überschwemmung ist ein Ereignis, bei dem normalerweise trockene Landflächen vorübergehend mit Wasser bedeckt werden. Unterschiedliche Arten von Überschwemmungen können verschiedene Ursachen und Charakteristika haben.
+Eine Überschwemmung entsteht, wenn Wasser Flächen bedeckt, die sonst trocken sind. Es gibt verschiedene Arten von Überschwemmungen mit unterschiedlichen Ursachen.
 
-### Aufgabe 3 [LÜCKE]
+### Aufgabe 2 [LÜCKE]
 Vervollständige den Text zum Thema "Überschwemmung":
 
 Eine [Überschwemmung] entsteht, wenn mehr Wasser vorhanden ist, als ein [Fluss] aufnehmen oder abtransportieren kann. Das Wasser tritt dann über die [Ufer] und überflutet das [Umland].
@@ -41,13 +34,14 @@ Lücken: Überschwemmung, Fluss, Ufer, Umland
 
 ## Arten von Überschwemmungen
 
-Es gibt verschiedene Arten von Überschwemmungen, die sich in ihrer Entstehung und ihren Auswirkungen unterscheiden:
+Es gibt verschiedene Arten von Überschwemmungen:
 
-1. **Flusshochwasser**: Tritt auf, wenn nach langanhaltenden Regenfällen oder Schneeschmelze der Wasserstand eines Flusses langsam ansteigt und über die Ufer tritt. Diese Form entwickelt sich meist langsamer und kann über mehrere Tage anhalten.
+1. **Flusshochwasser**: Entsteht durch lange Regenfälle oder Schneeschmelze. Der Wasserstand eines Flusses steigt langsam an und tritt über die Ufer. Diese Form entwickelt sich langsamer und kann mehrere Tage dauern.
+2. **Sturzflut**: Entsteht durch starke, örtliche Regenfälle in kurzer Zeit. Sturzfluten kommen sehr plötzlich und haben eine große Zerstörungskraft durch das schnell fließende Wasser.
+3. **Sturmflut**: Tritt an Küsten auf, wenn starke Winde das Meerwasser in Richtung Land drücken und der Wasserstand ansteigt.
 
-2. **Sturzflut**: Entsteht durch intensive, lokale Starkregenereignisse, bei denen in kurzer Zeit sehr viel Niederschlag fällt. Sturzfluten kommen sehr plötzlich und haben eine enorme Zerstörungskraft durch die hohe Fließgeschwindigkeit des Wassers.
-
-3. **Sturmflut**: Tritt an Küsten auf, wenn starke Winde das Meerwasser in Richtung Land drücken und so der Wasserstand ansteigt.
+![Luftaufnahme Ahrtal nach der Flut](https://img.br.de/a8aeac9c-5f0c-4b0d-92db-baa71458a7d4.jpeg)
+*Luftaufnahme des Ahrtals nach der Flut. Quelle: BR*
 
 ### Aufgabe 4 [MC]
 Welche Merkmale treffen auf eine Sturzflut zu, wie sie im Ahrtal stattfand?
@@ -60,15 +54,7 @@ Welche Merkmale treffen auf eine Sturzflut zu, wie sie im Ahrtal stattfand?
 
 ## Die Flutkatastrophe im Ahrtal 2021
 
-Bei der Flutkatastrophe im Ahrtal fielen innerhalb von 24 Stunden etwa 100 bis 150 Liter Regen pro Quadratmeter. Die Folgen waren verheerend:
-
-- 135 Menschen verloren ihr Leben
-- Mehr als 9.000 Gebäude wurden beschädigt oder zerstört
-- 17.000 Menschen verloren ihr Hab und Gut
-- Zahlreiche Brücken, Straßen und andere Infrastruktur wurden weggespült
-
-![Zerstörungen im Ahrtal](https://www.swrfernsehen.de/swr-aktuell/hochwasser-ahr-schutt-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg)
-*Zerstörungen im Ahrtal nach der Flut. Quelle: SWR*
+Bei der Flutkatastrophe im Ahrtal fielen innerhalb von 24 Stunden etwa 100 bis 150 Liter Regen pro Quadratmeter. Die Folgen waren sehr schlimm: 135 Menschen starben, mehr als 9.000 Gebäude wurden beschädigt oder zerstört und 17.000 Menschen verloren ihr Hab und Gut. Viele Brücken, Straßen und andere wichtige Einrichtungen wurden vom Wasser weggespült.
 
 ### Aufgabe 5 [ORDER]
 Bringe die folgenden Schritte in die richtige Reihenfolge, die zur Entstehung einer Sturzflut wie im Ahrtal führen:
@@ -80,10 +66,17 @@ Bringe die folgenden Schritte in die richtige Reihenfolge, die zur Entstehung ei
 5. Überschwemmung der umliegenden Gebiete
 ---
 
+## Interaktiver Vorher-Nachher-Vergleich
+
+Bewege den Schieberegler, um zu sehen, wie das Ahrtal vor und nach der Flut aussah:
+
+<iframe src="https://mapcache.de/ahr/" width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+---
+
 ### Aufgabe 6 [OFFEN]
 Erkläre in deinen eigenen Worten, warum eine Überschwemmung entsteht und was dabei im Ahrtal passiert ist.
 
 Antwort: Eine Überschwemmung entsteht, wenn mehr Wasser vorhanden ist, als der Boden aufnehmen oder ein Fluss ableiten kann. Im Ahrtal fiel innerhalb kurzer Zeit sehr viel Regen, der schnell ins enge Tal floss. Die Ahr konnte die Wassermassen nicht mehr aufnehmen und trat über die Ufer. Dadurch wurden Ortschaften überschwemmt und viele Gebäude und Infrastruktur zerstört.
 
 ---
-
