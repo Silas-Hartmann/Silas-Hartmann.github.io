@@ -8,7 +8,7 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 Bitte wähle die richtige Jahrgangsstufe:
 
-- Klasse 6: ➡️
+- Klasse 6: ➡️ [Was ist eigentlich eine Überschwemmung](Was%20ist%20eigentlich%20eine%20Überschwemmung)
 - Klasse 7: ➡️ 
 
  
@@ -22,4 +22,4 @@ hier findest du Arbeitsblätter, weiterführende Informationen und teilweise Hef
 
 ---
 
-[Tafelbild.excalidraw](Tafelbild.excalidraw.md)
+[Tafelbild.excalidraw](Tafelbild.excalidraw)
