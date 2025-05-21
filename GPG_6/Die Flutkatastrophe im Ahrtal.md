@@ -6,6 +6,8 @@ Das letzte mal haben wir schon einen groben Überblick darüber bekommen, was be
 
 ## Arbeitsauftrag: Schau dir die Tabelle an: Wann ist was im Ahrtal passiert? Bringe dann in Aufgabe 1 die Ereignisse in die richtige Reihenfolge. 
 
+Die Ereignisse sind zusammengefasst von einem Bericht von Michael Lang, der selbst ein Restaurant in dem Dorf besitzt. Nachdem du mit den Aufgaben fertig bist, kannst du dir seinen Bericht anhören / anschauen, wenn du Kopfhörer verwendest. 
+
 #### Mittwoch, 14. Juli 2021
 
 |Uhrzeit|Was ist passiert?|
@@ -54,19 +56,19 @@ Bringe die folgenden Ereignisse der Flutkatastrophe in die richtige zeitliche Re
 
 ---
 
-<iframe src="https://reportage.wdr.de/chronik-ahrtal-hochwasser-katastrophe" width="800" height="600"></iframe>
-
-### Aufgabe 3 [MC]
+### Aufgabe 2 [MC]
 Um welche Art von Überschwemmung handelte es sich bei der Flutkatastrophe im Ahrtal? 
 
 - [ ] Flusshochwasser
 - [ ] Sturzflut
 - [ ] Sturmflut
 
-## Wie geht es Michael Lang drei Jahre nach der Flut?
 
-Michael Lang hat sich von der Katastrophe nicht unterkriegen lassen. Zu Ostern 2022, weniger als ein Jahr nach der Flut, konnte er seine Ahr-Vinothek in Marienthal auf der Terrasse wieder eröffnen. Sein Motto: "Man darf sich nicht hängen lassen."
+---
 
-Das Haus der Ahr-Vinothek ist zwar auch drei Jahre nach der Flut noch eine Ruine, aber die Terrasse ist jedes Jahr von April bis Oktober als Gastronomie geöffnet. Im Haus selbst ist eine Ausstellung zu sehen: Bilder, Videos und Objekte erinnern an die Flut.
+**Überprüfe jetzt deine Antworten!**
+
+Informiere dich dann auf [dieser Website]( https://reportage.wdr.de/chronik-ahrtal-hochwasser-katastrophe) genauer zu den Erlebnissen von Michael Lang während der Flutkatastrophe:
+
 
 🏠 Zurück zum heutigen Thema [Was ist eigentlich eine Überschwemmung](../../Was%20ist%20eigentlich%20eine%20Überschwemmung)
