@@ -39,7 +39,7 @@ Das letzte mal haben wir schon einen groben Überblick darüber bekommen, was be
 
 Das Wichtigste: Das Wasser stieg sehr schnell in wenigen Stunden. Viele Menschen wurden überrascht, weil die offizielle Warnung erst spät kam.
 
-### Aufgabe1 [ORDER]
+### Aufgabe 1 [ORDER]
 Bringe die folgenden Ereignisse der Flutkatastrophe in die richtige zeitliche Reihenfolge.
 
 1. Der Wetterdienst warnt vor starkem Regen
