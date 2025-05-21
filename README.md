@@ -50,6 +50,7 @@ Was ist die Hauptstadt von Frankreich?
 Erkläre in eigenen Worten, was der Klimawandel ist und nenne mindestens zwei Folgen.
 
 Antwort: Der Klimawandel bezeichnet die langfristige Veränderung des Erdklimas durch menschliche Aktivitäten. Folgen sind unter anderem steigende Meeresspiegel und extreme Wetterereignisse.
+
 ---
 
 ## Lückentext-Aufgaben
@@ -60,6 +61,7 @@ Vervollständige den Text über das Sonnensystem:
 Das [Sonnensystem] besteht aus der [Sonne] und allen Himmelskörpern, die sie umkreisen.
 
 Lücken: Sonnensystem, Sonne
+
 ---
 
 ## Reihenfolge-Aufgaben
@@ -71,6 +73,7 @@ Bringe die folgenden Schritte in die richtige Reihenfolge:
 2. Zweiter Schritt
 3. Dritter Schritt
 4. Vierter Schritt
+
 ---
 
 ## Code-Struktur und Funktionsweise (Quiz)
