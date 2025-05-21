@@ -2,7 +2,8 @@
 
 Das letzte mal haben wir schon einen groben Überblick darüber bekommen, was bei der Katastrophe im Ahrtal passiert ist. Um genauer zu verstehen, wie es zu dieser Katastrophe kam, müssen wir uns anschauen, wann genau was passiert ist, um zu entscheiden, ob es sich um eine Sturzflut, ein Flusshochwasser oder eine Sturmflut handelt. 
 
-<span style="color:rgb(0, 112, 192)">📝 Arbeitsauftrag: Schau dir die Tabelle an: Wann ist was im Ahrtal passiert? Bringe dann in Aufgabe 1 die Ereignisse in die richtige Reihenfolge. </span>
+<span style="color:rgb(144, 79, 196)">📝 Arbeitsauftrag: Schau dir die Tabelle an: Wann ist was im Ahrtal passiert? Bringe dann in Aufgabe 1 die Ereignisse in die richtige Reihenfolge. 
+</span>
 
 ℹ️ Die Ereignisse sind zusammengefasst von einem Bericht von Michael Lang, der selbst ein Restaurant in dem Dorf besitzt. Nachdem du mit den Aufgaben fertig bist, kannst du dir seinen Bericht anhören / anschauen, wenn du Kopfhörer verwendest. 
 
