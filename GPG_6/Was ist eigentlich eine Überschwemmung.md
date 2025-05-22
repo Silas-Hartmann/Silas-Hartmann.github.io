@@ -3,9 +3,11 @@
 ![Bild von der Überschwemmung im Ahrtal](https://www.zdf.de/assets/ueberschwemmung-ahrtal-116~1280x720?cb=1657790225542)
 *Bild von der Überschwemmung im Ahrtal, Quelle: ZDF*
 
-## 📝 Zu dem Arbeitsblatt:
+## 📝 Zu den Arbeitsblättern:
 
-[Arbeitsblatt zur Überschwemmung im Ahrtal](Arbeitsblätter_GPG_6/ueberschwemmung-ahrtal)
+[Arbeitsblatt zur Überschwemmung im Ahrtal](Arbeitsblätter_GPG_6/ueberschwemmung-ahrtal) - am Mittwoch angefangen
+[Die Flutkatastrophe im Ahrtal](GPG_6/Die%20Flutkatastrophe%20im%20Ahrtal) - NEU
+
 
 ---
 

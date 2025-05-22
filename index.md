@@ -9,8 +9,7 @@ title: Unterrichtsmaterial von Herrn Hartmann
 Bitte wähle die richtige Jahrgangsstufe:
 
 - Klasse 6: ➡️ 
-	- [Was ist eigentlich eine Überschwemmung](GPG_6/Was%20ist%20eigentlich%20eine%20Überschwemmung) - am Mittwoch bereits angefangen
-	- [Die Flutkatastrophe im Ahrtal](GPG_6/Die%20Flutkatastrophe%20im%20Ahrtal) - neu 
+	- [Was ist eigentlich eine Überschwemmung](GPG_6/Was%20ist%20eigentlich%20eine%20Überschwemmung)
 - Klasse 7: ➡️ 
 
  
