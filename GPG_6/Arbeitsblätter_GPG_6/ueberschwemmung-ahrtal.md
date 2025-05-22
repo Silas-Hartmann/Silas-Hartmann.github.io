@@ -85,18 +85,7 @@ Erkläre in deinen eigenen Worten, warum eine Überschwemmung entsteht und was d
 Antwort: Eine Überschwemmung entsteht, wenn mehr Wasser vorhanden ist, als der Boden aufnehmen oder ein Fluss ableiten kann. Im Ahrtal fiel innerhalb kurzer Zeit sehr viel Regen, der schnell ins enge Tal floss. Die Ahr konnte die Wassermassen nicht mehr aufnehmen und trat über die Ufer. Dadurch wurden Ortschaften überschwemmt und viele Gebäude und Infrastruktur zerstört.
 
 <div id="excalidraw-container"></div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Pfad zur Excalidraw-Datei (relativ zur HTML-Datei)
-    const excalidrawFilePath = '/Zeichnung_Ahrtal.excalidraw';
-    
-    // Excalidraw initialisieren
-    initExcalidraw('excalidraw-container', excalidrawFilePath, true);
-  });
-</script>
-
-
 ---
 
-🏠 Zurück zum heutigen Thema [Was ist eigentlich eine Überschwemmung](Was%20ist%20eigentlich%20eine%20Überschwemmung)
+🏠 Zurück zum heutigen Thema [Was ist eigentlich eine Überschwemmung](../Was%20ist%20eigentlich%20eine%20Überschwemmung)
 
