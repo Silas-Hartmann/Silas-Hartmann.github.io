@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugendrecht - Gesetzestexte und Erklärungen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .nav {
+            background: #f8f9fa;
+            padding: 0;
+            border-bottom: 2px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav li {
+            margin: 0;
+        }
+
+        .nav a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav a:hover {
+            background: #e9ecef;
+            color: #2a5298;
+            border-bottom-color: #2a5298;
+        }
+
+        .content {
+            padding: 30px;
+            line-height: 1.6;
+        }
+
+        .law-section {
+            margin-bottom: 40px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .law-section:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .law-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .law-content {
+            padding: 25px;
+            background: #f8f9fa;
+        }
+
+        .paragraph {
+            background: white;
+            border-left: 4px solid #2a5298;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .paragraph-title {
+            color: #2a5298;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .law-text {
+            background: #f1f3f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-style: italic;
+            margin: 10px 0;
+            border-left: 3px solid #667eea;
+        }
+
+        .explanation {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 3px solid #0084ff;
+        }
+
+        .explanation h4 {
+            color: #0084ff;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .age-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .age-table th {
+            background: #2a5298;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .age-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .age-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+
+        .highlight strong {
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Jugendrecht - Gesetzestexte</h1>
+            <p>Alle wichtigen Gesetze für deine Fallanalyse</p>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#geschaeftsfaehigkeit">🤝 Geschäfte abschließen</a></li>
+                <li><a href="#arbeiten">💼 Arbeiten & Jobs</a></li>
+                <li><a href="#strafmuendigkeit">⚖️ Strafmündigkeit</a></li>
+                <li><a href="#ausgehen">🌙 Ausgehen & Aufenthalt</a></li>
+                <li><a href="#heiraten">💍 Heiraten</a></li>
+                <li><a href="#uebersicht">📋 Altersübersicht</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <section id="geschaeftsfaehigkeit" class="law-section">
+                <div class="law-header">
+                    🤝 Geschäftsfähigkeit - Verträge und Käufe
+                </div>
+                <div class="law-content">
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 106 BGB - Beschränkte Geschäftsfähigkeit Minderjähriger</div>
+                        <div class="law-text">
+                            "Ein Minderjähriger, der das siebente Lebensjahr vollendet hat, ist nach Maßgabe der §§ 107 bis 113 in der Geschäftsfähigkeit beschränkt."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Ab 7 Jahren sind Kinder "beschränkt geschäftsfähig" - sie können kleine Geschäfte machen, aber bei größeren brauchen sie die Zustimmung der Eltern.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 107 BGB - Einwilligung des gesetzlichen Vertreters</div>
+                        <div class="law-text">
+                            "Der Minderjährige bedarf zu einer Willenserklärung, durch die er nicht lediglich einen rechtlichen Vorteil erlangt, der Einwilligung seines gesetzlichen Vertreters."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Bei allen Verträgen, die auch Nachteile haben können (z.B. Verpflichtungen), brauchen Minderjährige die Erlaubnis ihrer Eltern.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 110 BGB - Bewirken der Leistung mit eigenen Mitteln ("Taschengeldparagraph")</div>
+                        <div class="law-text">
+                            "Ein von dem Minderjährigen ohne Zustimmung des gesetzlichen Vertreters geschlossener Vertrag gilt als von Anfang an wirksam, wenn der Minderjährige die vertragsmäßige Leistung mit Mitteln bewirkt, die ihm zu diesem Zweck oder zu freier Verfügung von dem Vertreter oder mit dessen Zustimmung von einem Dritten überlassen worden sind."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Minderjährige können mit ihrem Taschengeld oder eigenem Geld Käufe machen, ohne die Eltern zu fragen - aber nur, wenn sie sofort bezahlen können.
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Wichtig:</strong> Große Käufe (Auto, Handy-Vertrag, Wohnung mieten) brauchen immer die Zustimmung der Eltern, bis man 18 ist!
+                    </div>
+                </div>
+            </section>
+
+            <section id="arbeiten" class="law-section">
+                <div class="law-header">
+                    💼 Arbeiten und Jobs - Jugendarbeitsschutzgesetz
+                </div>
+                <div class="law-content">
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 5 JArbSchG - Mindestalter</div>
+                        <div class="law-text">
+                            "(1) Kinder dürfen nicht beschäftigt werden. (2) Auf Jugendliche, die der Vollzeitschulpflicht unterliegen, finden die für Kinder geltenden Vorschriften Anwendung."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Grundsätzlich dürfen Kinder unter 15 Jahren nicht arbeiten. Ausnahmen gibt es nur für leichte Tätigkeiten.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 7 JArbSchG - Leichte und für Kinder geeignete Arbeiten</div>
+                        <div class="law-text">
+                            "Über § 5 Abs. 3 hinaus dürfen Kinder über 13 Jahre und vollzeitschulpflichtige Jugendliche mit Einwilligung der Personensorgeberechtigten beschäftigt werden."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Ab 13 Jahren dürfen Jugendliche leichte Jobs machen (z.B. Zeitungen austragen), aber nur mit Erlaubnis der Eltern und maximal 2 Stunden täglich.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 8 JArbSchG - Arbeitszeit</div>
+                        <div class="law-text">
+                            "(1) Jugendliche dürfen nicht mehr als acht Stunden täglich und nicht mehr als 40 Stunden wöchentlich beschäftigt werden."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Jugendliche ab 15 Jahren dürfen maximal 8 Stunden am Tag und 40 Stunden pro Woche arbeiten. Schwere körperliche Arbeit ist trotzdem verboten.
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Wichtig:</strong> Nachtarbeit (nach 20 Uhr) ist für Jugendliche grundsätzlich verboten! Ausnahmen gibt es nur in wenigen Bereichen.
+                    </div>
+                </div>
+            </section>
+
+            <section id="strafmuendigkeit" class="law-section">
+                <div class="law-header">
+                    ⚖️ Strafmündigkeit - Ab wann kann man bestraft werden?
+                </div>
+                <div class="law-content">
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 19 StGB - Schuldunfähigkeit des Kindes</div>
+                        <div class="law-text">
+                            "Schuldunfähig ist, wer bei Begehung der Tat noch nicht vierzehn Jahre alt ist."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Kinder unter 14 Jahren können nicht strafrechtlich verfolgt werden. Sie sind "schuldunfähig" - auch wenn sie eine Straftat begehen.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 1 JGG - Persönlicher und sachlicher Anwendungsbereich</div>
+                        <div class="law-text">
+                            "(1) Dieses Gesetz gilt, wenn ein Jugendlicher oder ein Heranwachsender eine Verfehlung begeht, die nach den allgemeinen Vorschriften mit Strafe bedroht ist. (2) Jugendlicher ist, wer zur Zeit der Tat vierzehn, aber noch nicht achtzehn Jahre alt ist."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Das Jugendstrafrecht gilt für 14-18 Jährige. Sie können bestraft werden, aber mit anderen, milderen Strafen als Erwachsene.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 3 JGG - Verantwortlichkeit</div>
+                        <div class="law-text">
+                            "Ein Jugendlicher ist strafrechtlich verantwortlich, wenn er zur Zeit der Tat nach seiner sittlichen und geistigen Entwicklung reif genug ist, das Unrecht der Tat einzusehen und nach dieser Einsicht zu handeln."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Auch wenn jemand 14 ist, muss das Gericht prüfen, ob er/sie reif genug war, um das Unrecht zu verstehen.
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Wichtig:</strong> Bei Kindern unter 14 wird das Jugendamt eingeschaltet, nicht die Polizei! Die Eltern haften für Schäden.
+                    </div>
+                </div>
+            </section>
+
+            <section id="ausgehen" class="law-section">
+                <div class="law-header">
+                    🌙 Ausgehen und Aufenthaltszeiten - Jugendschutzgesetz
+                </div>
+                <div class="law-content">
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 5 JuSchG - Tanzveranstaltungen</div>
+                        <div class="law-text">
+                            "(1) Die Anwesenheit bei öffentlichen Tanzveranstaltungen ohne Begleitung einer personensorgeberechtigten oder erziehungsbeauftragten Person ist Kindern und Jugendlichen unter 16 Jahren nicht gestattet. Jugendlichen ab 16 Jahren ist die Anwesenheit bei öffentlichen Tanzveranstaltungen ohne Begleitung einer personensorgeberechtigten oder erziehungsbeauftragten Person bis 24 Uhr gestattet."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Zu Tanzveranstaltungen (Disco, Konzerte mit Tanz): Unter 16 nur mit Eltern, ab 16 bis 24 Uhr alleine.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 4 JuSchG - Gaststätten</div>
+                        <div class="law-text">
+                            "(1) Der Aufenthalt in Gaststätten darf Kindern und Jugendlichen unter 16 Jahren nur gestattet werden, wenn sie von einer personensorgeberechtigten oder erziehungsbeauftragten Person begleitet werden oder wenn sie sich in der Zeit zwischen 5 und 23 Uhr aufhalten und ein erlaubter Zweck den Aufenthalt rechtfertigt."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            In Restaurants/Cafés: Unter 16 nur bis 23 Uhr und nur, wenn es einen guten Grund gibt (z.B. Essen). Ab 16 gibt es keine besonderen Beschränkungen.
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Wichtig:</strong> Diese Gesetze gelten nur in der Öffentlichkeit! Private Feiern bei Freunden sind anders geregelt - da entscheiden die Eltern.
+                    </div>
+                </div>
+            </section>
+
+            <section id="heiraten" class="law-section">
+                <div class="law-header">
+                    💍 Heiraten - Ehemündigkeit
+                </div>
+                <div class="law-content">
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 1303 BGB - Ehemündigkeit</div>
+                        <div class="law-text">
+                            "(1) Eine Ehe darf nicht vor Eintritt der Volljährigkeit eingegangen werden. (2) Das Familiengericht kann auf Antrag von dieser Voraussetzung befreien, wenn der Antragsteller das 16. Lebensjahr vollendet hat und sein künftiger Ehegatte volljährig ist."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Normalerweise kann man erst mit 18 heiraten. Mit 16 geht es nur mit Erlaubnis des Familiengerichts und wenn der Partner mindestens 18 ist.
+                        </div>
+                    </div>
+
+                    <div class="paragraph">
+                        <div class="paragraph-title">§ 1304 BGB - Aufhebung bei fehlender Ehemündigkeit</div>
+                        <div class="law-text">
+                            "Eine Ehe ist aufhebbar, wenn sie entgegen § 1303 vor Eintritt der Ehemündigkeit geschlossen worden ist."
+                        </div>
+                        <div class="explanation">
+                            <h4>📝 Was bedeutet das?</h4>
+                            Ehen von Minderjährigen ohne Genehmigung können später für ungültig erklärt werden.
+                        </div>
+                    </div>
+
+                    <div class="highlight">
+                        <strong>Wichtig:</strong> Seit 2017 wurden die Gesetze verschärft - Ehen unter 18 sind seitdem nur noch in besonderen Ausnahmefällen möglich!
+                    </div>
+                </div>
+            </section>
+
+            <section id="uebersicht" class="law-section">
+                <div class="law-header">
+                    📋 Schnelle Altersübersicht
+                </div>
+                <div class="law-content">
+                    <table class="age-table">
+                        <thead>
+                            <tr>
+                                <th>Alter</th>
+                                <th>Was ist erlaubt?</th>
+                                <th>Was ist wichtig?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>7 Jahre</strong></td>
+                                <td>Kleine Einkäufe mit Taschengeld</td>
+                                <td>Beschränkte Geschäftsfähigkeit beginnt</td>
+                            </tr>
+                            <tr>
+                                <td><strong>13 Jahre</strong></td>
+                                <td>Leichte Jobs (2 Std./Tag) mit Elternerlaubnis</td>
+                                <td>Noch nicht strafmündig</td>
+                            </tr>
+                            <tr>
+                                <td><strong>14 Jahre</strong></td>
+                                <td>Strafmündig werden, Religionsmündigkeit</td>
+                                <td>Eigene Verantwortung bei Straftaten</td>
+                            </tr>
+                            <tr>
+                                <td><strong>15 Jahre</strong></td>
+                                <td>Richtiger Job (8 Std./Tag, 40 Std./Woche)</td>
+                                <td>Immer noch beschränkt geschäftsfähig</td>
+                            </tr>
+                            <tr>
+                                <td><strong>16 Jahre</strong></td>
+                                <td>Bier/Wein trinken, bis 24 Uhr ausgehen, Mofa fahren</td>
+                                <td>Heiraten nur mit Gerichtsgenehmigung</td>
+                            </tr>
+                            <tr>
+                                <td><strong>17 Jahre</strong></td>
+                                <td>Führerschein (begleitetes Fahren)</td>
+                                <td>Noch nicht voll geschäftsfähig</td>
+                            </tr>
+                            <tr>
+                                <td><strong>18 Jahre</strong></td>
+                                <td>Volljährigkeit - alle Rechte und Pflichten</td>
+                                <td>Volle Geschäftsfähigkeit, wählen, heiraten</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Highlight current section in navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.law-section');
+            const navLinks = document.querySelectorAll('.nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.borderBottomColor = 'transparent';
+                link.style.background = 'transparent';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.borderBottomColor = '#2a5298';
+                    link.style.background = '#e9ecef';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
