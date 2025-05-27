@@ -9,13 +9,6 @@ dies ist ein github Pages repository, mithilfe dessen eine Lehkraft Unterrichtsm
 - Feature für Texthighlighting in Arbeitsblätter, verschiedenfarbige Markierungen und Radierfunktion
 - rudimentäres System zum PDF Export
 
-## Geplante Features
-
-- Integration von Excalidraw
-- Verbesserung des PDF-Exports
-- integration weiterer Aufgabenformate
-- Differenzierung der verschiedenen Seiten nach Typ mit individuellen Features
-
 
 # Quiz-Beispielformate für interaktive Arbeitsblätter
 
@@ -123,12 +116,6 @@ Das System besteht aus zwei Hauptdateien:
 
 2. Erstelle Markdown-Inhalte mit den beschriebenen Aufgabenformaten
 3. Das Script wandelt automatisch alle passenden H3-Überschriften in interaktive Quizfragen um
-
-## Beispiele
-
-Im Repository findest du Beispiel-Arbeitsblätter:
-- [Physik-Quiz](https://silas-hartmann.github.io/beispiel-quiz-neu.html)
-- [Lückentext-Beispiel](https://silas-hartmann.github.io/beispiel-lueckentext.html)
 
 ## Anpassung und Erweiterung
 
