@@ -8,7 +8,9 @@ title: Unterrichtsmaterial von Herrn Hartmann
 
 Bitte wähle die richtige Jahrgangsstufe:
 
-- Klasse 6: ➡️ [Was ist eigentlich eine Überschwemmung](GPG_6/Was%20ist%20eigentlich%20eine%20Überschwemmung)
+- Klasse 6: ➡️ 
+1. [Was ist eigentlich eine Überschwemmung](GPG_6/Was%20ist%20eigentlich%20eine%20Überschwemmung)
+2. [Wasserkreislauf](GPG_6/Arbeitsblätter_GPG_6/Wasserkreislauf)
 - Klasse 7: ➡️ [Übersicht Gesetze Jugendrecht](GPG_7/Sequenz_Recht/gesetzestexte_jugendrecht.html)
 
  
