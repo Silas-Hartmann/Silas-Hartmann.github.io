@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warum sind Täler in Gebirgen bei Hochwasser besonders gefährdet?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .simulation-area {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            gap: 30px;
+        }
+        
+        .valley-container {
+            flex: 1;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .valley-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .valley-canvas {
+            width: 100%;
+            height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: linear-gradient(to bottom, #87ceeb 0%, #87ceeb 30%, #228b22 30%, #228b22 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .rain-button {
+            background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.4);
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .rain-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 195, 247, 0.6);
+        }
+        
+        .rain-button:active {
+            transform: translateY(0);
+        }
+        
+        .reset-button {
+            background: linear-gradient(135deg, #ff7043 0%, #ff5722 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 112, 67, 0.4);
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 112, 67, 0.6);
+        }
+        
+        .explanation {
+            background: #fff3e0;
+            border: 2px solid #ffb74d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .explanation h3 {
+            color: #ef6c00;
+            margin-top: 0;
+        }
+        
+        .raindrop {
+            position: absolute;
+            width: 4px;
+            height: 8px;
+            background: #4fc3f7;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: fall linear;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(350px);
+            }
+        }
+        
+        .water-level {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(79, 195, 247, 0.7);
+            border-radius: 0 0 8px 8px;
+            transition: height 0.5s ease;
+            z-index: 1;
+        }
+        
+        .house {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #8d6e63;
+            border-radius: 2px;
+            z-index: 3;
+        }
+        
+        .house::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -5px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 15px solid #d32f2f;
+        }
+        
+        .danger-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 4;
+        }
+        
+        .danger-low {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .danger-high {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .mountain {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            z-index: 2;
+        }
+        
+        .quiz-section {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+        
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quiz-options li {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quiz-options li:hover {
+            background: #f1f8e9;
+        }
+        
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏔️ Warum sind Täler in Gebirgen bei Hochwasser besonders gefährdet? 🌊</h1>
+            <p>Das Beispiel Ahrtal - Entdecke die Trichterwirkung!</p>
+        </div>
+        
+        <div class="content">
+            <div class="simulation-area">
+                <div class="valley-container">
+                    <div class="valley-title">Flaches Tal</div>
+                    <div class="valley-canvas" id="flatValley">
+                        <div class="water-level" id="flatWater" style="width: 100%; height: 0px;"></div>
+                        <div class="house"></div>
+                        <div class="danger-indicator danger-low" id="flatDanger">Gefahr: GERING</div>
+                    </div>
+                    <p><strong>Breites Tal, sanfte Hänge</strong><br>
+                    Wasser verteilt sich auf große Fläche</p>
+                </div>
+                
+                <div class="valley-container">
+                    <div class="valley-title">Kerbtal (wie das Ahrtal)</div>
+                    <div class="valley-canvas" id="steepValley">
+                        <!-- Steile Berge links und rechts -->
+                        <div class="mountain" style="left: 0; border-left: 0px solid transparent; border-right: 80px solid transparent; border-bottom: 200px solid #8d6e63;"></div>
+                        <div class="mountain" style="right: 0; border-left: 80px solid transparent; border-right: 0px solid transparent; border-bottom: 200px solid #8d6e63;"></div>
+                        
+                        <div class="water-level" id="steepWater" style="width: 100%; height: 0px;"></div>
+                        <div class="house"></div>
+                        <div class="danger-indicator danger-low" id="steepDanger">Gefahr: GERING</div>
+                    </div>
+                    <p><strong>Schmales Tal, steile Hänge</strong><br>
+                    Wasser sammelt sich schnell - Trichterwirkung!</p>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="rain-button" onclick="startRain()">🌧️ Starkregen starten</button>
+                <button class="reset-button" onclick="resetSimulation()">🔄 Zurücksetzen</button>
+            </div>
+            
+            <div class="explanation">
+                <h3>Was passiert hier?</h3>
+                <p><strong>Gleiche Regenmenge:</strong> In beiden Tälern fällt die gleiche Menge Regen! ☔</p>
+                <p><strong>Flaches Tal:</strong> Das Regenwasser verteilt sich auf eine große Fläche. Der Wasserspiegel steigt langsam.</p>
+                <p><strong>Kerbtal (Ahrtal):</strong> Die steilen Berghänge wirken wie ein Trichter. Das gleiche Regenwasser sammelt sich im schmalen Tal. Der Wasserspiegel steigt schnell und hoch!</p>
+                <p><strong>🏠 Fazit:</strong> Bei der gleichen Regenmenge sind Häuser in schmalen Tälern viel gefährdeter als in breiten Tälern - wegen der Trichterwirkung!</p>
+            </div>
+            
+            <div class="quiz-section">
+                <div class="quiz-question">
+                    🤔 Teste dein Wissen: Warum war das Ahrtal 2021 so stark von der Überschwemmung betroffen?
+                </div>
+                <ul class="quiz-options">
+                    <li onclick="checkAnswer(this, false)">A) Weil es in der Nähe des Meeres liegt</li>
+                    <li onclick="checkAnswer(this, true)">B) Weil es ein schmales Tal mit steilen Hängen ist (Kerbtal)</li>
+                    <li onclick="checkAnswer(this, false)">C) Weil dort besonders viele Menschen wohnen</li>
+                    <li onclick="checkAnswer(this, false)">D) Weil der Boden dort besonders hart ist</li>
+                </ul>
+                <div class="quiz-feedback" id="quizFeedback" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let rainActive = false;
+        let rainInterval;
+        let waterLevelFlat = 0;
+        let waterLevelSteep = 0;
+        
+        function startRain() {
+            if (rainActive) return;
+            
+            rainActive = true;
+            const flatValley = document.getElementById('flatValley');
+            const steepValley = document.getElementById('steepValley');
+            
+            // Regen-Animation starten
+            rainInterval = setInterval(() => {
+                // Gleich viele Regentropfen für beide Täler
+                for (let i = 0; i < 5; i++) {
+                    createRaindrop(flatValley);
+                    createRaindrop(steepValley);
+                }
+                
+                // Wasserspiegel erhöhen - im Kerbtal steigt es schneller durch Trichterwirkung
+                waterLevelFlat += 1;
+                waterLevelSteep += 3; // Steigt 3x schneller im Kerbtal durch Trichterwirkung!
+                
+                updateWaterLevel('flatWater', waterLevelFlat, 'flatDanger');
+                updateWaterLevel('steepWater', waterLevelSteep, 'steepDanger');
+                
+                // Nach 5 Sekunden stoppen
+                if (waterLevelFlat >= 50) {
+                    stopRain();
+                }
+            }, 200);
+        }
+        
+        function createRaindrop(container) {
+            const drop = document.createElement('div');
+            drop.className = 'raindrop';
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+            container.appendChild(drop);
+            
+            // Tropfen nach Animation entfernen
+            setTimeout(() => {
+                if (drop.parentNode) {
+                    drop.parentNode.removeChild(drop);
+                }
+            }, 1000);
+        }
+        
+        function updateWaterLevel(elementId, level, dangerId) {
+            const waterElement = document.getElementById(elementId);
+            const dangerElement = document.getElementById(dangerId);
+            
+            waterElement.style.height = Math.min(level, 150) + 'px';
+            
+            // Gefahrenanzeige aktualisieren
+            dangerElement.style.opacity = '1';
+            if (level < 30) {
+                dangerElement.textContent = 'Gefahr: GERING';
+                dangerElement.className = 'danger-indicator danger-low';
+            } else if (level < 60) {
+                dangerElement.textContent = 'Gefahr: MITTEL';
+                dangerElement.className = 'danger-indicator danger-high';
+                dangerElement.style.background = '#fff3e0';
+                dangerElement.style.color = '#ef6c00';
+            } else {
+                dangerElement.textContent = 'Gefahr: HOCH!';
+                dangerElement.className = 'danger-indicator danger-high';
+            }
+        }
+        
+        function stopRain() {
+            rainActive = false;
+            clearInterval(rainInterval);
+        }
+        
+        function resetSimulation() {
+            stopRain();
+            waterLevelFlat = 0;
+            waterLevelSteep = 0;
+            
+            // Wasserspiegel zurücksetzen
+            document.getElementById('flatWater').style.height = '0px';
+            document.getElementById('steepWater').style.height = '0px';
+            
+            // Gefahrenanzeigen zurücksetzen
+            const dangers = document.querySelectorAll('.danger-indicator');
+            dangers.forEach(danger => {
+                danger.style.opacity = '0';
+                danger.textContent = 'Gefahr: GERING';
+                danger.className = 'danger-indicator danger-low';
+            });
+            
+            // Alle Regentropfen entfernen
+            const raindrops = document.querySelectorAll('.raindrop');
+            raindrops.forEach(drop => drop.remove());
+        }
+        
+        function checkAnswer(element, isCorrect) {
+            const feedback = document.getElementById('quizFeedback');
+            const options = document.querySelectorAll('.quiz-options li');
+            
+            // Alle Optionen deaktivieren
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                option.style.opacity = '0.6';
+            });
+            
+            if (isCorrect) {
+                element.style.backgroundColor = '#c8e6c9';
+                element.style.color = '#2e7d32';
+                feedback.className = 'quiz-feedback correct';
+                feedback.textContent = '✅ Richtig! Das Ahrtal ist ein Kerbtal mit steilen Hängen. Diese wirken wie ein Trichter und sammeln das Regenwasser schnell im schmalen Tal.';
+            } else {
+                element.style.backgroundColor = '#ffcdd2';
+                element.style.color = '#c62828';
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = '❌ Das ist nicht richtig. Die richtige Antwort ist B: Das Ahrtal ist ein Kerbtal mit steilen Hängen, die wie ein Trichter wirken.';
+            }
+            
+            feedback.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
