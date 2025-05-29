@@ -27,12 +27,34 @@
             color: white;
             padding: 25px;
             text-align: center;
+            position: relative;
         }
         
         .header h1 {
             margin: 0;
             font-size: 24px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
         
         .content {
@@ -261,11 +283,167 @@
             background: #ffcdd2;
             color: #c62828;
         }
+        
+        .process-activity {
+            background: #e1f5fe;
+            border: 2px solid #29b6f6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .process-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0277bd;
+            font-size: 18px;
+        }
+        
+        .drag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            min-height: 60px;
+            padding: 15px;
+            border: 2px dashed #81c784;
+            border-radius: 8px;
+            background: #f1f8e9;
+        }
+        
+        .drag-item {
+            background: #ffffff;
+            border: 2px solid #42a5f5;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: grab;
+            user-select: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            touch-action: none; /* Verhindert Zoom/Scroll auf Touch-Geräten */
+            min-height: 44px; /* Mindestgröße für Touch-Targets */
+        }
+        
+        .drag-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .drag-item:active {
+            cursor: grabbing;
+        }
+        
+        .drag-item.dragging {
+            opacity: 0.8;
+            transform: rotate(3deg) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .drag-item.correct {
+            background: #c8e6c9;
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+        
+        .drag-item.incorrect {
+            background: #ffcdd2;
+            border-color: #f44336;
+            color: #c62828;
+        }
+        
+        .drop-zone {
+            min-height: 100px;
+            border: 2px dashed #bbb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #fafafa;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .drop-zone.drag-over {
+            border-color: #42a5f5;
+            background: #e3f2fd;
+        }
+        
+        .process-instruction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .check-button {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+            margin: 15px 10px 0 0;
+        }
+        
+        .check-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .reset-process-button {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .reset-process-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+        }
+        
+        /* Responsive Design für Tablets und Smartphones */
+        @media (max-width: 768px) {
+            .simulation-area {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .drag-container {
+                flex-direction: column;
+            }
+            
+            .drag-item {
+                text-align: center;
+                padding: 15px;
+                font-size: 16px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .back-button {
+                position: static;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <a href="https://silas-hartmann.github.io" class="back-button">← Zurück zur Übersicht</a>
             <h1>🏔️ Warum sind Täler in Gebirgen bei Hochwasser besonders gefährdet? 🌊</h1>
             <p>Das Beispiel Ahrtal - Entdecke die Trichterwirkung!</p>
         </div>
@@ -323,6 +501,32 @@
                     <li onclick="checkAnswer(this, false)">D) Weil der Boden dort besonders hart ist</li>
                 </ul>
                 <div class="quiz-feedback" id="quizFeedback" style="display: none;"></div>
+            </div>
+            
+            <div class="process-activity">
+                <div class="process-title">
+                    🧩 Bringe die Schritte in die richtige Reihenfolge!
+                </div>
+                <div class="process-instruction">
+                    Ziehe die Kärtchen in die richtige Reihenfolge, um zu zeigen, wie ein Hochwasser im Kerbtal entsteht:
+                </div>
+                
+                <div class="drag-container" id="dragContainer">
+                    <div class="drag-item" draggable="true" data-step="3">Das Wasser sammelt sich schnell im schmalen Tal</div>
+                    <div class="drag-item" draggable="true" data-step="1">Starkregen fällt auf die Berghänge</div>
+                    <div class="drag-item" draggable="true" data-step="4">Der Wasserspiegel steigt gefährlich hoch an</div>
+                    <div class="drag-item" draggable="true" data-step="2">Das Wasser fließt schnell die steilen Hänge hinunter</div>
+                </div>
+                
+                <div style="font-weight: bold; margin: 15px 0;">Richtige Reihenfolge (ziehe die Kärtchen hierher):</div>
+                <div class="drop-zone" id="dropZone">
+                    <span style="color: #999; font-style: italic;">Ziehe die Kärtchen hier hinein...</span>
+                </div>
+                
+                <button class="check-button" onclick="checkProcess()">🔍 Reihenfolge prüfen</button>
+                <button class="reset-process-button" onclick="resetProcess()">🔄 Neu starten</button>
+                
+                <div class="quiz-feedback" id="processFeedback" style="display: none; margin-top: 15px;"></div>
             </div>
         </div>
     </div>
@@ -449,6 +653,218 @@
             }
             
             feedback.style.display = 'block';
+        }
+        
+        // Drag and Drop Funktionalität
+        let draggedElement = null;
+        
+        // Event Listeners für Drag and Drop
+        document.addEventListener('DOMContentLoaded', function() {
+            setupDragAndDrop();
+        });
+        
+        function setupDragAndDrop() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZone = document.getElementById('dropZone');
+            
+            dragItems.forEach(item => {
+                // Desktop Events
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
+                
+                // Touch Events für Tablets/Smartphones
+                item.addEventListener('touchstart', handleTouchStart, { passive: false });
+                item.addEventListener('touchmove', handleTouchMove, { passive: false });
+                item.addEventListener('touchend', handleTouchEnd, { passive: false });
+            });
+            
+            dropZone.addEventListener('dragover', handleDragOver);
+            dropZone.addEventListener('drop', handleDrop);
+            dropZone.addEventListener('dragenter', handleDragEnter);
+            dropZone.addEventListener('dragleave', handleDragLeave);
+        }
+        
+        // Touch-Events für mobile Geräte
+        let touchedElement = null;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isDraggingTouch = false;
+        
+        function handleTouchStart(e) {
+            touchedElement = this;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            
+            // Verhindere Scrollen während des Drag
+            e.preventDefault();
+            
+            this.style.position = 'fixed';
+            this.style.zIndex = '1000';
+            this.style.pointerEvents = 'none';
+            this.classList.add('dragging');
+        }
+        
+        function handleTouchMove(e) {
+            if (!touchedElement) return;
+            
+            e.preventDefault();
+            isDraggingTouch = true;
+            
+            const touch = e.touches[0];
+            touchedElement.style.left = (touch.clientX - 50) + 'px';
+            touchedElement.style.top = (touch.clientY - 25) + 'px';
+        }
+        
+        function handleTouchEnd(e) {
+            if (!touchedElement || !isDraggingTouch) {
+                if (touchedElement) {
+                    resetTouchElement();
+                }
+                return;
+            }
+            
+            e.preventDefault();
+            
+            const touch = e.changedTouches[0];
+            const dropZone = document.getElementById('dropZone');
+            const dropRect = dropZone.getBoundingClientRect();
+            
+            // Prüfe ob das Element über der Drop Zone losgelassen wurde
+            if (touch.clientX >= dropRect.left && 
+                touch.clientX <= dropRect.right && 
+                touch.clientY >= dropRect.top && 
+                touch.clientY <= dropRect.bottom) {
+                
+                // Entferne Placeholder Text
+                const placeholder = dropZone.querySelector('span');
+                if (placeholder && placeholder.textContent.includes('Ziehe die Kärtchen')) {
+                    placeholder.remove();
+                }
+                
+                // Füge Element zur Drop Zone hinzu
+                resetTouchElement();
+                dropZone.appendChild(touchedElement);
+            } else {
+                // Element zurück zum ursprünglichen Container
+                resetTouchElement();
+                document.getElementById('dragContainer').appendChild(touchedElement);
+            }
+            
+            touchedElement = null;
+            isDraggingTouch = false;
+        }
+        
+        function resetTouchElement() {
+            if (touchedElement) {
+                touchedElement.style.position = '';
+                touchedElement.style.left = '';
+                touchedElement.style.top = '';
+                touchedElement.style.zIndex = '';
+                touchedElement.style.pointerEvents = '';
+                touchedElement.classList.remove('dragging');
+            }
+        }
+        
+        function handleDragStart(e) {
+            draggedElement = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        }
+        
+        function handleDragEnter(e) {
+            e.preventDefault();
+            this.classList.add('drag-over');
+        }
+        
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            this.classList.remove('drag-over');
+            
+            if (draggedElement) {
+                // Entferne Placeholder Text
+                const placeholder = this.querySelector('span');
+                if (placeholder && placeholder.textContent.includes('Ziehe die Kärtchen')) {
+                    placeholder.remove();
+                }
+                
+                // Füge Element zur Drop Zone hinzu
+                this.appendChild(draggedElement);
+                draggedElement = null;
+            }
+        }
+        
+        function checkProcess() {
+            const dropZone = document.getElementById('dropZone');
+            const items = Array.from(dropZone.querySelectorAll('.drag-item'));
+            const feedback = document.getElementById('processFeedback');
+            
+            if (items.length !== 4) {
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = '❌ Bitte ziehe alle 4 Schritte in die richtige Reihenfolge!';
+                feedback.style.display = 'block';
+                return;
+            }
+            
+            let correct = 0;
+            const correctOrder = ['1', '2', '3', '4'];
+            
+            items.forEach((item, index) => {
+                const step = item.getAttribute('data-step');
+                if (step === correctOrder[index]) {
+                    item.classList.add('correct');
+                    item.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    item.classList.add('incorrect');
+                    item.classList.remove('correct');
+                }
+            });
+            
+            if (correct === 4) {
+                feedback.className = 'quiz-feedback correct';
+                feedback.textContent = '🎉 Perfekt! Du hast den Prozess der Hochwasserentstehung in einem Kerbtal richtig verstanden!';
+            } else {
+                feedback.className = 'quiz-feedback incorrect';
+                feedback.textContent = `❌ ${correct} von 4 Schritten sind richtig. Versuche es noch einmal! Tipp: Denke daran, was zuerst passiert und was als letztes.`;
+            }
+            
+            feedback.style.display = 'block';
+        }
+        
+        function resetProcess() {
+            const dragContainer = document.getElementById('dragContainer');
+            const dropZone = document.getElementById('dropZone');
+            const feedback = document.getElementById('processFeedback');
+            
+            // Alle Items zurück zum Container
+            const items = document.querySelectorAll('.drag-item');
+            items.forEach(item => {
+                item.classList.remove('correct', 'incorrect');
+                dragContainer.appendChild(item);
+            });
+            
+            // Placeholder Text zurücksetzen
+            dropZone.innerHTML = '<span style="color: #999; font-style: italic;">Ziehe die Kärtchen hier hinein...</span>';
+            
+            // Feedback ausblenden
+            feedback.style.display = 'none';
+            
+            // Event Listeners neu einrichten
+            setupDragAndDrop();
         }
     </script>
 </body>
