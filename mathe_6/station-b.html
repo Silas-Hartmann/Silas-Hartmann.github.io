@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Station B - Einfache Gleichungen</title>
+    <title>Station B - Umkehraufgaben</title>
     <style>
         * {
             margin: 0;
@@ -245,6 +245,15 @@
             font-weight: bold;
             font-size: 1.2em;
             font-family: 'Courier New', monospace;
+            flex: 1;
+        }
+
+        .equation-center {
+            font-weight: bold;
+            font-size: 1.2em;
+            font-family: 'Courier New', monospace;
+            margin: 0 20px;
+            color: #666;
         }
 
         .answer-section {
@@ -484,6 +493,14 @@
             font-size: 0.9em;
         }
 
+        .explanation-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c8 100%);
+            border: 2px solid #4CAF50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
         .hidden { display: none; }
     </style>
 </head>
@@ -491,9 +508,9 @@
     <div class="container">
         <!-- Start Screen -->
         <div class="start-screen" id="startScreen">
-            <h1>📊 Station B - Einfache Gleichungen</h1>
+            <h1>🔄 Station B - Umkehraufgaben</h1>
             <p style="font-size: 1.2em; margin: 20px 0; color: #666;">
-                Wähle deinen Schwierigkeitsgrad und starte dein Gleichungs-Training!
+                Lerne das Geheimnis der Gegenspieler-Operationen!
             </p>
 
             <div class="difficulty-selector">
@@ -501,8 +518,8 @@
                     <div class="difficulty-stars">⭐</div>
                     <div class="difficulty-title">Leicht</div>
                     <div class="difficulty-description">
-                        Nur Addition rückgängig machen<br>
-                        <em>Perfekt zum Aufwärmen!</em>
+                        Einfache Umkehrungen finden<br>
+                        <em>Addition ↔ Subtraktion</em>
                     </div>
                 </div>
 
@@ -510,8 +527,8 @@
                     <div class="difficulty-stars">⭐⭐</div>
                     <div class="difficulty-title">Mittel</div>
                     <div class="difficulty-description">
-                        Addition und Subtraktion<br>
-                        <em>Der Klassiker für alle!</em>
+                        Alle vier Grundrechenarten<br>
+                        <em>+ - × ÷ umkehren</em>
                     </div>
                 </div>
 
@@ -519,8 +536,8 @@
                     <div class="difficulty-stars">⭐⭐⭐</div>
                     <div class="difficulty-title">Schwer</div>
                     <div class="difficulty-description">
-                        Gemischte Aufgaben<br>
-                        <em>Für Gleichungs-Profis!</em>
+                        Gemischte Herausforderung<br>
+                        <em>Alle Operationen wild durcheinander!</em>
                     </div>
                 </div>
             </div>
@@ -528,10 +545,11 @@
             <div class="navigation-box">
                 <h3>🗺️ Andere Stationen besuchen:</h3>
                 <div class="station-grid">
-                    <a href="https://silas-hartmann.github.io/Mathe_6/station-a.html" class="next-station">Station A - Terme</a>
-                    <a href="https://silas-hartmann.github.io/Mathe_6/station-c.html" class="next-station">Station C - Umkehraufgaben</a>
-                    <a href="https://silas-hartmann.github.io/Mathe_6/station-d.html" class="next-station">Station D - Zusammenfassen</a>
-                    <a href="https://silas-hartmann.github.io/Mathe_6/station-e.html" class="next-station">Station E - Komplex</a>
+                    <a href="lernfortschritt.html" class="next-station">📊 Lernfortschritt</a>
+                    <a href="station-a.html" class="next-station">Station A - Terme</a>
+                    <a href="station-c.html" class="next-station">Station C - Gleichungen</a>
+                    <a href="station-d.html" class="next-station">Station D - Zusammenfassen</a>
+                    <a href="station-e.html" class="next-station">Station E - Komplex</a>
                 </div>
             </div>
         </div>
@@ -540,7 +558,7 @@
         <div class="main-content" id="mainContent">
             <div class="header">
                 <div class="level-indicator" id="levelIndicator">Level: ⭐</div>
-                <h1>📊 Station B - Einfache Gleichungen</h1>
+                <h1>🔄 Station B - Umkehraufgaben</h1>
                 <div class="score-display" id="totalScore">Punkte: 0/4</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
@@ -548,13 +566,13 @@
             </div>
 
             <div class="goal-box">
-                <strong><span class="emoji">🎯</span>Ziel: Ich kann einfache Gleichungen der Form x + a = b lösen</strong>
+                <strong><span class="emoji">🎯</span>Ziel: Ich verstehe, dass jede Rechenoperation einen "Gegenspieler" hat</strong>
             </div>
 
             <div class="reminder-box">
-                <strong><span class="emoji">📝</span>Erinnerung:</strong><br>
-                Bei Gleichungen fragst du: "Welche Zahl muss für x stehen?"<br>
-                <div class="example">x + 3 = 8 → x = 5 (weil 5 + 3 = 8)</div>
+                <strong><span class="emoji">🤝</span>Die Gegenspieler-Paare:</strong><br>
+                Addition ↔ Subtraktion &nbsp;&nbsp;|&nbsp;&nbsp; Multiplikation ↔ Division<br>
+                <div class="example">Wenn ich 5 + 3 = 8 weiß, dann weiß ich auch: 8 - 3 = 5</div>
             </div>
 
             <!-- Dynamic Task Sections will be inserted here -->
@@ -573,6 +591,7 @@
             <div class="controls">
                 <button class="save-button" onclick="saveResults()">💾 Ergebnisse speichern</button>
                 <button class="restart-button" onclick="restartStation()">🔄 Anderes Level</button>
+                <a href="lernfortschritt.html" class="save-button" style="text-decoration: none;">📊 Zum Lernfortschritt</a>
             </div>
         </div>
     </div>
@@ -580,37 +599,37 @@
     <script>
         const TASKS = {
             1: {
-                title: "Addition rückgängig machen",
+                title: "Addition ↔ Subtraktion",
                 stars: "⭐",
                 tasks: [
-                    { equation: "x + 2 = 7", answer: 5 },
-                    { equation: "x + 5 = 12", answer: 7 },
-                    { equation: "x + 3 = 10", answer: 7 },
-                    { equation: "x + 4 = 9", answer: 5 }
+                    { equation: "? + 3 = 8", operation: "+", number1: 3, result: 8, answer: 5, reverse: "8 - 3" },
+                    { equation: "? + 5 = 12", operation: "+", number1: 5, result: 12, answer: 7, reverse: "12 - 5" },
+                    { equation: "? - 2 = 6", operation: "-", number1: 2, result: 6, answer: 8, reverse: "6 + 2" },
+                    { equation: "? - 4 = 9", operation: "-", number1: 4, result: 9, answer: 13, reverse: "9 + 4" }
                 ],
-                hint: "Bei x + 2 = 7 denkst du: 'Was + 2 = 7?' Die Antwort ist 5, weil 5 + 2 = 7."
+                hint: "Denk daran: Addition und Subtraktion sind Gegenspieler! Wenn du addiert hast, subtrahiere. Wenn du subtrahiert hast, addiere."
             },
             2: {
-                title: "Subtraktion rückgängig machen",
+                title: "Alle vier Grundrechenarten",
                 stars: "⭐⭐",
                 tasks: [
-                    { equation: "x - 3 = 5", answer: 8 },
-                    { equation: "x - 2 = 8", answer: 10 },
-                    { equation: "x - 6 = 4", answer: 10 },
-                    { equation: "x - 1 = 11", answer: 12 }
+                    { equation: "? × 3 = 15", operation: "×", number1: 3, result: 15, answer: 5, reverse: "15 ÷ 3" },
+                    { equation: "? ÷ 2 = 8", operation: "÷", number1: 2, result: 8, answer: 16, reverse: "8 × 2" },
+                    { equation: "? + 7 = 20", operation: "+", number1: 7, result: 20, answer: 13, reverse: "20 - 7" },
+                    { equation: "? - 9 = 11", operation: "-", number1: 9, result: 11, answer: 20, reverse: "11 + 9" }
                 ],
-                hint: "Bei x - 3 = 5 denkst du: 'Was - 3 = 5?' Die Antwort ist 8, weil 8 - 3 = 5."
+                hint: "Jede Operation hat ihren Gegenspieler: + ↔ -, × ↔ ÷. Überlege: Welche Operation macht das Gegenteil?"
             },
             3: {
-                title: "Gemischt",
+                title: "Gemischte Herausforderung",
                 stars: "⭐⭐⭐",
                 tasks: [
-                    { equation: "x + 7 = 15", answer: 8 },
-                    { equation: "x - 9 = 3", answer: 12 },
-                    { equation: "x + 12 = 20", answer: 8 },
-                    { equation: "x - 5 = 13", answer: 18 }
+                    { equation: "? × 6 = 42", operation: "×", number1: 6, result: 42, answer: 7, reverse: "42 ÷ 6" },
+                    { equation: "? ÷ 4 = 9", operation: "÷", number1: 4, result: 9, answer: 36, reverse: "9 × 4" },
+                    { equation: "? + 15 = 28", operation: "+", number1: 15, result: 28, answer: 13, reverse: "28 - 15" },
+                    { equation: "? - 12 = 18", operation: "-", number1: 12, result: 18, answer: 30, reverse: "18 + 12" }
                 ],
-                hint: "Achte genau auf das Vorzeichen! Bei + ziehst du ab, bei - addierst du."
+                hint: "Bei schwierigeren Zahlen ist es besonders wichtig, die richtige Umkehroperation zu wählen. Lass dir Zeit!"
             }
         };
 
@@ -656,17 +675,21 @@
                                 <span class="section-score" id="currentScore">0/${this.maxScore}</span>
                             </div>
                         </div>
-                        <p>Löse die Gleichungen:</p>
+                        <p>Finde die versteckte Zahl und ihre Umkehroperation:</p>
                         <div class="equation-grid" id="equationGrid">
                             ${levelData.tasks.map((task, index) => `
                                 <div class="equation-item" data-index="${index}">
                                     <span class="equation-left">${String.fromCharCode(97 + index)}) ${task.equation}</span>
+                                    <span class="equation-center">→</span>
                                     <div class="answer-section">
-                                        <span>→ x = </span>
+                                        <span>? = </span>
                                         <input type="number" class="answer-field" data-correct="${task.answer}" data-index="${index}" id="field_${index}">
                                         <button class="check-button" onclick="checkSingleAnswer(${index})" id="btn_${index}">Prüfen</button>
                                         <span class="feedback-icon" id="feedback_${index}"></span>
                                     </div>
+                                </div>
+                                <div class="explanation-box hidden" id="explanation_${index}">
+                                    <strong>💡 Erklärung:</strong> ${task.reverse} = ${task.answer}
                                 </div>
                             `).join('')}
                         </div>
@@ -701,6 +724,7 @@
                 const field = document.getElementById(`field_${index}`);
                 const button = document.getElementById(`btn_${index}`);
                 const feedbackIcon = document.getElementById(`feedback_${index}`);
+                const explanation = document.getElementById(`explanation_${index}`);
                 const correct = parseInt(field.dataset.correct);
                 const userAnswer = parseInt(field.value);
                 const equationItem = field.closest('.equation-item');
@@ -727,6 +751,7 @@
                     equationItem.className = 'equation-item correct';
                     feedbackIcon.textContent = '✅';
                     feedbackIcon.className = 'feedback-icon show';
+                    explanation.classList.remove('hidden');
                 } else {
                     field.className = 'answer-field incorrect';
                     button.className = 'check-button incorrect';
@@ -808,7 +833,7 @@
                 const performanceScore = this.calculatePerformanceScore();
                 const totalErrors = Object.values(this.errors).reduce((a, b) => a + b, 0);
                 
-                let summaryText = `Du hast ${this.score} von ${this.maxScore} Aufgaben richtig gelöst (${percentage}%)!`;
+                let summaryText = `Du hast ${this.score} von ${this.maxScore} Umkehraufgaben richtig gelöst (${percentage}%)!`;
                 if (totalErrors > 0) {
                     summaryText += ` Bei ${totalErrors} Versuchen lag du zunächst falsch, aber das ist völlig normal beim Lernen!`;
                 }
@@ -822,6 +847,9 @@
                 // Recommendations
                 const recommendation = this.getRecommendation(performanceScore);
                 document.getElementById('nextStationRecommendation').innerHTML = recommendation;
+                
+                // Save to progress tracker if available
+                this.saveToProgressTracker();
                 
                 document.getElementById('summaryBox').classList.add('show');
             }
@@ -853,40 +881,47 @@
                     // Excellent performance
                     if (this.currentLevel < 3) {
                         return `
-                            <p><strong>🚀 Fantastisch! Du bist bereit für schwierigere Aufgaben!</strong></p>
+                            <p><strong>🚀 Fantastisch! Du verstehst das Umkehr-Prinzip perfekt!</strong></p>
                             <a href="#" class="next-station recommended" onclick="startLevel(${this.currentLevel + 1})">
                                 Nächstes Level: ${TASKS[this.currentLevel + 1]?.stars}
                             </a>
-                            <a href="https://silas-hartmann.github.io/Mathe_6/station-c.html" class="next-station">Station C - Umkehraufgaben</a>
-                            <a href="https://silas-hartmann.github.io/Mathe_6/station-d.html" class="next-station">Station D - Zusammenfassen</a>
+                            <a href="station-c.html" class="next-station">Station C - Einfache Gleichungen</a>
+                            <a href="station-a.html" class="next-station">Station A - Terme zusammenfassen</a>
                         `;
                     } else {
                         return `
-                            <p><strong>🏆 Perfekt! Du meisterst einfache Gleichungen!</strong></p>
-                            <a href="https://silas-hartmann.github.io/Mathe_6/station-c.html" class="next-station recommended">Station C - Umkehraufgaben</a>
-                            <a href="https://silas-hartmann.github.io/Mathe_6/station-d.html" class="next-station">Station D - Zusammenfassen</a>
-                            <a href="https://silas-hartmann.github.io/Mathe_6/station-e.html" class="next-station">Station E - Komplex</a>
+                            <p><strong>🏆 Perfekt! Du bist ein Umkehraufgaben-Profi!</strong></p>
+                            <a href="station-c.html" class="next-station recommended">Station C - Einfache Gleichungen</a>
+                            <a href="station-a.html" class="next-station">Station A - Terme zusammenfassen</a>
+                            <a href="station-d.html" class="next-station">Station D - Mit Zusammenfassen</a>
                         `;
                     }
                 } else if (performanceScore >= 60) {
                     // Good performance, but room for improvement
                     return `
-                        <p><strong>👍 Gut gemacht! Ein bisschen mehr Übung wird dir helfen:</strong></p>
+                        <p><strong>👍 Gut gemacht! Das Umkehr-Prinzip sitzt schon ganz gut:</strong></p>
                         <a href="#" class="next-station recommended" onclick="startLevel(${this.currentLevel})">
                             Dieses Level wiederholen
                         </a>
-                        <a href="https://silas-hartmann.github.io/Mathe_6/station-c.html" class="next-station">Station C - Umkehraufgaben</a>
+                        <a href="station-c.html" class="next-station">Station C - Einfache Gleichungen</a>
                         ${this.currentLevel > 1 ? `<a href="#" class="next-station" onclick="startLevel(${this.currentLevel - 1})">Einfacheres Level: ${TASKS[this.currentLevel - 1]?.stars}</a>` : ''}
                     `;
                 } else {
                     // Needs more practice
                     return `
-                        <p><strong>💪 Das können wir noch verbessern! Lass uns das nochmal angehen:</strong></p>
+                        <p><strong>💪 Das Umkehr-Prinzip braucht noch etwas Übung!</strong></p>
                         ${this.currentLevel > 1 ? `<a href="#" class="next-station recommended" onclick="startLevel(${this.currentLevel - 1})">Einfacheres Level: ${TASKS[this.currentLevel - 1]?.stars}</a>` : ''}
-                        <a href="https://silas-hartmann.github.io/Mathe_6/station-a.html" class="next-station">Station A - Terme üben</a>
                         <a href="#" class="next-station" onclick="startLevel(${this.currentLevel})">Dieses Level wiederholen</a>
-                        <p><em>Tipp: Manchmal hilft es, mit einfacheren Aufgaben das Vertrauen aufzubauen!</em></p>
+                        <p><em>Tipp: Denk daran - jede Operation hat ihren Gegenspieler! + ↔ -, × ↔ ÷</em></p>
                     `;
+                }
+            }
+
+            saveToProgressTracker() {
+                // Save to progress tracker if available
+                if (typeof progressTracker !== 'undefined') {
+                    const result = this.getResults();
+                    progressTracker.saveStationResult('B', this.currentLevel, result);
                 }
             }
 
@@ -896,7 +931,7 @@
                 const timeSpent = this.startTime ? Math.round((new Date() - this.startTime) / 1000) : 0;
                 
                 return {
-                    station: 'B - Einfache Gleichungen',
+                    station: 'B - Umkehraufgaben',
                     level: this.currentLevel,
                     levelStars: TASKS[this.currentLevel].stars,
                     score: this.score,
