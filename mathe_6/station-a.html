@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station A - Terme zusammenfassen</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .station-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .name-date {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .input-field {
+            border-bottom: 2px solid #333;
+            min-width: 150px;
+            padding: 5px;
+            background: transparent;
+        }
+        
+        .goal-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .reminder-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .task-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .task-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: #ffd700;
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        
+        .task-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .answer-field {
+            border: none;
+            border-bottom: 2px solid #666;
+            background: transparent;
+            padding: 5px;
+            margin-left: 10px;
+            min-width: 80px;
+            font-size: 1.1em;
+        }
+        
+        .tip-box {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .check-box {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .bonus-box {
+            background: #fff8e1;
+            border: 2px dashed #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .separator {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ccc, transparent);
+            margin: 25px 0;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        @media print {
+            body { background-color: white; }
+            .header { background: #333 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧮 Station A - Terme zusammenfassen</h1>
+        <div class="station-info">
+            <div class="name-date">
+                <div>Name: <span class="input-field"></span></div>
+                <div>Datum: <span class="input-field"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="goal-box">
+        <strong><span class="emoji">🎯</span>Ziel: Ich kann Terme mit gleichen Variablen zusammenfassen</strong>
+    </div>
+
+    <div class="reminder-box">
+        <strong><span class="emoji">📝</span>Erinnerung:</strong><br>
+        Gleiche Buchstaben (Variablen) kann man zusammenrechnen:<br>
+        • 3x + 2x = 5x<br>
+        • 5a - 2a = 3a
+    </div>
+
+    <hr class="separator">
+
+    <div class="task-section">
+        <div class="task-header">
+            <h3>Aufgabe 1: Leichte Terme</h3>
+            <span class="stars">⭐</span>
+        </div>
+        <p>Fasse zusammen:</p>
+        <div class="task-grid">
+            <div class="task-item">
+                a) 2x + 3x = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                b) 5a + 2a = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                c) 4y + y = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                d) 6b + 3b = <input type="text" class="answer-field">
+            </div>
+        </div>
+    </div>
+
+    <div class="task-section">
+        <div class="task-header">
+            <h3>Aufgabe 2: Mit Zahlen gemischt</h3>
+            <span class="stars">⭐⭐</span>
+        </div>
+        <p>Fasse zusammen:</p>
+        <div class="task-grid">
+            <div class="task-item">
+                a) 3x + 2 + 4x = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                b) 5 + 2a + 3a = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                c) 4y + 7 + 2y = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                d) 8 + 3b + 5b = <input type="text" class="answer-field">
+            </div>
+        </div>
+    </div>
+
+    <div class="task-section">
+        <div class="task-header">
+            <h3>Aufgabe 3: Mit Subtraktion</h3>
+            <span class="stars">⭐⭐⭐</span>
+        </div>
+        <p>Fasse zusammen:</p>
+        <div class="task-grid">
+            <div class="task-item">
+                a) 7x - 2x = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                b) 6a + 3a - 4a = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                c) 8y - 3y + 2y = <input type="text" class="answer-field">
+            </div>
+            <div class="task-item">
+                d) 9b - 5b + 3 = <input type="text" class="answer-field">
+            </div>
+        </div>
+    </div>
+
+    <hr class="separator">
+
+    <div class="tip-box">
+        <strong><span class="emoji">💡</span>Tipp:</strong><br>
+        Markiere dir gleiche Buchstaben mit der gleichen Farbe!
+    </div>
+
+    <div class="check-box">
+        <strong><span class="emoji">✓</span>Selbstkontrolle:</strong><br>
+        Setze für den Buchstaben eine Zahl ein (z.B. x = 2) und prüfe, ob beide Seiten das gleiche Ergebnis haben.
+    </div>
+
+    <div class="bonus-box">
+        <strong><span class="emoji">🌟</span>Zusatzaufgabe für Schnelle:</strong><br>
+        Erfinde selbst einen Term mit x und fasse ihn zusammen:<br>
+        <input type="text" style="width: 200px; margin: 10px 5px; padding: 5px; border: 1px solid #ccc; border-radius: 3px;"> = <input type="text" style="width: 100px; margin: 10px 5px; padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+    </div>
+</body>
+</html>
